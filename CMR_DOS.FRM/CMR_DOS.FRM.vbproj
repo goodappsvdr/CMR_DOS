@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36B16AE3-F300-4B40-9499-58EE35A14ABE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>CMR_DOS.FRM.My.MyApplication</StartupObject>
+    <RootNamespace>CMR_DOS.FRM</RootNamespace>
+    <AssemblyName>CMR_DOS.FRM</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>CMR_DOS.FRM.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>CMR_DOS.FRM.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Controles_Ideas">
+      <HintPath>..\dll\Controles_Ideas.dll</HintPath>
+    </Reference>
+    <Reference Include="EQATEC.Analytics.Monitor">
+      <HintPath>..\dll\EQATEC.Analytics.Monitor.dll</HintPath>
+    </Reference>
+    <Reference Include="RadControlSpy">
+      <HintPath>..\dll\RadControlSpy.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming">
+      <HintPath>..\dll\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=7.1.13.802, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=7.1.13.802, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\Telerik.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls">
+      <HintPath>..\dll\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Analytics">
+      <HintPath>..\dll\Telerik.WinControls.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.ChartView">
+      <HintPath>..\dll\Telerik.WinControls.ChartView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView">
+      <HintPath>..\dll\Telerik.WinControls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.PdfViewer">
+      <HintPath>..\dll\Telerik.WinControls.PdfViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.PivotGrid">
+      <HintPath>..\dll\Telerik.WinControls.PivotGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadChart">
+      <HintPath>..\dll\Telerik.WinControls.RadChart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadDiagram">
+      <HintPath>..\dll\Telerik.WinControls.RadDiagram.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadDock">
+      <HintPath>..\dll\Telerik.WinControls.RadDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadMarkupEditor">
+      <HintPath>..\dll\Telerik.WinControls.RadMarkupEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RichTextBox">
+      <HintPath>..\dll\Telerik.WinControls.RichTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RichTextEditor">
+      <HintPath>..\dll\Telerik.WinControls.RichTextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Scheduler">
+      <HintPath>..\dll\Telerik.WinControls.Scheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.SpellChecker">
+      <HintPath>..\dll\Telerik.WinControls.SpellChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Aqua">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Aqua.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Breeze">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Breeze.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Desert">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Desert.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack">
+      <HintPath>..\dll\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Black">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Black">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Office2010Black.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Blue">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Office2010Blue.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Silver">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Office2010Silver.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Dark">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Office2013Dark.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro">
+      <HintPath>..\dll\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue">
+      <HintPath>..\dll\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch">
+      <HintPath>..\dll\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark">
+      <HintPath>..\dll\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light">
+      <HintPath>..\dll\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows7">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Windows7.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows8">
+      <HintPath>..\dll\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI">
+      <HintPath>..\dll\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI.Design">
+      <HintPath>..\dll\Telerik.WinControls.UI.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core">
+      <HintPath>..\dll\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed">
+      <HintPath>..\dll\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow">
+      <HintPath>..\dll\Telerik.Windows.Documents.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf">
+      <HintPath>..\dll\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet">
+      <HintPath>..\dll\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml">
+      <HintPath>..\dll\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf">
+      <HintPath>..\dll\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip">
+      <HintPath>..\dll\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon">
+      <HintPath>..\dll\TelerikCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikData">
+      <HintPath>..\dll\TelerikData.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikExport">
+      <HintPath>..\dll\TelerikExport.dll</HintPath>
+    </Reference>
+    <Reference Include="VisualStyleBuilder.Design">
+      <HintPath>..\dll\VisualStyleBuilder.Design.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Imprimir.vb" />
+    <Compile Include="Clases\ModuloPrincipal.vb" />
+    <Compile Include="Clases\MyEnglishRadGridLocalizationProvider.vb" />
+    <Compile Include="Formularios\Administrador\FrmBoxes.designer.vb">
+      <DependentUpon>FrmBoxes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmBoxes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmBoxesUsuarios.designer.vb">
+      <DependentUpon>FrmBoxesUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmBoxesUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmPeriodos.designer.vb">
+      <DependentUpon>FrmPeriodos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmPeriodos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmReportes.designer.vb">
+      <DependentUpon>FrmReportes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmReportes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmUsuariosSeccionesTipo.designer.vb">
+      <DependentUpon>FrmUsuariosSeccionesTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmUsuariosSeccionesTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorMotivos.Designer.vb">
+      <DependentUpon>R_TurnosPorMotivos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorMotivos.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorMotivos_Exp.Designer.vb">
+      <DependentUpon>R_TurnosPorMotivos_Exp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorMotivos_Exp.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorOperador.Designer.vb">
+      <DependentUpon>R_TurnosPorOperador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorOperador.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorOperador_Exp.Designer.vb">
+      <DependentUpon>R_TurnosPorOperador_Exp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorOperador_Exp.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorResoluciones.Designer.vb">
+      <DependentUpon>R_TurnosPorResoluciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorResoluciones.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorResoluciones_Exp.Designer.vb">
+      <DependentUpon>R_TurnosPorResoluciones_Exp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorResoluciones_Exp.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorSecciones.Designer.vb">
+      <DependentUpon>R_TurnosPorSecciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorSecciones.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorSecciones_Exp.Designer.vb">
+      <DependentUpon>R_TurnosPorSecciones_Exp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorSecciones_Exp.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorSubSecciones.Designer.vb">
+      <DependentUpon>R_TurnosPorSubSecciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorSubSecciones.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorSubSecciones_Exp.Designer.vb">
+      <DependentUpon>R_TurnosPorSubSecciones_Exp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_TurnosPorSubSecciones_Exp.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_Viewer.Designer.vb">
+      <DependentUpon>R_Viewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\Reportes\R_Viewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Cliente\FrmLoginCliente.Designer.vb">
+      <DependentUpon>FrmLoginCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Cliente\FrmLoginCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Cliente\FrmPrincipalCliente.Designer.vb">
+      <DependentUpon>FrmPrincipalCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Cliente\FrmPrincipalCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Cliente\FrmSeccionesTipoCliente.Designer.vb">
+      <DependentUpon>FrmSeccionesTipoCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Cliente\FrmSeccionesTipoCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmElegirBoxActual.Designer.vb">
+      <DependentUpon>FrmElegirBoxActual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmElegirBoxActual.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmLoginOperador.Designer.vb">
+      <DependentUpon>FrmLoginOperador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmLoginOperador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmMotivos.designer.vb">
+      <DependentUpon>FrmMotivos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmMotivos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmResoluciones.designer.vb">
+      <DependentUpon>FrmResoluciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmResoluciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmTurnosOperador.designer.vb">
+      <DependentUpon>FrmTurnosOperador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Operador\FrmTurnosOperador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmGenerador.Designer.vb">
+      <DependentUpon>FrmGenerador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmGenerador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmMenu.designer.vb">
+      <DependentUpon>FrmMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmMenuRoles.designer.vb">
+      <DependentUpon>FrmMenuRoles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmMenuRoles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmParametros.designer.vb">
+      <DependentUpon>FrmParametros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmParametros.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmRoles.designer.vb">
+      <DependentUpon>FrmRoles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmRoles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmSecciones.designer.vb">
+      <DependentUpon>FrmSecciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmSecciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmSeccionesTipo.designer.vb">
+      <DependentUpon>FrmSeccionesTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmSeccionesTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmUsuarios.designer.vb">
+      <DependentUpon>FrmUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmUsuariosSecciones.designer.vb">
+      <DependentUpon>FrmUsuariosSecciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sistema\FrmUsuariosSecciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.Designer.vb">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMenuPanel.designer.vb">
+      <DependentUpon>FrmMenuPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMenuPanel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrincipal.Designer.vb">
+      <DependentUpon>FrmPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPruebaImpresion.Designer.vb">
+      <DependentUpon>FrmPruebaImpresion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPruebaImpresion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Formularios\Administrador\FrmBoxes.resx">
+      <DependentUpon>FrmBoxes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\FrmBoxesUsuarios.resx">
+      <DependentUpon>FrmBoxesUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\FrmPeriodos.resx">
+      <DependentUpon>FrmPeriodos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\FrmReportes.resx">
+      <DependentUpon>FrmReportes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\FrmUsuariosSeccionesTipo.resx">
+      <DependentUpon>FrmUsuariosSeccionesTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorMotivos.resx">
+      <DependentUpon>R_TurnosPorMotivos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorMotivos_Exp.resx">
+      <DependentUpon>R_TurnosPorMotivos_Exp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorOperador.resx">
+      <DependentUpon>R_TurnosPorOperador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorOperador_Exp.resx">
+      <DependentUpon>R_TurnosPorOperador_Exp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorResoluciones.resx">
+      <DependentUpon>R_TurnosPorResoluciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorResoluciones_Exp.resx">
+      <DependentUpon>R_TurnosPorResoluciones_Exp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorSecciones.resx">
+      <DependentUpon>R_TurnosPorSecciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorSecciones_Exp.resx">
+      <DependentUpon>R_TurnosPorSecciones_Exp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorSubSecciones.resx">
+      <DependentUpon>R_TurnosPorSubSecciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_TurnosPorSubSecciones_Exp.resx">
+      <DependentUpon>R_TurnosPorSubSecciones_Exp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\Reportes\R_Viewer.resx">
+      <DependentUpon>R_Viewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Cliente\FrmLoginCliente.resx">
+      <DependentUpon>FrmLoginCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Cliente\FrmPrincipalCliente.resx">
+      <DependentUpon>FrmPrincipalCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Cliente\FrmSeccionesTipoCliente.resx">
+      <DependentUpon>FrmSeccionesTipoCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Operador\FrmElegirBoxActual.resx">
+      <DependentUpon>FrmElegirBoxActual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Operador\FrmLoginOperador.resx">
+      <DependentUpon>FrmLoginOperador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Operador\FrmMotivos.resx">
+      <DependentUpon>FrmMotivos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Operador\FrmResoluciones.resx">
+      <DependentUpon>FrmResoluciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Operador\FrmTurnosOperador.resx">
+      <DependentUpon>FrmTurnosOperador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sistema\FrmGenerador.resx">
+      <DependentUpon>FrmGenerador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sistema\FrmMenu.resx">
+      <DependentUpon>FrmMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sistema\FrmMenuRoles.resx">
+      <DependentUpon>FrmMenuRoles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sistema\FrmParametros.resx">
+      <DependentUpon>FrmParametros.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sistema\FrmRoles.resx">
+      <DependentUpon>FrmRoles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sistema\FrmSecciones.resx">
+      <DependentUpon>FrmSecciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sistema\FrmSeccionesTipo.resx">
+      <DependentUpon>FrmSeccionesTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sistema\FrmUsuarios.resx">
+      <DependentUpon>FrmUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Sistema\FrmUsuariosSecciones.resx">
+      <DependentUpon>FrmUsuariosSecciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMenuPanel.resx">
+      <DependentUpon>FrmMenuPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPruebaImpresion.resx">
+      <DependentUpon>FrmPruebaImpresion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Imagenes\icono_volver-2.png" />
+    <Content Include="Imagenes\icono_volver-2sad %282%29.png" />
+    <Content Include="Resources\Arrows-Back-icon.png" />
+    <Content Include="Resources\icono_volver-2.png" />
+    <Content Include="Resources\icono_volver-21.png" />
+    <Content Include="Resources\icono_volver-2sad %282%29.png" />
+    <None Include="Resources\LOGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CMR_DOS.AD\CMR_DOS.AD.vbproj">
+      <Project>{3589c514-9d27-4f09-bdbc-5f0343eabdde}</Project>
+      <Name>CMR_DOS.AD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CMR_DOS.CTRL\CMR_DOS.CTRL.vbproj">
+      <Project>{acdae278-7979-4f51-a386-0009e3a24d9b}</Project>
+      <Name>CMR_DOS.CTRL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
