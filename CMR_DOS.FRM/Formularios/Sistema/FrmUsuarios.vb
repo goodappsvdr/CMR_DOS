@@ -218,18 +218,18 @@ Public Class FrmUsuarios
         TxtLogin.Text = ""
         TxtPassword.Text = ""
         RolesCtrl1.Iniciar()
-        txtIDSeccion.Text = ""
+        'txtIDSeccion.Text = ""
         RadPageView1.SelectedPage = pag1
         EstadosCtrl1.Iniciar("USUARIOS")
-        deshabilitarbotonesSeccion()
-        If G_RolID = 1 Then
-            SeccionesCtrl1.Iniciar()
-        Else
-            SeccionesCtrl1.Iniciar_Administrador(G_UserID)
-        End If
+        'deshabilitarbotonesSeccion()
+        'If G_RolID = 1 Then
+        '    SeccionesCtrl1.Iniciar()
+        'Else
+        '    SeccionesCtrl1.Iniciar_Administrador(G_UserID)
+        'End If
 
-        EstadosCtrl2.Iniciar("UsuariosSecciones")
-        RadGridView1.DataSource = ""
+        'EstadosCtrl2.Iniciar("UsuariosSecciones")
+        'RadGridView1.DataSource = ""
 
         sNuevo = False
         sEditar = False
@@ -283,12 +283,12 @@ Public Class FrmUsuarios
 
                     resultado = oObjeto.Agregar(TxtNombre.Text, TxtLogin.Text, TxtPassword.Text, RolesCtrl1.SelectedValue, EstadosCtrl1.SelectedValue)
 
-                    TxtID.Text = resultado
-                    RadPageView1.SelectedPage = pag2
-                    sNuevo = True
-                    habilitarbotonesSeccion()
-                    
-                    MsgBox("Se agregó el registro " & resultado & ", asigne una sección", MsgBoxStyle.Information, G_AppName)
+                    'TxtID.Text = resultado
+                    'RadPageView1.SelectedPage = pag2
+                    'sNuevo = True
+                    'habilitarbotonesSeccion()
+
+                    'MsgBox("Se agregó el registro " & resultado & ", asigne una sección", MsgBoxStyle.Information, G_AppName)
 
 
                 Case FormEstado.eEdicion
@@ -533,77 +533,77 @@ ManejoErrores:
     End Function
 
 
-    Public Function BuscarPorID_seccion(ByVal ID As Integer) As Boolean
+    'Public Function BuscarPorID_seccion(ByVal ID As Integer) As Boolean
 
-        Dim oDs As New DataSet
-        Dim oObjeto As New UsuariosSecciones
-
-
-        oDs = oObjeto.BuscarPorID(ID)
+    '    Dim oDs As New DataSet
+    '    Dim oObjeto As New UsuariosSecciones
 
 
-        If oDs.Tables(0).Rows.Count > 0 Then
-
-            txtIDSeccion.Text = oDs.Tables(0).Rows(0).Item(0)
-            SeccionesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_SECCION")
-            EstadosCtrl2.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Estado")
-
-            oDs = Nothing
-            oObjeto = Nothing
-
-            BuscarPorID_seccion = True
-
-        Else
-
-            oDs = Nothing
-            oObjeto = Nothing
-
-            BuscarPorID_seccion = False
-
-            Exit Function
-
-        End If
+    '    oDs = oObjeto.BuscarPorID(ID)
 
 
+    '    If oDs.Tables(0).Rows.Count > 0 Then
+
+    '        txtIDSeccion.Text = oDs.Tables(0).Rows(0).Item(0)
+    '        SeccionesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_SECCION")
+    '        EstadosCtrl2.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Estado")
+
+    '        oDs = Nothing
+    '        oObjeto = Nothing
+
+    '        BuscarPorID_seccion = True
+
+    '    Else
+
+    '        oDs = Nothing
+    '        oObjeto = Nothing
+
+    '        BuscarPorID_seccion = False
+
+    '        Exit Function
+
+    '    End If
 
 
-    End Function
-    Private Function BuscarTodos_seccion(id_usuario As Integer) As Boolean
-        habilitarbotonesSeccion()
-        Dim oDs As New DataSet
-        Dim oObjeto As New UsuariosSecciones
-
-        RadGridView1.DataSource = ""
-
-        If G_RolID = 1 Then
-            oDs = oObjeto.BuscarPorIDUsuario(Grilla.CurrentRow.Cells(0).Value)
-        Else
-            oDs = oObjeto.BuscarPorIDUsuarioyadministrador(id_usuario, G_UserID)
-        End If
 
 
-        If oDs.Tables(0).Rows.Count > 0 Then
+    'End Function
+    'Private Function BuscarTodos_seccion(id_usuario As Integer) As Boolean
+    '    habilitarbotonesSeccion()
+    '    Dim oDs As New DataSet
+    '    Dim oObjeto As New UsuariosSecciones
 
-            RadGridView1.DataSource = oDs.Tables(1)
+    '    RadGridView1.DataSource = ""
 
-            RadGridView1.Columns(0).HeaderText = "#"
-            RadGridView1.Columns(0).Width = 30
-            RadGridView1.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+    '    If G_RolID = 1 Then
+    '        oDs = oObjeto.BuscarPorIDUsuario(Grilla.CurrentRow.Cells(0).Value)
+    '    Else
+    '        oDs = oObjeto.BuscarPorIDUsuarioyadministrador(id_usuario, G_UserID)
+    '    End If
 
-            oDs = Nothing
-            oObjeto = Nothing
 
-            Return True
+    '    If oDs.Tables(0).Rows.Count > 0 Then
 
-        Else
-            oDs = Nothing
-            oObjeto = Nothing
+    '        RadGridView1.DataSource = oDs.Tables(1)
 
-            Return False
+    '        RadGridView1.Columns(0).HeaderText = "#"
+    '        RadGridView1.Columns(0).Width = 30
+    '        RadGridView1.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
 
-        End If
+    '        oDs = Nothing
+    '        oObjeto = Nothing
 
-    End Function
+    '        Return True
+
+    '    Else
+    '        oDs = Nothing
+    '        oObjeto = Nothing
+
+    '        Return False
+
+    '    End If
+
+    'End Function
 
     Public Function BuscarPorID(ByVal ID As Integer) As Boolean
 
@@ -622,8 +622,8 @@ ManejoErrores:
             TxtPassword.Text = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("Password")))
             EstadosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Estado")
             RolesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Rol")
-            BuscarTodos_seccion(oDs.Tables(0).Rows(0).Item(0))
-            
+            'BuscarTodos_seccion(oDs.Tables(0).Rows(0).Item(0))
+
 
             oDs = Nothing
             oObjeto = Nothing
@@ -649,21 +649,23 @@ ManejoErrores:
     Private Function BuscarTodos() As Boolean
 
         Dim oDs As New DataSet
-        Dim oDs1 As New DataSet
         Dim oObjeto As New Usuarios
+        oDs = oObjeto.BuscarTodos
+        'Dim oDs1 As New DataSet
 
 
-        oDs1 = oObjeto.BuscarPorID(G_UserID)
 
-        If oDs1.Tables(0).Rows(0).Item("Id_rol") = 1 Then
+        'oDs1 = oObjeto.BuscarPorID(G_UserID)
 
-            oDs = oObjeto.BuscarTodos
+        'If oDs1.Tables(0).Rows(0).Item("Id_rol") = 1 Then
 
-        Else
+        '    oDs = oObjeto.BuscarTodos
 
-            oDs = oObjeto.BuscarTodosporAdministrador(G_UserID)
+        'Else
 
-        End If
+        '    oDs = oObjeto.BuscarTodosporAdministrador(G_UserID)
+
+        'End If
 
         If oDs.Tables(0).Rows.Count > 0 Then
 
@@ -783,49 +785,49 @@ ManejoErrores:
         Dim ods As New DataSet
         Dim oObjeto As New UsuariosSecciones
 
-        If SeccionesCtrl1.SelectedValue = sAux Then
-            Return True
+        'If SeccionesCtrl1.SelectedValue = sAux Then
+        '    Return True
 
-        Else
-            ods = oObjeto.BuscarPorIDUsuarioySeccion(id_usuario, SeccionesCtrl1.SelectedValue)
+        'Else
+        '    ods = oObjeto.BuscarPorIDUsuarioySeccion(id_usuario, SeccionesCtrl1.SelectedValue)
 
-            If ods.Tables(0).Rows.Count > 0 Then
+        '    If ods.Tables(0).Rows.Count > 0 Then
 
-                Return False
+        '        Return False
 
 
-            Else
-                Return True
-            End If
-        End If
-       
+        '    Else
+        '        Return True
+        '    End If
+        'End If
+
 
 
 
     End Function
 
-    
 
-   
 
-    Private Sub RadGridView1_DoubleClick(sender As Object, e As System.EventArgs) Handles RadGridView1.DoubleClick
-        If RadGridView1.Enabled Then
-            BuscarPorID_seccion(RadGridView1.CurrentRow.Cells(0).Value)
-        End If
 
-    End Sub
 
-    Private Sub RadButton2_Click(sender As System.Object, e As System.EventArgs) Handles btnNuevaSeccion.Click
-        sNuevo = True
-        btnEditarSeccion.Enabled = False
-    End Sub
+    'Private Sub RadGridView1_DoubleClick(sender As Object, e As System.EventArgs)
+    '    If RadGridView1.Enabled Then
+    '        BuscarPorID_seccion(RadGridView1.CurrentRow.Cells(0).Value)
+    '    End If
 
-    Private Sub RadButton1_Click(sender As System.Object, e As System.EventArgs) Handles btnEditarSeccion.Click
-        sAux = SeccionesCtrl1.SelectedValue
-        sEditar = True
-    End Sub
+    'End Sub
 
-    Private Sub RadButton3_Click(sender As System.Object, e As System.EventArgs) Handles btnAceptarseccion.Click
+    'Private Sub RadButton2_Click(sender As System.Object, e As System.EventArgs)
+    '    sNuevo = True
+    '    btnEditarSeccion.Enabled = False
+    'End Sub
+
+    'Private Sub RadButton1_Click(sender As System.Object, e As System.EventArgs)
+    '    sAux = SeccionesCtrl1.SelectedValue
+    '    sEditar = True
+    'End Sub
+
+    Private Sub RadButton3_Click(sender As System.Object, e As System.EventArgs)
         If verificarUsuario_seccion(TxtID.Text) Then
             acepto_seccion()
         Else
@@ -842,14 +844,14 @@ ManejoErrores:
 
             If sNuevo Then
 
-                resultado = oObjeto.Agregar(TxtID.Text, _
-                     SeccionesCtrl1.SelectedValue, EstadosCtrl2.SelectedValue)
+                'resultado = oObjeto.Agregar(TxtID.Text, _
+                '     SeccionesCtrl1.SelectedValue, EstadosCtrl2.SelectedValue)
 
                 MsgBox("Se agregó el registro " & resultado, MsgBoxStyle.Information, G_AppName)
                 If Me.Estado = FormEstado.eAgregar Then
                     Me.Estado = FormEstado.eVacio
                 Else
-                    BuscarTodos_seccion(TxtID.Text)
+                    'BuscarTodos_seccion(TxtID.Text)
                 End If
                 'Me.Estado = FormEstado.eVacio
             End If
@@ -857,18 +859,18 @@ ManejoErrores:
 
 
 
-            If sEditar Then
-                oObjeto.Modificar( _
-                                                        TxtID.Text, _
-                                                        txtIDSeccion.Text, _
-                                                        SeccionesCtrl1.SelectedValue, _
-                                                       EstadosCtrl2.SelectedValue)
+            'If sEditar Then
+            '    oObjeto.Modificar( _
+            '                                            TxtID.Text, _
+            '                                            txtIDSeccion.Text, _
+            '                                            SeccionesCtrl1.SelectedValue, _
+            '                                           EstadosCtrl2.SelectedValue)
 
 
-                'MsgBox("Se modificó el registro", MsgBoxStyle.Information, G_AppName)
-                Me.Estado = FormEstado.eVacio
+            '    'MsgBox("Se modificó el registro", MsgBoxStyle.Information, G_AppName)
+            '    Me.Estado = FormEstado.eVacio
 
-            End If
+            'End If
 
 
         Catch
@@ -895,36 +897,36 @@ ManejoErrores:
 
     End Sub
 
-    Private Sub habilitarbotonesSeccion()
-        btnEditarSeccion.Enabled = True
-        btnAceptarseccion.Enabled = True
-        btnNuevaSeccion.Enabled = True
-    End Sub
-    Private Sub deshabilitarbotonesSeccion()
-        btnEditarSeccion.Enabled = False
-        btnAceptarseccion.Enabled = False
-        btnNuevaSeccion.Enabled = False
-    End Sub
+    'Private Sub habilitarbotonesSeccion()
+    '    btnEditarSeccion.Enabled = True
+    '    btnAceptarseccion.Enabled = True
+    '    btnNuevaSeccion.Enabled = True
+    'End Sub
+    'Private Sub deshabilitarbotonesSeccion()
+    '    btnEditarSeccion.Enabled = False
+    '    btnAceptarseccion.Enabled = False
+    '    btnNuevaSeccion.Enabled = False
+    'End Sub
 
     Private Function verificarUsuario_seccion(user_id As String) As Boolean
         Dim ods As New DataSet
         Dim oObjeto As New UsuariosSecciones
 
-        If SeccionesCtrl1.SelectedValue = sAux Then
-            Return True
+        'If SeccionesCtrl1.SelectedValue = sAux Then
+        '    Return True
 
-        Else
-            ods = oObjeto.BuscarPorIDUsuarioySeccion(user_id, SeccionesCtrl1.SelectedValue)
+        'Else
+        '    ods = oObjeto.BuscarPorIDUsuarioySeccion(user_id, SeccionesCtrl1.SelectedValue)
 
-            If ods.Tables(0).Rows.Count > 0 Then
+        '    If ods.Tables(0).Rows.Count > 0 Then
 
-                Return False
+        '        Return False
 
 
-            Else
-                Return True
-            End If
-        End If
+        '    Else
+        '        Return True
+        '    End If
+        'End If
     End Function
 
 End Class

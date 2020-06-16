@@ -502,14 +502,17 @@ ManejoErrores:
             MsgBox("Éste código de sección ya está en uso...", MsgBoxStyle.Exclamation, G_AppName)
             Validar = False
             Exit Function
-        ElseIf verificarNombre(TxtNombre.Text, SeccionesCtrl1.SelectedValue) Then
-            MsgBox("Éste nombre de sección ya está en uso...", MsgBoxStyle.Exclamation, G_AppName)
-            Validar = False
-            Exit Function
+
+
         End If
+        If Me.Estado = FormEstado.eAgregar Then
+            If verificarNombre(TxtNombre.Text, SeccionesCtrl1.SelectedValue) Then
+                MsgBox("Éste nombre de sección ya está en uso...", MsgBoxStyle.Exclamation, G_AppName)
+                Validar = False
+                Exit Function
+            End If
 
-
-
+        End If
 
         Validar = True
 

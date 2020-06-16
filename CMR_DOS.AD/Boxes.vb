@@ -60,7 +60,7 @@ Public Class Boxes
 
         Try
 
-            Return oDatabase.ExecuteDataSet("Boxes_BusacarTodos")
+            Return oDatabase.ExecuteDataSet("Boxes_BuscarTodos")
 
         Catch ex As System.Exception
             Throw ex
@@ -95,11 +95,11 @@ Public Class Boxes
 
 
     'Insert
-    Public Function Agregar(ByVal codigo As String, ByVal nro As Integer, activo As Boolean) As Double
+    Public Function Agregar(ByVal ID_Seccion As Integer, ByVal codigo As String, ByVal nro As Integer, activo As Boolean) As Double
 
         Try
 
-            Return oDatabase.ExecuteScalar("Boxes_Agregar", codigo, nro, activo)
+            Return oDatabase.ExecuteScalar("Boxes_Agregar", ID_Seccion, codigo, nro, activo)
 
         Catch ex As System.Exception
             Throw ex
@@ -111,11 +111,11 @@ Public Class Boxes
 
     'Update
 
-    Public Function Modificar(id_box As Integer, ByVal codigo As String, ByVal nro As Integer, activo As Boolean) As DataSet
+    Public Function Modificar(id_box As Integer, ByVal ID_Seccion As Integer, ByVal codigo As String, ByVal nro As Integer, activo As Boolean) As DataSet
 
         Try
 
-            Return oDatabase.ExecuteDataSet("Boxes_Modificar", id_box, codigo, nro, activo)
+            Return oDatabase.ExecuteDataSet("Boxes_Modificar", id_box, ID_Seccion, codigo, nro, activo)
 
         Catch ex As System.Exception
             Throw ex

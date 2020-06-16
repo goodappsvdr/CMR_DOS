@@ -55,12 +55,32 @@ Partial Public Class UsuariosCtrl
         oObjeto = Nothing
 
     End Sub
+    Public Sub IniciarPorSeccion(ByVal seccion As Double)
 
-    Sub IniciarOperadoresparaAdministrador(id_rol As Integer, UserID As Double)
         Dim oDs As New DataSet
         Dim oObjeto As New Usuarios
 
-        oDs = oObjeto.BuscarBuscarOperadoresparaAdministrador(id_rol, UserID)
+        oDs = oObjeto.BuscarPorID_Seccion(seccion)
+
+        If oDs.Tables(0).Rows.Count > 0 Then
+
+
+            DataSource = oDs.Tables(0)
+            DisplayMember = oDs.Tables(0).Columns(1).Caption.ToString
+            ValueMember = oDs.Tables(0).Columns(0).Caption.ToString
+        Else
+            'MsgBox("No se encontraron usuarios.", MsgBoxStyle.Exclamation, "Información...")
+        End If
+
+        oDs = Nothing
+        oObjeto = Nothing
+
+    End Sub
+    Sub IniciarOperadoresparaAdministrador(id_rol As Integer)
+        Dim oDs As New DataSet
+        Dim oObjeto As New Usuarios
+
+        oDs = oObjeto.BuscarBuscarOperadoresparaAdministrador(id_rol)
 
         If oDs.Tables(0).Rows.Count > 0 Then
 

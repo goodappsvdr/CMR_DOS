@@ -65,7 +65,7 @@ Public Class FrmPrincipal
             Dim frm As New Form
 
             Dim Type As Type = Assembly.GetExecutingAssembly().GetType(
-                 "CRM_MUNI.FRM." & item.Name)
+                 "CMR_DOS.FRM." & item.Name)
             If Type IsNot Nothing Then
                 frm = Activator.CreateInstance(Type)
                 frm.TopLevel = False

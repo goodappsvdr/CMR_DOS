@@ -215,7 +215,8 @@ Public Class FrmResoluciones
         TxtID.Text = ""
         TxtDescripcion.Text = ""
 
-        SeccionesCtrl1.Iniciar_Administrador(G_UserID)
+        SeccionesCtrl1.Iniciar()
+        SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
         checkVisible.Checked = True
 
 
@@ -523,7 +524,7 @@ ManejoErrores:
             TxtID.Text = oDs.Tables(0).Rows(0).Item(0)
             TxtDescripcion.Text = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("Descripcion")))
             SeccionesCtrl1.SelectedValue = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("id_seccion")))
-            SeccionesTipoCtrl1.Iniciar(G_UserID, LTrim(RTrim(oDs.Tables(0).Rows(0).Item("id_seccion"))))
+            SeccionesTipoCtrl1.Iniciar(LTrim(RTrim(oDs.Tables(0).Rows(0).Item("id_seccion"))))
             SeccionesTipoCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("id_secciontipo")
 
 
@@ -623,16 +624,13 @@ ManejoErrores:
         End If
     End Sub
 
+    Private Sub SeccionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles SeccionesCtrl1.SelectionChangeCommitted
+        SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
+    End Sub
+
 #End Region
 
 
 
-    Private Sub SeccionesCtrl1_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles SeccionesCtrl1.SelectedValueChanged
-        Try
-            SeccionesTipoCtrl1.Iniciar(G_UserID, CType(SeccionesCtrl1.SelectedValue, Integer))
 
-        Catch ex As Exception
-
-        End Try
-    End Sub
 End Class

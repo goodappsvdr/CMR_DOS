@@ -210,7 +210,13 @@ Public Class Usuarios
             Throw ex
         End Try
     End Function
-
+    Function BuscarPorID_Seccion(ByVal seccion As Double) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("Usuarios_BuscarPorID_Seccion", seccion)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Function BuscarTodosporAdministrador(user_id As Double) As DataSet
         Try
             Return oDatabase.ExecuteDataSet("Usuarios_BuscarTodosporAdministrador", user_id)
@@ -219,9 +225,9 @@ Public Class Usuarios
         End Try
     End Function
 
-    Function BuscarBuscarOperadoresparaAdministrador(id_rol As Integer, UserID As Double) As DataSet
+    Function BuscarBuscarOperadoresparaAdministrador(id_rol As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Usuarios_BuscarOperadoresparaAdministrador", id_rol, UserID)
+            Return oDatabase.ExecuteDataSet("Usuarios_BuscarOperadoresparaAdministrador", id_rol)
         Catch ex As Exception
             Throw ex
         End Try

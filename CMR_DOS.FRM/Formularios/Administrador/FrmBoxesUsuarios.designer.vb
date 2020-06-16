@@ -133,7 +133,7 @@ Partial Class FrmBoxesUsuarios
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label2.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label2.Location = New System.Drawing.Point(148, 73)
+        Me.Label2.Location = New System.Drawing.Point(148, 46)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(55, 13)
         Me.Label2.TabIndex = 41
@@ -327,7 +327,7 @@ Partial Class FrmBoxesUsuarios
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label7.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label7.Location = New System.Drawing.Point(150, 46)
+        Me.Label7.Location = New System.Drawing.Point(150, 73)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(53, 13)
         Me.Label7.TabIndex = 95
@@ -338,7 +338,7 @@ Partial Class FrmBoxesUsuarios
         Me.SeccionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.SeccionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.SeccionesCtrl1.FormattingEnabled = True
-        Me.SeccionesCtrl1.Location = New System.Drawing.Point(206, 43)
+        Me.SeccionesCtrl1.Location = New System.Drawing.Point(206, 70)
         Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
         Me.SeccionesCtrl1.Size = New System.Drawing.Size(272, 21)
         Me.SeccionesCtrl1.TabIndex = 94
@@ -417,7 +417,7 @@ Partial Class FrmBoxesUsuarios
         Me.UsuariosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.UsuariosCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.UsuariosCtrl1.FormattingEnabled = True
-        Me.UsuariosCtrl1.Location = New System.Drawing.Point(206, 70)
+        Me.UsuariosCtrl1.Location = New System.Drawing.Point(206, 43)
         Me.UsuariosCtrl1.Name = "UsuariosCtrl1"
         Me.UsuariosCtrl1.Size = New System.Drawing.Size(272, 21)
         Me.UsuariosCtrl1.TabIndex = 81

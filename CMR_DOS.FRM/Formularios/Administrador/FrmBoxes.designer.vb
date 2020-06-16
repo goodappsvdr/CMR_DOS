@@ -46,6 +46,8 @@ Partial Class FrmBoxes
         Me.Grilla = New Telerik.WinControls.UI.RadGridView()
         Me.RadPageView1 = New Telerik.WinControls.UI.RadPageView()
         Me.RadPageViewPage1 = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.SeccionesCtrl1 = New CMR_DOS.CTRL.SeccionesCtrl()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtNroBox = New Controles_Ideas.TextData(Me.components)
         Me.txtCodigo = New Controles_Ideas.TextData(Me.components)
@@ -101,10 +103,10 @@ Partial Class FrmBoxes
         'TxtID
         '
         Me.TxtID.BackColor = System.Drawing.Color.White
-        Me.TxtID.ColorEnter = System.Drawing.Color.Yellow
+        Me.TxtID.ColorEnter = System.Drawing.Color.White
         Me.TxtID.ColorLeave = System.Drawing.Color.White
         Me.TxtID.Enabled = False
-        Me.TxtID.Location = New System.Drawing.Point(276, 53)
+        Me.TxtID.Location = New System.Drawing.Point(276, 58)
         Me.TxtID.Name = "TxtID"
         Me.TxtID.Size = New System.Drawing.Size(100, 22)
         Me.TxtID.TabEnable = True
@@ -117,7 +119,7 @@ Partial Class FrmBoxes
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(252, 56)
+        Me.Label1.Location = New System.Drawing.Point(252, 61)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(18, 13)
         Me.Label1.TabIndex = 40
@@ -129,7 +131,7 @@ Partial Class FrmBoxes
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label2.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label2.Location = New System.Drawing.Point(193, 84)
+        Me.Label2.Location = New System.Drawing.Point(193, 116)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(75, 13)
         Me.Label2.TabIndex = 41
@@ -301,6 +303,8 @@ Partial Class FrmBoxes
         'RadPageViewPage1
         '
         Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.RadPageViewPage1.Controls.Add(Me.Label4)
+        Me.RadPageViewPage1.Controls.Add(Me.SeccionesCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.Label3)
         Me.RadPageViewPage1.Controls.Add(Me.txtNroBox)
         Me.RadPageViewPage1.Controls.Add(Me.txtCodigo)
@@ -314,13 +318,35 @@ Partial Class FrmBoxes
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 226)
         Me.RadPageViewPage1.Text = "Información"
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.Label4.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.Label4.Location = New System.Drawing.Point(196, 89)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(75, 13)
+        Me.Label4.TabIndex = 95
+        Me.Label4.Text = "CODIGO BOX"
+        '
+        'SeccionesCtrl1
+        '
+        Me.SeccionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.SeccionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.SeccionesCtrl1.FormattingEnabled = True
+        Me.SeccionesCtrl1.Location = New System.Drawing.Point(276, 86)
+        Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
+        Me.SeccionesCtrl1.Size = New System.Drawing.Size(100, 21)
+        Me.SeccionesCtrl1.TabIndex = 94
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label3.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label3.Location = New System.Drawing.Point(213, 112)
+        Me.Label3.Location = New System.Drawing.Point(213, 144)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 13)
         Me.Label3.TabIndex = 93
@@ -329,10 +355,11 @@ Partial Class FrmBoxes
         'txtNroBox
         '
         Me.txtNroBox.BackColor = System.Drawing.Color.White
-        Me.txtNroBox.ColorEnter = System.Drawing.Color.Yellow
+        Me.txtNroBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtNroBox.ColorEnter = System.Drawing.Color.White
         Me.txtNroBox.ColorLeave = System.Drawing.Color.White
         Me.txtNroBox.Enabled = False
-        Me.txtNroBox.Location = New System.Drawing.Point(276, 109)
+        Me.txtNroBox.Location = New System.Drawing.Point(276, 141)
         Me.txtNroBox.Name = "txtNroBox"
         Me.txtNroBox.Size = New System.Drawing.Size(100, 22)
         Me.txtNroBox.TabEnable = True
@@ -342,10 +369,11 @@ Partial Class FrmBoxes
         'txtCodigo
         '
         Me.txtCodigo.BackColor = System.Drawing.Color.White
-        Me.txtCodigo.ColorEnter = System.Drawing.Color.Yellow
+        Me.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtCodigo.ColorEnter = System.Drawing.Color.White
         Me.txtCodigo.ColorLeave = System.Drawing.Color.White
         Me.txtCodigo.Enabled = False
-        Me.txtCodigo.Location = New System.Drawing.Point(276, 81)
+        Me.txtCodigo.Location = New System.Drawing.Point(276, 113)
         Me.txtCodigo.Name = "txtCodigo"
         Me.txtCodigo.Size = New System.Drawing.Size(100, 22)
         Me.txtCodigo.TabEnable = True
@@ -356,7 +384,7 @@ Partial Class FrmBoxes
         '
         Me.checkVisible.AutoSize = True
         Me.checkVisible.Enabled = False
-        Me.checkVisible.Location = New System.Drawing.Point(276, 137)
+        Me.checkVisible.Location = New System.Drawing.Point(276, 169)
         Me.checkVisible.Name = "checkVisible"
         Me.checkVisible.Size = New System.Drawing.Size(15, 14)
         Me.checkVisible.TabIndex = 88
@@ -368,7 +396,7 @@ Partial Class FrmBoxes
         Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label8.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label8.Location = New System.Drawing.Point(225, 137)
+        Me.Label8.Location = New System.Drawing.Point(225, 169)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(46, 13)
         Me.Label8.TabIndex = 89
@@ -452,7 +480,8 @@ Partial Class FrmBoxes
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtNroBox As Controles_Ideas.TextData
     Friend WithEvents txtCodigo As Controles_Ideas.TextData
-
+    Friend WithEvents Label4 As Label
+    Friend WithEvents SeccionesCtrl1 As CTRL.SeccionesCtrl
 
 
 End Class

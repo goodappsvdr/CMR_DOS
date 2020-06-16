@@ -2,6 +2,7 @@
 Imports CMR_DOS.AD
 Imports Telerik.WinControls.UI.Export
 Imports Telerik.WinControls.UI.Data
+Imports System.ComponentModel
 
 Public Class FrmTurnosOperador
     Dim ultimo As Integer
@@ -305,11 +306,9 @@ Public Class FrmTurnosOperador
 
                 Case FormEstado.eEdicion
 
-
-
-                    oObjeto.Resolver(id_turno, _
-                                    ValorEstado("TURNOS", "SOLUCIONADO"), _
-                                    ResolucionesCtrl1.SelectedValue, _
+                    oObjeto.Resolver(id_turno,
+                                    ValorEstado("TURNOS", "SOLUCIONADO"),
+                                    ResolucionesCtrl1.SelectedValue,
                                     txtObservaciones.Text,
                                     MotivosCtrl1.SelectedValue,
                                     G_UserID)
@@ -333,16 +332,16 @@ Public Class FrmTurnosOperador
                 Case FormEstado.eAgregar
 
 
-                    MsgBox("Ocurrió un error al Agregar - " & vbCrLf & _
-                     vbCrLf & _
+                    MsgBox("Ocurrió un error al Agregar - " & vbCrLf &
+                     vbCrLf &
                     Err.Description, MsgBoxStyle.Critical, G_AppName)
 
 
                 Case FormEstado.eEdicion
 
 
-                    MsgBox("Ocurrió un error al Modificar - " & vbCrLf & _
-                     vbCrLf & _
+                    MsgBox("Ocurrió un error al Modificar - " & vbCrLf &
+                     vbCrLf &
                     Err.Description, MsgBoxStyle.Critical, G_AppName)
 
 
@@ -365,8 +364,8 @@ Public Class FrmTurnosOperador
 
         On Error GoTo ManejoErrores
 
-        If MsgBox("Esta seguro de Cancelar?" & vbCrLf & _
-                  "Se perderán las ultimas modificaciones", _
+        If MsgBox("Esta seguro de Cancelar?" & vbCrLf &
+                  "Se perderán las ultimas modificaciones",
                   vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
             Dim id_estado As Integer = ValorEstado("Turnos", "Generado")
             If EstadosCtrl1.SelectedValue = id_estado Then
@@ -396,8 +395,8 @@ Public Class FrmTurnosOperador
         Exit Sub
 
 ManejoErrores:
-        MsgBox("Ocurrió el error " & vbCrLf & _
-                 vbCrLf & _
+        MsgBox("Ocurrió el error " & vbCrLf &
+                 vbCrLf &
                 Err.Description)
 
     End Sub
@@ -486,13 +485,8 @@ ManejoErrores:
         If Grilla.Rows.Count <= 0 Then
             MsgBox("No hay ningùn turno!", MsgBoxStyle.Exclamation)
         Else
-          
-
-
-
 
             'llamar turno 
-
 
             'Me.Estado = FormEstado.eAgregar
             If Me.Estado = FormEstado.eVacio Then
@@ -583,11 +577,7 @@ ManejoErrores:
             Validar = False
             Exit Function
 
-
         End If
-
-
-
 
         Validar = True
 
@@ -616,11 +606,6 @@ ManejoErrores:
             ResolucionesCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_RESOLUCION")
             MotivosCtrl1.Iniciar(oDs.Tables(1).Rows(0).Item("id_seccionTipo"))
             MotivosCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_MOTIVO")
-
-
-
-
-
 
             oDs = Nothing
             oObjeto = Nothing
@@ -755,13 +740,7 @@ ManejoErrores:
 #End Region
 
 
-
-
-
-
     Public Function LlamarSiguiente() As Boolean
-
-
 
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
@@ -779,8 +758,6 @@ ManejoErrores:
 
 
             BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"))
-
-
 
 
             oDs = Nothing
@@ -912,7 +889,7 @@ ManejoErrores:
     End Sub
 
     Private startTime As TimeSpan
-    Private Function TimeFormat(ByRef value As Integer, _
+    Private Function TimeFormat(ByRef value As Integer,
                                 ByVal maxLength As Byte) As String
         'Variables
         Dim result As String = value.ToString
@@ -926,5 +903,12 @@ ManejoErrores:
         Return Mid(result, 1, 2)
     End Function
 
- 
+    'Private Sub FrmTurnosOperador_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    '    If Grilla.Rows.Count > 0 Then
+    '        Dim result As Integer = MessageBox.Show("¿Tiene turnos sin atender desea cerrar de todo modos " + "?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+    '        If result = DialogResult.Yes Then
+
+    '        End If
+    '    End If
+    'End Sub
 End Class

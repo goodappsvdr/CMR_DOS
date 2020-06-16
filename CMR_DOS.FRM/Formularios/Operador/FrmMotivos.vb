@@ -215,9 +215,8 @@ Public Class FrmMotivos
 
         TxtID.Text = ""
         TxtDescripcion.Text = ""
-
-        SeccionesCtrl1.Iniciar_Administrador(G_UserID)
-        SeccionesTipoCtrl1.Text = ""
+        SeccionesCtrl1.Iniciar()
+        SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
         checkVisible.Checked = True
 
 
@@ -280,9 +279,9 @@ Public Class FrmMotivos
 
 
 
-                    oObjeto.Modificar( _
-                                        TxtID.Text, _
-                                        SeccionesTipoCtrl1.SelectedValue, _
+                    oObjeto.Modificar(
+                                        TxtID.Text,
+                                        SeccionesTipoCtrl1.SelectedValue,
                                         TxtDescripcion.Text, _
  _
                                         checkVisible.Checked)
@@ -304,16 +303,16 @@ Public Class FrmMotivos
                 Case FormEstado.eAgregar
 
 
-                    MsgBox("Ocurrió un error al Agregar - " & vbCrLf & _
-                     vbCrLf & _
+                    MsgBox("Ocurrió un error al Agregar - " & vbCrLf &
+                     vbCrLf &
                     Err.Description, MsgBoxStyle.Critical, G_AppName)
 
 
                 Case FormEstado.eEdicion
 
 
-                    MsgBox("Ocurrió un error al Modificar - " & vbCrLf & _
-                     vbCrLf & _
+                    MsgBox("Ocurrió un error al Modificar - " & vbCrLf &
+                     vbCrLf &
                     Err.Description, MsgBoxStyle.Critical, G_AppName)
 
 
@@ -336,8 +335,8 @@ Public Class FrmMotivos
 
         On Error GoTo ManejoErrores
 
-        If MsgBox("Esta seguro de Cancelar?" & vbCrLf & _
-                  "Se perderán las ultimas modificaciones", _
+        If MsgBox("Esta seguro de Cancelar?" & vbCrLf &
+                  "Se perderán las ultimas modificaciones",
                   vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
 
             Me.Estado = FormEstado.eVacio
@@ -346,8 +345,8 @@ Public Class FrmMotivos
         Exit Sub
 
 ManejoErrores:
-        MsgBox("Ocurrió el error " & vbCrLf & _
-                 vbCrLf & _
+        MsgBox("Ocurrió el error " & vbCrLf &
+                 vbCrLf &
                 Err.Description)
 
     End Sub
@@ -503,7 +502,7 @@ ManejoErrores:
 
 
         End If
-       
+
 
 
         'Dim ods As New DataSet
@@ -526,7 +525,7 @@ ManejoErrores:
         Validar = True
 
     End Function
-   
+
     Public Function BuscarPorID(ByVal ID As Integer) As Boolean
 
         Dim oDs As New DataSet
@@ -541,7 +540,7 @@ ManejoErrores:
             TxtID.Text = oDs.Tables(0).Rows(0).Item(0)
             TxtDescripcion.Text = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("Descripcion")))
             SeccionesCtrl1.SelectedValue = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("id_seccion")))
-            SeccionesTipoCtrl1.Iniciar(G_UserID, LTrim(RTrim(oDs.Tables(0).Rows(0).Item("id_seccion"))))
+            SeccionesTipoCtrl1.Iniciar(LTrim(RTrim(oDs.Tables(0).Rows(0).Item("id_seccion"))))
             SeccionesTipoCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("id_secciontipo")
 
 
@@ -641,21 +640,10 @@ ManejoErrores:
         End If
     End Sub
 
+    Private Sub SeccionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles SeccionesCtrl1.SelectionChangeCommitted
+        SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
+    End Sub
+
 #End Region
 
-
-
-
-
-
-    
-   
-    Private Sub SeccionesCtrl1_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles SeccionesCtrl1.SelectedValueChanged
-        Try
-            SeccionesTipoCtrl1.Iniciar(G_UserID, CType(SeccionesCtrl1.SelectedValue, Integer))
-
-        Catch ex As Exception
-
-        End Try
-    End Sub
 End Class

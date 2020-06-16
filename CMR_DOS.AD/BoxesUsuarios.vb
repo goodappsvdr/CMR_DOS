@@ -109,12 +109,12 @@ Public Class BoxesUsuarios
 
 
     'Insert
-    Public Function Agregar(id_BOX As Integer, ByVal id_usuario As Integer, ByVal id_seccion As Integer, ByVal id_estado As Integer) As Double
+    Public Function Agregar(id_BOX As Integer, ByVal id_usuario As Integer, ByVal id_estado As Integer) As Double
 
 
         Try
 
-            Return oDatabase.ExecuteScalar("BoxesUsuarios_Agregar", id_BOX, id_usuario, id_seccion, id_estado)
+            Return oDatabase.ExecuteScalar("BoxesUsuarios_Agregar", id_BOX, id_usuario, id_estado)
 
         Catch ex As System.Exception
             Throw ex
@@ -126,11 +126,11 @@ Public Class BoxesUsuarios
 
     'Update
 
-    Public Function Modificar(ByVal id_BoxUsuario As Double, id_BOX As Integer, ByVal id_usuario As Integer, ByVal ID_Seccion As Integer, ByVal id_estado As Integer) As DataSet
+    Public Function Modificar(ByVal id_BoxUsuario As Double, id_BOX As Integer, ByVal id_usuario As Integer, ByVal id_estado As Integer) As DataSet
 
         Try
 
-            Return oDatabase.ExecuteDataSet("BoxesUsuarios_Modificar", id_BoxUsuario, id_BOX, id_usuario, ID_Seccion, id_estado)
+            Return oDatabase.ExecuteDataSet("BoxesUsuarios_Modificar", id_BoxUsuario, id_BOX, id_usuario, id_estado)
 
         Catch ex As System.Exception
             Throw ex

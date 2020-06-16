@@ -212,9 +212,9 @@ Public Class FrmUsuariosSecciones
     Public Sub LimpiarDatos()
 
         TxtID.Text = ""
+        RolesCtrl1.Iniciarsinsistemas()
+        UsuariosCtrl1.Iniciar(RolesCtrl1.SelectedValue)
         SeccionesCtrl1.Iniciar()
-        RolesCtrl1.IniciarSoloAdmyCliente()
-
         EstadosCtrl1.Iniciar("MenuROLES")
 
 
@@ -538,8 +538,10 @@ ManejoErrores:
         If oDs.Tables(0).Rows.Count > 0 Then
 
             TxtID.Text = oDs.Tables(0).Rows(0).Item(0)
-            UsuariosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_USUARIO")
+            RolesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Rol")
             SeccionesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_SECCION")
+            UsuariosCtrl1.IniciarPorRolySeccion(RolesCtrl1.SelectedValue, SeccionesCtrl1.SelectedValue)
+            UsuariosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_USUARIO")
             EstadosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Estado")
 
             oDs = Nothing

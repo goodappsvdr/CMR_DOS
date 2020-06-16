@@ -13,7 +13,7 @@ Partial Public Class SeccionesTipoCtrl
 
     End Sub
 
-    Public Sub Iniciar(id_operador As Integer, id_Seccion As Integer)
+    Public Sub Iniciar(id_Seccion As Integer)
 
         Dim oDs As New DataSet
         Dim oObjeto As New SeccionesTipo

@@ -495,31 +495,28 @@ ManejoErrores:
             Exit Function
         End If
 
-        ods = oObjeto.BuscarPorcodigo(TxtCodigo.Text)
-        If ods.Tables(0).Rows.Count <= 0 Then
-            Validar = True
-        Else
 
-            MsgBox("Éste código de sección ya está en uso...", MsgBoxStyle.Exclamation, G_AppName)
-            Validar = False
-            Exit Function
+
+
+        If Me.Estado = FormEstado.eAgregar Then
+            ods = oObjeto.Secciones_BuscarPornOMBRE(TxtNombre.Text)
+            If ods.Tables(0).Rows.Count > 0 Then
+
+                MsgBox("Éste nombre de sección ya está en uso...", MsgBoxStyle.Exclamation, G_AppName)
+                Validar = False
+                Exit Function
+
+            End If
+            ods = oObjeto.BuscarPorcodigo(TxtCodigo.Text)
+            If ods.Tables(0).Rows.Count > 0 Then
+
+                MsgBox("Éste código de sección ya está en uso...", MsgBoxStyle.Exclamation, G_AppName)
+                Validar = False
+                Exit Function
+            End If
+
+
         End If
-
-
-
-
-        ods = oObjeto.Secciones_BuscarPornOMBRE(TxtNombre.Text)
-        If ods.Tables(0).Rows.Count <= 0 Then
-            Validar = True
-        Else
-            MsgBox("Éste nombre de sección ya está en uso...", MsgBoxStyle.Exclamation, G_AppName)
-            Validar = False
-            Exit Function
-
-
-        End If
-
-
 
         Validar = True
 

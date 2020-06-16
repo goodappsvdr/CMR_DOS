@@ -117,7 +117,7 @@ Public Class FrmSeccionesTipoCliente
                                       ValorResolucion("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), Integer)), _
                                     CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1, _
                                     ValorMotivo("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), Integer)))
-            'ImprimirTurno(ID_Turno)
+            '  ImprimirTurno(ID_Turno)
             idturno = ID_Turno
             PrintDocument1.Print()
         Else
@@ -129,7 +129,7 @@ Public Class FrmSeccionesTipoCliente
                                       ValorResolucion("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), Integer)), _
                                       ValorMotivo("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), Integer)))
 
-            'ImprimirTurno(ID_Turno)
+            ' ImprimirTurno(ID_Turno)
             idturno = ID_Turno
             PrintDocument1.Print()
 
@@ -151,45 +151,19 @@ Public Class FrmSeccionesTipoCliente
         Dim NombreSeccionTipo As String = ods.Tables(0).Rows(0).Item("SeccionTipo")
         Dim fechaObtencion As DateTime = ods.Tables(0).Rows(0).Item("FechaObtencion")
         Dim Codigo As String = ods.Tables(0).Rows(0).Item("Turno")
-        '  Dim NroTurno As Integer = ods.Tables(0).Rows(0).Item("Turno")
-        Dim oParametros As New Parametros
-        Dim oDsParametros As New DataSet
-        Dim encabezado As String
-        Dim titulo As String
-        Dim objeto As String
-        Dim pie As String
-
-
-
-
-        oDsParametros = oParametros.BuscarPorCategoriaNombre("TICKET", "ENCABEZADO")
-
-        encabezado = oDsParametros.Tables(0).Rows(0).Item("valor")
-
-        oDsParametros = oParametros.BuscarPorCategoriaNombre("TICKET", "TITULO")
-
-        titulo = oDsParametros.Tables(0).Rows(0).Item("valor")
-
-        oDsParametros = oParametros.BuscarPorCategoriaNombre("TICKET", "OBJETO")
-
-        objeto = oDsParametros.Tables(0).Rows(0).Item("valor")
-
-        oDsParametros = oParametros.BuscarPorCategoriaNombre("TICKET", "PIE")
-
-        pie = oDsParametros.Tables(0).Rows(0).Item("valor")
 
         Dim texto1 As String
         Dim texto2 As String
         Dim texto3 As String
 
-        texto1 = encabezado & vbCrLf & titulo & vbCrLf & "********************************" _
+        texto1 = ValorParametro("TICKET", "ENCABEZADO") & vbCrLf & ValorParametro("TICKET", "TITULO") & vbCrLf & "********************************" _
             & vbCrLf & fechaObtencion & vbCrLf & NombreSeccion & " - " & NombreSeccionTipo _
-           ' & vbCrLf & objeto & vbCrLf & Codigo & NroTurno & vbCrLf & "********************************" _
+        ' & vbCrLf & objeto & vbCrLf & Codigo & NroTurno & vbCrLf & "********************************" _
         ' & vbCrLf & pie
 
-        texto2 = objeto & vbCrLf & Codigo & vbCrLf '& "********************************"
+        texto2 = ValorParametro("TICKET", "OBJETO") & vbCrLf & Codigo & vbCrLf '& "********************************"
 
-        texto3 = "********************************" & vbCrLf & pie & vbCrLf & "www.ideassa.com.ar"
+        texto3 = "********************************" & vbCrLf & ValorParametro("TICKET", "PIE") & vbCrLf & ValorParametro("TICKET", "WEB")
 
         Static intCurrentChar As Int32
 
@@ -253,35 +227,18 @@ Public Class FrmSeccionesTipoCliente
         Dim fechaObtencion As DateTime = ods.Tables(0).Rows(0).Item("FechaObtencion")
         Dim Codigo As String = ods.Tables(0).Rows(0).Item("Codigo")
         Dim NroTurno As Integer = ods.Tables(0).Rows(0).Item("nroTurno")
-        Dim oParametros As New Parametros
-        Dim oDsParametros As New DataSet
-        Dim encabezado As String
-        Dim titulo As String
-        Dim objeto As String
-        Dim pie As String
 
 
-
-
-        oDsParametros = oParametros.BuscarPorCategoriaNombre("TICKET", "ENCABEZADO")
-        encabezado = oDsParametros.Tables(0).Rows(0).Item("valor")
-        oDsParametros = oParametros.BuscarPorCategoriaNombre("TICKET", "TITULO")
-        titulo = oDsParametros.Tables(0).Rows(0).Item("valor")
-        oDsParametros = oParametros.BuscarPorCategoriaNombre("TICKET", "OBJETO")
-        objeto = oDsParametros.Tables(0).Rows(0).Item("valor")
-        oDsParametros = oParametros.BuscarPorCategoriaNombre("TICKET", "PIE")
-        pie = oDsParametros.Tables(0).Rows(0).Item("valor")
-        
         Dim imp As New Imprimir
 
-        If imp.OpenPort("COM1", 9600, Ports.Parity.None, 8, Ports.StopBits.One) = True Then
+        If imp.OpenPort(ValorParametro("PUERTO", "IMPRESORA"), 9600, Ports.Parity.None, 8, Ports.StopBits.One) = True Then
 
             imp.SendCommand(imp.CMD_RESET)
             imp.SendCommand(imp.CMD_JUSTIFICAR1)
             imp.SendCommand(imp.CMD_NORMAL2)
-            imp.SendText(encabezado)
+            imp.SendText(ValorParametro("TICKET", "ENCABEZADO"))
             imp.SendCommand(imp.CMD_CR)
-            imp.SendText(titulo)
+            imp.SendText(ValorParametro("TICKET", "TITULO"))
             imp.SendCommand(imp.CMD_CR)
             imp.SendText("********************************")
             imp.SendCommand(imp.CMD_CR)
@@ -292,7 +249,7 @@ Public Class FrmSeccionesTipoCliente
             imp.SendText(NombreSeccion & " - " & NombreSeccionTipo)
             imp.SendCommand(imp.CMD_CR)
             imp.SendCommand(imp.CMD_NORMAL5)
-            imp.SendText(objeto)
+            imp.SendText(ValorParametro("TICKET", "OBJETO"))
             imp.SendCommand(imp.CMD_CR)
             imp.SendText(Codigo & NroTurno)
             imp.SendCommand(imp.CMD_CR)
@@ -304,7 +261,7 @@ Public Class FrmSeccionesTipoCliente
             imp.SendCommand(imp.CMD_NORMAL2)
             imp.SendText("********************************")
             imp.SendCommand(imp.CMD_CR)
-            imp.SendText(pie)
+            imp.SendText(ValorParametro("TICKET", "PIE"))
             imp.SendCommand(imp.CMD_CR)
             imp.SendCommand(imp.CMD_LF4)
             imp.SendCommand(imp.CMD_CR)

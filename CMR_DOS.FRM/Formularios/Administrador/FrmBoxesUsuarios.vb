@@ -208,19 +208,14 @@ Public Class FrmBoxesUsuarios
     End Sub
 
     Public Sub LimpiarDatos()
-        UsuariosCtrl1.DataSource = Nothing
-        SeccionesCtrl1.DataSource = Nothing
-        BoxesCtrl1.DataSource = Nothing
+
         TxtID.Text = ""
-        SeccionesCtrl1.Iniciar_Administrador(G_UserID)
-        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
         Dim id_rol As Integer = ValorRol("OPERADOR")
-        UsuariosCtrl1.IniciarPorRolySeccion(id_rol, SeccionesCtrl1.SelectedValue)
+        UsuariosCtrl1.IniciarOperadoresparaAdministrador(id_rol)
+        SeccionesCtrl1.IniciarPorID_Usuario(UsuariosCtrl1.SelectedValue)
+        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
         EstadosCtrl1.Iniciar("BoxesUsuarios")
         CheckActivo.Checked = False
-
-
-
 
     End Sub
 
@@ -264,29 +259,29 @@ Public Class FrmBoxesUsuarios
 
 
                 Case FormEstado.eAgregar
+                    IniciaTransaccion()
 
-
-                    resultado = oObjeto.Agregar(BoxesCtrl1.SelectedValue, UsuariosCtrl1.SelectedValue, cboseccion.SelectedValue, EstadosCtrl1.SelectedValue)
+                    resultado = oObjeto.Agregar(BoxesCtrl1.SelectedValue, UsuariosCtrl1.SelectedValue, EstadosCtrl1.SelectedValue)
                     If CheckActivo.Checked Then
                         oObjeto.ActivarUnBox(UsuariosCtrl1.SelectedValue, BoxesCtrl1.SelectedValue)
                     End If
+                    FinalizaTransaccion()
 
 
-
-                    MsgBox("Se agregó el registro " & resultado, MsgBoxStyle.Information, G_AppName)
+                    ' MsgBox("Se agregó el registro " & resultado, MsgBoxStyle.Information, G_AppName)
                     Me.Estado = FormEstado.eVacio
 
                 Case FormEstado.eEdicion
 
 
 
-                    oObjeto.Modificar(TxtID.Text, _
-                                        BoxesCtrl1.SelectedValue, UsuariosCtrl1.SelectedValue, cboseccion.SelectedValue, EstadosCtrl1.SelectedValue)
+                    oObjeto.Modificar(TxtID.Text,
+                                        BoxesCtrl1.SelectedValue, UsuariosCtrl1.SelectedValue, EstadosCtrl1.SelectedValue)
                     If CheckActivo.Checked Then
                         oObjeto.ActivarUnBox(UsuariosCtrl1.SelectedValue, BoxesCtrl1.SelectedValue)
                     End If
 
-                    MsgBox("Se modificó el registro", MsgBoxStyle.Information, G_AppName)
+                    ' MsgBox("Se modificó el registro", MsgBoxStyle.Information, G_AppName)
                     Me.Estado = FormEstado.eVacio
 
 
@@ -420,12 +415,6 @@ ManejoErrores:
 
 
 #End Region
-
-
-
-
-
-
 
 #Region "Botones de Comando"
 
@@ -571,8 +560,12 @@ ManejoErrores:
         If oDs.Tables(0).Rows.Count > 0 Then
 
             TxtID.Text = oDs.Tables(0).Rows(0).Item(0)
+            Dim id_rol As Integer = ValorRol("OPERADOR")
+            UsuariosCtrl1.IniciarOperadoresparaAdministrador(id_rol)
             UsuariosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_USUARIO")
             EstadosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Estado")
+            SeccionesCtrl1.IniciarPorID_Usuario(UsuariosCtrl1.SelectedValue)
+            BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
             BoxesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Box")
             CheckActivo.Checked = oDs.Tables(0).Rows(0).Item("Activo")
             oDs = Nothing
@@ -601,7 +594,7 @@ ManejoErrores:
         Dim oDs As New DataSet
         Dim oObjeto As New BoxesUsuarios
 
-        oDs = oObjeto.buscarporIDAdministador(G_UserID)
+        oDs = oObjeto.BuscarTodos
 
         If oDs.Tables(0).Rows.Count > 0 Then
 
@@ -671,22 +664,32 @@ ManejoErrores:
         End If
     End Sub
 
+    Private Sub UsuariosCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles UsuariosCtrl1.SelectionChangeCommitted
+        SeccionesCtrl1.IniciarPorID_Usuario(UsuariosCtrl1.SelectedValue)
+        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
+    End Sub
+
+    Private Sub SeccionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles SeccionesCtrl1.SelectionChangeCommitted
+        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
+    End Sub
+
+
 #End Region
 
 
 
 
-    Private Sub SeccionesCtrl1_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles SeccionesCtrl1.SelectedValueChanged
-        Try
-            Dim ID_ROL As Integer = ValorRol("OPERADOR")
-            UsuariosCtrl1.DataSource = Nothing
-            BoxesCtrl1.DataSource = Nothing
-            UsuariosCtrl1.IniciarPorRolySeccion(ID_ROL, SeccionesCtrl1.SelectedValue)
-            BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
-        Catch ex As Exception
+    'Private Sub SeccionesCtrl1_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles SeccionesCtrl1.SelectedValueChanged
+    '    Try
+    '        Dim ID_ROL As Integer = ValorRol("OPERADOR")
+    '        UsuariosCtrl1.DataSource = Nothing
+    '        BoxesCtrl1.DataSource = Nothing
+    '        UsuariosCtrl1.IniciarPorRolySeccion(ID_ROL, SeccionesCtrl1.SelectedValue)
+    '        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
+    '    Catch ex As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
 
 
 End Class

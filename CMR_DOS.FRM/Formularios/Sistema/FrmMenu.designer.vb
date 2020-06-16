@@ -23,7 +23,6 @@ Partial Class FrmMenu
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TableViewDefinition1 As Telerik.WinControls.UI.TableViewDefinition = New Telerik.WinControls.UI.TableViewDefinition()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMenu))
         Me.Office2007SilverTheme1 = New Telerik.WinControls.Themes.Office2007SilverTheme()
         Me.PanelColor = New System.Windows.Forms.Panel()
@@ -78,7 +77,7 @@ Partial Class FrmMenu
         '
         'PanelColor
         '
-        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
         Me.PanelColor.Controls.Add(Me.PictureBox1)
         Me.PanelColor.Controls.Add(Me.LblAccion)
         Me.PanelColor.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -114,7 +113,7 @@ Partial Class FrmMenu
         Me.Label5.ForeColor = System.Drawing.Color.WhiteSmoke
         Me.Label5.Location = New System.Drawing.Point(149, 158)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(47, 13)
+        Me.Label5.Size = New System.Drawing.Size(48, 13)
         Me.Label5.TabIndex = 76
         Me.Label5.Text = "ESTADO"
         '
@@ -164,7 +163,7 @@ Partial Class FrmMenu
         Me.Label2.ForeColor = System.Drawing.Color.WhiteSmoke
         Me.Label2.Location = New System.Drawing.Point(147, 46)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(54, 13)
+        Me.Label2.Size = New System.Drawing.Size(53, 13)
         Me.Label2.TabIndex = 41
         Me.Label2.Text = "NOMBRE"
         '
@@ -290,7 +289,7 @@ Partial Class FrmMenu
         Me.Grilla.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Grilla.Location = New System.Drawing.Point(6, 12)
         '
-        '
+        'Grilla
         '
         Me.Grilla.MasterTemplate.AllowAddNewRow = False
         Me.Grilla.MasterTemplate.AllowColumnReorder = False
@@ -299,7 +298,6 @@ Partial Class FrmMenu
         Me.Grilla.MasterTemplate.EnableFiltering = True
         Me.Grilla.MasterTemplate.EnableGrouping = False
         Me.Grilla.MasterTemplate.ShowRowHeaderColumn = False
-        Me.Grilla.MasterTemplate.ViewDefinition = TableViewDefinition1
         Me.Grilla.Name = "Grilla"
         Me.Grilla.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
         Me.Grilla.ReadOnly = True
@@ -308,6 +306,7 @@ Partial Class FrmMenu
         '
         '
         Me.Grilla.RootElement.ControlBounds = New System.Drawing.Rectangle(6, 12, 240, 150)
+        Me.Grilla.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
         Me.Grilla.Size = New System.Drawing.Size(645, 177)
         Me.Grilla.TabIndex = 91
         Me.Grilla.Text = "RadGridView1"
@@ -330,7 +329,7 @@ Partial Class FrmMenu
         '
         'RadPageViewPage1
         '
-        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
         Me.RadPageViewPage1.Controls.Add(Me.checkVisible)
         Me.RadPageViewPage1.Controls.Add(Me.Label9)
         Me.RadPageViewPage1.Controls.Add(Me.txtOrden)
@@ -348,7 +347,6 @@ Partial Class FrmMenu
         Me.RadPageViewPage1.Controls.Add(Me.TxtID)
         Me.RadPageViewPage1.Controls.Add(Me.EstadosCtrl1)
         Me.RadPageViewPage1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(65, Byte), Integer))
-        'Me.RadPageViewPage1.ItemSize = New System.Drawing.SizeF(88.0!, 30.0!)
         Me.RadPageViewPage1.Location = New System.Drawing.Point(12, 40)
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 226)
@@ -397,7 +395,7 @@ Partial Class FrmMenu
         Me.Label8.ForeColor = System.Drawing.Color.WhiteSmoke
         Me.Label8.Location = New System.Drawing.Point(149, 181)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(44, 13)
+        Me.Label8.Size = New System.Drawing.Size(43, 13)
         Me.Label8.TabIndex = 87
         Me.Label8.Text = "VISIBLE"
         '

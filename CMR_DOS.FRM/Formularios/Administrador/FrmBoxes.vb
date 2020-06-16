@@ -187,7 +187,7 @@ Public Class FrmBoxes
         txtCodigo.Enabled = False
         txtNroBox.Enabled = False
         checkVisible.Enabled = False
-
+        SeccionesCtrl1.Enabled = False
 
         On Error GoTo 0
 
@@ -197,12 +197,10 @@ Public Class FrmBoxes
 
         On Error Resume Next
 
-
-        TxtID.Enabled = True
         txtCodigo.Enabled = True
         txtNroBox.Enabled = True
         checkVisible.Enabled = True
-
+        SeccionesCtrl1.Enabled = True
 
 
         On Error GoTo 0
@@ -215,7 +213,7 @@ Public Class FrmBoxes
         txtCodigo.Text = ""
         txtNroBox.Text = ""
         checkVisible.Checked = True
-
+        SeccionesCtrl1.Iniciar()
 
 
 
@@ -265,8 +263,8 @@ Public Class FrmBoxes
                 Case FormEstado.eAgregar
 
 
-                    resultado = oObjeto.Agregar(
-                                                txtCodigo.Text, txtNroBox.Text, _
+                    resultado = oObjeto.Agregar(SeccionesCtrl1.SelectedValue,
+                                                txtCodigo.Text, txtNroBox.Text,
                                                 checkVisible.Checked)
 
 
@@ -279,9 +277,10 @@ Public Class FrmBoxes
 
 
                     oObjeto.Modificar(
-                                        TxtID.Text, _
-                                        txtCodigo.Text, _
-                                        txtNroBox.Text, _
+                                        TxtID.Text,
+                                        SeccionesCtrl1.SelectedValue,
+                                        txtCodigo.Text,
+                                        txtNroBox.Text,
                                         checkVisible.Checked)
 
 
@@ -552,6 +551,7 @@ ManejoErrores:
         If oDs.Tables(0).Rows.Count > 0 Then
 
             TxtID.Text = oDs.Tables(0).Rows(0).Item(0)
+            SeccionesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("id_seccion")
             txtCodigo.Text = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("CodigoBox")))
             txtNroBox.Text = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("NroBox")))
             checkVisible.Checked = oDs.Tables(0).Rows(0).Item("activo")
@@ -584,7 +584,7 @@ ManejoErrores:
         Dim oDs As New DataSet
         Dim oObjeto As New Boxes
 
-        oDs = oObjeto.buscarporIDAdministador(G_UserID)
+        oDs = oObjeto.BuscarTodos
 
         If oDs.Tables(0).Rows.Count > 0 Then
 

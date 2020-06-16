@@ -211,11 +211,9 @@ Public Class FrmUsuariosSeccionesTipo
 
         TxtID.Text = ""
         Dim id_rol As Integer = ValorRol("OPERADOR")
-        UsuariosCtrl1.IniciarOperadoresparaAdministrador(id_rol, G_UserID)
-        SeccionesCtrl1.Iniciar_Operador2(UsuariosCtrl1.SelectedValue, G_UserID)
-        SeccionesTipoCtrl1.Iniciar_administrador(SeccionesCtrl1.SelectedValue)
-        ' SeccionesCtrl1.Enabled = False
-
+        UsuariosCtrl1.IniciarOperadoresparaAdministrador(id_rol)
+        SeccionesCtrl1.IniciarPorID_Usuario(UsuariosCtrl1.SelectedValue)
+        SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
         EstadosCtrl1.Iniciar("UsuariosSeccionesTipo")
 
 
@@ -538,7 +536,9 @@ ManejoErrores:
 
             TxtID.Text = oDs.Tables(0).Rows(0).Item(0)
             UsuariosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_USUARIO")
-            SeccionesCtrl1.Iniciar_Operador2(oDs.Tables(0).Rows(0).Item("ID_USUARIO"), G_UserID)
+            SeccionesCtrl1.IniciarPorID_Usuario(UsuariosCtrl1.SelectedValue)
+            SeccionesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Seccion")
+            SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
             SeccionesTipoCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_SeccionTipo")
             EstadosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Estado")
 
@@ -568,8 +568,7 @@ ManejoErrores:
 
         Dim oDs As New DataSet
         Dim oObjeto As New UsuariosSeccionesTipo
-
-        oDs = oObjeto.BuscarTodosporSeccionesDeAdmin(G_UserID)
+        oDs = oObjeto.BuscarTodos
 
         If oDs.Tables(0).Rows.Count > 0 Then
 
@@ -639,29 +638,24 @@ ManejoErrores:
         End If
     End Sub
 
+    Private Sub SeccionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles SeccionesCtrl1.SelectionChangeCommitted
+        SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
+    End Sub
+
+    Private Sub UsuariosCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles UsuariosCtrl1.SelectionChangeCommitted
+        SeccionesCtrl1.IniciarPorID_Usuario(UsuariosCtrl1.SelectedValue)
+        SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
+    End Sub
+
+
+
 #End Region
 
 
-   
-  
 
-    Private Sub SeccionesCtrl1_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles SeccionesCtrl1.SelectedValueChanged
-        Try
-            SeccionesTipoCtrl1.Iniciar_administrador(SeccionesCtrl1.SelectedValue)
-        Catch ex As Exception
 
-        End Try
-    End Sub
 
-   
-    
-  
 
-    Private Sub UsuariosCtrl1_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles UsuariosCtrl1.SelectedValueChanged
-        Try
-            SeccionesCtrl1.Iniciar_Operador2(UsuariosCtrl1.SelectedValue, G_UserID)
-        Catch ex As Exception
 
-        End Try
-    End Sub
+
 End Class

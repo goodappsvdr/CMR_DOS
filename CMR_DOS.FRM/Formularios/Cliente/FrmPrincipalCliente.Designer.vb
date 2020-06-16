@@ -80,6 +80,7 @@ Partial Class FrmPrincipalCliente
         'LOGO
         '
         Me.LOGO.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LOGO.ErrorImage = Global.CMR_DOS.FRM.My.Resources.Resources.LOGO
         Me.LOGO.Location = New System.Drawing.Point(268, 3)
         Me.LOGO.Name = "LOGO"
         Me.LOGO.Size = New System.Drawing.Size(259, 109)
@@ -121,7 +122,7 @@ Partial Class FrmPrincipalCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(65, Byte), Integer))
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(795, 510)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)

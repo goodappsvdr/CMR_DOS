@@ -27,7 +27,7 @@ Partial Public Class SeccionesCtrl
             DisplayMember = oDs.Tables(0).Columns(1).Caption.ToString
             ValueMember = oDs.Tables(0).Columns(0).Caption.ToString
         Else
-            MsgBox("No se encontraron Roles.", MsgBoxStyle.Exclamation, "Información...")
+            MsgBox("No se encontraron Secciones.", MsgBoxStyle.Exclamation, "Información...")
         End If
 
         oDs = Nothing
@@ -54,12 +54,12 @@ Partial Public Class SeccionesCtrl
        
 
     End Sub
-    Public Sub Iniciar_Operador(id_operador)
+    Public Sub IniciarPorID_Usuario(ID_Usuario)
 
         Dim oDs As New DataSet
         Dim oObjeto As New Secciones
 
-        oDs = oObjeto.BuscarporIDOperador(id_operador)
+        oDs = oObjeto.SeccionesPorUsuario(ID_Usuario)
 
         If oDs.Tables(0).Rows.Count > 0 Then
 

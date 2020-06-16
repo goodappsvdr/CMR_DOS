@@ -54,17 +54,6 @@ Partial Class FrmUsuarios
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TxtLogin = New Controles_Ideas.TextData(Me.components)
         Me.EstadosCtrl1 = New CMR_DOS.CTRL.EstadosCtrl()
-        Me.pag2 = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.btnAceptarseccion = New Telerik.WinControls.UI.RadButton()
-        Me.txtIDSeccion = New Controles_Ideas.TextData(Me.components)
-        Me.btnEditarSeccion = New Telerik.WinControls.UI.RadButton()
-        Me.btnNuevaSeccion = New Telerik.WinControls.UI.RadButton()
-        Me.SeccionesCtrl1 = New CMR_DOS.CTRL.SeccionesCtrl()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.EstadosCtrl2 = New CMR_DOS.CTRL.EstadosCtrl()
-        Me.RadGridView1 = New Telerik.WinControls.UI.RadGridView()
         Me.PanelColor.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmdAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,17 +69,11 @@ Partial Class FrmUsuarios
         CType(Me.RadPageView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadPageView1.SuspendLayout()
         Me.pag1.SuspendLayout()
-        Me.pag2.SuspendLayout()
-        CType(Me.btnAceptarseccion, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btnEditarSeccion, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btnNuevaSeccion, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RadGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RadGridView1.MasterTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelColor
         '
-        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(65, Byte), Integer))
+        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
         Me.PanelColor.Controls.Add(Me.PictureBox1)
         Me.PanelColor.Controls.Add(Me.LblAccion)
         Me.PanelColor.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -330,7 +313,6 @@ Partial Class FrmUsuarios
         '
         Me.RadPageView1.BackColor = System.Drawing.Color.FromArgb(CType(CType(57, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(115, Byte), Integer))
         Me.RadPageView1.Controls.Add(Me.pag1)
-        Me.RadPageView1.Controls.Add(Me.pag2)
         Me.RadPageView1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.RadPageView1.Location = New System.Drawing.Point(7, 227)
         Me.RadPageView1.Name = "RadPageView1"
@@ -444,169 +426,6 @@ Partial Class FrmUsuarios
         Me.EstadosCtrl1.Size = New System.Drawing.Size(272, 21)
         Me.EstadosCtrl1.TabIndex = 5
         '
-        'pag2
-        '
-        Me.pag2.BackColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(65, Byte), Integer))
-        Me.pag2.Controls.Add(Me.Label9)
-        Me.pag2.Controls.Add(Me.btnAceptarseccion)
-        Me.pag2.Controls.Add(Me.txtIDSeccion)
-        Me.pag2.Controls.Add(Me.btnEditarSeccion)
-        Me.pag2.Controls.Add(Me.btnNuevaSeccion)
-        Me.pag2.Controls.Add(Me.SeccionesCtrl1)
-        Me.pag2.Controls.Add(Me.Label7)
-        Me.pag2.Controls.Add(Me.Label8)
-        Me.pag2.Controls.Add(Me.EstadosCtrl2)
-        Me.pag2.Controls.Add(Me.RadGridView1)
-        Me.pag2.Location = New System.Drawing.Point(12, 40)
-        Me.pag2.Name = "pag2"
-        Me.pag2.Size = New System.Drawing.Size(620, 226)
-        Me.pag2.Text = "Secciones"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.Label9.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label9.Location = New System.Drawing.Point(208, 142)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(31, 13)
-        Me.Label9.TabIndex = 42
-        Me.Label9.Text = "NRO"
-        '
-        'btnAceptarseccion
-        '
-        Me.btnAceptarseccion.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.btnAceptarseccion.Location = New System.Drawing.Point(520, 199)
-        Me.btnAceptarseccion.Name = "btnAceptarseccion"
-        '
-        '
-        '
-        Me.btnAceptarseccion.RootElement.ControlBounds = New System.Drawing.Rectangle(520, 199, 110, 24)
-        Me.btnAceptarseccion.Size = New System.Drawing.Size(97, 24)
-        Me.btnAceptarseccion.TabIndex = 99
-        Me.btnAceptarseccion.Text = "Aceptar"
-        Me.btnAceptarseccion.ThemeName = "Office2007Silver"
-        '
-        'txtIDSeccion
-        '
-        Me.txtIDSeccion.BackColor = System.Drawing.Color.White
-        Me.txtIDSeccion.ColorEnter = System.Drawing.Color.Yellow
-        Me.txtIDSeccion.ColorLeave = System.Drawing.Color.White
-        Me.txtIDSeccion.Enabled = False
-        Me.txtIDSeccion.Location = New System.Drawing.Point(249, 139)
-        Me.txtIDSeccion.Name = "txtIDSeccion"
-        Me.txtIDSeccion.Size = New System.Drawing.Size(69, 22)
-        Me.txtIDSeccion.TabEnable = True
-        Me.txtIDSeccion.TabIndex = 41
-        Me.txtIDSeccion.TipoDato = System.Data.DbType.Int32
-        '
-        'btnEditarSeccion
-        '
-        Me.btnEditarSeccion.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.btnEditarSeccion.Location = New System.Drawing.Point(520, 169)
-        Me.btnEditarSeccion.Name = "btnEditarSeccion"
-        '
-        '
-        '
-        Me.btnEditarSeccion.RootElement.ControlBounds = New System.Drawing.Rectangle(520, 169, 110, 24)
-        Me.btnEditarSeccion.Size = New System.Drawing.Size(97, 24)
-        Me.btnEditarSeccion.TabIndex = 98
-        Me.btnEditarSeccion.Text = "Editar"
-        Me.btnEditarSeccion.ThemeName = "Office2007Silver"
-        '
-        'btnNuevaSeccion
-        '
-        Me.btnNuevaSeccion.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.btnNuevaSeccion.Location = New System.Drawing.Point(520, 139)
-        Me.btnNuevaSeccion.Name = "btnNuevaSeccion"
-        '
-        '
-        '
-        Me.btnNuevaSeccion.RootElement.ControlBounds = New System.Drawing.Rectangle(520, 139, 110, 24)
-        Me.btnNuevaSeccion.Size = New System.Drawing.Size(97, 24)
-        Me.btnNuevaSeccion.TabIndex = 97
-        Me.btnNuevaSeccion.Text = "Nuevo"
-        Me.btnNuevaSeccion.ThemeName = "Office2007Silver"
-        '
-        'SeccionesCtrl1
-        '
-        Me.SeccionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.SeccionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.SeccionesCtrl1.FormattingEnabled = True
-        Me.SeccionesCtrl1.Location = New System.Drawing.Point(249, 167)
-        Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
-        Me.SeccionesCtrl1.Size = New System.Drawing.Size(179, 21)
-        Me.SeccionesCtrl1.TabIndex = 96
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.Label7.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label7.Location = New System.Drawing.Point(191, 170)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(53, 13)
-        Me.Label7.TabIndex = 95
-        Me.Label7.Text = "SECCIÓN"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.Label8.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label8.Location = New System.Drawing.Point(195, 197)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(48, 13)
-        Me.Label8.TabIndex = 94
-        Me.Label8.Text = "ESTADO"
-        '
-        'EstadosCtrl2
-        '
-        Me.EstadosCtrl2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.EstadosCtrl2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.EstadosCtrl2.FormattingEnabled = True
-        Me.EstadosCtrl2.Location = New System.Drawing.Point(249, 194)
-        Me.EstadosCtrl2.Name = "EstadosCtrl2"
-        Me.EstadosCtrl2.Size = New System.Drawing.Size(179, 21)
-        Me.EstadosCtrl2.TabIndex = 93
-        '
-        'RadGridView1
-        '
-        Me.RadGridView1.AllowShowFocusCues = True
-        Me.RadGridView1.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.RadGridView1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.RadGridView1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.RadGridView1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.RadGridView1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.RadGridView1.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.RadGridView1.Location = New System.Drawing.Point(0, 0)
-        '
-        '
-        '
-        Me.RadGridView1.MasterTemplate.AllowAddNewRow = False
-        Me.RadGridView1.MasterTemplate.AllowColumnReorder = False
-        Me.RadGridView1.MasterTemplate.AllowRowResize = False
-        Me.RadGridView1.MasterTemplate.EnableAlternatingRowColor = True
-        Me.RadGridView1.MasterTemplate.EnableFiltering = True
-        Me.RadGridView1.MasterTemplate.EnableGrouping = False
-        Me.RadGridView1.MasterTemplate.ShowRowHeaderColumn = False
-        Me.RadGridView1.Name = "RadGridView1"
-        Me.RadGridView1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.RadGridView1.ReadOnly = True
-        Me.RadGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        '
-        '
-        '
-        Me.RadGridView1.RootElement.ControlBounds = New System.Drawing.Rectangle(0, 0, 240, 150)
-        Me.RadGridView1.RootElement.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
-        Me.RadGridView1.Size = New System.Drawing.Size(620, 133)
-        Me.RadGridView1.TabIndex = 92
-        Me.RadGridView1.Text = "RadGridView1"
-        Me.RadGridView1.ThemeName = "Office2007Silver"
-        '
         'FrmUsuarios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -649,13 +468,6 @@ Partial Class FrmUsuarios
         Me.RadPageView1.ResumeLayout(False)
         Me.pag1.ResumeLayout(False)
         Me.pag1.PerformLayout()
-        Me.pag2.ResumeLayout(False)
-        Me.pag2.PerformLayout()
-        CType(Me.btnAceptarseccion, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btnEditarSeccion, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btnNuevaSeccion, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RadGridView1.MasterTemplate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RadGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -694,17 +506,6 @@ Partial Class FrmUsuarios
     Friend WithEvents TxtLogin As Controles_Ideas.TextData
     Friend WithEvents RolesCtrl1 As CMR_DOS.CTRL.RolesCtrl
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents pag2 As Telerik.WinControls.UI.RadPageViewPage
-    Private WithEvents RadGridView1 As Telerik.WinControls.UI.RadGridView
-    Friend WithEvents SeccionesCtrl1 As CMR_DOS.CTRL.SeccionesCtrl
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents EstadosCtrl2 As CMR_DOS.CTRL.EstadosCtrl
-    Private WithEvents btnEditarSeccion As Telerik.WinControls.UI.RadButton
-    Private WithEvents btnNuevaSeccion As Telerik.WinControls.UI.RadButton
-    Private WithEvents btnAceptarseccion As Telerik.WinControls.UI.RadButton
-    Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents txtIDSeccion As Controles_Ideas.TextData
 
 
 

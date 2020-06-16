@@ -107,7 +107,7 @@ Partial Class FrmPeriodos
         Me.TxtID.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtID.ColorLeave = System.Drawing.Color.White
         Me.TxtID.Enabled = False
-        Me.TxtID.Location = New System.Drawing.Point(214, 12)
+        Me.TxtID.Location = New System.Drawing.Point(196, 66)
         Me.TxtID.Name = "TxtID"
         Me.TxtID.Size = New System.Drawing.Size(100, 22)
         Me.TxtID.TabEnable = True
@@ -120,7 +120,7 @@ Partial Class FrmPeriodos
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(190, 15)
+        Me.Label1.Location = New System.Drawing.Point(172, 69)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(18, 13)
         Me.Label1.TabIndex = 40
@@ -132,7 +132,7 @@ Partial Class FrmPeriodos
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label2.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label2.Location = New System.Drawing.Point(154, 43)
+        Me.Label2.Location = New System.Drawing.Point(136, 97)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 13)
         Me.Label2.TabIndex = 41
@@ -321,7 +321,7 @@ Partial Class FrmPeriodos
         Me.TxtNombre.ColorEnter = System.Drawing.Color.White
         Me.TxtNombre.ColorLeave = System.Drawing.Color.White
         Me.TxtNombre.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TxtNombre.Location = New System.Drawing.Point(214, 40)
+        Me.TxtNombre.Location = New System.Drawing.Point(196, 94)
         Me.TxtNombre.MaxLength = 50
         Me.TxtNombre.Name = "TxtNombre"
         Me.TxtNombre.Size = New System.Drawing.Size(271, 22)
@@ -331,7 +331,7 @@ Partial Class FrmPeriodos
         '
         'FechaHasta
         '
-        Me.FechaHasta.Location = New System.Drawing.Point(214, 95)
+        Me.FechaHasta.Location = New System.Drawing.Point(196, 149)
         Me.FechaHasta.Name = "FechaHasta"
         Me.FechaHasta.Size = New System.Drawing.Size(271, 20)
         Me.FechaHasta.TabIndex = 95
@@ -342,7 +342,7 @@ Partial Class FrmPeriodos
         '
         'FechaDesde
         '
-        Me.FechaDesde.Location = New System.Drawing.Point(214, 69)
+        Me.FechaDesde.Location = New System.Drawing.Point(196, 123)
         Me.FechaDesde.Name = "FechaDesde"
         Me.FechaDesde.Size = New System.Drawing.Size(271, 20)
         Me.FechaDesde.TabIndex = 94
@@ -357,7 +357,7 @@ Partial Class FrmPeriodos
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label5.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label5.Location = New System.Drawing.Point(168, 98)
+        Me.Label5.Location = New System.Drawing.Point(150, 152)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(40, 13)
         Me.Label5.TabIndex = 82
@@ -369,7 +369,7 @@ Partial Class FrmPeriodos
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label4.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label4.Location = New System.Drawing.Point(166, 71)
+        Me.Label4.Location = New System.Drawing.Point(148, 125)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 13)
         Me.Label4.TabIndex = 81

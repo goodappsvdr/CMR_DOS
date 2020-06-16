@@ -69,7 +69,7 @@ Partial Class FrmSecciones
         '
         'PanelColor
         '
-        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(65, Byte), Integer))
+        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
         Me.PanelColor.Controls.Add(Me.PictureBox1)
         Me.PanelColor.Controls.Add(Me.LblAccion)
         Me.PanelColor.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -103,7 +103,7 @@ Partial Class FrmSecciones
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label5.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label5.Location = New System.Drawing.Point(164, 98)
+        Me.Label5.Location = New System.Drawing.Point(155, 155)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(48, 13)
         Me.Label5.TabIndex = 76
@@ -115,7 +115,7 @@ Partial Class FrmSecciones
         Me.TxtID.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtID.ColorLeave = System.Drawing.Color.White
         Me.TxtID.Enabled = False
-        Me.TxtID.Location = New System.Drawing.Point(214, 12)
+        Me.TxtID.Location = New System.Drawing.Point(205, 69)
         Me.TxtID.Name = "TxtID"
         Me.TxtID.Size = New System.Drawing.Size(100, 22)
         Me.TxtID.TabEnable = True
@@ -128,7 +128,7 @@ Partial Class FrmSecciones
         Me.TxtNombre.ColorEnter = System.Drawing.Color.White
         Me.TxtNombre.ColorLeave = System.Drawing.Color.White
         Me.TxtNombre.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TxtNombre.Location = New System.Drawing.Point(214, 38)
+        Me.TxtNombre.Location = New System.Drawing.Point(205, 95)
         Me.TxtNombre.MaxLength = 50
         Me.TxtNombre.Name = "TxtNombre"
         Me.TxtNombre.Size = New System.Drawing.Size(271, 22)
@@ -142,7 +142,7 @@ Partial Class FrmSecciones
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(190, 15)
+        Me.Label1.Location = New System.Drawing.Point(181, 72)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(18, 13)
         Me.Label1.TabIndex = 40
@@ -154,7 +154,7 @@ Partial Class FrmSecciones
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label2.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label2.Location = New System.Drawing.Point(154, 41)
+        Me.Label2.Location = New System.Drawing.Point(145, 98)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 13)
         Me.Label2.TabIndex = 41
@@ -316,7 +316,7 @@ Partial Class FrmSecciones
         Me.RadPageView1.SelectedPage = Me.RadPageViewPage1
         Me.RadPageView1.Size = New System.Drawing.Size(644, 278)
         Me.RadPageView1.TabIndex = 92
-        Me.RadPageView1.Text = "RadPageView1"
+        Me.RadPageView1.Text = "Usuarios Secciones"
         Me.RadPageView1.ThemeName = "Office2010Silver"
         CType(Me.RadPageView1.GetChildAt(0), Telerik.WinControls.UI.RadPageViewStripElement).StripButtons = Telerik.WinControls.UI.StripViewButtons.None
         '
@@ -342,7 +342,7 @@ Partial Class FrmSecciones
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label3.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label3.Location = New System.Drawing.Point(157, 69)
+        Me.Label3.Location = New System.Drawing.Point(148, 126)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(51, 13)
         Me.Label3.TabIndex = 78
@@ -354,7 +354,7 @@ Partial Class FrmSecciones
         Me.TxtCodigo.ColorEnter = System.Drawing.Color.White
         Me.TxtCodigo.ColorLeave = System.Drawing.Color.White
         Me.TxtCodigo.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TxtCodigo.Location = New System.Drawing.Point(214, 66)
+        Me.TxtCodigo.Location = New System.Drawing.Point(205, 123)
         Me.TxtCodigo.MaxLength = 50
         Me.TxtCodigo.Name = "TxtCodigo"
         Me.TxtCodigo.Size = New System.Drawing.Size(271, 22)
@@ -367,7 +367,7 @@ Partial Class FrmSecciones
         Me.EstadosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.EstadosCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.EstadosCtrl1.FormattingEnabled = True
-        Me.EstadosCtrl1.Location = New System.Drawing.Point(213, 94)
+        Me.EstadosCtrl1.Location = New System.Drawing.Point(204, 151)
         Me.EstadosCtrl1.Name = "EstadosCtrl1"
         Me.EstadosCtrl1.Size = New System.Drawing.Size(272, 21)
         Me.EstadosCtrl1.TabIndex = 3
@@ -450,7 +450,6 @@ Partial Class FrmSecciones
     Friend WithEvents RadPageViewPage1 As Telerik.WinControls.UI.RadPageViewPage
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents TxtCodigo As Controles_Ideas.TextData
-
 
 
 End Class

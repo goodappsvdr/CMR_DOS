@@ -72,7 +72,7 @@ Public Class Secciones
 
         Try
 
-            Return oDatabase.ExecuteDataSet("SeccionesPorUsuario", ID)
+            Return oDatabase.ExecuteDataSet("UsuariosSecciones_BuscarPorID_Usuario", ID)
 
         Catch ex As System.Exception
             Throw ex
