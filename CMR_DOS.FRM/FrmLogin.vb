@@ -1,4 +1,5 @@
-﻿Imports CMR_DOS.AD
+﻿Imports System.Runtime.InteropServices
+Imports CMR_DOS.AD
 
 
 Public Class FrmLogin
@@ -6,23 +7,13 @@ Public Class FrmLogin
     Private Property FrmMenuPanel As Object
 
 
-    Private Sub CmdAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdAceptar.Click
-
-        IniciarSesion()
-
-        
 
 
-
-
-
-    End Sub
-
-    Private Sub CmdCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdCancelar.Click
+    Private Sub CmdCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.Close()
     End Sub
 
-    Private Sub PasswordTextBox_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles PasswordTextBox.KeyDown
+    Private Sub PasswordTextBox_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
 
         If e.KeyCode = 13 Then
             e.Handled = True
@@ -67,15 +58,6 @@ Public Class FrmLogin
 
     Private Sub FrmLogin_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         main()
-        cargarImagen()
-    End Sub
-    Private Sub cargarImagen()
-        Dim ods As New DataSet
-        Dim op As New Parametros
-        ods = op.BuscarPorCategoriaNombre("EMPRESA", "LOGO")
-        If ods.Tables(0).Rows.Count > 0 Then
-            LOGO.ImageLocation = ods.Tables(0).Rows(0).Item("Valor")
-        End If
 
     End Sub
     Private Sub IniciarSesion()
@@ -91,7 +73,6 @@ Public Class FrmLogin
             G_RolID = oDs.Tables(0).Rows(0).Item("ID_Rol")
             Select Case G_RolID
 
-
                 Case Is = ValorRol("ADMINISTRADOR")
                     Dim ods_US As New DataSet
                     Dim oUS As New UsuariosSecciones
@@ -102,13 +83,9 @@ Public Class FrmLogin
                     FrmPrincipal.Show()
                     Me.Hide()
 
-
-
                 Case Is = ValorRol("Sistemas")
                     FrmPrincipal.Show()
                     Me.Hide()
-
-
 
                 Case Is = ValorRol("Operador")
                     Dim ods2 As New DataSet
@@ -165,7 +142,7 @@ Public Class FrmLogin
 
 
                 Case Is = ValorRol("Cliente")
-                    FrmPrincipalCliente.Show()
+                    FrmPantallaInicio.Show()
                     Me.Hide()
             End Select
 
@@ -184,6 +161,26 @@ Public Class FrmLogin
 
 
 
+    End Sub
+
+    <DllImport("user32.DLL", EntryPoint:="ReleaseCapture")>
+    Private Shared Sub ReleaseCapture()
+    End Sub
+    <DllImport("user32.DLL", EntryPoint:="SendMessage")>
+    Private Shared Sub SendMessage(ByVal hWnd As System.IntPtr, ByVal wMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer)
+    End Sub
+
+    Private Sub Panel1_MouseMove(sender As Object, e As MouseEventArgs) Handles Panel1.MouseMove
+        ReleaseCapture()
+        SendMessage(Me.Handle, &H112&, &HF012&, 0)
+    End Sub
+
+    Private Sub Btn_IniciarSesion_Click(sender As Object, e As EventArgs) Handles Btn_IniciarSesion.Click
+        IniciarSesion()
+    End Sub
+
+    Private Sub Btn_Cancelar_Click(sender As Object, e As EventArgs) Handles Btn_Cancelar.Click
+        Application.Exit()
     End Sub
 
 

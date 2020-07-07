@@ -40,9 +40,10 @@ Public Class FrmLoginOperador
                         Me.Hide()
                     Else
                         'si el operador tiene mas de un box activo, elegir en cual box trabajara en este momento.
-                        FrmElegirBoxActual.ShowDialog()
+
                         FrmPrincipal.Show()
                         Me.Hide()
+                        FrmElegirBoxActual.ShowDialog()
                     End If
 
                 Else
@@ -64,17 +65,6 @@ Public Class FrmLoginOperador
 
         oDs = Nothing
         oObjeto = Nothing
-
-
-
-
-
-
-
-
-
-
-
 
 
     End Sub

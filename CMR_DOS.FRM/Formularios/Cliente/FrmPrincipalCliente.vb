@@ -5,7 +5,7 @@ Public Class FrmPrincipalCliente
 
     Private Sub FrmPrincipalCliente_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         cargarBotones()
-        cargarImagen()
+
     End Sub
 
 
@@ -49,9 +49,6 @@ Public Class FrmPrincipalCliente
                     myFont = New System.Drawing.Font("Segoe UI", fontsizereal, FontStyle.Bold Or FontStyle.Italic)
                     b.Font = myFont
 
-
-
-
                     'Opcional, conectar el evento click:
                     AddHandler b.Click, AddressOf Button_Click
                     Panel1.Controls.Add(b)
@@ -75,16 +72,6 @@ Public Class FrmPrincipalCliente
 
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         LblFechayHora.Text = DateTime.Now
-    End Sub
-
-    Private Sub cargarImagen()
-        Dim ods As New DataSet
-        Dim op As New Parametros
-        ods = op.BuscarPorCategoriaNombre("EMPRESA", "LOGO")
-        If ods.Tables(0).Rows.Count > 0 Then
-            LOGO.ImageLocation = ods.Tables(0).Rows(0).Item("Valor")
-        End If
-
     End Sub
 
 End Class

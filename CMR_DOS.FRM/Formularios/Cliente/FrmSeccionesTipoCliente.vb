@@ -12,21 +12,12 @@ Public Class FrmSeccionesTipoCliente
 
     Private Sub FrmPrincipalCliente_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         cargarBotones()
-        cargarImagen()
         ProgressBar1.Maximum = 10
         ProgressBar1.Minimum = 0
         ProgressBar1.Visible = False
 
     End Sub
-    Private Sub cargarImagen()
-        Dim ods As New DataSet
-        Dim op As New Parametros
-        ods = op.BuscarPorCategoriaNombre("EMPRESA", "LOGO")
-        If ods.Tables(0).Rows.Count > 0 Then
-            LOGO.ImageLocation = ods.Tables(0).Rows(0).Item("Valor")
-        End If
 
-    End Sub
 
     Private Sub cargarBotones()
 

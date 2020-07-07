@@ -32,11 +32,11 @@ Partial Class FrmGenerador
         Me.CmdGenerar = New System.Windows.Forms.Button()
         Me.Cmd_SP = New System.Windows.Forms.Button()
         Me.PanelColor = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PanelColor.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CboTablas
@@ -89,7 +89,7 @@ Partial Class FrmGenerador
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(266, 58)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(106, 13)
+        Me.Label3.Size = New System.Drawing.Size(105, 13)
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "Buscar por Campos"
         '
@@ -122,17 +122,6 @@ Partial Class FrmGenerador
         Me.PanelColor.Size = New System.Drawing.Size(525, 25)
         Me.PanelColor.TabIndex = 48
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
-
-        Me.PictureBox1.Location = New System.Drawing.Point(588, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(67, 24)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 77
-        Me.PictureBox1.TabStop = False
-        '
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
@@ -143,6 +132,16 @@ Partial Class FrmGenerador
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox2.TabIndex = 78
         Me.PictureBox2.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox1.Location = New System.Drawing.Point(588, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(67, 24)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 77
+        Me.PictureBox1.TabStop = False
         '
         'FrmGenerador
         '
@@ -166,8 +165,8 @@ Partial Class FrmGenerador
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Generador de Clases by IDEAS SA"
         Me.PanelColor.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

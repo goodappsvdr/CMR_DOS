@@ -50,7 +50,6 @@ Partial Class FrmPrincipal
         '
         'PictureBox1
         '
-        ' Me.PictureBox1.Image = Global.CMR_DOS.FRM.My.Resources.Resources.image_750x_5baa2cb90a1a3
         Me.PictureBox1.Location = New System.Drawing.Point(373, 127)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(552, 421)
@@ -68,7 +67,7 @@ Partial Class FrmPrincipal
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "FrmPrincipal"
-        Me.Text = ".::TURNERO iDEAS S.A.::."
+        Me.Text = ".::TURNERO COOVILROS LTDA.::."
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

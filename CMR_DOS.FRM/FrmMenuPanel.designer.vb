@@ -208,7 +208,7 @@ Partial Class FrmMenuPanel
         Me.IsMdiContainer = True
         Me.Name = "FrmMenuPanel"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = ".:: IDEAS SA - Sistema de Gestión Administrativa ::."
+        Me.Text = ".:: Coovilros LTDA- Sistema de Gestión de Turnos ::."
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel1.ResumeLayout(False)
         CType(Me.PbLogo, System.ComponentModel.ISupportInitialize).EndInit()

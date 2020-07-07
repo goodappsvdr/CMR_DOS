@@ -25,13 +25,14 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://179.43.114.86/INSTALADORES/CMR_DOS/</InstallUrl>
-    <ProductName>CRM</ProductName>
-    <PublisherName>IDEAS SA</PublisherName>
+    <ProductName>CMR</ProductName>
+    <PublisherName>COOVILROS LTDA</PublisherName>
     <MinimumRequiredVersion>1.0.0.0</MinimumRequiredVersion>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -67,7 +68,19 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo_ideas_icon.ico</ApplicationIcon>
+    <ApplicationIcon>LogoCoovilros.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E52257B1C07050FE232D27187EA04E3E82582384</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>CMR_DOS.FRM_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Controles_Ideas">
@@ -75,6 +88,9 @@
     </Reference>
     <Reference Include="EQATEC.Analytics.Monitor">
       <HintPath>..\dll\EQATEC.Analytics.Monitor.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=5.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.13.0\lib\net40\FontAwesome.Sharp.dll</HintPath>
     </Reference>
     <Reference Include="RadControlSpy">
       <HintPath>..\dll\RadControlSpy.dll</HintPath>
@@ -279,6 +295,12 @@
     <Compile Include="Formularios\Administrador\FrmReportes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\Administrador\FrmTurnosSinAtender.designer.vb">
+      <DependentUpon>FrmTurnosSinAtender.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administrador\FrmTurnosSinAtender.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\Administrador\FrmUsuariosSeccionesTipo.designer.vb">
       <DependentUpon>FrmUsuariosSeccionesTipo.vb</DependentUpon>
     </Compile>
@@ -355,6 +377,12 @@
       <DependentUpon>FrmLoginCliente.vb</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Cliente\FrmLoginCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Cliente\FrmPantallaInicio.Designer.vb">
+      <DependentUpon>FrmPantallaInicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Cliente\FrmPantallaInicio.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Cliente\FrmPrincipalCliente.Designer.vb">
@@ -507,6 +535,9 @@
     <EmbeddedResource Include="Formularios\Administrador\FrmReportes.resx">
       <DependentUpon>FrmReportes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Administrador\FrmTurnosSinAtender.resx">
+      <DependentUpon>FrmTurnosSinAtender.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Administrador\FrmUsuariosSeccionesTipo.resx">
       <DependentUpon>FrmUsuariosSeccionesTipo.vb</DependentUpon>
     </EmbeddedResource>
@@ -545,6 +576,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Cliente\FrmLoginCliente.resx">
       <DependentUpon>FrmLoginCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Cliente\FrmPantallaInicio.resx">
+      <DependentUpon>FrmPantallaInicio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Cliente\FrmPrincipalCliente.resx">
       <DependentUpon>FrmPrincipalCliente.vb</DependentUpon>
@@ -615,6 +649,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="CMR_DOS.FRM_TemporaryKey.pfx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -628,11 +663,14 @@
   <ItemGroup>
     <Content Include="Imagenes\icono_volver-2.png" />
     <Content Include="Imagenes\icono_volver-2sad %282%29.png" />
+    <Content Include="LogoCoovilros.ico" />
     <Content Include="logo_ideas_icon.ico" />
     <Content Include="Resources\Arrows-Back-icon.png" />
     <Content Include="Resources\icono_volver-2.png" />
     <Content Include="Resources\icono_volver-21.png" />
     <Content Include="Resources\icono_volver-2sad %282%29.png" />
+    <None Include="Resources\logo coop.png" />
+    <None Include="packages.config" />
     <None Include="Resources\LOGO.png" />
   </ItemGroup>
   <ItemGroup>

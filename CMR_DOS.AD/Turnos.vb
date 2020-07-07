@@ -31,6 +31,17 @@ Public Class Turnos
         End Try
 
     End Function
+    Public Function BuscarTodosLlamdosSinAtender() As DataSet
+
+        Try
+
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarLlamadoSinAtender")
+
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+
+    End Function
 
     'BuscarPorID
     Public Function BuscarPorID(ByVal id_turno As Double) As DataSet

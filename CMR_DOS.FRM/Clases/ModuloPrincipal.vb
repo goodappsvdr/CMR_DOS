@@ -13,7 +13,7 @@ Module ModuloPrincipal
     Public G_UserID As Double
     Public G_RolID As Double
     Public G_UserName As String
-    Public G_AppName As String = "IDEAS SA."
+    Public G_AppName As String = "COOVILROS LTDA."
 
     Public G_SecciontipoTable As DataSet
     Public G_nombreSeccion As String
