@@ -166,7 +166,6 @@ Partial Class FrmLogin
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FrmLogin"
-        Me.Opacity = 0.85R
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inicio"

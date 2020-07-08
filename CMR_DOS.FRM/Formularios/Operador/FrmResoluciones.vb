@@ -185,7 +185,6 @@ Public Class FrmResoluciones
         TxtID.Enabled = False
         TxtDescripcion.Enabled = False
         SeccionesCtrl1.Enabled = False
-        SeccionesTipoCtrl1.Enabled = False
         checkVisible.Enabled = False
 
 
@@ -201,7 +200,6 @@ Public Class FrmResoluciones
         TxtID.Enabled = True
         TxtDescripcion.Enabled = True
         SeccionesCtrl1.Enabled = True
-        SeccionesTipoCtrl1.Enabled = True
         checkVisible.Enabled = True
 
 
@@ -214,9 +212,7 @@ Public Class FrmResoluciones
 
         TxtID.Text = ""
         TxtDescripcion.Text = ""
-
         SeccionesCtrl1.Iniciar()
-        SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
         checkVisible.Checked = True
 
 
@@ -268,7 +264,7 @@ Public Class FrmResoluciones
                 Case FormEstado.eAgregar
 
 
-                    resultado = oObjeto.Agregar(SeccionesTipoCtrl1.SelectedValue, TxtDescripcion.Text, checkVisible.Checked)
+                    resultado = oObjeto.Agregar(SeccionesCtrl1.SelectedValue, TxtDescripcion.Text, checkVisible.Checked)
 
 
 
@@ -279,11 +275,10 @@ Public Class FrmResoluciones
 
 
 
-                    oObjeto.Modificar( _
-                                        TxtID.Text, _
-                                        SeccionesTipoCtrl1.SelectedValue, _
-                                        TxtDescripcion.Text, _
- _
+                    oObjeto.Modificar(
+                                        TxtID.Text,
+                                        SeccionesCtrl1.SelectedValue,
+                                        TxtDescripcion.Text,
                                         checkVisible.Checked)
 
 
@@ -494,7 +489,7 @@ ManejoErrores:
     Private Function Validar() As Boolean
 
 
-        If TxtDescripcion.Text = "" Or SeccionesTipoCtrl1.SelectedValue = Nothing Then
+        If TxtDescripcion.Text = "" Or SeccionesCtrl1.SelectedValue = Nothing Then
 
             MsgBox("Complete sus datos...", MsgBoxStyle.Exclamation, G_AppName)
             Validar = False
@@ -524,8 +519,6 @@ ManejoErrores:
             TxtID.Text = oDs.Tables(0).Rows(0).Item(0)
             TxtDescripcion.Text = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("Descripcion")))
             SeccionesCtrl1.SelectedValue = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("id_seccion")))
-            SeccionesTipoCtrl1.Iniciar(LTrim(RTrim(oDs.Tables(0).Rows(0).Item("id_seccion"))))
-            SeccionesTipoCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("id_secciontipo")
 
 
             oDs = Nothing
@@ -622,10 +615,6 @@ ManejoErrores:
             CmdEliminar.Enabled = False
 
         End If
-    End Sub
-
-    Private Sub SeccionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles SeccionesCtrl1.SelectionChangeCommitted
-        SeccionesTipoCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
     End Sub
 
 #End Region

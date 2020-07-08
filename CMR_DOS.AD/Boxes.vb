@@ -68,17 +68,17 @@ Public Class Boxes
 
     End Function
 
-    Public Function BuscarporSeccionTipo(ByVal id_secciontipo As Integer) As DataSet
+    'Public Function BuscarporSeccionTipo(ByVal id_secciontipo As Integer) As DataSet
 
-        Try
+    '    Try
 
-            Return oDatabase.ExecuteDataSet("Boxes_BuscarporSeccionTipo", id_secciontipo)
+    '        Return oDatabase.ExecuteDataSet("Boxes_BuscarporSeccionTipo", id_secciontipo)
 
-        Catch ex As System.Exception
-            Throw ex
-        End Try
+    '    Catch ex As System.Exception
+    '        Throw ex
+    '    End Try
 
-    End Function
+    'End Function
     Public Function BuscarporSeccion(ByVal id_seccion As Integer) As DataSet
 
         Try

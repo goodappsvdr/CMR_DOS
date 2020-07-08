@@ -49,9 +49,7 @@ Partial Class FrmResoluciones
         Me.SeccionesCtrl1 = New CMR_DOS.CTRL.SeccionesCtrl()
         Me.checkVisible = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.SeccionesTipoCtrl1 = New CMR_DOS.CTRL.SeccionesTipoCtrl()
         Me.PanelColor.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmdAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,7 +103,7 @@ Partial Class FrmResoluciones
         Me.TxtID.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtID.ColorLeave = System.Drawing.Color.White
         Me.TxtID.Enabled = False
-        Me.TxtID.Location = New System.Drawing.Point(214, 12)
+        Me.TxtID.Location = New System.Drawing.Point(214, 43)
         Me.TxtID.Name = "TxtID"
         Me.TxtID.Size = New System.Drawing.Size(100, 22)
         Me.TxtID.TabEnable = True
@@ -133,7 +131,7 @@ Partial Class FrmResoluciones
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(190, 15)
+        Me.Label1.Location = New System.Drawing.Point(190, 46)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(18, 13)
         Me.Label1.TabIndex = 40
@@ -317,13 +315,11 @@ Partial Class FrmResoluciones
         Me.RadPageViewPage1.Controls.Add(Me.SeccionesCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.checkVisible)
         Me.RadPageViewPage1.Controls.Add(Me.Label8)
-        Me.RadPageViewPage1.Controls.Add(Me.Label5)
         Me.RadPageViewPage1.Controls.Add(Me.Label4)
         Me.RadPageViewPage1.Controls.Add(Me.Label2)
         Me.RadPageViewPage1.Controls.Add(Me.Label1)
         Me.RadPageViewPage1.Controls.Add(Me.TxtDescripcion)
         Me.RadPageViewPage1.Controls.Add(Me.TxtID)
-        Me.RadPageViewPage1.Controls.Add(Me.SeccionesTipoCtrl1)
         Me.RadPageViewPage1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
         Me.RadPageViewPage1.Location = New System.Drawing.Point(12, 40)
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
@@ -335,7 +331,7 @@ Partial Class FrmResoluciones
         Me.SeccionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.SeccionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.SeccionesCtrl1.FormattingEnabled = True
-        Me.SeccionesCtrl1.Location = New System.Drawing.Point(214, 40)
+        Me.SeccionesCtrl1.Location = New System.Drawing.Point(214, 71)
         Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
         Me.SeccionesCtrl1.Size = New System.Drawing.Size(271, 21)
         Me.SeccionesCtrl1.TabIndex = 90
@@ -361,39 +357,17 @@ Partial Class FrmResoluciones
         Me.Label8.TabIndex = 89
         Me.Label8.Text = "ACTIVO"
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.Label5.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label5.Location = New System.Drawing.Point(131, 70)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(76, 13)
-        Me.Label5.TabIndex = 82
-        Me.Label5.Text = "SUB SECCION"
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label4.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label4.Location = New System.Drawing.Point(155, 43)
+        Me.Label4.Location = New System.Drawing.Point(155, 74)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(53, 13)
         Me.Label4.TabIndex = 81
         Me.Label4.Text = "SECCION"
-        '
-        'SeccionesTipoCtrl1
-        '
-        Me.SeccionesTipoCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.SeccionesTipoCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.SeccionesTipoCtrl1.FormattingEnabled = True
-        Me.SeccionesTipoCtrl1.Location = New System.Drawing.Point(214, 67)
-        Me.SeccionesTipoCtrl1.Name = "SeccionesTipoCtrl1"
-        Me.SeccionesTipoCtrl1.Size = New System.Drawing.Size(271, 21)
-        Me.SeccionesTipoCtrl1.TabIndex = 79
         '
         'FrmResoluciones
         '
@@ -469,9 +443,7 @@ Partial Class FrmResoluciones
     Private WithEvents Grilla As Telerik.WinControls.UI.RadGridView
     Friend WithEvents RadPageView1 As Telerik.WinControls.UI.RadPageView
     Friend WithEvents RadPageViewPage1 As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents SeccionesTipoCtrl1 As CMR_DOS.CTRL.SeccionesTipoCtrl
     Friend WithEvents checkVisible As System.Windows.Forms.CheckBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents SeccionesCtrl1 As CMR_DOS.CTRL.SeccionesCtrl

@@ -33,6 +33,8 @@ Partial Class FrmPrincipalCliente
         Me.LblFechayHora = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LOGO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -42,6 +44,7 @@ Partial Class FrmPrincipalCliente
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 115)
         Me.Panel1.Name = "Panel1"
@@ -118,6 +121,15 @@ Partial Class FrmPrincipalCliente
         '
         Me.Timer1.Enabled = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(278, 91)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(444, 84)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FrmPrincipalCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -136,6 +148,7 @@ Partial Class FrmPrincipalCliente
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inicio"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
@@ -151,5 +164,5 @@ Partial Class FrmPrincipalCliente
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents LOGO As System.Windows.Forms.PictureBox
-
+    Friend WithEvents Button1 As Button
 End Class

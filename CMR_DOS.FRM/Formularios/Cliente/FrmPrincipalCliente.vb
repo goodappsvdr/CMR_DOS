@@ -4,7 +4,7 @@
 Public Class FrmPrincipalCliente
 
     Private Sub FrmPrincipalCliente_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        cargarBotones()
+        '  cargarBotones()
 
     End Sub
 
@@ -74,4 +74,8 @@ Public Class FrmPrincipalCliente
         LblFechayHora.Text = DateTime.Now
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        FrmSeccionesTipoCliente.Show()
+        Me.Dispose()
+    End Sub
 End Class

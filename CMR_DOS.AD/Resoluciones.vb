@@ -46,11 +46,11 @@ Public Class Resoluciones
 
     End Function
 
-    Public Function BuscarporSeccionTipo(ByVal id_secciontipo As Integer) As DataSet
+    Public Function BuscarporSeccion(ByVal ID_Seccion As Integer) As DataSet
 
         Try
 
-            Return oDatabase.ExecuteDataSet("Resoluciones_BuscarTodosporSeccionTipo", id_secciontipo)
+            Return oDatabase.ExecuteDataSet("Resoluciones_BuscarTodosporSeccionTipo", ID_Seccion)
 
         Catch ex As System.Exception
             Throw ex
@@ -62,11 +62,11 @@ Public Class Resoluciones
 
 
     'Insert
-    Public Function Agregar(ByVal id_SeccionTipo As Integer, ByVal descripcion As String, activo As Boolean) As Double
+    Public Function Agregar(ByVal ID_Seccion As Integer, ByVal descripcion As String, activo As Boolean) As Double
 
         Try
 
-            Return oDatabase.ExecuteScalar("Resoluciones_Agregar", id_SeccionTipo, descripcion, activo)
+            Return oDatabase.ExecuteScalar("Resoluciones_Agregar", ID_Seccion, descripcion, activo)
 
         Catch ex As System.Exception
             Throw ex
@@ -78,11 +78,11 @@ Public Class Resoluciones
 
     'Update
 
-    Public Function Modificar(id_resolucion As Integer, ByVal id_SeccionTipo As Integer, ByVal descripcion As String, activo As Boolean) As DataSet
+    Public Function Modificar(id_resolucion As Integer, ByVal ID_Seccion As Integer, ByVal descripcion As String, activo As Boolean) As DataSet
 
         Try
 
-            Return oDatabase.ExecuteDataSet("Resoluciones_Modificar", id_resolucion, id_SeccionTipo, descripcion, activo)
+            Return oDatabase.ExecuteDataSet("Resoluciones_Modificar", id_resolucion, ID_Seccion, descripcion, activo)
 
         Catch ex As System.Exception
             Throw ex
@@ -91,9 +91,9 @@ Public Class Resoluciones
     End Function
 
     'VERIFICAR MODIFICACION DE PROCEDIMIENTO
-    Public Function BuscarPorNombre(ByVal descripcion As String, ByVal id_SeccionTipo As Double) As DataSet
+    Public Function BuscarPorNombre(ByVal descripcion As String, ByVal ID_Seccion As Double) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Resoluciones_BuscarPorNombre", descripcion, id_SeccionTipo)
+            Return oDatabase.ExecuteDataSet("Resoluciones_BuscarPorNombre", descripcion, ID_Seccion)
         Catch ex As Exception
             Throw ex
         End Try

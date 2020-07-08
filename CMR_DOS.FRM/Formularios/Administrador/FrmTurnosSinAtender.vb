@@ -566,9 +566,9 @@ ManejoErrores:
 
     Private Function Validar() As Boolean
 
-        Dim id_resolucion As Integer = ValorResolucion("SIN ASIGNAR", id_secciontipo)
-        Dim id_motivo As Integer = ValorMotivo("SIN ASIGNAR", id_secciontipo)
-        If ResolucionesCtrl1.SelectedValue = id_resolucion Or MotivosCtrl1.SelectedValue = id_motivo Then
+        'Dim id_resolucion As Integer = ValorResolucion("SIN ASIGNAR", id_secciontipo)
+        'Dim id_motivo As Integer = ValorMotivo("SIN ASIGNAR", id_secciontipo)
+        If ResolucionesCtrl1.SelectedIndex = 0 Or MotivosCtrl1.SelectedIndex = 0 Then
 
             MsgBox("Asigne la resolucion y motivo al turno para continuar ...", MsgBoxStyle.Exclamation, G_AppName)
             Validar = False

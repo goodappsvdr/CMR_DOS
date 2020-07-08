@@ -333,8 +333,8 @@ Public Class FrmReportes
                 End If
 
             Case Is = "OPERADORES"
-                If GeneralCrl3.SelectedValue.ToString <> "" And EstadosCtrl1.SelectedValue.ToString <> "" Then
-                    R_IDOperador = GeneralCrl3.SelectedValue
+                If GeneralCrl2.SelectedValue.ToString <> "" And EstadosCtrl1.SelectedValue.ToString <> "" Then
+                    R_IDOperador = GeneralCrl2.SelectedValue
                     R_IDEstado = EstadosCtrl1.SelectedValue
                     R_Fechadesde = fechadesde.Value
                     R_FechaHasta = fechahasta.Value
@@ -353,18 +353,6 @@ Public Class FrmReportes
                     R_Viewer.Show()
                     R_Viewer.WindowState = FormWindowState.Maximized
                 End If
-
-            Case Is = "SUBSECCIONES"
-                If GeneralCrl3.SelectedValue.ToString <> "" And EstadosCtrl1.SelectedValue.ToString <> "" Then
-                    R_IDSeccionTipo = GeneralCrl3.SelectedValue
-                    R_IDEstado = EstadosCtrl1.SelectedValue
-                    R_Fechadesde = fechadesde.Value
-                    R_FechaHasta = fechahasta.Value
-                    R_Reporte = "SUBSECCIONES"
-                    R_Viewer.Show()
-                    R_Viewer.WindowState = FormWindowState.Maximized
-                End If
-
 
 
         End Select
@@ -497,13 +485,13 @@ Public Class FrmReportes
 
     Private Sub iniciarCombos()
         etiqueta1.Text = ""
-        etiqueta2.Text = ""
+
         etiqueta3.Text = ""
         GeneralCrl2.Visible = False
-        GeneralCrl3.Visible = False
+
         GeneralCrl4.Visible = False
         GeneralCrl2.DataSource = Nothing
-        GeneralCrl3.DataSource = Nothing
+
         GeneralCrl4.DataSource = Nothing
 
 
@@ -511,67 +499,62 @@ Public Class FrmReportes
             Select Case GeneralCrl1.Text.ToString
                 Case Is = "ESTADOS"
                     GeneralCrl2.DataSource = Nothing
-                    GeneralCrl3.DataSource = Nothing
+
                     GeneralCrl4.DataSource = Nothing
-                    GeneralCrl2.IniciarSegunCaso("ESTADOS", vbNull, vbNull, vbNull)
+                    GeneralCrl2.IniciarSegunCaso("ESTADOS", vbNull, vbNull)
                     etiqueta1.Text = "ESTADOS"
                     GeneralCrl2.Visible = True
                 Case Is = "MOTIVOS"
                     GeneralCrl2.DataSource = Nothing
-                    GeneralCrl3.DataSource = Nothing
+
                     GeneralCrl4.DataSource = Nothing
-                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID, vbNull)
+                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID)
                     etiqueta1.Text = "SECCIONES"
                     GeneralCrl2.Visible = True
-                    GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
-                    etiqueta2.Text = "SUBSECCIONES"
-                    GeneralCrl3.Visible = True
-                    GeneralCrl4.IniciarSegunCaso("MOTIVOS", vbNull, vbNull, GeneralCrl3.SelectedValue)
+                    GeneralCrl4.IniciarSegunCaso("MOTIVOS", vbNull, vbNull)
                     etiqueta3.Text = "MOTIVOS"
                     GeneralCrl4.Visible = True
                 Case Is = "RESOLUCIONES"
                     GeneralCrl2.DataSource = Nothing
-                    GeneralCrl3.DataSource = Nothing
+
                     GeneralCrl4.DataSource = Nothing
-                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID, vbNull)
+                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID)
                     etiqueta1.Text = "SECCIONES"
                     GeneralCrl2.Visible = True
-                    GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
-                    etiqueta2.Text = "SUBSECCIONES"
-                    GeneralCrl3.Visible = True
-                    GeneralCrl4.IniciarSegunCaso("RESOLUCIONES", vbNull, vbNull, GeneralCrl3.SelectedValue)
+
+                    GeneralCrl4.IniciarSegunCaso("RESOLUCIONES", vbNull, vbNull)
                     etiqueta3.Text = "RESOLUCIONES"
                     GeneralCrl4.Visible = True
                 Case Is = "OPERADORES"
                     GeneralCrl2.DataSource = Nothing
-                    GeneralCrl3.DataSource = Nothing
+                    'GeneralCrl3.DataSource = Nothing
                     GeneralCrl4.DataSource = Nothing
-                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID, vbNull)
+                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID)
                     etiqueta1.Text = "SECCIONES"
                     GeneralCrl2.Visible = True
-                    GeneralCrl3.IniciarSegunCaso("OPERADORES", GeneralCrl2.SelectedValue, vbNull, vbNull)
-                    etiqueta2.Text = "OPERADORES"
-                    GeneralCrl3.Visible = True
+                    'GeneralCrl3.IniciarSegunCaso("OPERADORES", GeneralCrl2.SelectedValue, vbNull, vbNull)
+                    'etiqueta2.Text = "OPERADORES"
+                    'GeneralCrl3.Visible = True
                     'GeneralCrl4.IniciarSegunCaso("OPERADORES", vbNull, vbNull, GeneralCrl3.SelectedValue)
                     'etiqueta3.Text = "OPERADORES"
                     'GeneralCrl4.Visible = True
                 Case Is = "SECCIONES"
                     GeneralCrl2.DataSource = Nothing
-                    GeneralCrl3.DataSource = Nothing
+
                     GeneralCrl4.DataSource = Nothing
-                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID, vbNull)
+                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID)
                     etiqueta1.Text = "SECCIONES"
                     GeneralCrl2.Visible = True
                 Case Is = "SUBSECCIONES"
                     GeneralCrl2.DataSource = Nothing
-                    GeneralCrl3.DataSource = Nothing
+                    'GeneralCrl3.DataSource = Nothing
                     GeneralCrl4.DataSource = Nothing
-                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID, vbNull)
+                    GeneralCrl2.IniciarSegunCaso("SECCIONES", vbNull, G_UserID)
                     etiqueta1.Text = "SECCIONES"
                     GeneralCrl2.Visible = True
-                    GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
-                    etiqueta2.Text = "SUBSECCIONES"
-                    GeneralCrl3.Visible = True
+                    ' GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
+                    'etiqueta2.Text = "SUBSECCIONES"
+                    'GeneralCrl3.Visible = True
             End Select
 
 
@@ -604,46 +587,46 @@ Public Class FrmReportes
 
 
     Private Sub GeneralCrl2_SelectionChangeCommitted(sender As Object, e As System.EventArgs) Handles GeneralCrl2.SelectionChangeCommitted
-        etiqueta2.Text = ""
-        etiqueta3.Text = ""
-        GeneralCrl3.Visible = False
+        'etiqueta2.Text = ""
+        'etiqueta3.Text = ""
+        'GeneralCrl3.Visible = False
         GeneralCrl4.Visible = False
         Select Case GeneralCrl1.Text.ToString
-            Case Is = "SUBSECCIONES"
-                GeneralCrl3.DataSource = Nothing
-                GeneralCrl4.DataSource = Nothing
-                GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
-                etiqueta2.Text = "SUBSECCIONES"
-                GeneralCrl3.Visible = True
+            'Case Is = "SUBSECCIONES"
+            '    GeneralCrl3.DataSource = Nothing
+            '    GeneralCrl4.DataSource = Nothing
+            '    GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
+            '    etiqueta2.Text = "SUBSECCIONES"
+            '    GeneralCrl3.Visible = True
             Case Is = "MOTIVOS"
-                GeneralCrl3.DataSource = Nothing
-                GeneralCrl4.DataSource = Nothing
-                GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
-                etiqueta2.Text = "SUBSECCIONES"
-                GeneralCrl3.Visible = True
-                GeneralCrl4.IniciarSegunCaso("MOTIVOS", vbNull, vbNull, GeneralCrl3.SelectedValue)
+                'GeneralCrl3.DataSource = Nothing
+                'GeneralCrl4.DataSource = Nothing
+                'GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
+                'etiqueta2.Text = "SUBSECCIONES"
+                'GeneralCrl3.Visible = True
+                GeneralCrl4.IniciarSegunCaso("MOTIVOS", vbNull, vbNull)
                 etiqueta3.Text = "MOTIVOS"
                 GeneralCrl4.Visible = True
             Case Is = "RESOLUCIONES"
-                GeneralCrl3.DataSource = Nothing
-                GeneralCrl4.DataSource = Nothing
-                GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
-                etiqueta2.Text = "SUBSECCIONES"
-                GeneralCrl3.Visible = True
-                GeneralCrl4.IniciarSegunCaso("RESOLUCIONES", vbNull, vbNull, GeneralCrl3.SelectedValue)
+                'GeneralCrl3.DataSource = Nothing
+                'GeneralCrl4.DataSource = Nothing
+                'GeneralCrl3.IniciarSegunCaso("SUBSECCIONES", GeneralCrl2.SelectedValue, vbNull, vbNull)
+                'etiqueta2.Text = "SUBSECCIONES"
+                'GeneralCrl3.Visible = True
+                GeneralCrl4.IniciarSegunCaso("RESOLUCIONES", vbNull, vbNull)
                 etiqueta3.Text = "RESOLUCIONES"
                 GeneralCrl4.Visible = True
             Case Is = "OPERADORES"
 
-                GeneralCrl3.DataSource = Nothing
-                GeneralCrl4.DataSource = Nothing
-                GeneralCrl3.IniciarSegunCaso("OPERADORES", GeneralCrl2.SelectedValue, vbNull, vbNull)
-                etiqueta2.Text = "OPERADORES"
-                GeneralCrl3.Visible = True
+                'GeneralCrl3.DataSource = Nothing
+                'GeneralCrl4.DataSource = Nothing
+                'GeneralCrl3.IniciarSegunCaso("OPERADORES", GeneralCrl2.SelectedValue, vbNull)
+                'etiqueta2.Text = "OPERADORES"
+                'GeneralCrl3.Visible = True
         End Select
     End Sub
 
-    Private Sub GeneralCrl3_SelectionChangeCommitted(sender As Object, e As System.EventArgs) Handles GeneralCrl3.SelectionChangeCommitted
+    Private Sub GeneralCrl3_SelectionChangeCommitted(sender As Object, e As System.EventArgs)
         Try
             If GeneralCrl1.Text.ToString <> "OPERADORES" Then
                 etiqueta3.Text = ""
@@ -652,12 +635,12 @@ Public Class FrmReportes
                 GeneralCrl4.DataSource = Nothing
                 Select Case GeneralCrl1.Text.ToString
                     Case Is = "MOTIVOS"
-                        GeneralCrl4.IniciarSegunCaso("MOTIVOS", vbNull, vbNull, GeneralCrl3.SelectedValue)
+                        GeneralCrl4.IniciarSegunCaso("MOTIVOS", vbNull, vbNull)
                         etiqueta3.Text = "MOTIVOS"
                         GeneralCrl4.Visible = True
 
                     Case Is = "RESOLUCIONES"
-                        GeneralCrl4.IniciarSegunCaso("RESOLUCIONES", vbNull, vbNull, GeneralCrl3.SelectedValue)
+                        GeneralCrl4.IniciarSegunCaso("RESOLUCIONES", vbNull, vbNull)
                         etiqueta3.Text = "RESOLUCIONES"
                         GeneralCrl4.Visible = True
 
@@ -709,8 +692,8 @@ Public Class FrmReportes
                 End If
 
             Case Is = "OPERADORES"
-                If GeneralCrl3.SelectedValue.ToString <> "" And EstadosCtrl1.SelectedValue.ToString <> "" Then
-                    R_IDOperador = GeneralCrl3.SelectedValue
+                If GeneralCrl2.SelectedValue.ToString <> "" And EstadosCtrl1.SelectedValue.ToString <> "" Then
+                    R_IDOperador = GeneralCrl2.SelectedValue
                     R_IDEstado = EstadosCtrl1.SelectedValue
                     R_Fechadesde = fechadesde.Value
                     R_FechaHasta = fechahasta.Value
@@ -730,16 +713,16 @@ Public Class FrmReportes
                     R_Viewer.WindowState = FormWindowState.Maximized
                 End If
 
-            Case Is = "SUBSECCIONES"
-                If GeneralCrl3.SelectedValue.ToString <> "" And EstadosCtrl1.SelectedValue.ToString <> "" Then
-                    R_IDSeccionTipo = GeneralCrl3.SelectedValue
-                    R_IDEstado = EstadosCtrl1.SelectedValue
-                    R_Fechadesde = fechadesde.Value
-                    R_FechaHasta = fechahasta.Value
-                    R_Reporte = "SUBSECCIONES_EXP"
-                    R_Viewer.Show()
-                    R_Viewer.WindowState = FormWindowState.Maximized
-                End If
+                'Case Is = "SUBSECCIONES"
+                '    If GeneralCrl.SelectedValue.ToString <> "" And EstadosCtrl1.SelectedValue.ToString <> "" Then
+                '        R_IDSeccionTipo = GeneralCrl3.SelectedValue
+                '        R_IDEstado = EstadosCtrl1.SelectedValue
+                '        R_Fechadesde = fechadesde.Value
+                '        R_FechaHasta = fechahasta.Value
+                '        R_Reporte = "SUBSECCIONES_EXP"
+                '        R_Viewer.Show()
+                '        R_Viewer.WindowState = FormWindowState.Maximized
+                'End If
 
 
 

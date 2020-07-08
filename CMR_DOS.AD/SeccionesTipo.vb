@@ -129,11 +129,11 @@ Public Class SeccionesTipo
 
     End Function
 
-    
 
-    Public Function ConsultaParaAgregarTurno(id_seccionTipo) As DataSet
+
+    Public Function ConsultaParaAgregarTurno(ID_Seccion) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("SeccionesTipo_ConsultaParaAgregarTurno", id_seccionTipo)
+            Return oDatabase.ExecuteDataSet("SeccionesTipo_ConsultaParaAgregarTurno", ID_Seccion)
         Catch ex As Exception
             Throw ex
         End Try

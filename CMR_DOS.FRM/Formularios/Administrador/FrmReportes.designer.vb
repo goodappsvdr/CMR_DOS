@@ -44,13 +44,11 @@ Partial Class FrmReportes
         Me.fechahasta = New Telerik.WinControls.UI.RadDateTimePicker()
         Me.fechadesde = New Telerik.WinControls.UI.RadDateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.etiqueta2 = New System.Windows.Forms.Label()
-        Me.etiqueta3 = New System.Windows.Forms.Label()
         Me.EstadosCtrl1 = New CMR_DOS.CTRL.EstadosCtrl()
-        Me.GeneralCrl4 = New CMR_DOS.CTRL.GeneralCrl()
-        Me.GeneralCrl3 = New CMR_DOS.CTRL.GeneralCrl()
         Me.GeneralCrl2 = New CMR_DOS.CTRL.GeneralCrl()
         Me.GeneralCrl1 = New CMR_DOS.CTRL.GeneralCrl()
+        Me.etiqueta3 = New System.Windows.Forms.Label()
+        Me.GeneralCrl4 = New CMR_DOS.CTRL.GeneralCrl()
         Me.PanelColor.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmdLimpiar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,13 +194,11 @@ Partial Class FrmReportes
         Me.RadPageViewPage1.Controls.Add(Me.fechahasta)
         Me.RadPageViewPage1.Controls.Add(Me.fechadesde)
         Me.RadPageViewPage1.Controls.Add(Me.Label2)
-        Me.RadPageViewPage1.Controls.Add(Me.etiqueta2)
         Me.RadPageViewPage1.Controls.Add(Me.etiqueta3)
         Me.RadPageViewPage1.Controls.Add(Me.etiqueta1)
         Me.RadPageViewPage1.Controls.Add(Me.Label1)
         Me.RadPageViewPage1.Controls.Add(Me.EstadosCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.GeneralCrl4)
-        Me.RadPageViewPage1.Controls.Add(Me.GeneralCrl3)
         Me.RadPageViewPage1.Controls.Add(Me.GeneralCrl2)
         Me.RadPageViewPage1.Controls.Add(Me.GeneralCrl1)
         Me.RadPageViewPage1.Location = New System.Drawing.Point(12, 40)
@@ -268,28 +264,6 @@ Partial Class FrmReportes
         Me.Label2.TabIndex = 98
         Me.Label2.Text = "ESTADO DE TURNOS"
         '
-        'etiqueta2
-        '
-        Me.etiqueta2.BackColor = System.Drawing.Color.Transparent
-        Me.etiqueta2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.etiqueta2.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.etiqueta2.Location = New System.Drawing.Point(3, 140)
-        Me.etiqueta2.Name = "etiqueta2"
-        Me.etiqueta2.Size = New System.Drawing.Size(150, 16)
-        Me.etiqueta2.TabIndex = 92
-        Me.etiqueta2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'etiqueta3
-        '
-        Me.etiqueta3.BackColor = System.Drawing.Color.Transparent
-        Me.etiqueta3.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.etiqueta3.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.etiqueta3.Location = New System.Drawing.Point(3, 166)
-        Me.etiqueta3.Name = "etiqueta3"
-        Me.etiqueta3.Size = New System.Drawing.Size(150, 16)
-        Me.etiqueta3.TabIndex = 82
-        Me.etiqueta3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'EstadosCtrl1
         '
         Me.EstadosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -299,26 +273,6 @@ Partial Class FrmReportes
         Me.EstadosCtrl1.Name = "EstadosCtrl1"
         Me.EstadosCtrl1.Size = New System.Drawing.Size(431, 21)
         Me.EstadosCtrl1.TabIndex = 97
-        '
-        'GeneralCrl4
-        '
-        Me.GeneralCrl4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.GeneralCrl4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.GeneralCrl4.FormattingEnabled = True
-        Me.GeneralCrl4.Location = New System.Drawing.Point(159, 165)
-        Me.GeneralCrl4.Name = "GeneralCrl4"
-        Me.GeneralCrl4.Size = New System.Drawing.Size(431, 21)
-        Me.GeneralCrl4.TabIndex = 96
-        '
-        'GeneralCrl3
-        '
-        Me.GeneralCrl3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.GeneralCrl3.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.GeneralCrl3.FormattingEnabled = True
-        Me.GeneralCrl3.Location = New System.Drawing.Point(159, 139)
-        Me.GeneralCrl3.Name = "GeneralCrl3"
-        Me.GeneralCrl3.Size = New System.Drawing.Size(431, 21)
-        Me.GeneralCrl3.TabIndex = 95
         '
         'GeneralCrl2
         '
@@ -339,6 +293,27 @@ Partial Class FrmReportes
         Me.GeneralCrl1.Name = "GeneralCrl1"
         Me.GeneralCrl1.Size = New System.Drawing.Size(431, 21)
         Me.GeneralCrl1.TabIndex = 93
+        '
+        'etiqueta3
+        '
+        Me.etiqueta3.BackColor = System.Drawing.Color.Transparent
+        Me.etiqueta3.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.etiqueta3.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.etiqueta3.Location = New System.Drawing.Point(3, 140)
+        Me.etiqueta3.Name = "etiqueta3"
+        Me.etiqueta3.Size = New System.Drawing.Size(150, 16)
+        Me.etiqueta3.TabIndex = 82
+        Me.etiqueta3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'GeneralCrl4
+        '
+        Me.GeneralCrl4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.GeneralCrl4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.GeneralCrl4.FormattingEnabled = True
+        Me.GeneralCrl4.Location = New System.Drawing.Point(159, 139)
+        Me.GeneralCrl4.Name = "GeneralCrl4"
+        Me.GeneralCrl4.Size = New System.Drawing.Size(431, 21)
+        Me.GeneralCrl4.TabIndex = 96
         '
         'FrmReportes
         '
@@ -398,19 +373,16 @@ Partial Class FrmReportes
     Friend WithEvents VisualStudio2012DarkTheme1 As Telerik.WinControls.Themes.VisualStudio2012DarkTheme
     Friend WithEvents RadPageView1 As Telerik.WinControls.UI.RadPageView
     Friend WithEvents RadPageViewPage1 As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents etiqueta3 As System.Windows.Forms.Label
-    Friend WithEvents etiqueta2 As System.Windows.Forms.Label
     Friend WithEvents GeneralCrl1 As CMR_DOS.CTRL.GeneralCrl
     Friend WithEvents GeneralCrl2 As CMR_DOS.CTRL.GeneralCrl
-    Friend WithEvents GeneralCrl4 As CMR_DOS.CTRL.GeneralCrl
-    Friend WithEvents GeneralCrl3 As CMR_DOS.CTRL.GeneralCrl
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents EstadosCtrl1 As CMR_DOS.CTRL.EstadosCtrl
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents fechahasta As Telerik.WinControls.UI.RadDateTimePicker
     Friend WithEvents fechadesde As Telerik.WinControls.UI.RadDateTimePicker
-
+    Friend WithEvents etiqueta3 As Label
+    Friend WithEvents GeneralCrl4 As CTRL.GeneralCrl
 
 
 End Class

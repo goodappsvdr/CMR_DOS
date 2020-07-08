@@ -421,12 +421,12 @@ Loop1:
 
     End Function
 
-    Public Function ValorMotivo(ByVal DESCRIPCION As String, id_seccionTipo As Double) As String
+    Public Function ValorMotivo(ByVal DESCRIPCION As String, ID_Seccion As Double) As String
 
         Dim oObjeto As New Motivos
         Dim oDs As New DataSet
 
-        oDs = oObjeto.BuscarPorNombre(DESCRIPCION, id_seccionTipo)
+        oDs = oObjeto.BuscarPorNombre(DESCRIPCION, ID_Seccion)
 
         Return oDs.Tables(0).Rows(0).Item("ID_Motivo")
 

@@ -20,35 +20,7 @@ Public Class FrmLogin
 
 
             IniciarSesion()
-            '    Dim oDs As New DataSet
-            '    Dim oObjeto As New Usuarios
 
-            '    oDs = oObjeto.BuscarPorLoginPass(UsernameTextBox.Text, PasswordTextBox.Text)
-
-            '    If oDs.Tables(0).Rows.Count > 0 Then
-            '        G_UserID = oDs.Tables(0).Rows(0).Item("ID_Usuario")
-            '        G_UserName = oDs.Tables(0).Rows(0).Item("Nombre")
-            '        G_RolID = oDs.Tables(0).Rows(0).Item("ID_Rol")
-            '        If G_RolID = ValorRol("ADMINISTRADOR") Then
-            '            Dim ods_US As New DataSet
-            '            Dim oUS As New UsuariosSecciones
-            '            ods_US = oUS.BuscarPorIDUsuario(G_UserID)
-            '            If ods_US.Tables(0).Rows.Count > 0 Then
-            '                g_seccionID = ods_US.Tables(0).Rows(0).Item("ID_Seccion")
-            '            End If
-
-            '        End If
-
-            '        FrmPrincipal.Show()
-            '        Me.Hide()
-            '    Else
-
-            '        MsgBox("Error al iniciar sesión, verifique su Nombre de Usuario y Contraseña...", MsgBoxStyle.Exclamation, G_AppName)
-
-            '    End If
-
-            '    oDs = Nothing
-            '    oObjeto = Nothing
 
         End If
 
@@ -90,7 +62,7 @@ Public Class FrmLogin
                 Case Is = ValorRol("Operador")
                     Dim ods2 As New DataSet
                     Dim ods3 As New DataSet
-                    Dim oUST As New UsuariosSeccionesTipo
+                    Dim oUST As New UsuariosSecciones
                     Dim oBU As New BoxesUsuarios
                     ods2 = oUST.BuscarPorIDUsuario(G_UserID)
                     'verifico que el operador tenga una secciontipo
@@ -139,10 +111,8 @@ Public Class FrmLogin
 
                     End If
 
-
-
                 Case Is = ValorRol("Cliente")
-                    FrmPantallaInicio.Show()
+                    FrmPrincipalCliente.Show()
                     Me.Hide()
             End Select
 

@@ -5,7 +5,7 @@ Imports Telerik.WinControls.UI.Data
 Imports System.ComponentModel
 
 Public Class FrmTurnosOperador
-    Dim ultimo As Integer
+
 #Region "Variables"
 
     Private eEstado As FormEstado
@@ -18,9 +18,9 @@ Public Class FrmTurnosOperador
     Private aImprimir As Boolean
     Private aConsultar As Boolean
 
-
+    Dim ultimo As Integer
     Private id_turno As Integer
-    Private id_secciontipo As Integer
+    Private ID_Seccion As Integer
 
 #End Region
 
@@ -188,7 +188,6 @@ Public Class FrmTurnosOperador
 
         'TxtID.Enabled = False
         TxtSeccion.Enabled = False
-        TxtSubSeccion.Enabled = False
         TxtFechaObtencion.Enabled = False
         TxtFechaLlamado.Enabled = False
         TxtCodigo.Enabled = False
@@ -209,7 +208,6 @@ Public Class FrmTurnosOperador
 
 
         TxtSeccion.Enabled = True
-        TxtSubSeccion.Enabled = True
         TxtFechaObtencion.Enabled = True
         TxtFechaLlamado.Enabled = True
         TxtCodigo.Enabled = True
@@ -227,13 +225,12 @@ Public Class FrmTurnosOperador
 
         id_turno = vbNull
         TxtSeccion.Text = ""
-        TxtSubSeccion.Text = ""
+
         TxtFechaObtencion.Text = ""
         TxtFechaLlamado.Text = ""
         TxtCodigo.Text = ""
 
         TxtSeccion.ReadOnly = True
-        TxtSubSeccion.ReadOnly = True
         TxtFechaObtencion.ReadOnly = True
         TxtFechaLlamado.ReadOnly = True
         TxtCodigo.ReadOnly = True
@@ -569,9 +566,9 @@ ManejoErrores:
 
     Private Function Validar() As Boolean
 
-        Dim id_resolucion As Integer = ValorResolucion("SIN ASIGNAR", id_secciontipo)
-        Dim id_motivo As Integer = ValorMotivo("SIN ASIGNAR", id_secciontipo)
-        If ResolucionesCtrl1.SelectedValue = id_resolucion Or MotivosCtrl1.SelectedValue = id_motivo Then
+        'Dim id_resolucion As Integer = ValorResolucion("SIN ASIGNAR", ID_Seccion)
+        'Dim id_motivo As Integer = ValorMotivo("SIN ASIGNAR", ID_Seccion)
+        If ResolucionesCtrl1.SelectedIndex = 0 Or MotivosCtrl1.SelectedIndex = 0 Then
 
             MsgBox("Asigne la resolucion y motivo al turno para continuar ...", MsgBoxStyle.Exclamation, G_AppName)
             Validar = False
@@ -597,14 +594,13 @@ ManejoErrores:
             id_turno = oDs.Tables(1).Rows(0).Item(0)
             TxtCodigo.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Codigo")))
             TxtSeccion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Seccion")))
-            TxtSubSeccion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Subseccion")))
+
             TxtFechaObtencion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaObtencion")))
             TxtFechaLlamado.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaAtencion")))
             checkPrioridad.Checked = oDs.Tables(1).Rows(0).Item("prioridad")
-            id_secciontipo = (oDs.Tables(1).Rows(0).Item("id_seccionTipo"))
-            ResolucionesCtrl1.Iniciar(oDs.Tables(1).Rows(0).Item("id_seccionTipo"))
+            ResolucionesCtrl1.Iniciar(oDs.Tables(1).Rows(0).Item("id_seccion"))
             ResolucionesCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_RESOLUCION")
-            MotivosCtrl1.Iniciar(oDs.Tables(1).Rows(0).Item("id_seccionTipo"))
+            MotivosCtrl1.Iniciar(oDs.Tables(1).Rows(0).Item("id_seccion"))
             MotivosCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_MOTIVO")
 
             oDs = Nothing
@@ -756,7 +752,6 @@ ManejoErrores:
             LblID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
             ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"), ValorEstado("Turnos", "Llamado"), G_UserID)
 
-
             BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"))
 
 
@@ -821,8 +816,8 @@ ManejoErrores:
 
 
     Private Sub RadButton1_Click(sender As System.Object, e As System.EventArgs) Handles BtnRecargarResoluciones.Click
-        If id_secciontipo <> vbNull Then
-            ResolucionesCtrl1.Iniciar(CType(id_secciontipo, Integer))
+        If ID_Seccion <> "" Then
+            ResolucionesCtrl1.Iniciar(CType(ID_Seccion, Integer))
         End If
     End Sub
 
@@ -857,8 +852,8 @@ ManejoErrores:
 
 
     Private Sub btnRecargarMotivos_Click(sender As System.Object, e As System.EventArgs) Handles btnRecargarMotivos.Click
-        If id_secciontipo <> vbNull Then
-            MotivosCtrl1.Iniciar(id_secciontipo)
+        If ID_Seccion <> "" Then
+            MotivosCtrl1.Iniciar(ID_Seccion)
         End If
     End Sub
 

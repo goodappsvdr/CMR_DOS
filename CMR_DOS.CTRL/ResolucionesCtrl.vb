@@ -13,12 +13,12 @@ Partial Public Class ResolucionesCtrl
 
     End Sub
 
-    Public Sub Iniciar(ByVal id_seccionTipo As Double)
+    Public Sub Iniciar(ByVal ID_Seccion As Double)
 
         Dim oDs As New DataSet
         Dim oObjeto As New Resoluciones
 
-        oDs = oObjeto.BuscarporSeccionTipo(id_seccionTipo)
+        oDs = oObjeto.BuscarporSeccion(ID_Seccion)
 
         If oDs.Tables(0).Rows.Count > 0 Then
 

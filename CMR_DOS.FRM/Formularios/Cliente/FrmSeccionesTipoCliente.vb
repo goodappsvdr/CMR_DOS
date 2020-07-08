@@ -15,32 +15,32 @@ Public Class FrmSeccionesTipoCliente
         ProgressBar1.Maximum = 10
         ProgressBar1.Minimum = 0
         ProgressBar1.Visible = False
+        Timer3.Start()
 
     End Sub
-
 
     Private Sub cargarBotones()
 
         Dim I As Integer = 1
-        Dim oObjeto As New SeccionesTipo
-        Dim oS As New Secciones
-        Dim oDt As DataTable = G_SecciontipoTable.Tables(0)
-        Dim G_SeccionTable As DataTable = oS.Secciones_BuscarTodosporEstadoyUsuario(G_UserID).Tables(0)
-        If G_SeccionTable.Rows.Count = 1 Then
-            CmdAceptar.Enabled = False
-        End If
-        If oDt.Rows.Count > 0 Then
-           
-                For Each fila As DataRow In oDt.Rows
+        Dim oObjeto As New Secciones
+        Dim G_SeccionTable As DataTable = oObjeto.Secciones_BuscarTodosporEstadoyUsuario(G_UserID).Tables(0)
+
+        If G_SeccionTable.Rows.Count > 0 Then
+            If G_SeccionTable.Rows.Count = 1 Then
+                Dim id_seccion As String = G_SeccionTable.Rows(0).Item("id_Seccion")
+                ' FrmSeccionesTipoCliente.Show()
+                'Me.Dispose()
+            Else
+                For Each fila As DataRow In G_SeccionTable.Rows
 
                     Dim b As New Button()
                     b.Text = CStr(fila("Nombre"))
-                    b.Name = CStr(fila("id_SeccionTipo")) + "a"
+                    b.Name = CStr(fila("id_seccion")) & "a"
                     Dim myFontpredet As System.Drawing.Font = b.Font
                     Dim fontsizepredet As Double = myFontpredet.Size
                     Dim heightpredet As Double = b.Height
-                    If oDt.Rows.Count >= 5 Then
-                        b.Height = Panel1.Height / oDt.Rows.Count - 4
+                    If G_SeccionTable.Rows.Count >= 5 Then
+                        b.Height = Panel1.Height / G_SeccionTable.Rows.Count - 4
                     Else
                         b.Height = Panel1.Height / 5 - 4
                     End If
@@ -56,33 +56,23 @@ Public Class FrmSeccionesTipoCliente
                     myFont = New System.Drawing.Font("Segoe UI", fontsizereal, FontStyle.Bold Or FontStyle.Italic)
                     b.Font = myFont
 
-                    Panel1.Controls.Add(b)
-
-
+                    'Opcional, conectar el evento click:
                     AddHandler b.Click, AddressOf Button_Click
-
+                    Panel1.Controls.Add(b)
                     I += 1
 
                 Next
             End If
-
-
-            
-
+        End If
 
 
     End Sub
 
-
-   
-    Private Sub CmdAceptar_Click(sender As System.Object, e As System.EventArgs) Handles CmdAceptar.Click
+    Private Sub CmdAceptar_Click(sender As System.Object, e As System.EventArgs)
         G_SecciontipoTable = Nothing
         g_seccionID = Nothing
         FrmPrincipalCliente.Show()
         Me.Dispose()
-
-
-
     End Sub
 
     Private Sub Button_Click(sender As Object, e As EventArgs)
@@ -100,25 +90,21 @@ Public Class FrmSeccionesTipoCliente
         oDS = oSeccionesTipos.ConsultaParaAgregarTurno(id)
         oDsConsultaTurno = oTurno.BuscarporSeccionyFecha(CType(oDS.Tables(0).Rows(0).Item("Id_Seccion"), Integer))
         If oDsConsultaTurno.Tables(0).Rows.Count > 0 Then
-            ID_Turno = oTurno.Agregar(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), _
-                                      oDS.Tables(0).Rows(0).Item("CodigoSeccionTipo"), _
-                                      oDS.Tables(0).Rows(0).Item("id_Seccion"), _
-                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"), _
-                                      ValorEstado("Turnos", "GENERADO"), _
-                                      ValorResolucion("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), Integer)), _
-                                    CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1, _
-                                    ValorMotivo("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), Integer)))
+            ID_Turno = oTurno.Agregar(oDS.Tables(0).Rows(0).Item("id_Seccion"),
+                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
+                                      ValorEstado("Turnos", "GENERADO"),
+                                      ValorResolucion("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_Seccion"), Integer)),
+                                    CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1,
+                                    ValorMotivo("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_Seccion"), Integer)))
             '  ImprimirTurno(ID_Turno)
             idturno = ID_Turno
             PrintDocument1.Print()
         Else
-            ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), _
-                                      oDS.Tables(0).Rows(0).Item("CodigoSeccionTipo"), _
-                                      oDS.Tables(0).Rows(0).Item("id_Seccion"), _
-                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"), _
-                                      ValorEstado("Turnos", "GENERADO"), _
-                                      ValorResolucion("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), Integer)), _
-                                      ValorMotivo("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_SeccionTipo"), Integer)))
+            ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
+                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
+                                      ValorEstado("Turnos", "GENERADO"),
+                                      ValorResolucion("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_Seccion"), Integer)),
+                                      ValorMotivo("SIN ASIGNAR", CType(oDS.Tables(0).Rows(0).Item("Id_Seccion"), Integer)))
 
             ' ImprimirTurno(ID_Turno)
             idturno = ID_Turno
@@ -139,7 +125,6 @@ Public Class FrmSeccionesTipoCliente
         Dim oTurno As New Turnos
         ods = oTurno.BuscarPorID(idturno)
         Dim NombreSeccion As String = ods.Tables(0).Rows(0).Item("Seccion")
-        Dim NombreSeccionTipo As String = ods.Tables(0).Rows(0).Item("SeccionTipo")
         Dim fechaObtencion As DateTime = ods.Tables(0).Rows(0).Item("FechaObtencion")
         Dim Codigo As String = ods.Tables(0).Rows(0).Item("Turno")
 
@@ -148,7 +133,7 @@ Public Class FrmSeccionesTipoCliente
         Dim texto3 As String
 
         texto1 = ValorParametro("TICKET", "ENCABEZADO") & vbCrLf & ValorParametro("TICKET", "TITULO") & vbCrLf & "********************************" _
-            & vbCrLf & fechaObtencion & vbCrLf & NombreSeccion & " - " & NombreSeccionTipo _
+            & vbCrLf & fechaObtencion & vbCrLf & NombreSeccion _
         ' & vbCrLf & objeto & vbCrLf & Codigo & NroTurno & vbCrLf & "********************************" _
         ' & vbCrLf & pie
 
@@ -175,7 +160,7 @@ Public Class FrmSeccionesTipoCliente
             PrintAreaHeight = .PaperSize.Height - .Margins.Top - .Margins.Bottom
             PrintAreaHeight1 = .PaperSize.Height - .Margins.Top + 90 - .Margins.Bottom
             PrintAreaHeight2 = .PaperSize.Height - .Margins.Top + 250 - .Margins.Bottom
-            
+
             PrintAreaWidth = .PaperSize.Width - .Margins.Left - .Margins.Right
 
 
@@ -199,13 +184,13 @@ Public Class FrmSeccionesTipoCliente
         e.Graphics.MeasureString(Mid(texto1, intCurrentChar + 1), font, New SizeF(PrintAreaWidth, PrintAreaHeight), fmt, intCharsFitted, intLinesFilled)
         e.Graphics.MeasureString(texto2, font1)
         e.Graphics.MeasureString(texto3, font2)
-       
+
         e.Graphics.DrawString(Mid(texto1, intCurrentChar + 1), font, Brushes.Black, rectPrintingArea, fmt)
         e.Graphics.DrawString(texto2, font1, Brushes.Black, areaimpr2)
         e.Graphics.DrawString(texto3, font2, Brushes.Black, areaimpr3)
         intCurrentChar += intCharsFitted
 
-       
+
 
     End Sub
 
@@ -214,7 +199,6 @@ Public Class FrmSeccionesTipoCliente
         Dim oTurno As New Turnos
         ods = oTurno.BuscarPorID(id_turno)
         Dim NombreSeccion As String = ods.Tables(0).Rows(0).Item("Seccion")
-        Dim NombreSeccionTipo As String = ods.Tables(0).Rows(0).Item("SeccionTipo")
         Dim fechaObtencion As DateTime = ods.Tables(0).Rows(0).Item("FechaObtencion")
         Dim Codigo As String = ods.Tables(0).Rows(0).Item("Codigo")
         Dim NroTurno As Integer = ods.Tables(0).Rows(0).Item("nroTurno")
@@ -237,7 +221,7 @@ Public Class FrmSeccionesTipoCliente
             imp.SendText(fechaObtencion)
             imp.SendCommand(imp.CMD_CR)
             imp.SendCommand(imp.CMD_NORMAL3)
-            imp.SendText(NombreSeccion & " - " & NombreSeccionTipo)
+            imp.SendText(NombreSeccion)
             imp.SendCommand(imp.CMD_CR)
             imp.SendCommand(imp.CMD_NORMAL5)
             imp.SendText(ValorParametro("TICKET", "OBJETO"))
@@ -258,12 +242,6 @@ Public Class FrmSeccionesTipoCliente
             imp.SendCommand(imp.CMD_CR)
             imp.SendCommand(imp.CMD_CORTAR)
 
-
-
-
-
-
-
             imp.Cerrar()
 
 
@@ -275,8 +253,6 @@ Public Class FrmSeccionesTipoCliente
     End Sub
 
     Private Sub Timer2_Tick(sender As System.Object, e As System.EventArgs) Handles Timer2.Tick
-
-
         If ProgressBar1.Value >= ProgressBar1.Maximum Then
             ProgressBar1.Value = 0
             ProgressBar1.Visible = False
@@ -286,7 +262,15 @@ Public Class FrmSeccionesTipoCliente
         ProgressBar1.Value += 1
     End Sub
 
-    Private Sub Panel1_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
+    Dim SEGUNDOS As Double = 0
+    Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
+        SEGUNDOS = SEGUNDOS + 1
+        If SEGUNDOS = 300 Then
+            Timer3.Stop()
+            SEGUNDOS = 0
+            FrmPrincipalCliente.Show()
+            Me.Dispose()
+        End If
 
     End Sub
 End Class

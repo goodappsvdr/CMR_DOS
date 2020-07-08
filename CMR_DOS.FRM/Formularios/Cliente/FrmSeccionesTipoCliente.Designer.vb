@@ -33,17 +33,15 @@ Partial Class FrmSeccionesTipoCliente
         Me.LOGO = New System.Windows.Forms.PictureBox()
         Me.LblFechayHora = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.CmdAceptar = New Telerik.WinControls.UI.RadButton()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
+        Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LOGO, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanel2.SuspendLayout()
-        CType(Me.CmdAceptar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -124,7 +122,6 @@ Partial Class FrmSeccionesTipoCliente
         Me.TableLayoutPanel2.ColumnCount = 2
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Controls.Add(Me.CmdAceptar, 0, 1)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
@@ -133,25 +130,6 @@ Partial Class FrmSeccionesTipoCliente
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(257, 85)
         Me.TableLayoutPanel2.TabIndex = 0
-        '
-        'CmdAceptar
-        '
-        Me.CmdAceptar.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.CmdAceptar.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CmdAceptar.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CmdAceptar.ForeColor = System.Drawing.SystemColors.Control
-        Me.CmdAceptar.Location = New System.Drawing.Point(3, 45)
-        Me.CmdAceptar.Name = "CmdAceptar"
-        '
-        '
-        '
-        Me.CmdAceptar.RootElement.ControlBounds = New System.Drawing.Rectangle(3, 45, 110, 24)
-        Me.CmdAceptar.Size = New System.Drawing.Size(122, 37)
-        Me.CmdAceptar.TabIndex = 30
-        Me.CmdAceptar.TabStop = False
-        Me.CmdAceptar.Text = "Volver"
-        Me.CmdAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.CmdAceptar.ThemeName = "Office2007Silver"
         '
         'ProgressBar1
         '
@@ -195,15 +173,12 @@ Partial Class FrmSeccionesTipoCliente
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         CType(Me.LOGO, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanel2.ResumeLayout(False)
-        CType(Me.CmdAceptar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents Office2007SilverTheme1 As Telerik.WinControls.Themes.Office2007SilverTheme
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Private WithEvents CmdAceptar As Telerik.WinControls.UI.RadButton
     Friend WithEvents LblFechayHora As System.Windows.Forms.Label
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents LOGO As System.Windows.Forms.PictureBox
@@ -213,5 +188,5 @@ Partial Class FrmSeccionesTipoCliente
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
     Friend WithEvents PrintDocument1 As System.Drawing.Printing.PrintDocument
-
+    Friend WithEvents Timer3 As Timer
 End Class

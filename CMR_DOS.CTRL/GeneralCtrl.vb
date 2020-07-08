@@ -35,7 +35,7 @@ Partial Public Class GeneralCrl
 
 
     End Sub
-    Public Sub IniciarSegunCaso(Parametro As String, seccion As Double, userid As Double, secciontipo As Double)
+    Public Sub IniciarSegunCaso(Parametro As String, seccion As Double, userid As Double)
 
         Dim oDs As New DataSet
         Select Case Parametro
@@ -69,16 +69,16 @@ Partial Public Class GeneralCrl
 
 
 
-            Case Is = "SUBSECCIONES"
-                Dim oObjeto As New SeccionesTipo
-                oDs = oObjeto.BuscarPorSeccion(seccion)
-                If oDs.Tables(0).Rows.Count > 0 Then
-                    DataSource = oDs.Tables(0)
-                    DisplayMember = oDs.Tables(0).Columns(2).Caption.ToString
-                    ValueMember = oDs.Tables(0).Columns(0).Caption.ToString
-                Else
-                    MsgBox("No se encontraron subsecciones.", MsgBoxStyle.Exclamation, "Información...")
-                End If
+            'Case Is = "SUBSECCIONES"
+            '    Dim oObjeto As New SeccionesTipo
+            '    oDs = oObjeto.BuscarPorSeccion(seccion)
+            '    If oDs.Tables(0).Rows.Count > 0 Then
+            '        DataSource = oDs.Tables(0)
+            '        DisplayMember = oDs.Tables(0).Columns(2).Caption.ToString
+            '        ValueMember = oDs.Tables(0).Columns(0).Caption.ToString
+            '    Else
+            '        MsgBox("No se encontraron subsecciones.", MsgBoxStyle.Exclamation, "Información...")
+            '    End If
 
 
 
@@ -99,7 +99,7 @@ Partial Public Class GeneralCrl
 
             Case Is = "MOTIVOS"
                 Dim oObjeto As New Motivos
-                oDs = oObjeto.BuscarporSeccionTipo(secciontipo)
+                oDs = oObjeto.BuscarporSeccion(seccion)
                 If oDs.Tables(0).Rows.Count > 0 Then
                     DataSource = oDs.Tables(0)
                     DisplayMember = oDs.Tables(0).Columns(2).Caption.ToString
@@ -113,7 +113,7 @@ Partial Public Class GeneralCrl
 
             Case Is = "RESOLUCIONES"
                 Dim oObjeto As New Resoluciones
-                oDs = oObjeto.BuscarporSeccionTipo(secciontipo)
+                oDs = oObjeto.BuscarporSeccion(seccion)
                 If oDs.Tables(0).Rows.Count > 0 Then
                     DataSource = oDs.Tables(0)
                     DisplayMember = oDs.Tables(0).Columns(2).Caption.ToString
