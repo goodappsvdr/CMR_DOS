@@ -13,12 +13,12 @@ Partial Public Class MotivosCtrl
 
     End Sub
 
-    Public Sub Iniciar(ByVal ID_Seccion As Double)
+    Public Sub Iniciar()
 
         Dim oDs As New DataSet
         Dim oObjeto As New Motivos
 
-        oDs = oObjeto.BuscarporSeccion(ID_Seccion)
+        oDs = oObjeto.BuscarTodos
 
         If oDs.Tables(0).Rows.Count > 0 Then
 

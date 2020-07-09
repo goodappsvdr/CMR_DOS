@@ -58,22 +58,22 @@ Public Class Turnos
 
 
     'BuscarPorID
-    Public Function AgregarPrimero(id_seccion As Double, codigoSeccion As String, id_estado As Integer, id_resolucion As Integer, id_motivo As Double) As Double
+    Public Function AgregarPrimero(id_seccion As Double, codigoSeccion As String, id_estado As Integer) As Double
 
         Try
 
-            Return oDatabase.ExecuteScalar("Turnos_AgregarPrimero", id_seccion, codigoSeccion, id_estado, id_resolucion, id_motivo)
+            Return oDatabase.ExecuteScalar("Turnos_AgregarPrimero", id_seccion, codigoSeccion, id_estado)
 
         Catch ex As System.Exception
             Throw ex
         End Try
 
     End Function
-    Public Function Agregar(id_seccion As Double, codigoSeccion As String, id_estado As Integer, id_resolucion As Integer, nroturno As Integer, id_motivo As Double) As Double
+    Public Function Agregar(id_seccion As Double, codigoSeccion As String, id_estado As Integer, nroturno As Integer) As Double
 
         Try
 
-            Return oDatabase.ExecuteScalar("Turnos_Agregar", id_seccion, codigoSeccion, id_estado, id_resolucion, nroturno, id_motivo)
+            Return oDatabase.ExecuteScalar("Turnos_Agregar", id_seccion, codigoSeccion, id_estado, nroturno)
 
         Catch ex As System.Exception
             Throw ex

@@ -9,6 +9,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CMR_DOS.AD", "CMR_DOS.AD\CM
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CMR_DOS.CTRL", "CMR_DOS.CTRL\CMR_DOS.CTRL.vbproj", "{ACDAE278-7979-4F51-A386-0009E3A24D9B}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CRM_TOUCH", "CRM_TOUCH\CRM_TOUCH.vbproj", "{988BD6A0-08DE-4944-BDAD-EC71F6F08516}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{ACDAE278-7979-4F51-A386-0009E3A24D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACDAE278-7979-4F51-A386-0009E3A24D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACDAE278-7979-4F51-A386-0009E3A24D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{988BD6A0-08DE-4944-BDAD-EC71F6F08516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{988BD6A0-08DE-4944-BDAD-EC71F6F08516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{988BD6A0-08DE-4944-BDAD-EC71F6F08516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{988BD6A0-08DE-4944-BDAD-EC71F6F08516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

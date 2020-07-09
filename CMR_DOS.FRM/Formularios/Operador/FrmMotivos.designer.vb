@@ -47,10 +47,8 @@ Partial Class FrmMotivos
         Me.Grilla = New Telerik.WinControls.UI.RadGridView()
         Me.RadPageView1 = New Telerik.WinControls.UI.RadPageView()
         Me.RadPageViewPage1 = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.SeccionesCtrl1 = New CMR_DOS.CTRL.SeccionesCtrl()
         Me.checkVisible = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.PanelColor.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmdAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,7 +102,7 @@ Partial Class FrmMotivos
         Me.TxtID.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtID.ColorLeave = System.Drawing.Color.White
         Me.TxtID.Enabled = False
-        Me.TxtID.Location = New System.Drawing.Point(214, 39)
+        Me.TxtID.Location = New System.Drawing.Point(214, 66)
         Me.TxtID.Name = "TxtID"
         Me.TxtID.Size = New System.Drawing.Size(100, 22)
         Me.TxtID.TabEnable = True
@@ -132,7 +130,7 @@ Partial Class FrmMotivos
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(190, 42)
+        Me.Label1.Location = New System.Drawing.Point(190, 69)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(18, 13)
         Me.Label1.TabIndex = 40
@@ -313,10 +311,8 @@ Partial Class FrmMotivos
         'RadPageViewPage1
         '
         Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
-        Me.RadPageViewPage1.Controls.Add(Me.SeccionesCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.checkVisible)
         Me.RadPageViewPage1.Controls.Add(Me.Label8)
-        Me.RadPageViewPage1.Controls.Add(Me.Label4)
         Me.RadPageViewPage1.Controls.Add(Me.Label2)
         Me.RadPageViewPage1.Controls.Add(Me.Label1)
         Me.RadPageViewPage1.Controls.Add(Me.TxtDescripcion)
@@ -325,16 +321,6 @@ Partial Class FrmMotivos
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 226)
         Me.RadPageViewPage1.Text = "Información"
-        '
-        'SeccionesCtrl1
-        '
-        Me.SeccionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.SeccionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.SeccionesCtrl1.FormattingEnabled = True
-        Me.SeccionesCtrl1.Location = New System.Drawing.Point(214, 67)
-        Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
-        Me.SeccionesCtrl1.Size = New System.Drawing.Size(271, 21)
-        Me.SeccionesCtrl1.TabIndex = 91
         '
         'checkVisible
         '
@@ -356,18 +342,6 @@ Partial Class FrmMotivos
         Me.Label8.Size = New System.Drawing.Size(46, 13)
         Me.Label8.TabIndex = 89
         Me.Label8.Text = "ACTIVO"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.Label4.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label4.Location = New System.Drawing.Point(155, 70)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(53, 13)
-        Me.Label4.TabIndex = 81
-        Me.Label4.Text = "SECCION"
         '
         'FrmMotivos
         '
@@ -443,11 +417,8 @@ Partial Class FrmMotivos
     Private WithEvents Grilla As Telerik.WinControls.UI.RadGridView
     Friend WithEvents RadPageView1 As Telerik.WinControls.UI.RadPageView
     Friend WithEvents RadPageViewPage1 As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents checkVisible As System.Windows.Forms.CheckBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
-
-    Friend WithEvents SeccionesCtrl1 As CMR_DOS.CTRL.SeccionesCtrl
 
 
 

@@ -6,9 +6,6 @@ Public Class FrmLogin
 
     Private Property FrmMenuPanel As Object
 
-
-
-
     Private Sub CmdCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.Close()
     End Sub
@@ -20,7 +17,6 @@ Public Class FrmLogin
 
 
             IniciarSesion()
-
 
         End If
 
@@ -115,10 +111,6 @@ Public Class FrmLogin
                     FrmPrincipalCliente.Show()
                     Me.Hide()
             End Select
-
-
-
-
 
         Else
 

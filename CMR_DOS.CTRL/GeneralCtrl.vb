@@ -99,7 +99,7 @@ Partial Public Class GeneralCrl
 
             Case Is = "MOTIVOS"
                 Dim oObjeto As New Motivos
-                oDs = oObjeto.BuscarporSeccion(seccion)
+                oDs = oObjeto.BuscarTodos
                 If oDs.Tables(0).Rows.Count > 0 Then
                     DataSource = oDs.Tables(0)
                     DisplayMember = oDs.Tables(0).Columns(2).Caption.ToString
@@ -113,7 +113,7 @@ Partial Public Class GeneralCrl
 
             Case Is = "RESOLUCIONES"
                 Dim oObjeto As New Resoluciones
-                oDs = oObjeto.BuscarporSeccion(seccion)
+                oDs = oObjeto.BuscarTodos
                 If oDs.Tables(0).Rows.Count > 0 Then
                     DataSource = oDs.Tables(0)
                     DisplayMember = oDs.Tables(0).Columns(2).Caption.ToString

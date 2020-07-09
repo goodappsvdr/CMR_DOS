@@ -229,7 +229,8 @@ Public Class FrmTurnosOperador
         TxtFechaObtencion.Text = ""
         TxtFechaLlamado.Text = ""
         TxtCodigo.Text = ""
-
+        ResolucionesCtrl1.Iniciar()
+        MotivosCtrl1.Iniciar()
         TxtSeccion.ReadOnly = True
         TxtFechaObtencion.ReadOnly = True
         TxtFechaLlamado.ReadOnly = True
@@ -594,13 +595,10 @@ ManejoErrores:
             id_turno = oDs.Tables(1).Rows(0).Item(0)
             TxtCodigo.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Codigo")))
             TxtSeccion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Seccion")))
-
             TxtFechaObtencion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaObtencion")))
             TxtFechaLlamado.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaAtencion")))
             checkPrioridad.Checked = oDs.Tables(1).Rows(0).Item("prioridad")
-            ResolucionesCtrl1.Iniciar(oDs.Tables(1).Rows(0).Item("id_seccion"))
             ResolucionesCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_RESOLUCION")
-            MotivosCtrl1.Iniciar(oDs.Tables(1).Rows(0).Item("id_seccion"))
             MotivosCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_MOTIVO")
 
             oDs = Nothing
@@ -816,9 +814,9 @@ ManejoErrores:
 
 
     Private Sub RadButton1_Click(sender As System.Object, e As System.EventArgs) Handles BtnRecargarResoluciones.Click
-        If ID_Seccion <> "" Then
-            ResolucionesCtrl1.Iniciar(CType(ID_Seccion, Integer))
-        End If
+
+        ResolucionesCtrl1.Iniciar()
+
     End Sub
 
 
@@ -852,9 +850,9 @@ ManejoErrores:
 
 
     Private Sub btnRecargarMotivos_Click(sender As System.Object, e As System.EventArgs) Handles btnRecargarMotivos.Click
-        If ID_Seccion <> "" Then
-            MotivosCtrl1.Iniciar(ID_Seccion)
-        End If
+
+        MotivosCtrl1.Iniciar()
+
     End Sub
 
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick

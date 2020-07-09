@@ -268,9 +268,6 @@ Public Class FrmSeccionesTipo
 
                     resultado = oObjeto.Agregar(SeccionesCtrl1.SelectedValue, TxtNombre.Text, TxtCodigo.Text, EstadosCtrl1.SelectedValue)
 
-                    oResoluciones.Agregar(resultado, "SIN ASIGNAR", True)
-                    oMotivos.Agregar(resultado, "SIN ASIGNAR", True)
-
                     'MsgBox("Se agregó el registro " & resultado, MsgBoxStyle.Information, G_AppName)
                     Me.Estado = FormEstado.eVacio
 

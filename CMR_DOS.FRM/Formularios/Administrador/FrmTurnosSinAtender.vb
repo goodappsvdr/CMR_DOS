@@ -599,9 +599,7 @@ ManejoErrores:
             TxtFechaLlamado.Text = oDs.Tables(1).Rows(0).Item("FechaAtencion").ToString
             checkPrioridad.Checked = oDs.Tables(1).Rows(0).Item("prioridad")
             id_secciontipo = (oDs.Tables(1).Rows(0).Item("id_seccionTipo"))
-            ResolucionesCtrl1.Iniciar(oDs.Tables(1).Rows(0).Item("id_seccionTipo"))
             ResolucionesCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_RESOLUCION")
-            MotivosCtrl1.Iniciar(oDs.Tables(1).Rows(0).Item("id_seccionTipo"))
             MotivosCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_MOTIVO")
 
             oDs = Nothing
@@ -818,7 +816,7 @@ ManejoErrores:
 
     Private Sub RadButton1_Click(sender As System.Object, e As System.EventArgs) Handles BtnRecargarResoluciones.Click
         If id_secciontipo <> vbNull Then
-            ResolucionesCtrl1.Iniciar(CType(id_secciontipo, Integer))
+            ResolucionesCtrl1.Iniciar()
         End If
     End Sub
 
@@ -854,7 +852,7 @@ ManejoErrores:
 
     Private Sub btnRecargarMotivos_Click(sender As System.Object, e As System.EventArgs) Handles btnRecargarMotivos.Click
         If id_secciontipo <> vbNull Then
-            MotivosCtrl1.Iniciar(id_secciontipo)
+            MotivosCtrl1.Iniciar()
         End If
     End Sub
 

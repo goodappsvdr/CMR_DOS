@@ -185,7 +185,7 @@ Public Class FrmMotivos
 
         TxtID.Enabled = False
         TxtDescripcion.Enabled = False
-        SeccionesCtrl1.Enabled = False
+
         checkVisible.Enabled = False
 
 
@@ -200,7 +200,7 @@ Public Class FrmMotivos
 
         TxtID.Enabled = True
         TxtDescripcion.Enabled = True
-        SeccionesCtrl1.Enabled = True
+
         checkVisible.Enabled = True
 
 
@@ -213,7 +213,7 @@ Public Class FrmMotivos
 
         TxtID.Text = ""
         TxtDescripcion.Text = ""
-        SeccionesCtrl1.Iniciar()
+
         checkVisible.Checked = True
 
 
@@ -265,7 +265,7 @@ Public Class FrmMotivos
                 Case FormEstado.eAgregar
 
 
-                    resultado = oObjeto.Agregar(SeccionesCtrl1.SelectedValue, TxtDescripcion.Text, checkVisible.Checked)
+                    resultado = oObjeto.Agregar(TxtDescripcion.Text, checkVisible.Checked)
 
 
 
@@ -278,9 +278,7 @@ Public Class FrmMotivos
 
                     oObjeto.Modificar(
                                         TxtID.Text,
-                                        SeccionesCtrl1.SelectedValue,
-                                        TxtDescripcion.Text, _
- _
+                                        TxtDescripcion.Text,
                                         checkVisible.Checked)
 
 
@@ -491,9 +489,9 @@ ManejoErrores:
     Private Function Validar() As Boolean
 
 
-        If TxtDescripcion.Text = "" Or SeccionesCtrl1.SelectedValue = Nothing Then
+        If TxtDescripcion.Text = "" Then
 
-            MsgBox("Complete sus datos...", MsgBoxStyle.Exclamation, G_AppName)
+            MsgBox("Ingrese una Descripción...", MsgBoxStyle.Exclamation, G_AppName)
             Validar = False
             Exit Function
 
@@ -536,7 +534,6 @@ ManejoErrores:
 
             TxtID.Text = oDs.Tables(0).Rows(0).Item(0)
             TxtDescripcion.Text = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("Descripcion")))
-            SeccionesCtrl1.SelectedValue = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("id_seccion")))
 
             oDs = Nothing
             oObjeto = Nothing

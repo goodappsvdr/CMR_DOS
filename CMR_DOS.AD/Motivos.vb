@@ -18,11 +18,11 @@ Public Class Motivos
     End Sub
 
     ''buscar por codigo
-    Public Function Motivos_ValidarNombre(ByVal Nombre As String, seccion As Double) As DataSet
+    Public Function Motivos_ValidarNombre(ByVal Nombre As String) As DataSet
 
         Try
 
-            Return oDatabase.ExecuteDataSet("Motivos_ValidarNombre", Nombre, seccion)
+            Return oDatabase.ExecuteDataSet("Motivos_ValidarNombre", Nombre)
 
         Catch ex As System.Exception
             Throw ex
@@ -57,27 +57,27 @@ Public Class Motivos
 
     End Function
 
-    Public Function BuscarporSeccion(ByVal ID_Seccion As Integer) As DataSet
+    'Public Function BuscarporSeccion(ByVal ID_Seccion As Integer) As DataSet
 
-        Try
+    '    Try
 
-            Return oDatabase.ExecuteDataSet("Motivos_BuscarTodosporSeccionTipo", ID_Seccion)
+    '        Return oDatabase.ExecuteDataSet("Motivos_BuscarTodosporSeccionTipo", ID_Seccion)
 
-        Catch ex As System.Exception
-            Throw ex
-        End Try
+    '    Catch ex As System.Exception
+    '        Throw ex
+    '    End Try
 
-    End Function
+    'End Function
 
     '*********************BUSQUEDA POR LOS DIFERENTES CAMPOS DE LA TABLA****************
 
 
     'Insert
-    Public Function Agregar(ByVal ID_Seccion As Integer, ByVal descripcion As String, activo As Boolean) As Double
+    Public Function Agregar(ByVal descripcion As String, activo As Boolean) As Double
 
         Try
 
-            Return oDatabase.ExecuteScalar("Motivos_Agregar", ID_Seccion, descripcion, activo)
+            Return oDatabase.ExecuteScalar("Motivos_Agregar", descripcion, activo)
 
         Catch ex As System.Exception
             Throw ex
@@ -89,11 +89,11 @@ Public Class Motivos
 
     'Update
 
-    Public Function Modificar(ID_Resolucion As Integer, ByVal ID_Seccion As Integer, ByVal descripcion As String, activo As Boolean) As DataSet
+    Public Function Modificar(ID_Resolucion As Integer, ByVal descripcion As String, activo As Boolean) As DataSet
 
         Try
 
-            Return oDatabase.ExecuteDataSet("Motivos_Modificar", ID_Resolucion, ID_Seccion, descripcion, activo)
+            Return oDatabase.ExecuteDataSet("Motivos_Modificar", ID_Resolucion, descripcion, activo)
 
         Catch ex As System.Exception
             Throw ex
@@ -102,21 +102,21 @@ Public Class Motivos
     End Function
 
 
-    Public Function BuscarPorNombre(ByVal Descripcion As String, ByVal ID_Seccion As Double) As DataSet
+    Public Function BuscarPorNombre(ByVal Descripcion As String) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Motivos_BuscarPorNombre", Descripcion, ID_Seccion)
+            Return oDatabase.ExecuteDataSet("Motivos_BuscarPorNombre", Descripcion)
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Function BuscarTodosPorID_Usuario(id_usuario As Double) As DataSet
-        Try
+    'Function BuscarTodosPorID_Usuario(id_usuario As Double) As DataSet
+    '    Try
 
-            Return oDatabase.ExecuteDataSet("Motivos_BuscarTodosPorID_Usuario", id_usuario)
+    '        Return oDatabase.ExecuteDataSet("Motivos_BuscarTodosPorID_Usuario", id_usuario)
 
-        Catch ex As System.Exception
-            Throw ex
-        End Try
-    End Function
+    '    Catch ex As System.Exception
+    '        Throw ex
+    '    End Try
+    'End Function
 End Class

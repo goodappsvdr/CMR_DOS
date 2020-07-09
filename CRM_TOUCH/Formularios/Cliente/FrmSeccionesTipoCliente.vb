@@ -2,12 +2,11 @@
 Imports System.IO
 
 Public Class FrmSeccionesTipoCliente
-
-
     Dim ID_Turno As Double
-    dim idturno As Integer
+    Dim idturno As Integer
 
     Private Sub FrmPrincipalCliente_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
         cargarBotones()
         ProgressBar1.Maximum = 10
         ProgressBar1.Minimum = 0
@@ -62,20 +61,20 @@ Public Class FrmSeccionesTipoCliente
             End If
         End If
 
-
     End Sub
 
-    'Private Sub CmdAceptar_Click(sender As System.Object, e As System.EventArgs)
-    '    G_SecciontipoTable = Nothing
-    '    g_seccionID = Nothing
-    '    FrmPrincipalCliente.Show()
-    '    Me.Dispose()
-    'End Sub
+    Private Sub CmdAceptar_Click(sender As System.Object, e As System.EventArgs)
+        G_SecciontipoTable = Nothing
+        g_seccionID = Nothing
+        FrmPrincipalCliente.Show()
+        Me.Dispose()
+    End Sub
 
     Private Sub Button_Click(sender As Object, e As EventArgs)
         Timer2.Enabled = True
         ProgressBar1.Visible = True
         Dim id_secciontipo As String = CType(sender, System.Windows.Forms.Button).Name.ToString
+        Dim ID_Rresolucion As Integer = 0
 
         Dim oSeccionesTipos As New SeccionesTipo
         Dim oTurno As New Turnos
@@ -89,16 +88,15 @@ Public Class FrmSeccionesTipoCliente
         If oDsConsultaTurno.Tables(0).Rows.Count > 0 Then
             ID_Turno = oTurno.Agregar(oDS.Tables(0).Rows(0).Item("id_Seccion"),
                                       oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
-                                     CInt(ValorEstado("Turnos", "GENERADO")),
-                                     CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1)
+                                      ValorEstado("Turnos", "GENERADO"),
+                                      CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1)
             '  ImprimirTurno(ID_Turno)
             idturno = ID_Turno
             PrintDocument1.Print()
         Else
             ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
-                                           oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
-                                            CInt(ValorEstado("Turnos", "GENERADO")))
-
+                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
+                                      ValorEstado("Turnos", "GENERADO"))
             ' ImprimirTurno(ID_Turno)
             idturno = ID_Turno
             PrintDocument1.Print()

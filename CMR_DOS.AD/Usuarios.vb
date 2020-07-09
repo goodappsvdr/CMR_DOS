@@ -32,10 +32,6 @@ Public Class Usuarios
 
     End Function
 
-
-   
-
-
     Public Function BuscarPorID_Empresa(ByVal ID_Empresa As Double) As DataSet
 
         Try
