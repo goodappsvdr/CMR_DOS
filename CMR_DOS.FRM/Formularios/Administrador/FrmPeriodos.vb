@@ -328,12 +328,13 @@ Public Class FrmPeriodos
 
     End Sub
 
+
     Private Sub Cancelo()
 
         On Error GoTo ManejoErrores
 
-        If MsgBox("Esta seguro de Cancelar?" & vbCrLf & _
-                  "Se perderán las ultimas modificaciones", _
+        If MsgBox("Esta seguro de Cancelar?" & vbCrLf &
+                  "Se perderán las ultimas modificaciones",
                   vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
 
             Me.Estado = FormEstado.eVacio
@@ -342,8 +343,8 @@ Public Class FrmPeriodos
         Exit Sub
 
 ManejoErrores:
-        MsgBox("Ocurrió el error " & vbCrLf & _
-                 vbCrLf & _
+        MsgBox("Ocurrió el error " & vbCrLf &
+                 vbCrLf &
                 Err.Description)
 
     End Sub

@@ -240,7 +240,7 @@ Public Class FrmSeccionesTipoCliente
     End Sub
 
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
-        LblFechayHora.Text = DateTime.Now
+        Lbl_FechayHora.Text = DateTime.Now.ToString
     End Sub
 
     Private Sub Timer2_Tick(sender As System.Object, e As System.EventArgs) Handles Timer2.Tick
@@ -248,7 +248,6 @@ Public Class FrmSeccionesTipoCliente
             ProgressBar1.Value = 0
             ProgressBar1.Visible = False
             Timer2.Enabled = False
-
         End If
         ProgressBar1.Value += 1
     End Sub
@@ -264,4 +263,7 @@ Public Class FrmSeccionesTipoCliente
         End If
 
     End Sub
+
+
+
 End Class

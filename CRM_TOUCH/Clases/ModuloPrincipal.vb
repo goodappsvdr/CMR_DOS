@@ -21,7 +21,7 @@ Module ModuloPrincipal
     Public G_BoxID As Integer = Nothing
     Public conexion As SqlConnection
     Public transaccion As SqlTransaction
-
+    Public G_Click As Integer = 0
 
 
 
