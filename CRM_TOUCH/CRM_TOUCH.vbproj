@@ -27,8 +27,8 @@
     <InstallUrl>http://179.43.114.86/INSTALADORES/CRM_TOUCH/</InstallUrl>
     <ProductName>CRM</ProductName>
     <PublisherName>COOVILROS LTDA</PublisherName>
-    <MinimumRequiredVersion>1.0.0.5</MinimumRequiredVersion>
-    <ApplicationRevision>7</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.9</MinimumRequiredVersion>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -344,12 +344,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Arrows-Back-icon.png" />
+    <None Include="Resources\hora.png" />
     <Content Include="Resources\icono_volver-2.png" />
     <Content Include="Resources\icono_volver-21.png" />
     <Content Include="Resources\icono_volver-2sad %282%29.png" />
     <Content Include="Resources\logo coop.png" />
     <Content Include="Resources\LOGO.png" />
     <Content Include="Resources\LogoCoovilros.ico" />
+    <None Include="Resources\solicite su turno aqui.png" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="CMR_DOS.AD">

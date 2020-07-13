@@ -40,16 +40,6 @@ Public Class FrmPrincipalCliente
 
     End Sub
 
-    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
-        Try
-            FrmSeccionesTipoCliente.Show()
-            Me.Hide()
-        Catch ex As Exception
-            MsgBox("Ocurrio un error... ", MsgBoxStyle.Exclamation, G_AppName)
-
-        End Try
-
-    End Sub
 
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
@@ -88,5 +78,16 @@ Public Class FrmPrincipalCliente
             SEGUNDOS = 0
             G_Click = 0
         End If
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Try
+            FrmSeccionesTipoCliente.Show()
+            Me.Hide()
+        Catch ex As Exception
+            MsgBox("Ocurrio un error... ", MsgBoxStyle.Exclamation, G_AppName)
+
+        End Try
+
     End Sub
 End Class

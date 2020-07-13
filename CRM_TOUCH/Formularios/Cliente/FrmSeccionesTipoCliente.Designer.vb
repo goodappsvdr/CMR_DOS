@@ -67,9 +67,9 @@ Partial Class FrmSeccionesTipoCliente
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 4
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.72549!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.901961!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.39216!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.921569!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.745098!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.76471!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(795, 510)
         Me.TableLayoutPanel1.TabIndex = 0
@@ -77,14 +77,14 @@ Partial Class FrmSeccionesTipoCliente
         'TableLayoutPanel2
         '
         Me.TableLayoutPanel2.ColumnCount = 4
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.397463!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.37516!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.78834!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.64259!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.140684!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.30165!))
         Me.TableLayoutPanel2.Controls.Add(Me.PictureBox1, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel3, 3, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 22)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 28)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -95,19 +95,19 @@ Partial Class FrmSeccionesTipoCliente
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Image = Global.CRM_TOUCH.My.Resources.Resources.logo_coop
-        Me.PictureBox1.Location = New System.Drawing.Point(37, 3)
+        Me.PictureBox1.Location = New System.Drawing.Point(25, 3)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(280, 41)
+        Me.PictureBox1.Size = New System.Drawing.Size(291, 41)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
         'TableLayoutPanel3
         '
-        Me.TableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(158, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(69, Byte), Integer))
+        Me.TableLayoutPanel3.BackColor = System.Drawing.Color.Transparent
         Me.TableLayoutPanel3.ColumnCount = 2
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.773836!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 96.67406!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.758242!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 98.24176!))
         Me.TableLayoutPanel3.Controls.Add(Me.Lbl_FechayHora, 1, 0)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(331, 3)
@@ -120,9 +120,11 @@ Partial Class FrmSeccionesTipoCliente
         'Lbl_FechayHora
         '
         Me.Lbl_FechayHora.AutoSize = True
+        Me.Lbl_FechayHora.BackColor = System.Drawing.Color.Transparent
         Me.Lbl_FechayHora.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Lbl_FechayHora.Font = New System.Drawing.Font("Oswald", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_FechayHora.ForeColor = System.Drawing.Color.White
+        Me.Lbl_FechayHora.Image = Global.CRM_TOUCH.My.Resources.Resources.hora
         Me.Lbl_FechayHora.Location = New System.Drawing.Point(11, 0)
         Me.Lbl_FechayHora.Name = "Lbl_FechayHora"
         Me.Lbl_FechayHora.Size = New System.Drawing.Size(441, 41)
@@ -132,9 +134,9 @@ Partial Class FrmSeccionesTipoCliente
         'ProgressBar1
         '
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ProgressBar1.Location = New System.Drawing.Point(3, 75)
+        Me.ProgressBar1.Location = New System.Drawing.Point(3, 81)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(789, 14)
+        Me.ProgressBar1.Size = New System.Drawing.Size(789, 8)
         Me.ProgressBar1.TabIndex = 0
         '
         'Panel1
@@ -178,8 +180,8 @@ Partial Class FrmSeccionesTipoCliente
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents Lbl_FechayHora As Label
 End Class

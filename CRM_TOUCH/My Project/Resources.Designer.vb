@@ -63,9 +63,29 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property hora() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("hora", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property logo_coop() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("logo coop", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property solicite_su_turno_aqui() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("solicite su turno aqui", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
