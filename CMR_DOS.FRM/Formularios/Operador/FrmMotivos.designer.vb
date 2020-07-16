@@ -68,7 +68,7 @@ Partial Class FrmMotivos
         '
         'PanelColor
         '
-        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.PanelColor.Controls.Add(Me.PictureBox1)
         Me.PanelColor.Controls.Add(Me.LblAccion)
         Me.PanelColor.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -310,7 +310,7 @@ Partial Class FrmMotivos
         '
         'RadPageViewPage1
         '
-        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.RadPageViewPage1.Controls.Add(Me.checkVisible)
         Me.RadPageViewPage1.Controls.Add(Me.Label8)
         Me.RadPageViewPage1.Controls.Add(Me.Label2)

@@ -1,4 +1,5 @@
 ﻿Imports CMR_DOS.AD
+Imports System.Drawing.Printing
 Imports System.IO
 
 Public Class FrmSeccionesTipoCliente
@@ -6,62 +7,63 @@ Public Class FrmSeccionesTipoCliente
     Dim idturno As Integer
 
     Private Sub FrmPrincipalCliente_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
-        cargarBotones()
-        ProgressBar1.Maximum = 10
-        ProgressBar1.Minimum = 0
-        ProgressBar1.Visible = False
+        PrintDocument1.PrintController = New System.Drawing.Printing.StandardPrintController()
+        ' cargarBotones()
+        'ProgressBar1.Maximum = 10
+        'ProgressBar1.Minimum = 0
+        'ProgressBar1.Visible = False
         Timer3.Start()
 
     End Sub
 
-    Private Sub cargarBotones()
+    'Private Sub cargarBotones()
 
-        Dim I As Integer = 1
-        Dim oObjeto As New Secciones
-        Dim G_SeccionTable As DataTable = oObjeto.Secciones_BuscarTodosporEstadoyUsuario(G_UserID).Tables(0)
+    '    Dim I As Integer = 1
+    '    Dim oObjeto As New Secciones
+    '    Dim G_SeccionTable As DataTable = oObjeto.Secciones_BuscarTodosporEstadoyUsuario(G_UserID).Tables(0)
 
-        If G_SeccionTable.Rows.Count > 0 Then
-            If G_SeccionTable.Rows.Count = 1 Then
-                Dim id_seccion As String = G_SeccionTable.Rows(0).Item("id_Seccion")
-                ' FrmSeccionesTipoCliente.Show()
-                'Me.Dispose()
-            Else
-                For Each fila As DataRow In G_SeccionTable.Rows
+    '    If G_SeccionTable.Rows.Count > 0 Then
+    '        If G_SeccionTable.Rows.Count = 1 Then
+    '            Dim id_seccion As String = G_SeccionTable.Rows(0).Item("id_Seccion")
+    '            ' FrmSeccionesTipoCliente.Show()
+    '            'Me.Dispose()
+    '        Else
+    '            For Each fila As DataRow In G_SeccionTable.Rows
 
-                    Dim b As New Button()
-                    b.Text = CStr(fila("Nombre"))
-                    b.Name = CStr(fila("id_seccion")) & "a"
-                    Dim myFontpredet As System.Drawing.Font = b.Font
-                    Dim fontsizepredet As Double = myFontpredet.Size
-                    Dim heightpredet As Double = b.Height
-                    If G_SeccionTable.Rows.Count >= 5 Then
-                        b.Height = Panel1.Height / G_SeccionTable.Rows.Count - 4
-                    Else
-                        b.Height = Panel1.Height / 5 - 4
-                    End If
+    '                Dim b As New PictureBox()
+    '                b.Text = CStr(fila("Nombre"))
+    '                b.Name = CStr(fila("id_seccion")) & "a"
 
-                    b.Left = 10
-                    b.Width = Panel1.Width - 20
+    '                Dim myFontpredet As System.Drawing.Font = b.Font
+    '                Dim fontsizepredet As Double = myFontpredet.Size
+    '                Dim heightpredet As Double = b.Height
+    '                If G_SeccionTable.Rows.Count >= 5 Then
+    '                    b.Height = Panel1.Height / G_SeccionTable.Rows.Count - 4
+    '                Else
+    '                    b.Height = Panel1.Height / 5 - 4
+    '                End If
 
-                    b.Top = (I - 1) * (b.Height + 3)
-                    b.ForeColor = Color.White
-                    Dim newfontsize As Double = ((b.Height * fontsizepredet) / heightpredet) * 0.5
-                    Dim fontsizereal As Single = newfontsize
-                    Dim myFont As System.Drawing.Font
-                    myFont = New System.Drawing.Font("Segoe UI", fontsizereal, FontStyle.Bold Or FontStyle.Italic)
-                    b.Font = myFont
+    '                b.Left = 10
+    '                b.Width = Panel1.Width - 20
 
-                    'Opcional, conectar el evento click:
-                    AddHandler b.Click, AddressOf Button_Click
-                    Panel1.Controls.Add(b)
-                    I += 1
+    '                b.Top = (I - 1) * (b.Height + 3)
+    '                b.ForeColor = Color.White
+    '                Dim newfontsize As Double = ((b.Height * fontsizepredet) / heightpredet) * 0.5
+    '                Dim fontsizereal As Single = newfontsize
+    '                Dim myFont As System.Drawing.Font
+    '                myFont = New System.Drawing.Font("Segoe UI", fontsizereal, FontStyle.Bold Or FontStyle.Italic)
+    '                b.Font = myFont
 
-                Next
-            End If
-        End If
+    '                'Opcional, conectar el evento click:
+    '                AddHandler b.Click, AddressOf Button_Click
+    '                Panel1.Controls.Add(b)
+    '                I += 1
 
-    End Sub
+    '            Next
+    '        End If
+    '    End If
+
+    'End Sub
 
     Private Sub CmdAceptar_Click(sender As System.Object, e As System.EventArgs)
         G_SecciontipoTable = Nothing
@@ -72,7 +74,7 @@ Public Class FrmSeccionesTipoCliente
 
     Private Sub Button_Click(sender As Object, e As EventArgs)
         Timer2.Enabled = True
-        ProgressBar1.Visible = True
+        'ProgressBar1.Visible = True
         Dim id_secciontipo As String = CType(sender, System.Windows.Forms.Button).Name.ToString
         Dim ID_Rresolucion As Integer = 0
 
@@ -92,14 +94,16 @@ Public Class FrmSeccionesTipoCliente
                                       CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1)
             '  ImprimirTurno(ID_Turno)
             idturno = ID_Turno
+            PrintDocument1.PrinterSettings.DefaultPageSettings.Landscape = False
             PrintDocument1.Print()
+
         Else
             ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
                                       oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
                                       ValorEstado("Turnos", "GENERADO"))
             ' ImprimirTurno(ID_Turno)
             idturno = ID_Turno
-            PrintDocument1.Print()
+
 
         End If
         Dim os As New Secciones
@@ -112,6 +116,7 @@ Public Class FrmSeccionesTipoCliente
     End Sub
 
     Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+
         Dim ods As New DataSet
         Dim oTurno As New Turnos
         ods = oTurno.BuscarPorID(idturno)
@@ -232,25 +237,22 @@ Public Class FrmSeccionesTipoCliente
             imp.SendCommand(imp.CMD_LF4)
             imp.SendCommand(imp.CMD_CR)
             imp.SendCommand(imp.CMD_CORTAR)
-
             imp.Cerrar()
-
-
         End If
     End Sub
 
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
-        Lbl_FechayHora.Text = DateTime.Now.ToString
+        LblFechayHs.Text = DateTime.Now.ToString
     End Sub
 
-    Private Sub Timer2_Tick(sender As System.Object, e As System.EventArgs) Handles Timer2.Tick
-        If ProgressBar1.Value >= ProgressBar1.Maximum Then
-            ProgressBar1.Value = 0
-            ProgressBar1.Visible = False
-            Timer2.Enabled = False
-        End If
-        ProgressBar1.Value += 1
-    End Sub
+    'Private Sub Timer2_Tick(sender As System.Object, e As System.EventArgs) Handles Timer2.Tick
+    '    'If ProgressBar1.Value >= ProgressBar1.Maximum Then
+    '    '    ProgressBar1.Value = 0
+    '    '    ProgressBar1.Visible = False
+    '    '    Timer2.Enabled = False
+    '    'End If
+    '    'ProgressBar1.Value += 1
+    'End Sub
 
     Dim SEGUNDOS As Double = 0
     Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
@@ -262,6 +264,76 @@ Public Class FrmSeccionesTipoCliente
             Me.Dispose()
         End If
 
+    End Sub
+
+    Private Sub ImprimirTurnoPicture(ByVal IDSeccion As Integer)
+        Timer2.Enabled = True
+        '  ProgressBar1.Visible = True
+
+        Dim oSeccionesTipos As New SeccionesTipo
+        Dim oTurno As New Turnos
+        Dim oDsConsultaTurno As New DataSet
+        Dim oDsTurno As New DataSet
+        Dim oDS As New DataSet
+        oDS = oSeccionesTipos.ConsultaParaAgregarTurno(IDSeccion)
+        oDsConsultaTurno = oTurno.BuscarporSeccionyFecha(CType(oDS.Tables(0).Rows(0).Item("Id_Seccion"), Integer))
+        If oDsConsultaTurno.Tables(0).Rows.Count > 0 Then
+            ID_Turno = oTurno.Agregar(oDS.Tables(0).Rows(0).Item("id_Seccion"),
+                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
+                                      ValorEstado("Turnos", "GENERADO"),
+                                      CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1)
+            '  ImprimirTurno(ID_Turno)
+            idturno = ID_Turno
+            PrintDocument1.Print()
+        Else
+            ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
+                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
+                                      ValorEstado("Turnos", "GENERADO"))
+            ' ImprimirTurno(ID_Turno)
+            idturno = ID_Turno
+            PrintDocument1.Print()
+
+        End If
+        Dim os As New Secciones
+        Dim G_SeccionTable As DataTable = os.Secciones_BuscarTodosporEstadoyUsuario(G_UserID).Tables(0)
+        If G_SeccionTable.Rows.Count > 1 Then
+            FrmPrincipalCliente.Show()
+            Me.Dispose()
+        End If
+
+    End Sub
+
+
+    Private Sub Btn_Energia_Click(sender As Object, e As EventArgs) Handles Btn_Energia.Click
+        ImprimirTurnoPicture(1)
+    End Sub
+
+    Private Sub Btn_Internet_Click(sender As Object, e As EventArgs) Handles Btn_Internet.Click
+        ImprimirTurnoPicture(2)
+    End Sub
+
+    Private Sub Btn_Telefonia_Click(sender As Object, e As EventArgs) Handles Btn_Telefonia.Click
+        ImprimirTurnoPicture(3)
+    End Sub
+
+    Private Sub Btn_Television_Click_1(sender As Object, e As EventArgs) Handles Btn_Television.Click
+        ImprimirTurnoPicture(4)
+    End Sub
+
+    Private Sub Btn_Servicios_Click_1(sender As Object, e As EventArgs) Handles Btn_Servicios.Click
+        ImprimirTurnoPicture(5)
+    End Sub
+
+    Private Sub Btn_Cementerio_Click(sender As Object, e As EventArgs) Handles Btn_Cementerio.Click
+        ImprimirTurnoPicture(6)
+    End Sub
+
+    Private Sub Btn_Amicos_Click(sender As Object, e As EventArgs) Handles Btn_Amicos.Click
+        ImprimirTurnoPicture(7)
+    End Sub
+
+    Private Sub Btn_Otros_Click(sender As Object, e As EventArgs) Handles Btn_Otros.Click
+        ImprimirTurnoPicture(8)
     End Sub
 
 

@@ -63,9 +63,49 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property amicos() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("amicos", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property cementerio_parque() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("cementerio parque", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property energia() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("energia", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property hora() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("hora", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property internet() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("internet", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -83,9 +123,49 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property otros() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("otros", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property servicios_sociales() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("servicios sociales", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property solicite_su_turno_aqui() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("solicite su turno aqui", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property telefonia() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("telefonia", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property television() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("television", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

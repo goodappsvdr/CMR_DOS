@@ -72,7 +72,7 @@ Partial Class FrmBoxes
         '
         'PanelColor
         '
-        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.PanelColor.Controls.Add(Me.PictureBox1)
         Me.PanelColor.Controls.Add(Me.LblAccion)
         Me.PanelColor.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -108,7 +108,7 @@ Partial Class FrmBoxes
         Me.TxtID.Enabled = False
         Me.TxtID.Location = New System.Drawing.Point(276, 58)
         Me.TxtID.Name = "TxtID"
-        Me.TxtID.Size = New System.Drawing.Size(100, 22)
+        Me.TxtID.Size = New System.Drawing.Size(40, 22)
         Me.TxtID.TabEnable = True
         Me.TxtID.TabIndex = 0
         Me.TxtID.TipoDato = System.Data.DbType.Int32
@@ -302,7 +302,7 @@ Partial Class FrmBoxes
         '
         'RadPageViewPage1
         '
-        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.RadPageViewPage1.Controls.Add(Me.Label4)
         Me.RadPageViewPage1.Controls.Add(Me.SeccionesCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.Label3)
@@ -337,7 +337,7 @@ Partial Class FrmBoxes
         Me.SeccionesCtrl1.FormattingEnabled = True
         Me.SeccionesCtrl1.Location = New System.Drawing.Point(276, 86)
         Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
-        Me.SeccionesCtrl1.Size = New System.Drawing.Size(100, 21)
+        Me.SeccionesCtrl1.Size = New System.Drawing.Size(150, 21)
         Me.SeccionesCtrl1.TabIndex = 94
         '
         'Label3
@@ -361,7 +361,7 @@ Partial Class FrmBoxes
         Me.txtNroBox.Enabled = False
         Me.txtNroBox.Location = New System.Drawing.Point(276, 141)
         Me.txtNroBox.Name = "txtNroBox"
-        Me.txtNroBox.Size = New System.Drawing.Size(100, 22)
+        Me.txtNroBox.Size = New System.Drawing.Size(150, 22)
         Me.txtNroBox.TabEnable = True
         Me.txtNroBox.TabIndex = 92
         Me.txtNroBox.TipoDato = System.Data.DbType.Int32
@@ -375,7 +375,7 @@ Partial Class FrmBoxes
         Me.txtCodigo.Enabled = False
         Me.txtCodigo.Location = New System.Drawing.Point(276, 113)
         Me.txtCodigo.Name = "txtCodigo"
-        Me.txtCodigo.Size = New System.Drawing.Size(100, 22)
+        Me.txtCodigo.Size = New System.Drawing.Size(150, 22)
         Me.txtCodigo.TabEnable = True
         Me.txtCodigo.TabIndex = 91
         Me.txtCodigo.TipoDato = System.Data.DbType.[String]

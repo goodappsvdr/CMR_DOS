@@ -45,6 +45,8 @@ Partial Class FrmTurnosOperador
         Me.Grilla = New Telerik.WinControls.UI.RadGridView()
         Me.RadPageView1 = New Telerik.WinControls.UI.RadPageView()
         Me.RadPageViewPage1 = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.MotivosCtrl1 = New CMR_DOS.CTRL.MotivosCtrl()
+        Me.ResolucionesCtrl1 = New CMR_DOS.CTRL.ResolucionesCtrl()
         Me.LblID_Turno = New System.Windows.Forms.Label()
         Me.LblCronometro = New System.Windows.Forms.Label()
         Me.CmdAtender = New System.Windows.Forms.Button()
@@ -61,8 +63,6 @@ Partial Class FrmTurnosOperador
         Me.TxtFechaLlamado = New Controles_Ideas.TextData(Me.components)
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TxtFechaObtencion = New Controles_Ideas.TextData(Me.components)
-        Me.MotivosCtrl1 = New CMR_DOS.CTRL.MotivosCtrl()
-        Me.ResolucionesCtrl1 = New CMR_DOS.CTRL.ResolucionesCtrl()
         Me.RadLabel1 = New Telerik.WinControls.UI.RadLabel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
@@ -89,7 +89,7 @@ Partial Class FrmTurnosOperador
         '
         'PanelColor
         '
-        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.PanelColor.Controls.Add(Me.PictureBox1)
         Me.PanelColor.Controls.Add(Me.LblAccion)
         Me.PanelColor.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -157,7 +157,8 @@ Partial Class FrmTurnosOperador
         '
         'CmdAgregar
         '
-        Me.CmdAgregar.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.CmdAgregar.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(154, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.CmdAgregar.ForeColor = System.Drawing.Color.White
         Me.CmdAgregar.Location = New System.Drawing.Point(411, 195)
         Me.CmdAgregar.Name = "CmdAgregar"
         '
@@ -319,7 +320,9 @@ Partial Class FrmTurnosOperador
         '
         'RadPageViewPage1
         '
-        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.RadPageViewPage1.Controls.Add(Me.MotivosCtrl1)
+        Me.RadPageViewPage1.Controls.Add(Me.ResolucionesCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.LblID_Turno)
         Me.RadPageViewPage1.Controls.Add(Me.LblCronometro)
         Me.RadPageViewPage1.Controls.Add(Me.CmdAtender)
@@ -339,12 +342,30 @@ Partial Class FrmTurnosOperador
         Me.RadPageViewPage1.Controls.Add(Me.Label2)
         Me.RadPageViewPage1.Controls.Add(Me.Label1)
         Me.RadPageViewPage1.Controls.Add(Me.TxtSeccion)
-        Me.RadPageViewPage1.Controls.Add(Me.MotivosCtrl1)
-        Me.RadPageViewPage1.Controls.Add(Me.ResolucionesCtrl1)
         Me.RadPageViewPage1.Location = New System.Drawing.Point(12, 40)
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 262)
         Me.RadPageViewPage1.Text = "Información"
+        '
+        'MotivosCtrl1
+        '
+        Me.MotivosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.MotivosCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.MotivosCtrl1.FormattingEnabled = True
+        Me.MotivosCtrl1.Location = New System.Drawing.Point(174, 144)
+        Me.MotivosCtrl1.Name = "MotivosCtrl1"
+        Me.MotivosCtrl1.Size = New System.Drawing.Size(271, 21)
+        Me.MotivosCtrl1.TabIndex = 106
+        '
+        'ResolucionesCtrl1
+        '
+        Me.ResolucionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ResolucionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.ResolucionesCtrl1.FormattingEnabled = True
+        Me.ResolucionesCtrl1.Location = New System.Drawing.Point(174, 170)
+        Me.ResolucionesCtrl1.Name = "ResolucionesCtrl1"
+        Me.ResolucionesCtrl1.Size = New System.Drawing.Size(271, 21)
+        Me.ResolucionesCtrl1.TabIndex = 105
         '
         'LblID_Turno
         '
@@ -368,12 +389,17 @@ Partial Class FrmTurnosOperador
         '
         'CmdAtender
         '
+        Me.CmdAtender.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.CmdAtender.FlatAppearance.BorderSize = 0
+        Me.CmdAtender.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CmdAtender.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CmdAtender.ForeColor = System.Drawing.Color.Black
         Me.CmdAtender.Location = New System.Drawing.Point(472, 6)
         Me.CmdAtender.Name = "CmdAtender"
         Me.CmdAtender.Size = New System.Drawing.Size(131, 100)
         Me.CmdAtender.TabIndex = 102
         Me.CmdAtender.Text = "Atender"
-        Me.CmdAtender.UseVisualStyleBackColor = True
+        Me.CmdAtender.UseVisualStyleBackColor = False
         '
         'btnRecargarMotivos
         '
@@ -541,26 +567,6 @@ Partial Class FrmTurnosOperador
         Me.TxtFechaObtencion.TabIndex = 82
         Me.TxtFechaObtencion.TipoDato = System.Data.DbType.[String]
         '
-        'MotivosCtrl1
-        '
-        Me.MotivosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.MotivosCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.MotivosCtrl1.FormattingEnabled = True
-        Me.MotivosCtrl1.Location = New System.Drawing.Point(174, 146)
-        Me.MotivosCtrl1.Name = "MotivosCtrl1"
-        Me.MotivosCtrl1.Size = New System.Drawing.Size(271, 21)
-        Me.MotivosCtrl1.TabIndex = 101
-        '
-        'ResolucionesCtrl1
-        '
-        Me.ResolucionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ResolucionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.ResolucionesCtrl1.FormattingEnabled = True
-        Me.ResolucionesCtrl1.Location = New System.Drawing.Point(174, 171)
-        Me.ResolucionesCtrl1.Name = "ResolucionesCtrl1"
-        Me.ResolucionesCtrl1.Size = New System.Drawing.Size(271, 21)
-        Me.ResolucionesCtrl1.TabIndex = 94
-        '
         'RadLabel1
         '
         Me.RadLabel1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -674,7 +680,6 @@ Partial Class FrmTurnosOperador
     Friend WithEvents checkPrioridad As System.Windows.Forms.CheckBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents ResolucionesCtrl1 As CMR_DOS.CTRL.ResolucionesCtrl
     Private WithEvents BtnRecargarResoluciones As Telerik.WinControls.UI.RadButton
     Friend WithEvents txtObservaciones As Controles_Ideas.TextData
     Friend WithEvents Label5 As System.Windows.Forms.Label
@@ -682,13 +687,12 @@ Partial Class FrmTurnosOperador
     Friend WithEvents RadLabel1 As Telerik.WinControls.UI.RadLabel
     Private WithEvents btnRecargarMotivos As Telerik.WinControls.UI.RadButton
     Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents MotivosCtrl1 As CMR_DOS.CTRL.MotivosCtrl
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents CmdAtender As System.Windows.Forms.Button
     Friend WithEvents LblCronometro As System.Windows.Forms.Label
     Friend WithEvents LblID_Turno As System.Windows.Forms.Label
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
-
-
+    Friend WithEvents MotivosCtrl1 As CTRL.MotivosCtrl
+    Friend WithEvents ResolucionesCtrl1 As CTRL.ResolucionesCtrl
 
 End Class

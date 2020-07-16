@@ -56,7 +56,17 @@ Public Class Turnos
 
     End Function
 
+    Public Function BuscarPorID_Seccion(ByVal id_turno As Double, ByVal ID_Seccion As Integer) As DataSet
 
+        Try
+
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarPorID", id_turno, ID_Seccion)
+
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+
+    End Function
     'BuscarPorID
     Public Function AgregarPrimero(id_seccion As Double, codigoSeccion As String, id_estado As Integer) As Double
 
@@ -113,17 +123,17 @@ Public Class Turnos
         End Try
     End Function
 
-    Function Turnos_BuscarPorOperadoryEstado(id_usuario As Double, id_estado As Double) As DataSet
+    Function Turnos_BuscarPorOperadoryEstado(id_usuario As Double, id_estado As Double, ByVal ID_Seccion As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Turnos_BuscarPorOperadoryEstado", id_usuario, id_estado)
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarPorOperadoryEstado", id_usuario, id_estado, ID_Seccion)
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Function ObtenerSiguiente(id_usuario As Double, id_estado As Double) As DataSet
+    Function ObtenerSiguiente(id_usuario As Double, id_estado As Double, ByVal ID_Seccion As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Turnos_ObtenerSiguiente", id_usuario, id_estado)
+            Return oDatabase.ExecuteDataSet("Turnos_ObtenerSiguiente", id_usuario, id_estado, ID_Seccion)
         Catch ex As Exception
             Throw ex
         End Try
@@ -137,9 +147,9 @@ Public Class Turnos
         End Try
     End Function
 
-    Function llamarTurno(id_turno As Double, id_estado As Double, id_usuario As Integer) As DataSet
+    Function llamarTurno(id_turno As Double, id_estado As Double, id_usuario As Integer, ByVal ID_Seccion As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Turnos_LlamarTurno", id_turno, id_estado, id_usuario)
+            Return oDatabase.ExecuteDataSet("Turnos_LlamarTurno", id_turno, id_estado, id_usuario, ID_Seccion)
         Catch ex As Exception
             Throw ex
         End Try
@@ -154,9 +164,9 @@ Public Class Turnos
         End Try
     End Function
 
-    Function CancelarLlamado(id_turno As Double, id_estado As Double) As DataSet
+    Function CancelarLlamado(id_turno As Double, id_estado As Double, ByVal ID_Seccion As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Turnos_cancelarLlamado", id_turno, id_estado)
+            Return oDatabase.ExecuteDataSet("Turnos_cancelarLlamado", id_turno, id_estado, ID_Seccion)
         Catch ex As Exception
             Throw ex
         End Try

@@ -44,11 +44,11 @@ Partial Class FrmReportes
         Me.fechahasta = New Telerik.WinControls.UI.RadDateTimePicker()
         Me.fechadesde = New Telerik.WinControls.UI.RadDateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.etiqueta3 = New System.Windows.Forms.Label()
         Me.EstadosCtrl1 = New CMR_DOS.CTRL.EstadosCtrl()
+        Me.GeneralCrl4 = New CMR_DOS.CTRL.GeneralCrl()
         Me.GeneralCrl2 = New CMR_DOS.CTRL.GeneralCrl()
         Me.GeneralCrl1 = New CMR_DOS.CTRL.GeneralCrl()
-        Me.etiqueta3 = New System.Windows.Forms.Label()
-        Me.GeneralCrl4 = New CMR_DOS.CTRL.GeneralCrl()
         Me.PanelColor.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmdLimpiar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,7 +64,7 @@ Partial Class FrmReportes
         '
         'PanelColor
         '
-        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.PanelColor.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.PanelColor.Controls.Add(Me.PictureBox1)
         Me.PanelColor.Controls.Add(Me.LblAccion)
         Me.PanelColor.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -188,7 +188,7 @@ Partial Class FrmReportes
         '
         'RadPageViewPage1
         '
-        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.RadPageViewPage1.Controls.Add(Me.Label4)
         Me.RadPageViewPage1.Controls.Add(Me.Label3)
         Me.RadPageViewPage1.Controls.Add(Me.fechahasta)
@@ -264,6 +264,17 @@ Partial Class FrmReportes
         Me.Label2.TabIndex = 98
         Me.Label2.Text = "ESTADO DE TURNOS"
         '
+        'etiqueta3
+        '
+        Me.etiqueta3.BackColor = System.Drawing.Color.Transparent
+        Me.etiqueta3.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.etiqueta3.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.etiqueta3.Location = New System.Drawing.Point(3, 140)
+        Me.etiqueta3.Name = "etiqueta3"
+        Me.etiqueta3.Size = New System.Drawing.Size(150, 16)
+        Me.etiqueta3.TabIndex = 82
+        Me.etiqueta3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'EstadosCtrl1
         '
         Me.EstadosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -273,6 +284,16 @@ Partial Class FrmReportes
         Me.EstadosCtrl1.Name = "EstadosCtrl1"
         Me.EstadosCtrl1.Size = New System.Drawing.Size(431, 21)
         Me.EstadosCtrl1.TabIndex = 97
+        '
+        'GeneralCrl4
+        '
+        Me.GeneralCrl4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.GeneralCrl4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.GeneralCrl4.FormattingEnabled = True
+        Me.GeneralCrl4.Location = New System.Drawing.Point(159, 139)
+        Me.GeneralCrl4.Name = "GeneralCrl4"
+        Me.GeneralCrl4.Size = New System.Drawing.Size(431, 21)
+        Me.GeneralCrl4.TabIndex = 96
         '
         'GeneralCrl2
         '
@@ -293,27 +314,6 @@ Partial Class FrmReportes
         Me.GeneralCrl1.Name = "GeneralCrl1"
         Me.GeneralCrl1.Size = New System.Drawing.Size(431, 21)
         Me.GeneralCrl1.TabIndex = 93
-        '
-        'etiqueta3
-        '
-        Me.etiqueta3.BackColor = System.Drawing.Color.Transparent
-        Me.etiqueta3.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.etiqueta3.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.etiqueta3.Location = New System.Drawing.Point(3, 140)
-        Me.etiqueta3.Name = "etiqueta3"
-        Me.etiqueta3.Size = New System.Drawing.Size(150, 16)
-        Me.etiqueta3.TabIndex = 82
-        Me.etiqueta3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'GeneralCrl4
-        '
-        Me.GeneralCrl4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.GeneralCrl4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.GeneralCrl4.FormattingEnabled = True
-        Me.GeneralCrl4.Location = New System.Drawing.Point(159, 139)
-        Me.GeneralCrl4.Name = "GeneralCrl4"
-        Me.GeneralCrl4.Size = New System.Drawing.Size(431, 21)
-        Me.GeneralCrl4.TabIndex = 96
         '
         'FrmReportes
         '

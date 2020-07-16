@@ -23,7 +23,7 @@ Partial Public Class ResolucionesCtrl
 
 
             DataSource = oDs.Tables(0)
-            DisplayMember = oDs.Tables(0).Columns(2).Caption.ToString
+            DisplayMember = oDs.Tables(0).Columns(1).Caption.ToString
             ValueMember = oDs.Tables(0).Columns(0).Caption.ToString
         Else
             MsgBox("No se encontraron Estados.", MsgBoxStyle.Exclamation, "Información...")

@@ -68,7 +68,7 @@ Public Class FrmSecciones
                     End If
 
                     If aNuevo = True Then
-                        CmdAgregar.Enabled = True
+                        'CmdAgregar.Enabled = True
                     Else
                         CmdAgregar.Enabled = False
                     End If

@@ -88,6 +88,7 @@ Public Class FrmPrincipalCliente
             MsgBox("Ocurrio un error... ", MsgBoxStyle.Exclamation, G_AppName)
 
         End Try
-
     End Sub
+
+
 End Class

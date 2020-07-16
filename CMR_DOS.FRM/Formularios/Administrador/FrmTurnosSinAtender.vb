@@ -372,7 +372,7 @@ Public Class FrmTurnosSinAtender
                 Dim ods As New DataSet
                 Dim ot As New Turnos
 
-                ods = ot.CancelarLlamado(id_turno, id_estado)
+                ods = ot.CancelarLlamado(id_turno, id_estado, G_seccionID)
                 Timer2.Stop()
                 LblCronometro.Text = "0.00.00"
 
@@ -865,7 +865,7 @@ ManejoErrores:
         Dim oObjeto As New Turnos
         'BuscarPorID(LblID_Turno.Text)
         ' If MsgBox("Desea iniciar la resolucion del turno?", MsgBoxStyle.YesNo, G_AppName) = MsgBoxResult.Yes Then
-        oObjeto.llamarTurno(LblID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID)
+        oObjeto.llamarTurno(LblID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, G_seccionID)
         HabilitarEdicion()
         CmdAtender.Enabled = False
         startTime = Now.TimeOfDay

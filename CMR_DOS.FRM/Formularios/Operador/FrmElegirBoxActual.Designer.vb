@@ -28,6 +28,7 @@ Partial Class FrmElegirBoxActual
         Me.BoxesCtrl1 = New CMR_DOS.CTRL.BoxesCtrl()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CmdAceptar = New Telerik.WinControls.UI.RadButton()
+        Me.SeccionesCtrl1 = New CMR_DOS.CTRL.SeccionesCtrl()
         CType(Me.CmdAceptar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -36,7 +37,7 @@ Partial Class FrmElegirBoxActual
         Me.BoxesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.BoxesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.BoxesCtrl1.FormattingEnabled = True
-        Me.BoxesCtrl1.Location = New System.Drawing.Point(28, 50)
+        Me.BoxesCtrl1.Location = New System.Drawing.Point(28, 64)
         Me.BoxesCtrl1.Name = "BoxesCtrl1"
         Me.BoxesCtrl1.Size = New System.Drawing.Size(154, 21)
         Me.BoxesCtrl1.TabIndex = 0
@@ -47,7 +48,7 @@ Partial Class FrmElegirBoxActual
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label4.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label4.Location = New System.Drawing.Point(25, 34)
+        Me.Label4.Location = New System.Drawing.Point(25, 21)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(116, 13)
         Me.Label4.TabIndex = 82
@@ -67,12 +68,23 @@ Partial Class FrmElegirBoxActual
         Me.CmdAceptar.Text = "Aceptar"
         Me.CmdAceptar.ThemeName = "Office2007Silver"
         '
+        'SeccionesCtrl1
+        '
+        Me.SeccionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.SeccionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.SeccionesCtrl1.FormattingEnabled = True
+        Me.SeccionesCtrl1.Location = New System.Drawing.Point(28, 37)
+        Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
+        Me.SeccionesCtrl1.Size = New System.Drawing.Size(157, 21)
+        Me.SeccionesCtrl1.TabIndex = 95
+        '
         'FrmElegirBoxActual
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(197, 132)
+        Me.Controls.Add(Me.SeccionesCtrl1)
         Me.Controls.Add(Me.CmdAceptar)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.BoxesCtrl1)
@@ -97,5 +109,5 @@ Partial Class FrmElegirBoxActual
     Friend WithEvents BoxesCtrl1 As CMR_DOS.CTRL.BoxesCtrl
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Private WithEvents CmdAceptar As Telerik.WinControls.UI.RadButton
-
+    Friend WithEvents SeccionesCtrl1 As CTRL.SeccionesCtrl
 End Class

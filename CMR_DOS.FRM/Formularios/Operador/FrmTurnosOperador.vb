@@ -370,7 +370,7 @@ Public Class FrmTurnosOperador
                 Dim ods As New DataSet
                 Dim ot As New Turnos
 
-                ods = ot.CancelarLlamado(id_turno, id_estado)
+                ods = ot.CancelarLlamado(id_turno, id_estado, G_seccionID)
                 Timer2.Stop()
                 LblCronometro.Text = "0.00.00"
 
@@ -481,7 +481,7 @@ ManejoErrores:
 
     Private Sub CmdAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdAgregar.Click
         If Grilla.Rows.Count <= 0 Then
-            MsgBox("No hay ningùn turno!", MsgBoxStyle.Exclamation)
+            MsgBox("No hay ningùn turno!", MsgBoxStyle.Exclamation, G_AppName)
         Else
 
             'llamar turno 
@@ -581,13 +581,13 @@ ManejoErrores:
 
     End Function
 
-    Public Function BuscarPorID(ByVal ID As Integer) As Boolean
+    Public Function BuscarPorID(ByVal ID As Integer, ByVal ID_Seccion As Integer) As Boolean
 
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
 
 
-        oDs = oObjeto.BuscarPorID(ID)
+        oDs = oObjeto.BuscarPorID_Seccion(ID, ID_Seccion)
 
 
         If oDs.Tables(1).Rows.Count > 0 Then
@@ -598,8 +598,8 @@ ManejoErrores:
             TxtFechaObtencion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaObtencion")))
             TxtFechaLlamado.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaAtencion")))
             checkPrioridad.Checked = oDs.Tables(1).Rows(0).Item("prioridad")
-            ResolucionesCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_RESOLUCION")
-            MotivosCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_MOTIVO")
+            ResolucionesCtrl1.Iniciar()
+            MotivosCtrl1.Iniciar()
 
             oDs = Nothing
             oObjeto = Nothing
@@ -626,8 +626,7 @@ ManejoErrores:
 
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
-        Dim id_estado As Double = EstadosCtrl1.SelectedValue
-        oDs = oObjeto.Turnos_BuscarPorOperadoryEstado(G_UserID, id_estado)
+        oDs = oObjeto.Turnos_BuscarPorOperadoryEstado(G_UserID, EstadosCtrl1.SelectedValue, G_seccionID)
 
         If oDs.Tables(0).Rows.Count <> Grilla.Rows.Count Then
             Grilla.DataSource = ""
@@ -675,7 +674,7 @@ ManejoErrores:
             End If
             If EstadosCtrl1.Text = "SOLUCIONADO" Or EstadosCtrl1.Text = "LLAMADO" Or EstadosCtrl1.Text = "ATENDIENDO" Then
                 Me.Estado = FormEstado.eEdicion
-                BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
+                BuscarPorID(Grilla.CurrentRow.Cells(0).Value, G_seccionID)
                 Grilla.Size = New System.Drawing.Size(646, 176)
                 CmdGrid.Text = "+"
 
@@ -706,7 +705,7 @@ ManejoErrores:
 
         If e.KeyCode = 13 Then
             e.Handled = True
-            BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
+            BuscarPorID(Grilla.CurrentRow.Cells(0).Value, G_seccionID)
             Grilla.Size = New System.Drawing.Size(646, 176)
             CmdGrid.Text = "+"
         End If
@@ -742,20 +741,19 @@ ManejoErrores:
         Dim ODS5 As New DataSet
         Dim OT5 As New Turnos
         'obtenemos el id_turno del siguente turno
-        oDs = oObjeto.ObtenerSiguiente(G_UserID, ValorEstado("Turnos", "Generado"))
-
+        oDs = oObjeto.ObtenerSiguiente(G_UserID, ValorEstado("Turnos", "Generado"), G_seccionID)
 
         If oDs.Tables(0).Rows.Count > 0 Then
             OrdenPantalla(oDs.Tables(0).Rows(0).Item("id_turno"))
             LblID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
-            ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"), ValorEstado("Turnos", "Llamado"), G_UserID)
+            ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"), ValorEstado("Turnos", "Llamado"), G_UserID, G_seccionID)
 
-            BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"))
+            BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"), G_seccionID)
 
 
             oDs = Nothing
             oObjeto = Nothing
-            Me.Estado = FormEstado.eEdicion
+            'Me.Estado = FormEstado.eEdicion
             LlamarSiguiente = True
 
         Else
@@ -864,7 +862,7 @@ ManejoErrores:
         Dim oObjeto As New Turnos
         'BuscarPorID(LblID_Turno.Text)
         ' If MsgBox("Desea iniciar la resolucion del turno?", MsgBoxStyle.YesNo, G_AppName) = MsgBoxResult.Yes Then
-        oObjeto.llamarTurno(LblID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID)
+        oObjeto.llamarTurno(LblID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, G_seccionID)
         HabilitarEdicion()
         CmdAtender.Enabled = False
         startTime = Now.TimeOfDay

@@ -651,21 +651,6 @@ ManejoErrores:
         Dim oDs As New DataSet
         Dim oObjeto As New Usuarios
         oDs = oObjeto.BuscarTodos
-        'Dim oDs1 As New DataSet
-
-
-
-        'oDs1 = oObjeto.BuscarPorID(G_UserID)
-
-        'If oDs1.Tables(0).Rows(0).Item("Id_rol") = 1 Then
-
-        '    oDs = oObjeto.BuscarTodos
-
-        'Else
-
-        '    oDs = oObjeto.BuscarTodosporAdministrador(G_UserID)
-
-        'End If
 
         If oDs.Tables(0).Rows.Count > 0 Then
 
