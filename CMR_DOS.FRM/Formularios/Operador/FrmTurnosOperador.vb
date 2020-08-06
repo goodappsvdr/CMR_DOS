@@ -235,9 +235,7 @@ Public Class FrmTurnosOperador
         TxtFechaObtencion.ReadOnly = True
         TxtFechaLlamado.ReadOnly = True
         TxtCodigo.ReadOnly = True
-        ResolucionesCtrl1.DataSource = Nothing
         checkPrioridad.Checked = False
-        MotivosCtrl1.DataSource = Nothing
         txtObservaciones.Text = ""
 
 

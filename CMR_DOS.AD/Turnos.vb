@@ -60,7 +60,7 @@ Public Class Turnos
 
         Try
 
-            Return oDatabase.ExecuteDataSet("Turnos_BuscarPorID", id_turno, ID_Seccion)
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarPorID_Seccion", id_turno, ID_Seccion)
 
         Catch ex As System.Exception
             Throw ex
@@ -185,6 +185,14 @@ Public Class Turnos
     Function Turnos_AgregarOrdenPantalla(ByVal ID As Integer, ByVal ORDEN As Integer) As DataSet
         Try
             Return oDatabase.ExecuteDataSet("Turnos_AgregarOrdenPantalla", ID, ORDEN)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Function BuscarTodos_Admin(ByVal ID_Estado As Double) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarPorEstado_Admin", ID_Estado)
         Catch ex As Exception
             Throw ex
         End Try

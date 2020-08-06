@@ -188,7 +188,7 @@ Public Class FrmTurnosSinAtender
 
         'TxtID.Enabled = False
         TxtSeccion.Enabled = False
-        TxtSubSeccion.Enabled = False
+
         TxtFechaObtencion.Enabled = False
         TxtFechaLlamado.Enabled = False
         TxtCodigo.Enabled = False
@@ -209,7 +209,7 @@ Public Class FrmTurnosSinAtender
 
 
         TxtSeccion.Enabled = True
-        TxtSubSeccion.Enabled = True
+
         TxtFechaObtencion.Enabled = True
         TxtFechaLlamado.Enabled = True
         TxtCodigo.Enabled = True
@@ -227,19 +227,18 @@ Public Class FrmTurnosSinAtender
 
         id_turno = vbNull
         TxtSeccion.Text = ""
-        TxtSubSeccion.Text = ""
+
         TxtFechaObtencion.Text = ""
         TxtFechaLlamado.Text = ""
         TxtCodigo.Text = ""
-
+        ResolucionesCtrl1.Iniciar()
+        MotivosCtrl1.Iniciar()
+        EstadosCtrl1.Iniciar("TURNOS")
         TxtSeccion.ReadOnly = True
-        TxtSubSeccion.ReadOnly = True
         TxtFechaObtencion.ReadOnly = True
         TxtFechaLlamado.ReadOnly = True
         TxtCodigo.ReadOnly = True
-        ResolucionesCtrl1.DataSource = Nothing
         checkPrioridad.Checked = False
-        MotivosCtrl1.DataSource = Nothing
         txtObservaciones.Text = ""
 
 
@@ -594,11 +593,9 @@ ManejoErrores:
             id_turno = oDs.Tables(1).Rows(0).Item(0)
             TxtCodigo.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Codigo")))
             TxtSeccion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Seccion")))
-            TxtSubSeccion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Subseccion")))
             TxtFechaObtencion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaObtencion")))
             TxtFechaLlamado.Text = oDs.Tables(1).Rows(0).Item("FechaAtencion").ToString
             checkPrioridad.Checked = oDs.Tables(1).Rows(0).Item("prioridad")
-            id_secciontipo = (oDs.Tables(1).Rows(0).Item("id_seccionTipo"))
             ResolucionesCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_RESOLUCION")
             MotivosCtrl1.SelectedValue = oDs.Tables(1).Rows(0).Item("ID_MOTIVO")
 
@@ -627,7 +624,7 @@ ManejoErrores:
 
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
-        oDs = oObjeto.BuscarTodosLlamdosSinAtender
+        oDs = oObjeto.BuscarTodos_Admin(EstadosCtrl1.SelectedValue)
 
         If oDs.Tables(0).Rows.Count <> Grilla.Rows.Count Then
             Grilla.DataSource = ""
@@ -658,47 +655,11 @@ ManejoErrores:
 
     Private Sub Grilla_CellDoubleClick(ByVal sender As Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles Grilla.CellDoubleClick
 
-        'If Grilla.Enabled = True Then
-        '    If EstadosCtrl1.Text = "SINATENDER" Then
-        '        If Me.Estado = FormEstado.eVacio Then
-        '            EstablecerPrioridad()
-        '        ElseIf Me.Estado = FormEstado.eEdicion Then
-        '            If Validar() = True Then
-        '                Acepto()
-        '                EstablecerPrioridad()
-        '            Else
-
-        '            End If
-        '        End If
-
-
-        '    End If
-        'If EstadosCtrl1.Text = "SOLUCIONADO" Or EstadosCtrl1.Text = "LLAMADO" Or EstadosCtrl1.Text = "ATENDIENDO" Then
-        '    Me.Estado = FormEstado.eEdicion
-        '    BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
-        '    Grilla.Size = New System.Drawing.Size(646, 176)
-        '    CmdGrid.Text = "+"
-
-        '    If EstadosCtrl1.Text = "ATENDIENDO" Then
-
-        '        startTime = Now.TimeOfDay
-        '        Timer2.Start()
-        '    End If
-
-        '    If EstadosCtrl1.Text = "LLAMADO" Then
-        '        LblCronometro.Text = "0.00.00"
-        '        CmdAtender.Enabled = True
-
-
-        '    End If
-
-
-        'End If
         BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
         Grilla.Size = New System.Drawing.Size(646, 176)
             CmdGrid.Text = "+"
 
-       ' End If
+
 
     End Sub
 
@@ -732,47 +693,6 @@ ManejoErrores:
     End Sub
 
 #End Region
-
-
-    'Public Function LlamarSiguiente() As Boolean
-
-    '    Dim oDs As New DataSet
-    '    Dim oObjeto As New Turnos
-    '    Dim ods2 As New DataSet
-    '    Dim ODS5 As New DataSet
-    '    Dim OT5 As New Turnos
-    '    'obtenemos el id_turno del siguente turno
-    '    oDs = oObjeto.ObtenerSiguiente(G_UserID, ValorEstado("Turnos", "Generado"))
-
-
-    '    If oDs.Tables(0).Rows.Count > 0 Then
-    '        OrdenPantalla(oDs.Tables(0).Rows(0).Item("id_turno"))
-    '        LblID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
-    '        ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"), ValorEstado("Turnos", "Llamado"), G_UserID)
-
-
-    '        BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"))
-
-
-    '        oDs = Nothing
-    '        oObjeto = Nothing
-    '        Me.Estado = FormEstado.eEdicion
-    '        LlamarSiguiente = True
-
-    '    Else
-
-    '        oDs = Nothing
-    '        oObjeto = Nothing
-
-    '        LlamarSiguiente = False
-
-    '        Exit Function
-
-    '    End If
-
-
-
-    'End Function
 
     Private Sub OrdenPantalla(id_turno As Integer)
 

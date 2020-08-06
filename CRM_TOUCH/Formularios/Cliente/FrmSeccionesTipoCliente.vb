@@ -305,37 +305,35 @@ Public Class FrmSeccionesTipoCliente
 
 
     Private Sub Btn_Energia_Click(sender As Object, e As EventArgs) Handles Btn_Energia.Click
-        ImprimirTurnoPicture(1)
+        ImprimirTurnoPicture(CInt(ValorParametro("SECCION", "ENERGIA")))
     End Sub
 
     Private Sub Btn_Internet_Click(sender As Object, e As EventArgs) Handles Btn_Internet.Click
-        ImprimirTurnoPicture(2)
+        ImprimirTurnoPicture(CInt(ValorParametro("SECCION", "INTERNET")))
     End Sub
 
     Private Sub Btn_Telefonia_Click(sender As Object, e As EventArgs) Handles Btn_Telefonia.Click
-        ImprimirTurnoPicture(3)
+        ImprimirTurnoPicture(CInt(ValorParametro("SECCION", "TELEFONIA")))
     End Sub
 
     Private Sub Btn_Television_Click_1(sender As Object, e As EventArgs) Handles Btn_Television.Click
-        ImprimirTurnoPicture(4)
+        ImprimirTurnoPicture(CInt(ValorParametro("SECCION", "TELEVISION")))
     End Sub
 
     Private Sub Btn_Servicios_Click_1(sender As Object, e As EventArgs) Handles Btn_Servicios.Click
-        ImprimirTurnoPicture(5)
+        ImprimirTurnoPicture(CInt(ValorParametro("SECCION", "SERVICIOSSOCIALES")))
     End Sub
 
     Private Sub Btn_Cementerio_Click(sender As Object, e As EventArgs) Handles Btn_Cementerio.Click
-        ImprimirTurnoPicture(6)
+        ImprimirTurnoPicture(CInt(ValorParametro("SECCION", "CEMENTERIOPARQUE")))
     End Sub
 
     Private Sub Btn_Amicos_Click(sender As Object, e As EventArgs) Handles Btn_Amicos.Click
-        ImprimirTurnoPicture(7)
+        ImprimirTurnoPicture(CInt(ValorParametro("SECCION", "AMICOS")))
     End Sub
 
     Private Sub Btn_Otros_Click(sender As Object, e As EventArgs) Handles Btn_Otros.Click
-        ImprimirTurnoPicture(8)
+        ImprimirTurnoPicture(CInt(ValorParametro("SECCION", "OTROS")))
     End Sub
-
-
 
 End Class

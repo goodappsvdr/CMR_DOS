@@ -4,7 +4,7 @@ Imports System.Reflection
 Public Class FrmPrincipal
 
     Private Sub FrmPrincipal_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Me.Text = Text & " " & "USAURIO: " & G_UserName
+        Me.Text = Text & " " & "USUARIO: " & G_UserName
 
 
 

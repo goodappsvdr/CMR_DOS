@@ -61,8 +61,6 @@ Partial Class FrmTurnosSinAtender
         Me.TxtFechaLlamado = New Controles_Ideas.TextData(Me.components)
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TxtFechaObtencion = New Controles_Ideas.TextData(Me.components)
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TxtSubSeccion = New Controles_Ideas.TextData(Me.components)
         Me.MotivosCtrl1 = New CMR_DOS.CTRL.MotivosCtrl()
         Me.ResolucionesCtrl1 = New CMR_DOS.CTRL.ResolucionesCtrl()
         Me.RadLabel1 = New Telerik.WinControls.UI.RadLabel()
@@ -125,7 +123,7 @@ Partial Class FrmTurnosSinAtender
         Me.TxtSeccion.ColorEnter = System.Drawing.Color.White
         Me.TxtSeccion.ColorLeave = System.Drawing.Color.White
         Me.TxtSeccion.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TxtSeccion.Location = New System.Drawing.Point(174, 34)
+        Me.TxtSeccion.Location = New System.Drawing.Point(174, 62)
         Me.TxtSeccion.MaxLength = 50
         Me.TxtSeccion.Name = "TxtSeccion"
         Me.TxtSeccion.Size = New System.Drawing.Size(271, 22)
@@ -139,7 +137,7 @@ Partial Class FrmTurnosSinAtender
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(151, 11)
+        Me.Label1.Location = New System.Drawing.Point(151, 39)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(18, 13)
         Me.Label1.TabIndex = 40
@@ -151,7 +149,7 @@ Partial Class FrmTurnosSinAtender
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label2.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label2.Location = New System.Drawing.Point(116, 37)
+        Me.Label2.Location = New System.Drawing.Point(116, 65)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 13)
         Me.Label2.TabIndex = 41
@@ -339,8 +337,6 @@ Partial Class FrmTurnosSinAtender
         Me.RadPageViewPage1.Controls.Add(Me.TxtFechaLlamado)
         Me.RadPageViewPage1.Controls.Add(Me.Label6)
         Me.RadPageViewPage1.Controls.Add(Me.TxtFechaObtencion)
-        Me.RadPageViewPage1.Controls.Add(Me.Label3)
-        Me.RadPageViewPage1.Controls.Add(Me.TxtSubSeccion)
         Me.RadPageViewPage1.Controls.Add(Me.Label2)
         Me.RadPageViewPage1.Controls.Add(Me.Label1)
         Me.RadPageViewPage1.Controls.Add(Me.TxtSeccion)
@@ -469,7 +465,7 @@ Partial Class FrmTurnosSinAtender
         Me.TxtCodigo.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtCodigo.ColorLeave = System.Drawing.Color.White
         Me.TxtCodigo.Enabled = False
-        Me.TxtCodigo.Location = New System.Drawing.Point(174, 6)
+        Me.TxtCodigo.Location = New System.Drawing.Point(174, 34)
         Me.TxtCodigo.Name = "TxtCodigo"
         Me.TxtCodigo.Size = New System.Drawing.Size(100, 22)
         Me.TxtCodigo.TabEnable = True
@@ -480,7 +476,7 @@ Partial Class FrmTurnosSinAtender
         '
         Me.checkPrioridad.AutoSize = True
         Me.checkPrioridad.Enabled = False
-        Me.checkPrioridad.Location = New System.Drawing.Point(351, 11)
+        Me.checkPrioridad.Location = New System.Drawing.Point(351, 39)
         Me.checkPrioridad.Name = "checkPrioridad"
         Me.checkPrioridad.Size = New System.Drawing.Size(15, 14)
         Me.checkPrioridad.TabIndex = 90
@@ -493,7 +489,7 @@ Partial Class FrmTurnosSinAtender
         Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label8.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label8.Location = New System.Drawing.Point(280, 11)
+        Me.Label8.Location = New System.Drawing.Point(280, 39)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(65, 13)
         Me.Label8.TabIndex = 91
@@ -552,32 +548,6 @@ Partial Class FrmTurnosSinAtender
         Me.TxtFechaObtencion.TabIndex = 82
         Me.TxtFechaObtencion.TipoDato = System.Data.DbType.[String]
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.Label3.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label3.Location = New System.Drawing.Point(95, 65)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 13)
-        Me.Label3.TabIndex = 78
-        Me.Label3.Text = "SUBSECCION"
-        '
-        'TxtSubSeccion
-        '
-        Me.TxtSubSeccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TxtSubSeccion.ColorEnter = System.Drawing.Color.White
-        Me.TxtSubSeccion.ColorLeave = System.Drawing.Color.White
-        Me.TxtSubSeccion.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TxtSubSeccion.Location = New System.Drawing.Point(174, 62)
-        Me.TxtSubSeccion.MaxLength = 50
-        Me.TxtSubSeccion.Name = "TxtSubSeccion"
-        Me.TxtSubSeccion.Size = New System.Drawing.Size(271, 22)
-        Me.TxtSubSeccion.TabEnable = True
-        Me.TxtSubSeccion.TabIndex = 2
-        Me.TxtSubSeccion.TipoDato = System.Data.DbType.[String]
-        '
         'MotivosCtrl1
         '
         Me.MotivosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -607,7 +577,6 @@ Partial Class FrmTurnosSinAtender
         Me.RadLabel1.Size = New System.Drawing.Size(98, 18)
         Me.RadLabel1.TabIndex = 95
         Me.RadLabel1.Text = "Buscar por Estado:"
-        Me.RadLabel1.Visible = False
         '
         'Timer1
         '
@@ -624,7 +593,6 @@ Partial Class FrmTurnosSinAtender
         Me.EstadosCtrl1.Name = "EstadosCtrl1"
         Me.EstadosCtrl1.Size = New System.Drawing.Size(144, 21)
         Me.EstadosCtrl1.TabIndex = 96
-        Me.EstadosCtrl1.Visible = False
         '
         'FrmTurnosSinAtender
         '
@@ -654,7 +622,7 @@ Partial Class FrmTurnosSinAtender
         Me.MinimumSize = New System.Drawing.Size(674, 641)
         Me.Name = "FrmTurnosSinAtender"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Gestión de Turnos Sin Atender.-"
+        Me.Text = "Gestión de Turnos.-"
         Me.PanelColor.ResumeLayout(False)
         Me.PanelColor.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -705,8 +673,6 @@ Partial Class FrmTurnosSinAtender
     Private WithEvents Grilla As Telerik.WinControls.UI.RadGridView
     Friend WithEvents RadPageView1 As Telerik.WinControls.UI.RadPageView
     Friend WithEvents RadPageViewPage1 As Telerik.WinControls.UI.RadPageViewPage
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents TxtSubSeccion As Controles_Ideas.TextData
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents TxtFechaLlamado As Controles_Ideas.TextData
     Friend WithEvents Label6 As System.Windows.Forms.Label
