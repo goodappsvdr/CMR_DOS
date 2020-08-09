@@ -187,7 +187,7 @@ Public Class FrmBoxes
         txtCodigo.Enabled = False
         txtNroBox.Enabled = False
         checkVisible.Enabled = False
-        SeccionesCtrl1.Enabled = False
+
 
         On Error GoTo 0
 
@@ -200,7 +200,7 @@ Public Class FrmBoxes
         txtCodigo.Enabled = True
         txtNroBox.Enabled = True
         checkVisible.Enabled = True
-        SeccionesCtrl1.Enabled = True
+
 
 
         On Error GoTo 0
@@ -213,7 +213,7 @@ Public Class FrmBoxes
         txtCodigo.Text = ""
         txtNroBox.Text = ""
         checkVisible.Checked = True
-        SeccionesCtrl1.Iniciar()
+
 
 
 
@@ -261,13 +261,12 @@ Public Class FrmBoxes
 
 
                 Case FormEstado.eAgregar
+                    IniciaTransaccion()
 
-
-                    resultado = oObjeto.Agregar(SeccionesCtrl1.SelectedValue,
-                                                txtCodigo.Text, txtNroBox.Text,
+                    resultado = oObjeto.Agregar(transaccion, txtCodigo.Text, txtNroBox.Text,
                                                 checkVisible.Checked)
 
-
+                    FinalizaTransaccion()
 
                     'MsgBox("Se agregó el registro " & resultado, MsgBoxStyle.Information, G_AppName)
                     Me.Estado = FormEstado.eVacio
@@ -278,7 +277,6 @@ Public Class FrmBoxes
 
                     oObjeto.Modificar(
                                         TxtID.Text,
-                                        SeccionesCtrl1.SelectedValue,
                                         txtCodigo.Text,
                                         txtNroBox.Text,
                                         checkVisible.Checked)
@@ -551,12 +549,9 @@ ManejoErrores:
         If oDs.Tables(0).Rows.Count > 0 Then
 
             TxtID.Text = oDs.Tables(0).Rows(0).Item(0)
-            SeccionesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("id_seccion")
             txtCodigo.Text = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("CodigoBox")))
             txtNroBox.Text = LTrim(RTrim(oDs.Tables(0).Rows(0).Item("NroBox")))
             checkVisible.Checked = oDs.Tables(0).Rows(0).Item("activo")
-           
-
 
             oDs = Nothing
             oObjeto = Nothing
@@ -656,35 +651,4 @@ ManejoErrores:
     End Sub
 
 #End Region
-  
-   
-    Private Sub txtCodigo_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtCodigo.TextChanged
-        If CmdModificar.Enabled = False Then
-            If txtCodigo.Text = "" Then
-                CmdLimpiar.Enabled = False
-            Else
-                CmdLimpiar.Enabled = True
-
-            End If
-        End If
-    End Sub
-
-    Private Sub txtNroBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtNroBox.TextChanged
-        If CmdModificar.Enabled = False Then
-            If txtNroBox.Text = "" Then
-                CmdLimpiar.Enabled = False
-            Else
-                CmdLimpiar.Enabled = True
-            End If
-        End If
-
-    End Sub
-    Private Sub TxtID_TextChanged_1(sender As System.Object, e As System.EventArgs) Handles TxtID.TextChanged
-        If TxtID.Text <> "" Then
-            CmdModificar.Enabled = True
-        Else
-            CmdModificar.Enabled = True
-
-        End If
-    End Sub
 End Class

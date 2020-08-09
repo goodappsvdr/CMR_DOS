@@ -60,7 +60,13 @@ Public Class FrmTurnosOperador
                     DeshabilitarComandos()
                     DeshabilitarEdicion()
                     LimpiarDatos()
+                    SeccionesCtrl1.Iniciar()
                     CmdAtender.Enabled = False
+                    CmdAtender.Visible = False
+                    CmdAgregar.Visible = True
+                    EstadosCtrl1.Enabled = True
+                    SeccionesCtrl1.Enabled = True
+
                     If aConsultar = True Then
                         Timer1.Enabled = True
                         Grilla.Enabled = True
@@ -70,11 +76,7 @@ Public Class FrmTurnosOperador
 
                     End If
 
-                    If aNuevo = True Then
-                        CmdAgregar.Enabled = True
-                    Else
-                        CmdAgregar.Enabled = False
-                    End If
+
 
                     CmdAceptar.Enabled = False
                     CmdLimpiar.Enabled = True
@@ -92,44 +94,50 @@ Public Class FrmTurnosOperador
                     Grilla.Focus()
 
                 Case FormEstado.eAgregar
-
-                    DeshabilitarComandos()
-                    HabilitarEdicion()
-                    LimpiarDatos()
+                    DeshabilitarEdicion()
+                    CmdAtender.Visible = True
+                    CmdAtender.Enabled = True
+                    CmdAgregar.Visible = False
+                    CmdAceptar.Enabled = False
+                    EstadosCtrl1.Enabled = False
+                    SeccionesCtrl1.Enabled = False
                     Grilla.Enabled = False
                     CmdCancelar.Enabled = True
-                    CmdAceptar.Enabled = True
-                    CmdLimpiar.Enabled = True
+                    CmdLimpiar.Enabled = False
                     CmdExportar.Enabled = False
-                    'TxtID.Enabled = False
+
                     PanelColor.BackColor = Color.FromArgb(206, 81, 0)
-                    LblAccion.Text = "Agregando"
-                    TxtSeccion.Focus()
+                    LblAccion.Text = "LLAMADO"
 
                 Case FormEstado.eConsulta
 
                     DeshabilitarComandos()
-                    CmdAgregar.Enabled = True
-                    CmdModificar.Enabled = True
-                    CmdEliminar.Enabled = True
+
                     CmdLimpiar.Enabled = True
                     CmdExportar.Enabled = False
                     DeshabilitarEdicion()
-                    'TxtID.Enabled = False
+                    SeccionesCtrl1.Iniciar()
+                    CmdAtender.Visible = False
+                    CmdAtender.Enabled = False
+                    CmdAgregar.Visible = True
+
 
                 Case FormEstado.eEdicion
 
-                    DeshabilitarComandos()
-                    CmdAceptar.Enabled = True
+                    HabilitarEdicion()
+                    CmdAgregar.Enabled = True
+                    CmdAgregar.Visible = False
                     CmdCancelar.Enabled = True
                     CmdExportar.Enabled = False
-                    HabilitarEdicion()
+                    CmdAtender.Visible = True
                     Grilla.Enabled = False
-                    'TxtID.Enabled = False
-                    PanelColor.BackColor = Color.FromArgb(206, 81, 0)
-                    LblAccion.Text = "Editando"
-                    TxtSeccion.Focus()
+                    CmdAtender.Enabled = False
 
+                    PanelColor.BackColor = Color.FromArgb(206, 81, 0)
+                    LblAccion.Text = "ATENDIENDO"
+                    TxtSeccion.Focus()
+                    EstadosCtrl1.Enabled = False
+                    SeccionesCtrl1.Enabled = False
 
                 Case FormEstado.eEliminar
 
@@ -159,11 +167,9 @@ Public Class FrmTurnosOperador
 
         CmdAceptar.Enabled = False
         CmdCancelar.Enabled = False
-        CmdAgregar.Enabled = False
-        CmdModificar.Enabled = False
+
         CmdExportar.Enabled = False
         CmdLimpiar.Enabled = False
-        CmdEliminar.Enabled = False
         'CmdAtender.Enabled = False
 
         On Error Resume Next
@@ -192,11 +198,10 @@ Public Class FrmTurnosOperador
         TxtFechaLlamado.Enabled = False
         TxtCodigo.Enabled = False
         ResolucionesCtrl1.Enabled = False
-        checkPrioridad.Enabled = False
+
         BtnRecargarResoluciones.Enabled = False
         MotivosCtrl1.Enabled = False
         txtObservaciones.Enabled = False
-
         btnRecargarMotivos.Enabled = False
         On Error GoTo 0
 
@@ -207,16 +212,14 @@ Public Class FrmTurnosOperador
         On Error Resume Next
 
 
-        TxtSeccion.Enabled = True
-        TxtFechaObtencion.Enabled = True
-        TxtFechaLlamado.Enabled = True
-        TxtCodigo.Enabled = True
+
         ResolucionesCtrl1.Enabled = True
-        checkPrioridad.Enabled = True
         BtnRecargarResoluciones.Enabled = True
         MotivosCtrl1.Enabled = True
         txtObservaciones.Enabled = True
         btnRecargarMotivos.Enabled = True
+        CmdAceptar.Enabled = True
+
         On Error GoTo 0
 
     End Sub
@@ -225,7 +228,6 @@ Public Class FrmTurnosOperador
 
         id_turno = vbNull
         TxtSeccion.Text = ""
-
         TxtFechaObtencion.Text = ""
         TxtFechaLlamado.Text = ""
         TxtCodigo.Text = ""
@@ -235,16 +237,16 @@ Public Class FrmTurnosOperador
         TxtFechaObtencion.ReadOnly = True
         TxtFechaLlamado.ReadOnly = True
         TxtCodigo.ReadOnly = True
-        checkPrioridad.Checked = False
+        Timer2.Stop()
+        LblCronometro.Text = "0.00.00"
         txtObservaciones.Text = ""
-
-
 
     End Sub
     Private Sub EstablecerPrioridad()
         Dim VALOR As MsgBoxResult = MsgBox("Desea establecer este turno como prioridad?", MsgBoxStyle.YesNo, "ESTA SEGURO ?")
 
         If VALOR = MsgBoxResult.Yes Then
+            Me.Estado = FormEstado.eAgregar
             establecercomoprioridad(Grilla.CurrentRow.Cells(0).Value)
             LlamarSiguiente()
         End If
@@ -275,41 +277,26 @@ Public Class FrmTurnosOperador
 
     End Sub
 
-
-
-
     Private Sub Acepto()
 
 
         Dim oObjeto As New Turnos
 
-        'Dim resultado As Double
-
         Try
 
             Select Case Me.Estado
 
-
-                'Case FormEstado.eAgregar
-
-
-                '    resultado = oObjeto.Agregar(TxtNombre.Text, TxtCodigo.Text, EstadosCtrl1.SelectedValue)
-
-
-
-                '    'MsgBox("Se agregó el registro " & resultado, MsgBoxStyle.Information, G_AppName)
-                '   Me.Estado = FormEstado.eVacio
-
                 Case FormEstado.eEdicion
-
-                    oObjeto.Resolver(id_turno,
+                    IniciaTransaccion()
+                    oObjeto.Resolver(transaccion, TxtID_Turno.Text,
                                     ValorEstado("TURNOS", "SOLUCIONADO"),
                                     ResolucionesCtrl1.SelectedValue,
                                     txtObservaciones.Text,
                                     MotivosCtrl1.SelectedValue,
                                     G_UserID)
-
+                    FinalizaTransaccion()
                     Timer2.Stop()
+
                     MsgBox("Se modificó el registro" & vbCrLf & "Tiempo: " & LblCronometro.Text, MsgBoxStyle.Information, G_AppName)
 
 
@@ -350,10 +337,6 @@ Public Class FrmTurnosOperador
             LblCronometro.Text = "0.00.00"
         End Try
 
-
-
-
-
     End Sub
 
     Private Sub Cancelo()
@@ -368,7 +351,7 @@ Public Class FrmTurnosOperador
                 Dim ods As New DataSet
                 Dim ot As New Turnos
 
-                ods = ot.CancelarLlamado(id_turno, id_estado, G_seccionID)
+                ods = ot.CancelarLlamado(TxtID_Turno.Text, id_estado, SeccionesCtrl1.SelectedValue)
                 Timer2.Stop()
                 LblCronometro.Text = "0.00.00"
 
@@ -397,6 +380,8 @@ ManejoErrores:
 
     End Sub
 
+
+
 #End Region
 
 #Region "Formulario"
@@ -408,13 +393,6 @@ ManejoErrores:
             Me.Estado = FormEstado.eAgregar
         End If
 
-        If e.KeyCode = Keys.F4 And CmdModificar.Enabled = True Then ' modificar
-            Me.Estado = FormEstado.eEdicion
-        End If
-
-        If e.KeyCode = Keys.F10 And CmdEliminar.Enabled = True Then ' eliminar
-            Me.Estado = FormEstado.eEliminar
-        End If
 
         If e.KeyCode = Keys.F5 And CmdAceptar.Enabled = True Then ' aceptar
             If Validar() = True Then
@@ -475,37 +453,11 @@ ManejoErrores:
 #End Region
 
 #Region "Botones de Comando"
-
-
-    Private Sub CmdAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdAgregar.Click
-        If Grilla.Rows.Count <= 0 Then
-            MsgBox("No hay ningùn turno!", MsgBoxStyle.Exclamation, G_AppName)
-        Else
-
-            'llamar turno 
-
-            'Me.Estado = FormEstado.eAgregar
-            If Me.Estado = FormEstado.eVacio Then
-                CmdAtender.Enabled = True
-                LlamarSiguiente()
-                DeshabilitarEdicion()
-            ElseIf Me.Estado = FormEstado.eEdicion Then
-                If Validar() = True Then
-                    Acepto()
-                    LlamarSiguiente()
-                Else
-                End If
-            End If
-
-        End If
-
-    End Sub
-
-    Private Sub CmdModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdModificar.Click
+    Private Sub CmdModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.Estado = FormEstado.eEdicion
     End Sub
 
-    Private Sub CmdEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdEliminar.Click
+    Private Sub CmdEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.Estado = FormEstado.eEliminar
     End Sub
 
@@ -513,16 +465,8 @@ ManejoErrores:
         Me.Estado = FormEstado.eVacio
     End Sub
 
-    Private Sub CmdCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdCancelar.Click
-        Cancelo()
-    End Sub
 
-    Private Sub CmdAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdAceptar.Click
-        If Validar() = True Then
-            Acepto()
-        Else
-        End If
-    End Sub
+
 
     Private Sub ItemExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdExportar.Click
 
@@ -565,8 +509,6 @@ ManejoErrores:
 
     Private Function Validar() As Boolean
 
-        'Dim id_resolucion As Integer = ValorResolucion("SIN ASIGNAR", ID_Seccion)
-        'Dim id_motivo As Integer = ValorMotivo("SIN ASIGNAR", ID_Seccion)
         If ResolucionesCtrl1.SelectedIndex = 0 Or MotivosCtrl1.SelectedIndex = 0 Then
 
             MsgBox("Asigne la resolucion y motivo al turno para continuar ...", MsgBoxStyle.Exclamation, G_AppName)
@@ -589,13 +531,13 @@ ManejoErrores:
 
 
         If oDs.Tables(1).Rows.Count > 0 Then
-            LblID_Turno.Text = oDs.Tables(1).Rows(0).Item(0)
-            id_turno = oDs.Tables(1).Rows(0).Item(0)
+            id_turno = oDs.Tables(1).Rows(0).Item("ID_Turno")
+            TxtID_Turno.Text = oDs.Tables(1).Rows(0).Item("ID_Turno")
             TxtCodigo.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Codigo")))
             TxtSeccion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Seccion")))
             TxtFechaObtencion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaObtencion")))
             TxtFechaLlamado.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaAtencion")))
-            checkPrioridad.Checked = oDs.Tables(1).Rows(0).Item("prioridad")
+
             ResolucionesCtrl1.Iniciar()
             MotivosCtrl1.Iniciar()
 
@@ -624,28 +566,57 @@ ManejoErrores:
 
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
-        oDs = oObjeto.Turnos_BuscarPorOperadoryEstado(G_UserID, EstadosCtrl1.SelectedValue, G_seccionID)
 
-        If oDs.Tables(0).Rows.Count <> Grilla.Rows.Count Then
-            Grilla.DataSource = ""
-            Grilla.DataSource = oDs.Tables(0)
+        Select Case EstadosCtrl1.SelectedValue
+            Case CInt(ValorEstado("TURNOS", "GENERADO"))
+                Grilla.DataSource = Nothing
+                oDs = oObjeto.Turnos_BuscarGenerados(EstadosCtrl1.SelectedValue, SeccionesCtrl1.SelectedValue)
+                If oDs.Tables(0).Rows.Count > 0 Then
+                    Grilla.DataSource = ""
+                    Grilla.DataSource = oDs.Tables(0)
 
-            Grilla.Columns(0).HeaderText = "#"
-            Grilla.Columns(0).Width = 30
-            Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+                    Grilla.Columns(0).HeaderText = "#"
+                    Grilla.Columns(0).Width = 30
+                    Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
 
-            oDs = Nothing
-            oObjeto = Nothing
+                    oDs = Nothing
+                    oObjeto = Nothing
 
-            Return True
+                    Return True
 
-        Else
-            oDs = Nothing
-            oObjeto = Nothing
+                Else
+                    oDs = Nothing
+                    oObjeto = Nothing
 
-            Return False
+                    Return False
 
-        End If
+                End If
+
+            Case Else
+                Grilla.DataSource = Nothing
+                oDs = oObjeto.Turnos_BuscarPorOperadoryEstado(G_UserID, EstadosCtrl1.SelectedValue, SeccionesCtrl1.SelectedValue)
+                If oDs.Tables(0).Rows.Count > 0 Then
+                    Grilla.DataSource = ""
+                    Grilla.DataSource = oDs.Tables(0)
+
+                    Grilla.Columns(0).HeaderText = "#"
+                    Grilla.Columns(0).Width = 30
+                    Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+
+                    oDs = Nothing
+                    oObjeto = Nothing
+
+                    Return True
+
+                Else
+                    oDs = Nothing
+                    oObjeto = Nothing
+
+                    Return False
+
+                End If
+
+        End Select
 
     End Function
 
@@ -656,42 +627,23 @@ ManejoErrores:
     Private Sub Grilla_CellDoubleClick(ByVal sender As Object, ByVal e As Telerik.WinControls.UI.GridViewCellEventArgs) Handles Grilla.CellDoubleClick
 
         If Grilla.Enabled = True Then
-            If EstadosCtrl1.Text = "GENERADO" Then
-                If Me.Estado = FormEstado.eVacio Then
+            Select Case EstadosCtrl1.SelectedValue
+                Case CInt(ValorEstado("TURNOS", "GENERADO"))
                     EstablecerPrioridad()
-                ElseIf Me.Estado = FormEstado.eEdicion Then
-                    If Validar() = True Then
-                        Acepto()
-                        EstablecerPrioridad()
-                    Else
-
-                    End If
-                End If
-
-
-            End If
-            If EstadosCtrl1.Text = "SOLUCIONADO" Or EstadosCtrl1.Text = "LLAMADO" Or EstadosCtrl1.Text = "ATENDIENDO" Then
-                Me.Estado = FormEstado.eEdicion
-                BuscarPorID(Grilla.CurrentRow.Cells(0).Value, G_seccionID)
-                Grilla.Size = New System.Drawing.Size(646, 176)
-                CmdGrid.Text = "+"
-
-                If EstadosCtrl1.Text = "ATENDIENDO" Then
-
+                Case CInt(ValorEstado("TURNOS", "ATENDIENDO"))
+                    BuscarPorID(Grilla.CurrentRow.Cells(0).Value, SeccionesCtrl1.SelectedValue)
+                    Me.Estado = FormEstado.eEdicion
                     startTime = Now.TimeOfDay
                     Timer2.Start()
-                End If
-
-                If EstadosCtrl1.Text = "LLAMADO" Then
+                Case CInt(ValorEstado("TURNOS", "LLAMADO"))
+                    BuscarPorID(Grilla.CurrentRow.Cells(0).Value, SeccionesCtrl1.SelectedValue)
+                    Me.Estado = FormEstado.eAgregar
                     LblCronometro.Text = "0.00.00"
-                    CmdAtender.Enabled = True
+                Case CInt(ValorEstado("TURNOS", "SOLUCIONADO"))
+                    BuscarPorID(Grilla.CurrentRow.Cells(0).Value, SeccionesCtrl1.SelectedValue)
+                    Me.Estado = FormEstado.eConsulta
+            End Select
 
-
-                End If
-
-
-            End If
-            ' BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
             Grilla.Size = New System.Drawing.Size(646, 176)
             CmdGrid.Text = "+"
 
@@ -708,27 +660,10 @@ ManejoErrores:
             CmdGrid.Text = "+"
         End If
 
-
-
     End Sub
 
 #End Region
 
-#Region "Text ID"
-
-    Private Sub TxtId_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-        If id_turno <> "" And aEditar = True Then
-            CmdModificar.Enabled = True
-            CmdEliminar.Enabled = False
-        Else
-            CmdModificar.Enabled = False
-            CmdEliminar.Enabled = False
-
-        End If
-    End Sub
-
-#End Region
 
 
     Public Function LlamarSiguiente() As Boolean
@@ -739,29 +674,35 @@ ManejoErrores:
         Dim ODS5 As New DataSet
         Dim OT5 As New Turnos
         'obtenemos el id_turno del siguente turno
-        oDs = oObjeto.ObtenerSiguiente(G_UserID, ValorEstado("Turnos", "Generado"), G_seccionID)
+        If EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Generado") Then
+            oDs = oObjeto.ObtenerSiguiente(EstadosCtrl1.SelectedValue, SeccionesCtrl1.SelectedValue)
 
-        If oDs.Tables(0).Rows.Count > 0 Then
-            OrdenPantalla(oDs.Tables(0).Rows(0).Item("id_turno"))
-            LblID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
-            ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"), ValorEstado("Turnos", "Llamado"), G_UserID, G_seccionID)
+            If oDs.Tables(0).Rows.Count > 0 Then
+                OrdenPantalla(oDs.Tables(0).Rows(0).Item("id_turno"))
+                TxtID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
+                ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"),
+                                       ValorEstado("Turnos", "Llamado"),
+                                       G_UserID,
+                                       SeccionesCtrl1.SelectedValue)
 
-            BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"), G_seccionID)
+                BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"), SeccionesCtrl1.SelectedValue)
 
+                EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Llamado")
+                G_seccionID = SeccionesCtrl1.SelectedValue
+                oDs = Nothing
+                oObjeto = Nothing
+                LlamarSiguiente = True
 
-            oDs = Nothing
-            oObjeto = Nothing
-            'Me.Estado = FormEstado.eEdicion
-            LlamarSiguiente = True
+            Else
 
-        Else
+                oDs = Nothing
+                oObjeto = Nothing
 
-            oDs = Nothing
-            oObjeto = Nothing
+                LlamarSiguiente = False
 
-            LlamarSiguiente = False
+                Exit Function
 
-            Exit Function
+            End If
 
         End If
 
@@ -801,10 +742,15 @@ ManejoErrores:
     End Sub
 
     Private Sub establecercomoprioridad(id_turno As Double)
-        Dim oTurno As New Turnos
-        Dim ods As New DataSet
-        ods = oTurno.EstablecerPrioridad(id_turno)
-        CmdAtender.Enabled = True
+        Try
+            Dim oTurno As New Turnos
+            Dim ods As New DataSet
+            ods = oTurno.EstablecerPrioridad(id_turno)
+        Catch ex As Exception
+            MsgBox("Ocurrio un Error...", MsgBoxStyle.Critical, G_AppName)
+        End Try
+
+
     End Sub
 
 
@@ -818,32 +764,20 @@ ManejoErrores:
 
 
     Private Sub EstadosCtrl1_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles EstadosCtrl1.SelectedIndexChanged
-        Try
-            Me.BringToFront()
-            Me.Estado = FormEstado.eVacio
-            txtObservaciones.Focus()
-        Catch ex As Exception
 
-        End Try
 
         'Valido que la grilla este llena sino no se habilita
         If EstadosCtrl1.SelectedIndex = 0 Then
+
             CmdAgregar.Enabled = True
         Else
-            If Grilla.Rows.Count <= 0 Then
-                Grilla.Enabled = False
-                CmdAgregar.Enabled = False
-            Else
-                Grilla.Enabled = True
-                CmdAgregar.Enabled = False
-            End If
+            CmdAgregar.Enabled = False
+
+
         End If
 
 
     End Sub
-
-
-
 
     Private Sub btnRecargarMotivos_Click(sender As System.Object, e As System.EventArgs) Handles btnRecargarMotivos.Click
 
@@ -852,23 +786,24 @@ ManejoErrores:
     End Sub
 
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
+
         BuscarTodos()
 
     End Sub
 
     Private Sub CmdAtender_Click(sender As System.Object, e As System.EventArgs) Handles CmdAtender.Click
-        Dim oObjeto As New Turnos
-        'BuscarPorID(LblID_Turno.Text)
-        ' If MsgBox("Desea iniciar la resolucion del turno?", MsgBoxStyle.YesNo, G_AppName) = MsgBoxResult.Yes Then
-        oObjeto.llamarTurno(LblID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, G_seccionID)
-        HabilitarEdicion()
-        CmdAtender.Enabled = False
-        startTime = Now.TimeOfDay
-        Timer2.Start()
-        '  Else
-        '  End If
-    End Sub
+        Me.Estado = FormEstado.eEdicion
+        Try
+            Dim oObjeto As New Turnos
+            oObjeto.llamarTurno(TxtID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, SeccionesCtrl1.SelectedValue)
+            EstadosCtrl1.SelectedValue = ValorEstado("TURNOS", "ATENDIENDO")
+            startTime = Now.TimeOfDay
+            Timer2.Start()
+        Catch ex As Exception
+            MsgBox("Ocurrio un Error...", MsgBoxStyle.Critical, G_AppName)
+        End Try
 
+    End Sub
     Private Sub Timer2_Tick(sender As Object, e As System.EventArgs) Handles Timer2.Tick
         Dim elapsed As TimeSpan = Now.TimeOfDay.Subtract(startTime)
 
@@ -892,12 +827,59 @@ ManejoErrores:
         Return Mid(result, 1, 2)
     End Function
 
-    'Private Sub FrmTurnosOperador_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-    '    If Grilla.Rows.Count > 0 Then
-    '        Dim result As Integer = MessageBox.Show("¿Tiene turnos sin atender desea cerrar de todo modos " + "?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-    '        If result = DialogResult.Yes Then
+    Private Sub SeccionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles SeccionesCtrl1.SelectionChangeCommitted
+        Grilla.DataSource = Nothing
+        BuscarTodos()
+    End Sub
 
-    '        End If
-    '    End If
-    'End Sub
+    Private Sub EstadosCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles EstadosCtrl1.SelectionChangeCommitted
+        If EstadosCtrl1.SelectedIndex = 0 Then
+
+            CmdAgregar.Enabled = True
+        Else
+            CmdAgregar.Enabled = False
+
+
+        End If
+        Grilla.DataSource = Nothing
+        BuscarTodos()
+    End Sub
+
+    Private Sub CmdAceptar_Click(sender As Object, e As EventArgs) Handles CmdAceptar.Click
+        If Validar() = True Then
+            Acepto()
+        End If
+    End Sub
+
+    Private Sub CmdAgregar_Click(sender As Object, e As EventArgs) Handles CmdAgregar.Click
+        If Grilla.Rows.Count <= 0 Then
+            MsgBox("No hay ningún turno!", MsgBoxStyle.Exclamation, G_AppName)
+        Else
+            Me.Estado = FormEstado.eAgregar
+            LlamarSiguiente()
+        End If
+    End Sub
+
+    Private Sub CmdPrioridad_Click(sender As Object, e As EventArgs)
+        If Grilla.Enabled = True Then
+            If EstadosCtrl1.SelectedValue = CInt(ValorEstado("TURNOS", "GENERADO")) Then
+                EstablecerPrioridad()
+            End If
+        End If
+
+    End Sub
+
+    Private Sub CmdCancelar_Click(sender As Object, e As EventArgs) Handles CmdCancelar.Click
+        Timer2.Stop()
+
+        If MsgBox("Esta seguro de Cancelar?" & vbCrLf &
+                  "Se perderán las ultimas modificaciones",
+                  vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
+            LimpiarDatos()
+            Me.Estado = FormEstado.eVacio
+        Else
+            startTime = Now.TimeOfDay
+            Timer2.Start()
+        End If
+    End Sub
 End Class

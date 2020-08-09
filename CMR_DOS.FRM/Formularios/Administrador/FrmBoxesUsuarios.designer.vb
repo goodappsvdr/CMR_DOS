@@ -45,8 +45,6 @@ Partial Class FrmBoxesUsuarios
         Me.Grilla = New Telerik.WinControls.UI.RadGridView()
         Me.RadPageView1 = New Telerik.WinControls.UI.RadPageView()
         Me.RadPageViewPage1 = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.SeccionesCtrl1 = New CMR_DOS.CTRL.SeccionesCtrl()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CheckActivo = New System.Windows.Forms.CheckBox()
         Me.BoxesCtrl1 = New CMR_DOS.CTRL.BoxesCtrl()
@@ -108,7 +106,7 @@ Partial Class FrmBoxesUsuarios
         Me.TxtID.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtID.ColorLeave = System.Drawing.Color.White
         Me.TxtID.Enabled = False
-        Me.TxtID.Location = New System.Drawing.Point(206, 15)
+        Me.TxtID.Location = New System.Drawing.Point(206, 42)
         Me.TxtID.Name = "TxtID"
         Me.TxtID.Size = New System.Drawing.Size(100, 22)
         Me.TxtID.TabEnable = True
@@ -121,7 +119,7 @@ Partial Class FrmBoxesUsuarios
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(172, 18)
+        Me.Label1.Location = New System.Drawing.Point(172, 45)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(31, 13)
         Me.Label1.TabIndex = 40
@@ -133,7 +131,7 @@ Partial Class FrmBoxesUsuarios
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label2.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label2.Location = New System.Drawing.Point(148, 46)
+        Me.Label2.Location = New System.Drawing.Point(148, 73)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(55, 13)
         Me.Label2.TabIndex = 41
@@ -302,8 +300,6 @@ Partial Class FrmBoxesUsuarios
         'RadPageViewPage1
         '
         Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.RadPageViewPage1.Controls.Add(Me.Label7)
-        Me.RadPageViewPage1.Controls.Add(Me.SeccionesCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.Label4)
         Me.RadPageViewPage1.Controls.Add(Me.CheckActivo)
         Me.RadPageViewPage1.Controls.Add(Me.BoxesCtrl1)
@@ -320,28 +316,6 @@ Partial Class FrmBoxesUsuarios
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 226)
         Me.RadPageViewPage1.Text = "Información"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.Label7.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label7.Location = New System.Drawing.Point(150, 73)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(53, 13)
-        Me.Label7.TabIndex = 95
-        Me.Label7.Text = "SECCION"
-        '
-        'SeccionesCtrl1
-        '
-        Me.SeccionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.SeccionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.SeccionesCtrl1.FormattingEnabled = True
-        Me.SeccionesCtrl1.Location = New System.Drawing.Point(206, 70)
-        Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
-        Me.SeccionesCtrl1.Size = New System.Drawing.Size(272, 21)
-        Me.SeccionesCtrl1.TabIndex = 94
         '
         'Label4
         '
@@ -417,7 +391,7 @@ Partial Class FrmBoxesUsuarios
         Me.UsuariosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.UsuariosCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.UsuariosCtrl1.FormattingEnabled = True
-        Me.UsuariosCtrl1.Location = New System.Drawing.Point(206, 43)
+        Me.UsuariosCtrl1.Location = New System.Drawing.Point(206, 70)
         Me.UsuariosCtrl1.Name = "UsuariosCtrl1"
         Me.UsuariosCtrl1.Size = New System.Drawing.Size(272, 21)
         Me.UsuariosCtrl1.TabIndex = 81
@@ -458,7 +432,7 @@ Partial Class FrmBoxesUsuarios
         Me.MinimumSize = New System.Drawing.Size(674, 612)
         Me.Name = "FrmBoxesUsuarios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Boxes para Usuarios .-"
+        Me.Text = "Boxes Para Usuarios .-"
         Me.PanelColor.ResumeLayout(False)
         Me.PanelColor.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -514,8 +488,6 @@ Partial Class FrmBoxesUsuarios
     Friend WithEvents cboseccion As CMR_DOS.CTRL.BoxesCtrl
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents CheckActivo As System.Windows.Forms.CheckBox
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents SeccionesCtrl1 As CMR_DOS.CTRL.SeccionesCtrl
 
 
 

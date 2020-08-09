@@ -304,14 +304,14 @@ Public Class FrmTurnosSinAtender
                 '   Me.Estado = FormEstado.eVacio
 
                 Case FormEstado.eEdicion
-
-                    oObjeto.Resolver(id_turno,
+                    IniciaTransaccion()
+                    oObjeto.Resolver(transaccion, id_turno,
                                     ValorEstado("TURNOS", "SINATENDER"),
                                     ResolucionesCtrl1.SelectedValue,
                                     txtObservaciones.Text,
                                     MotivosCtrl1.SelectedValue,
                                     G_UserID)
-
+                    FinalizaTransaccion()
                     Timer2.Stop()
                     ' MsgBox("Se modificó el registro" & vbCrLf & "Tiempo: " & LblCronometro.Text, MsgBoxStyle.Information, G_AppName)
 

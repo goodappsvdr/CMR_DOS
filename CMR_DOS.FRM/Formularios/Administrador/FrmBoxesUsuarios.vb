@@ -187,7 +187,7 @@ Public Class FrmBoxesUsuarios
         UsuariosCtrl1.Enabled = False
         EstadosCtrl1.Enabled = False
         CheckActivo.Enabled = False
-        SeccionesCtrl1.Enabled = False
+
         On Error GoTo 0
 
     End Sub
@@ -201,7 +201,7 @@ Public Class FrmBoxesUsuarios
         UsuariosCtrl1.Enabled = True
         EstadosCtrl1.Enabled = True
         CheckActivo.Enabled = True
-        SeccionesCtrl1.Enabled = True
+
 
         On Error GoTo 0
 
@@ -212,8 +212,8 @@ Public Class FrmBoxesUsuarios
         TxtID.Text = ""
         Dim id_rol As Integer = ValorRol("OPERADOR")
         UsuariosCtrl1.IniciarOperadoresparaAdministrador(id_rol)
-        SeccionesCtrl1.IniciarPorID_Usuario(UsuariosCtrl1.SelectedValue)
-        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
+
+        BoxesCtrl1.Iniciar()
         EstadosCtrl1.Iniciar("BoxesUsuarios")
         CheckActivo.Checked = False
 
@@ -424,7 +424,6 @@ ManejoErrores:
     End Sub
 
     Private Sub CmdModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdModificar.Click
-        BOX_ID = BoxesCtrl1.SelectedValue
         Me.Estado = FormEstado.eEdicion
     End Sub
 
@@ -522,7 +521,7 @@ ManejoErrores:
 
 
         If verificarBox() Then
-            If SeccionesCtrl1.SelectedValue <> Nothing And UsuariosCtrl1.SelectedValue <> Nothing And BoxesCtrl1.SelectedValue <> Nothing Then
+            If UsuariosCtrl1.SelectedValue <> Nothing And BoxesCtrl1.SelectedValue <> Nothing Then
                 Validar = True
                 Exit Function
             Else
@@ -564,8 +563,7 @@ ManejoErrores:
             UsuariosCtrl1.IniciarOperadoresparaAdministrador(id_rol)
             UsuariosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_USUARIO")
             EstadosCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Estado")
-            SeccionesCtrl1.IniciarPorID_Usuario(UsuariosCtrl1.SelectedValue)
-            BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
+            BoxesCtrl1.Iniciar()
             BoxesCtrl1.SelectedValue = oDs.Tables(0).Rows(0).Item("ID_Box")
             CheckActivo.Checked = oDs.Tables(0).Rows(0).Item("Activo")
             oDs = Nothing
@@ -664,32 +662,8 @@ ManejoErrores:
         End If
     End Sub
 
-    Private Sub UsuariosCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles UsuariosCtrl1.SelectionChangeCommitted
-        SeccionesCtrl1.IniciarPorID_Usuario(UsuariosCtrl1.SelectedValue)
-        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
-    End Sub
-
-    Private Sub SeccionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles SeccionesCtrl1.SelectionChangeCommitted
-        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
-    End Sub
-
 
 #End Region
-
-
-
-
-    'Private Sub SeccionesCtrl1_SelectedValueChanged(sender As Object, e As System.EventArgs) Handles SeccionesCtrl1.SelectedValueChanged
-    '    Try
-    '        Dim ID_ROL As Integer = ValorRol("OPERADOR")
-    '        UsuariosCtrl1.DataSource = Nothing
-    '        BoxesCtrl1.DataSource = Nothing
-    '        UsuariosCtrl1.IniciarPorRolySeccion(ID_ROL, SeccionesCtrl1.SelectedValue)
-    '        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
 
 
 End Class

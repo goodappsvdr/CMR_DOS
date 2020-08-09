@@ -11,16 +11,9 @@ Public Class FrmLogin
     End Sub
 
     Private Sub PasswordTextBox_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
-
-        If e.KeyCode = 13 Then
-            e.Handled = True
-
-
+        If CInt(e.KeyCode) = CInt(Keys.Enter) Then
             IniciarSesion()
-
         End If
-
-
     End Sub
 
 
@@ -145,5 +138,11 @@ Public Class FrmLogin
         Application.Exit()
     End Sub
 
+    Private Sub PasswordTextBox_KeyUp(sender As Object, e As KeyEventArgs) Handles PasswordTextBox.KeyUp
+        If CInt(e.KeyCode) = CInt(Keys.Enter) Then
+            IniciarSesion()
+        End If
+
+    End Sub
 
 End Class

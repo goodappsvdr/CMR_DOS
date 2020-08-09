@@ -130,10 +130,17 @@ Public Class Turnos
             Throw ex
         End Try
     End Function
-
-    Function ObtenerSiguiente(id_usuario As Double, id_estado As Double, ByVal ID_Seccion As Integer) As DataSet
+    Function Turnos_BuscarGenerados(id_estado As Double, ByVal ID_Seccion As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Turnos_ObtenerSiguiente", id_usuario, id_estado, ID_Seccion)
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarGenerados", id_estado, ID_Seccion)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Function ObtenerSiguiente(id_estado As Double, ByVal ID_Seccion As Integer) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("Turnos_ObtenerSiguiente", id_estado, ID_Seccion)
         Catch ex As Exception
             Throw ex
         End Try
@@ -156,7 +163,7 @@ Public Class Turnos
 
     End Function
 
-    Function Resolver(id_turno As Double, id_estado As Double, id_resolucion As Double, observaciones As String, id_motivo As Double, id_usuario As Double) As DataSet
+    Function Resolver(ByVal Tran As SqlTransaction, id_turno As Double, id_estado As Double, id_resolucion As Double, observaciones As String, id_motivo As Double, id_usuario As Double) As DataSet
         Try
             Return oDatabase.ExecuteDataSet("Turnos_Resolucion", id_turno, id_estado, id_resolucion, observaciones, id_motivo, id_usuario)
         Catch ex As Exception

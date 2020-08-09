@@ -283,14 +283,7 @@ Public Class FrmUsuarios
 
                     resultado = oObjeto.Agregar(TxtNombre.Text, TxtLogin.Text, TxtPassword.Text, RolesCtrl1.SelectedValue, EstadosCtrl1.SelectedValue)
 
-                    'TxtID.Text = resultado
-                    'RadPageView1.SelectedPage = pag2
-                    'sNuevo = True
-                    'habilitarbotonesSeccion()
-
-                    'MsgBox("Se agregó el registro " & resultado & ", asigne una sección", MsgBoxStyle.Information, G_AppName)
-
-
+                    Me.Estado = FormEstado.eVacio
                 Case FormEstado.eEdicion
 
 

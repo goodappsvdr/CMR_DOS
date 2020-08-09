@@ -13,18 +13,41 @@ Partial Public Class BoxesCtrl
 
     End Sub
 
-    Public Sub Iniciar(id_seccion As Integer)
+    'Public Sub Iniciar(id_seccion As Integer)
+
+    '    Dim oDs As New DataSet
+    '    Dim oObjeto As New Boxes
+
+    '    oDs = oObjeto.BuscarporSeccion(id_seccion)
+
+    '    If oDs.Tables(0).Rows.Count > 0 Then
+
+
+    '        DataSource = oDs.Tables(0)
+    '        DisplayMember = oDs.Tables(0).Columns(6).Caption.ToString
+    '        ValueMember = oDs.Tables(0).Columns(0).Caption.ToString
+    '    Else
+    '        'MsgBox("No se encontraron Boxes para esta sección.", MsgBoxStyle.Exclamation, "Información...")
+    '    End If
+
+    '    oDs = Nothing
+    '    oObjeto = Nothing
+
+    'End Sub
+
+
+    Public Sub Iniciar()
 
         Dim oDs As New DataSet
         Dim oObjeto As New Boxes
 
-        oDs = oObjeto.BuscarporSeccion(id_seccion)
+        oDs = oObjeto.BuscarTodos
 
         If oDs.Tables(0).Rows.Count > 0 Then
 
 
             DataSource = oDs.Tables(0)
-            DisplayMember = oDs.Tables(0).Columns(6).Caption.ToString
+            DisplayMember = oDs.Tables(0).Columns(3).Caption.ToString
             ValueMember = oDs.Tables(0).Columns(0).Caption.ToString
         Else
             'MsgBox("No se encontraron Boxes para esta sección.", MsgBoxStyle.Exclamation, "Información...")
@@ -34,8 +57,6 @@ Partial Public Class BoxesCtrl
         oObjeto = Nothing
 
     End Sub
-
-
     Public Sub Iniciar_conidusuario(id_usuario As Integer)
 
         Dim oDs As New DataSet

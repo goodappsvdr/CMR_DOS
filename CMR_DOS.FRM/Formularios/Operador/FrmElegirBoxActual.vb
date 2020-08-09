@@ -10,9 +10,9 @@ Public Class FrmElegirBoxActual
     End Sub
 
     Private Sub FrmLogin_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        SeccionesCtrl1.IniciarPorID_Usuario(G_UserID)
-        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
-        ' CargarBoxes(G_UserID)
+
+        BoxesCtrl1.Iniciar_conidusuario(G_UserID)
+
         main()
     End Sub
 
@@ -25,15 +25,8 @@ Public Class FrmElegirBoxActual
         Dim ods As New DataSet
         Dim oBU As New BoxesUsuarios
         ods = oBU.ActivarUnBox(G_UserID, BoxesCtrl1.SelectedValue)
-        'ods = oBU.BoxesUsuario_ModificarActivo(G_UserID, G_BoxID, 1)
         G_BoxID = BoxesCtrl1.SelectedValue
-        G_seccionID = SeccionesCtrl1.SelectedValue
         Me.Dispose()
-
-    End Sub
-
-    Private Sub SeccionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles SeccionesCtrl1.SelectionChangeCommitted
-        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
     End Sub
 
 

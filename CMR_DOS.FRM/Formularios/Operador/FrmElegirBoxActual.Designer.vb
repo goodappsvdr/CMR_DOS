@@ -1,10 +1,10 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-<Global.System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726")> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726")>
 Partial Class FrmElegirBoxActual
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -21,14 +21,13 @@ Partial Class FrmElegirBoxActual
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmElegirBoxActual))
         Me.Office2007SilverTheme1 = New Telerik.WinControls.Themes.Office2007SilverTheme()
         Me.BoxesCtrl1 = New CMR_DOS.CTRL.BoxesCtrl()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CmdAceptar = New Telerik.WinControls.UI.RadButton()
-        Me.SeccionesCtrl1 = New CMR_DOS.CTRL.SeccionesCtrl()
         CType(Me.CmdAceptar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -37,7 +36,7 @@ Partial Class FrmElegirBoxActual
         Me.BoxesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.BoxesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.BoxesCtrl1.FormattingEnabled = True
-        Me.BoxesCtrl1.Location = New System.Drawing.Point(28, 64)
+        Me.BoxesCtrl1.Location = New System.Drawing.Point(28, 37)
         Me.BoxesCtrl1.Name = "BoxesCtrl1"
         Me.BoxesCtrl1.Size = New System.Drawing.Size(154, 21)
         Me.BoxesCtrl1.TabIndex = 0
@@ -57,7 +56,7 @@ Partial Class FrmElegirBoxActual
         'CmdAceptar
         '
         Me.CmdAceptar.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.CmdAceptar.Location = New System.Drawing.Point(53, 91)
+        Me.CmdAceptar.Location = New System.Drawing.Point(44, 64)
         Me.CmdAceptar.Name = "CmdAceptar"
         '
         '
@@ -68,23 +67,12 @@ Partial Class FrmElegirBoxActual
         Me.CmdAceptar.Text = "Aceptar"
         Me.CmdAceptar.ThemeName = "Office2007Silver"
         '
-        'SeccionesCtrl1
-        '
-        Me.SeccionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.SeccionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.SeccionesCtrl1.FormattingEnabled = True
-        Me.SeccionesCtrl1.Location = New System.Drawing.Point(28, 37)
-        Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
-        Me.SeccionesCtrl1.Size = New System.Drawing.Size(157, 21)
-        Me.SeccionesCtrl1.TabIndex = 95
-        '
         'FrmElegirBoxActual
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(197, 132)
-        Me.Controls.Add(Me.SeccionesCtrl1)
         Me.Controls.Add(Me.CmdAceptar)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.BoxesCtrl1)
@@ -109,5 +97,4 @@ Partial Class FrmElegirBoxActual
     Friend WithEvents BoxesCtrl1 As CMR_DOS.CTRL.BoxesCtrl
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Private WithEvents CmdAceptar As Telerik.WinControls.UI.RadButton
-    Friend WithEvents SeccionesCtrl1 As CTRL.SeccionesCtrl
 End Class

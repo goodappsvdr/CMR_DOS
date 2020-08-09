@@ -79,27 +79,27 @@ Public Class Boxes
     '    End Try
 
     'End Function
-    Public Function BuscarporSeccion(ByVal id_seccion As Integer) As DataSet
+    'Public Function BuscarporSeccion(ByVal id_seccion As Integer) As DataSet
 
-        Try
+    '    Try
 
-            Return oDatabase.ExecuteDataSet("Boxes_BuscarporSeccion", id_seccion)
+    '        Return oDatabase.ExecuteDataSet("Boxes_BuscarporSeccion", id_seccion)
 
-        Catch ex As System.Exception
-            Throw ex
-        End Try
+    '    Catch ex As System.Exception
+    '        Throw ex
+    '    End Try
 
-    End Function
+    'End Function
 
     '*********************BUSQUEDA POR LOS DIFERENTES CAMPOS DE LA TABLA****************
 
 
     'Insert
-    Public Function Agregar(ByVal ID_Seccion As Integer, ByVal codigo As String, ByVal nro As Integer, activo As Boolean) As Double
+    Public Function Agregar(ByVal Tran As SqlTransaction, ByVal codigo As String, ByVal nro As Integer, activo As Boolean) As Double
 
         Try
 
-            Return oDatabase.ExecuteScalar("Boxes_Agregar", ID_Seccion, codigo, nro, activo)
+            Return oDatabase.ExecuteScalar(Tran, "Boxes_Agregar", codigo, nro, activo)
 
         Catch ex As System.Exception
             Throw ex
@@ -111,11 +111,11 @@ Public Class Boxes
 
     'Update
 
-    Public Function Modificar(id_box As Integer, ByVal ID_Seccion As Integer, ByVal codigo As String, ByVal nro As Integer, activo As Boolean) As DataSet
+    Public Function Modificar(id_box As Integer, ByVal codigo As String, ByVal nro As Integer, activo As Boolean) As DataSet
 
         Try
 
-            Return oDatabase.ExecuteDataSet("Boxes_Modificar", id_box, ID_Seccion, codigo, nro, activo)
+            Return oDatabase.ExecuteDataSet("Boxes_Modificar", id_box, codigo, nro, activo)
 
         Catch ex As System.Exception
             Throw ex

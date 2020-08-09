@@ -46,8 +46,6 @@ Partial Class FrmBoxes
         Me.Grilla = New Telerik.WinControls.UI.RadGridView()
         Me.RadPageView1 = New Telerik.WinControls.UI.RadPageView()
         Me.RadPageViewPage1 = New Telerik.WinControls.UI.RadPageViewPage()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.SeccionesCtrl1 = New CMR_DOS.CTRL.SeccionesCtrl()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtNroBox = New Controles_Ideas.TextData(Me.components)
         Me.txtCodigo = New Controles_Ideas.TextData(Me.components)
@@ -106,7 +104,7 @@ Partial Class FrmBoxes
         Me.TxtID.ColorEnter = System.Drawing.Color.White
         Me.TxtID.ColorLeave = System.Drawing.Color.White
         Me.TxtID.Enabled = False
-        Me.TxtID.Location = New System.Drawing.Point(276, 58)
+        Me.TxtID.Location = New System.Drawing.Point(276, 85)
         Me.TxtID.Name = "TxtID"
         Me.TxtID.Size = New System.Drawing.Size(40, 22)
         Me.TxtID.TabEnable = True
@@ -119,7 +117,7 @@ Partial Class FrmBoxes
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(252, 61)
+        Me.Label1.Location = New System.Drawing.Point(252, 88)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(18, 13)
         Me.Label1.TabIndex = 40
@@ -303,8 +301,6 @@ Partial Class FrmBoxes
         'RadPageViewPage1
         '
         Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.RadPageViewPage1.Controls.Add(Me.Label4)
-        Me.RadPageViewPage1.Controls.Add(Me.SeccionesCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.Label3)
         Me.RadPageViewPage1.Controls.Add(Me.txtNroBox)
         Me.RadPageViewPage1.Controls.Add(Me.txtCodigo)
@@ -317,28 +313,6 @@ Partial Class FrmBoxes
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 226)
         Me.RadPageViewPage1.Text = "Información"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.Label4.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label4.Location = New System.Drawing.Point(196, 89)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(75, 13)
-        Me.Label4.TabIndex = 95
-        Me.Label4.Text = "CODIGO BOX"
-        '
-        'SeccionesCtrl1
-        '
-        Me.SeccionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.SeccionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.SeccionesCtrl1.FormattingEnabled = True
-        Me.SeccionesCtrl1.Location = New System.Drawing.Point(276, 86)
-        Me.SeccionesCtrl1.Name = "SeccionesCtrl1"
-        Me.SeccionesCtrl1.Size = New System.Drawing.Size(150, 21)
-        Me.SeccionesCtrl1.TabIndex = 94
         '
         'Label3
         '
@@ -480,8 +454,6 @@ Partial Class FrmBoxes
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtNroBox As Controles_Ideas.TextData
     Friend WithEvents txtCodigo As Controles_Ideas.TextData
-    Friend WithEvents Label4 As Label
-    Friend WithEvents SeccionesCtrl1 As CTRL.SeccionesCtrl
 
 
 End Class
