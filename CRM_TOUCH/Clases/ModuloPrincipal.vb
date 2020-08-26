@@ -36,6 +36,20 @@ Module ModuloPrincipal
     Public R_FechaHasta As Date
     Public R_IDOperador As Double
     Public R_Reporte As String = ""
+    Dim loading = FrmLoading
+    Public Sub MostrarLoad()
+
+        loading = New FrmLoading
+        loading.Show()
+    End Sub
+
+    Public Sub CerrarLoad()
+
+
+        loading.close()
+
+
+    End Sub
 #Region "Enumeraciones"
 
 

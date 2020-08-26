@@ -272,6 +272,12 @@
     <Compile Include="Clases\Imprimir.vb" />
     <Compile Include="Clases\ModuloPrincipal.vb" />
     <Compile Include="Clases\MyEnglishRadGridLocalizationProvider.vb" />
+    <Compile Include="Formularios\Cliente\FrmLoading.Designer.vb">
+      <DependentUpon>FrmLoading.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Cliente\FrmLoading.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\Cliente\FrmPrincipalCliente.Designer.vb">
       <DependentUpon>FrmPrincipalCliente.vb</DependentUpon>
     </Compile>
@@ -302,6 +308,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\Cliente\FrmLoading.resx">
+      <DependentUpon>FrmLoading.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Cliente\FrmPrincipalCliente.resx">
       <DependentUpon>FrmPrincipalCliente.vb</DependentUpon>
     </EmbeddedResource>
@@ -356,6 +365,8 @@
     <Content Include="Resources\icono_volver-21.png" />
     <Content Include="Resources\icono_volver-2sad %282%29.png" />
     <None Include="Resources\internet.png" />
+    <Content Include="Resources\icons8-en-progreso-48.png" />
+    <Content Include="Resources\loading.gif" />
     <Content Include="Resources\logo coop.png" />
     <Content Include="Resources\LOGO.png" />
     <Content Include="Resources\LogoCoovilros.ico" />

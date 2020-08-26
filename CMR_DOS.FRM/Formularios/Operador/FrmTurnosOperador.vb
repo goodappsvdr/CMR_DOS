@@ -3,6 +3,7 @@ Imports CMR_DOS.AD
 Imports Telerik.WinControls.UI.Export
 Imports Telerik.WinControls.UI.Data
 Imports System.ComponentModel
+Imports Telerik.WinControls.UI
 
 Public Class FrmTurnosOperador
 
@@ -135,7 +136,7 @@ Public Class FrmTurnosOperador
 
                     PanelColor.BackColor = Color.FromArgb(206, 81, 0)
                     LblAccion.Text = "ATENDIENDO"
-                    TxtSeccion.Focus()
+
                     EstadosCtrl1.Enabled = False
                     SeccionesCtrl1.Enabled = False
 
@@ -193,7 +194,7 @@ Public Class FrmTurnosOperador
         On Error Resume Next
 
         'TxtID.Enabled = False
-        TxtSeccion.Enabled = False
+        SeccionesCtrl1.Enabled = False
         TxtFechaObtencion.Enabled = False
         TxtFechaLlamado.Enabled = False
         TxtCodigo.Enabled = False
@@ -219,7 +220,7 @@ Public Class FrmTurnosOperador
         txtObservaciones.Enabled = True
         btnRecargarMotivos.Enabled = True
         CmdAceptar.Enabled = True
-
+        SeccionesCtrl1.Enabled = False
         On Error GoTo 0
 
     End Sub
@@ -227,28 +228,28 @@ Public Class FrmTurnosOperador
     Public Sub LimpiarDatos()
 
         id_turno = vbNull
-        TxtSeccion.Text = ""
         TxtFechaObtencion.Text = ""
         TxtFechaLlamado.Text = ""
         TxtCodigo.Text = ""
         ResolucionesCtrl1.Iniciar()
         MotivosCtrl1.Iniciar()
-        TxtSeccion.ReadOnly = True
+        SeccionesCtrl1.Iniciar()
         TxtFechaObtencion.ReadOnly = True
         TxtFechaLlamado.ReadOnly = True
         TxtCodigo.ReadOnly = True
         Timer2.Stop()
         LblCronometro.Text = "0.00.00"
         txtObservaciones.Text = ""
-
+        EstadosCtrl1.Iniciar("TURNOS")
+        EstadosCtrl1.SelectedValue = CInt(ValorEstado("TURNOS", "GENERADO"))
+        Timer1.Start()
     End Sub
     Private Sub EstablecerPrioridad()
         Dim VALOR As MsgBoxResult = MsgBox("Desea establecer este turno como prioridad?", MsgBoxStyle.YesNo, "ESTA SEGURO ?")
-
         If VALOR = MsgBoxResult.Yes Then
             Me.Estado = FormEstado.eAgregar
             establecercomoprioridad(Grilla.CurrentRow.Cells(0).Value)
-            LlamarSiguiente()
+            LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
         End If
     End Sub
 
@@ -299,7 +300,7 @@ Public Class FrmTurnosOperador
 
                     MsgBox("Se modificó el registro" & vbCrLf & "Tiempo: " & LblCronometro.Text, MsgBoxStyle.Information, G_AppName)
 
-
+                    LimpiarDatos()
                     Me.Estado = FormEstado.eVacio
 
 
@@ -521,20 +522,21 @@ ManejoErrores:
 
     End Function
 
-    Public Function BuscarPorID(ByVal ID As Integer, ByVal ID_Seccion As Integer) As Boolean
+    Public Function BuscarPorID(ByVal ID As Integer) As Boolean
 
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
 
 
-        oDs = oObjeto.BuscarPorID_Seccion(ID, ID_Seccion)
+        oDs = oObjeto.BuscarPorID(ID)
 
 
         If oDs.Tables(1).Rows.Count > 0 Then
             id_turno = oDs.Tables(1).Rows(0).Item("ID_Turno")
             TxtID_Turno.Text = oDs.Tables(1).Rows(0).Item("ID_Turno")
             TxtCodigo.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Codigo")))
-            TxtSeccion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Seccion")))
+            SeccionesCtrl1.Iniciar()
+            SeccionesCtrl1.SelectedValue = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("ID_Seccion")))
             TxtFechaObtencion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaObtencion")))
             TxtFechaLlamado.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaAtencion")))
 
@@ -570,7 +572,7 @@ ManejoErrores:
         Select Case EstadosCtrl1.SelectedValue
             Case CInt(ValorEstado("TURNOS", "GENERADO"))
                 Grilla.DataSource = Nothing
-                oDs = oObjeto.Turnos_BuscarGenerados(EstadosCtrl1.SelectedValue, SeccionesCtrl1.SelectedValue)
+                oDs = oObjeto.Turnos_BuscarTodosGeneradosSinSeccion
                 If oDs.Tables(0).Rows.Count > 0 Then
                     Grilla.DataSource = ""
                     Grilla.DataSource = oDs.Tables(0)
@@ -598,14 +600,11 @@ ManejoErrores:
                 If oDs.Tables(0).Rows.Count > 0 Then
                     Grilla.DataSource = ""
                     Grilla.DataSource = oDs.Tables(0)
-
                     Grilla.Columns(0).HeaderText = "#"
                     Grilla.Columns(0).Width = 30
                     Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
-
                     oDs = Nothing
                     oObjeto = Nothing
-
                     Return True
 
                 Else
@@ -630,17 +629,19 @@ ManejoErrores:
             Select Case EstadosCtrl1.SelectedValue
                 Case CInt(ValorEstado("TURNOS", "GENERADO"))
                     EstablecerPrioridad()
+                    startTime = Now.TimeOfDay
+                    Timer2.Start()
                 Case CInt(ValorEstado("TURNOS", "ATENDIENDO"))
-                    BuscarPorID(Grilla.CurrentRow.Cells(0).Value, SeccionesCtrl1.SelectedValue)
+                    BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
                     Me.Estado = FormEstado.eEdicion
                     startTime = Now.TimeOfDay
                     Timer2.Start()
                 Case CInt(ValorEstado("TURNOS", "LLAMADO"))
-                    BuscarPorID(Grilla.CurrentRow.Cells(0).Value, SeccionesCtrl1.SelectedValue)
+                    BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
                     Me.Estado = FormEstado.eAgregar
                     LblCronometro.Text = "0.00.00"
                 Case CInt(ValorEstado("TURNOS", "SOLUCIONADO"))
-                    BuscarPorID(Grilla.CurrentRow.Cells(0).Value, SeccionesCtrl1.SelectedValue)
+                    BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
                     Me.Estado = FormEstado.eConsulta
             End Select
 
@@ -655,7 +656,7 @@ ManejoErrores:
 
         If e.KeyCode = 13 Then
             e.Handled = True
-            BuscarPorID(Grilla.CurrentRow.Cells(0).Value, G_seccionID)
+            BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
             Grilla.Size = New System.Drawing.Size(646, 176)
             CmdGrid.Text = "+"
         End If
@@ -666,18 +667,25 @@ ManejoErrores:
 
 
 
-    Public Function LlamarSiguiente() As Boolean
+    Public Function LlamarSiguiente(ByVal ID As Integer) As Boolean
 
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
         Dim ods2 As New DataSet
         Dim ODS5 As New DataSet
-        Dim OT5 As New Turnos
+        Dim OT5 As New DataSet
         'obtenemos el id_turno del siguente turno
         If EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Generado") Then
-            oDs = oObjeto.ObtenerSiguiente(EstadosCtrl1.SelectedValue, SeccionesCtrl1.SelectedValue)
+            OT5 = oObjeto.BuscarPorID(ID)
+            If OT5.Tables(0).Rows.Count > 0 Then
+                oDs = oObjeto.ObtenerSiguiente(EstadosCtrl1.SelectedValue, OT5.Tables(1).Rows(0).Item("ID_Seccion"))
+                SeccionesCtrl1.SelectedValue = OT5.Tables(1).Rows(0).Item("ID_Seccion")
+            End If
+
 
             If oDs.Tables(0).Rows.Count > 0 Then
+                startTime = Now.TimeOfDay
+                Timer2.Start()
                 OrdenPantalla(oDs.Tables(0).Rows(0).Item("id_turno"))
                 TxtID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
                 ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"),
@@ -685,10 +693,9 @@ ManejoErrores:
                                        G_UserID,
                                        SeccionesCtrl1.SelectedValue)
 
-                BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"), SeccionesCtrl1.SelectedValue)
+                BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"))
 
                 EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Llamado")
-                G_seccionID = SeccionesCtrl1.SelectedValue
                 oDs = Nothing
                 oObjeto = Nothing
                 LlamarSiguiente = True
@@ -697,7 +704,7 @@ ManejoErrores:
 
                 oDs = Nothing
                 oObjeto = Nothing
-
+                OT5 = Nothing
                 LlamarSiguiente = False
 
                 Exit Function
@@ -705,8 +712,6 @@ ManejoErrores:
             End If
 
         End If
-
-
 
     End Function
 
@@ -792,16 +797,20 @@ ManejoErrores:
     End Sub
 
     Private Sub CmdAtender_Click(sender As System.Object, e As System.EventArgs) Handles CmdAtender.Click
-        Me.Estado = FormEstado.eEdicion
-        Try
-            Dim oObjeto As New Turnos
-            oObjeto.llamarTurno(TxtID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, SeccionesCtrl1.SelectedValue)
-            EstadosCtrl1.SelectedValue = ValorEstado("TURNOS", "ATENDIENDO")
-            startTime = Now.TimeOfDay
-            Timer2.Start()
-        Catch ex As Exception
-            MsgBox("Ocurrio un Error...", MsgBoxStyle.Critical, G_AppName)
-        End Try
+        If CmdAtender.Enabled = True Then
+
+            Try
+                Me.Estado = FormEstado.eEdicion
+                Dim oObjeto As New Turnos
+                oObjeto.llamarTurno(TxtID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, SeccionesCtrl1.SelectedValue)
+                EstadosCtrl1.SelectedValue = ValorEstado("TURNOS", "ATENDIENDO")
+                'startTime = Now.TimeOfDay
+                'Timer2.Start()
+            Catch ex As Exception
+                MsgBox("Ocurrio un Error...", MsgBoxStyle.Critical, G_AppName)
+            End Try
+        End If
+
 
     End Sub
     Private Sub Timer2_Tick(sender As Object, e As System.EventArgs) Handles Timer2.Tick
@@ -852,12 +861,15 @@ ManejoErrores:
     End Sub
 
     Private Sub CmdAgregar_Click(sender As Object, e As EventArgs) Handles CmdAgregar.Click
-        If Grilla.Rows.Count <= 0 Then
-            MsgBox("No hay ningún turno!", MsgBoxStyle.Exclamation, G_AppName)
-        Else
-            Me.Estado = FormEstado.eAgregar
-            LlamarSiguiente()
+        If CmdAgregar.Enabled = True Then
+            If Grilla.Rows.Count <= 0 Then
+                MsgBox("No hay ningún turno!", MsgBoxStyle.Exclamation, G_AppName)
+            Else
+                Me.Estado = FormEstado.eAgregar
+                LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
+            End If
         End If
+
     End Sub
 
     Private Sub CmdPrioridad_Click(sender As Object, e As EventArgs)
@@ -882,4 +894,14 @@ ManejoErrores:
             Timer2.Start()
         End If
     End Sub
+
+    Private Sub Grilla_CellClick(sender As Object, e As GridViewCellEventArgs) Handles Grilla.CellClick
+        Timer1.Stop()
+    End Sub
+
+    Private Sub Grilla_Click(sender As Object, e As EventArgs) Handles Grilla.Click
+        Timer1.Stop()
+    End Sub
+
+
 End Class

@@ -27,8 +27,8 @@
     <InstallUrl>http://179.43.114.86/INSTALADORES/CMR_DOS/</InstallUrl>
     <ProductName>CRM</ProductName>
     <PublisherName>COOVILROS LTDA</PublisherName>
-    <MinimumRequiredVersion>1.0.0.12</MinimumRequiredVersion>
-    <ApplicationRevision>13</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.17</MinimumRequiredVersion>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
