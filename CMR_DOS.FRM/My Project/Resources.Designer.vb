@@ -63,6 +63,26 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property atendido() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("atendido", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property llamado() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("llamado", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property LOGO() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("LOGO", resourceCulture)
@@ -76,6 +96,16 @@ Namespace My.Resources
         Friend ReadOnly Property logo_coop() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("logo coop", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property siguiente() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("siguiente", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

@@ -62,12 +62,13 @@ Public Class FrmTurnosOperador
                     DeshabilitarEdicion()
                     LimpiarDatos()
                     SeccionesCtrl1.Iniciar()
-                    CmdAtender.Enabled = False
-                    CmdAtender.Visible = False
+                    PictureAtender.Enabled = False
+                    PictureAtender.Visible = False
                     CmdAgregar.Visible = True
                     EstadosCtrl1.Enabled = True
                     SeccionesCtrl1.Enabled = True
-
+                    CmdAtendiendo.Enabled = False
+                    CmdAtendiendo.Visible = False
                     If aConsultar = True Then
                         Timer1.Enabled = True
                         Grilla.Enabled = True
@@ -96,12 +97,14 @@ Public Class FrmTurnosOperador
 
                 Case FormEstado.eAgregar
                     DeshabilitarEdicion()
-                    CmdAtender.Visible = True
-                    CmdAtender.Enabled = True
+                    PictureAtender.Visible = True
+                    PictureAtender.Enabled = True
                     CmdAgregar.Visible = False
                     CmdAceptar.Enabled = False
                     EstadosCtrl1.Enabled = False
                     SeccionesCtrl1.Enabled = False
+                    CmdAtendiendo.Enabled = False
+                    CmdAtendiendo.Visible = False
                     Grilla.Enabled = False
                     CmdCancelar.Enabled = True
                     CmdLimpiar.Enabled = False
@@ -118,8 +121,8 @@ Public Class FrmTurnosOperador
                     CmdExportar.Enabled = False
                     DeshabilitarEdicion()
                     SeccionesCtrl1.Iniciar()
-                    CmdAtender.Visible = False
-                    CmdAtender.Enabled = False
+                    PictureAtender.Visible = False
+                    PictureAtender.Enabled = False
                     CmdAgregar.Visible = True
 
 
@@ -130,9 +133,10 @@ Public Class FrmTurnosOperador
                     CmdAgregar.Visible = False
                     CmdCancelar.Enabled = True
                     CmdExportar.Enabled = False
-                    CmdAtender.Visible = True
+                    PictureAtender.Visible = False
+                    CmdAtendiendo.Visible = True
                     Grilla.Enabled = False
-                    CmdAtender.Enabled = False
+                    PictureAtender.Enabled = False
 
                     PanelColor.BackColor = Color.FromArgb(206, 81, 0)
                     LblAccion.Text = "ATENDIENDO"
@@ -628,6 +632,7 @@ ManejoErrores:
         If Grilla.Enabled = True Then
             Select Case EstadosCtrl1.SelectedValue
                 Case CInt(ValorEstado("TURNOS", "GENERADO"))
+                    PictureAtender.Focus()
                     EstablecerPrioridad()
                     startTime = Now.TimeOfDay
                     Timer2.Start()
@@ -796,23 +801,7 @@ ManejoErrores:
 
     End Sub
 
-    Private Sub CmdAtender_Click(sender As System.Object, e As System.EventArgs) Handles CmdAtender.Click
-        If CmdAtender.Enabled = True Then
 
-            Try
-                Me.Estado = FormEstado.eEdicion
-                Dim oObjeto As New Turnos
-                oObjeto.llamarTurno(TxtID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, SeccionesCtrl1.SelectedValue)
-                EstadosCtrl1.SelectedValue = ValorEstado("TURNOS", "ATENDIENDO")
-                'startTime = Now.TimeOfDay
-                'Timer2.Start()
-            Catch ex As Exception
-                MsgBox("Ocurrio un Error...", MsgBoxStyle.Critical, G_AppName)
-            End Try
-        End If
-
-
-    End Sub
     Private Sub Timer2_Tick(sender As Object, e As System.EventArgs) Handles Timer2.Tick
         Dim elapsed As TimeSpan = Now.TimeOfDay.Subtract(startTime)
 
@@ -903,5 +892,19 @@ ManejoErrores:
         Timer1.Stop()
     End Sub
 
+    Private Sub PictureAtender_Click(sender As Object, e As EventArgs) Handles PictureAtender.Click
+        If PictureAtender.Enabled = True Then
 
+            Try
+                Me.Estado = FormEstado.eEdicion
+                Dim oObjeto As New Turnos
+                oObjeto.llamarTurno(TxtID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, SeccionesCtrl1.SelectedValue)
+                EstadosCtrl1.SelectedValue = ValorEstado("TURNOS", "ATENDIENDO")
+                'startTime = Now.TimeOfDay
+                'Timer2.Start()
+            Catch ex As Exception
+                MsgBox("Ocurrio un Error...", MsgBoxStyle.Critical, G_AppName)
+            End Try
+        End If
+    End Sub
 End Class

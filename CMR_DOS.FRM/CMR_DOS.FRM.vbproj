@@ -657,9 +657,12 @@
     <Content Include="LogoCoovilros.ico" />
     <Content Include="logo_ideas_icon.ico" />
     <Content Include="Resources\Arrows-Back-icon.png" />
+    <Content Include="Resources\atendido.png" />
     <Content Include="Resources\icono_volver-2.png" />
     <Content Include="Resources\icono_volver-21.png" />
     <Content Include="Resources\icono_volver-2sad %282%29.png" />
+    <Content Include="Resources\llamado.gif" />
+    <Content Include="Resources\siguiente.png" />
     <None Include="Resources\logo coop.png" />
     <None Include="packages.config" />
     <None Include="Resources\LOGO.png" />

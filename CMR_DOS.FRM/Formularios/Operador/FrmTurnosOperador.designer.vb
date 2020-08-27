@@ -40,6 +40,8 @@ Partial Class FrmTurnosOperador
         Me.Grilla = New Telerik.WinControls.UI.RadGridView()
         Me.RadPageView1 = New Telerik.WinControls.UI.RadPageView()
         Me.RadPageViewPage1 = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.PictureAtender = New System.Windows.Forms.PictureBox()
+        Me.CmdAtendiendo = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.EstadosCtrl1 = New CMR_DOS.CTRL.EstadosCtrl()
         Me.CmdAgregar = New System.Windows.Forms.Button()
@@ -48,7 +50,6 @@ Partial Class FrmTurnosOperador
         Me.MotivosCtrl1 = New CMR_DOS.CTRL.MotivosCtrl()
         Me.ResolucionesCtrl1 = New CMR_DOS.CTRL.ResolucionesCtrl()
         Me.LblCronometro = New System.Windows.Forms.Label()
-        Me.CmdAtender = New System.Windows.Forms.Button()
         Me.btnRecargarMotivos = New Telerik.WinControls.UI.RadButton()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtObservaciones = New Controles_Ideas.TextData(Me.components)
@@ -73,6 +74,7 @@ Partial Class FrmTurnosOperador
         CType(Me.RadPageView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.RadPageView1.SuspendLayout()
         Me.RadPageViewPage1.SuspendLayout()
+        CType(Me.PictureAtender, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnRecargarMotivos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnRecargarResoluciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -244,6 +246,8 @@ Partial Class FrmTurnosOperador
         'RadPageViewPage1
         '
         Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.RadPageViewPage1.Controls.Add(Me.PictureAtender)
+        Me.RadPageViewPage1.Controls.Add(Me.CmdAtendiendo)
         Me.RadPageViewPage1.Controls.Add(Me.Label3)
         Me.RadPageViewPage1.Controls.Add(Me.EstadosCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.CmdAgregar)
@@ -252,7 +256,6 @@ Partial Class FrmTurnosOperador
         Me.RadPageViewPage1.Controls.Add(Me.MotivosCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.ResolucionesCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.LblCronometro)
-        Me.RadPageViewPage1.Controls.Add(Me.CmdAtender)
         Me.RadPageViewPage1.Controls.Add(Me.btnRecargarMotivos)
         Me.RadPageViewPage1.Controls.Add(Me.Label9)
         Me.RadPageViewPage1.Controls.Add(Me.txtObservaciones)
@@ -270,6 +273,29 @@ Partial Class FrmTurnosOperador
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 262)
         Me.RadPageViewPage1.Text = "Información"
+        '
+        'PictureAtender
+        '
+        Me.PictureAtender.Image = Global.CMR_DOS.FRM.My.Resources.Resources.llamado
+        Me.PictureAtender.Location = New System.Drawing.Point(475, 12)
+        Me.PictureAtender.Name = "PictureAtender"
+        Me.PictureAtender.Size = New System.Drawing.Size(131, 100)
+        Me.PictureAtender.TabIndex = 111
+        Me.PictureAtender.TabStop = False
+        '
+        'CmdAtendiendo
+        '
+        Me.CmdAtendiendo.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.CmdAtendiendo.BackgroundImage = Global.CMR_DOS.FRM.My.Resources.Resources.atendido
+        Me.CmdAtendiendo.FlatAppearance.BorderSize = 0
+        Me.CmdAtendiendo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CmdAtendiendo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CmdAtendiendo.ForeColor = System.Drawing.Color.Black
+        Me.CmdAtendiendo.Location = New System.Drawing.Point(475, 12)
+        Me.CmdAtendiendo.Name = "CmdAtendiendo"
+        Me.CmdAtendiendo.Size = New System.Drawing.Size(131, 100)
+        Me.CmdAtendiendo.TabIndex = 110
+        Me.CmdAtendiendo.UseVisualStyleBackColor = False
         '
         'Label3
         '
@@ -296,15 +322,15 @@ Partial Class FrmTurnosOperador
         'CmdAgregar
         '
         Me.CmdAgregar.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.CmdAgregar.BackgroundImage = Global.CMR_DOS.FRM.My.Resources.Resources.siguiente
         Me.CmdAgregar.FlatAppearance.BorderSize = 0
         Me.CmdAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmdAgregar.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CmdAgregar.ForeColor = System.Drawing.Color.Black
-        Me.CmdAgregar.Location = New System.Drawing.Point(466, 15)
+        Me.CmdAgregar.Location = New System.Drawing.Point(475, 12)
         Me.CmdAgregar.Name = "CmdAgregar"
         Me.CmdAgregar.Size = New System.Drawing.Size(131, 100)
         Me.CmdAgregar.TabIndex = 108
-        Me.CmdAgregar.Text = "Siguiente"
         Me.CmdAgregar.UseVisualStyleBackColor = False
         '
         'SeccionesCtrl1
@@ -355,25 +381,11 @@ Partial Class FrmTurnosOperador
         '
         Me.LblCronometro.AutoSize = True
         Me.LblCronometro.ForeColor = System.Drawing.Color.White
-        Me.LblCronometro.Location = New System.Drawing.Point(506, 118)
+        Me.LblCronometro.Location = New System.Drawing.Point(517, 117)
         Me.LblCronometro.Name = "LblCronometro"
         Me.LblCronometro.Size = New System.Drawing.Size(43, 13)
         Me.LblCronometro.TabIndex = 103
         Me.LblCronometro.Text = "0.00.00"
-        '
-        'CmdAtender
-        '
-        Me.CmdAtender.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.CmdAtender.FlatAppearance.BorderSize = 0
-        Me.CmdAtender.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.CmdAtender.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CmdAtender.ForeColor = System.Drawing.Color.Black
-        Me.CmdAtender.Location = New System.Drawing.Point(466, 15)
-        Me.CmdAtender.Name = "CmdAtender"
-        Me.CmdAtender.Size = New System.Drawing.Size(131, 100)
-        Me.CmdAtender.TabIndex = 102
-        Me.CmdAtender.Text = "Atender"
-        Me.CmdAtender.UseVisualStyleBackColor = False
         '
         'btnRecargarMotivos
         '
@@ -562,6 +574,7 @@ Partial Class FrmTurnosOperador
         Me.RadPageView1.ResumeLayout(False)
         Me.RadPageViewPage1.ResumeLayout(False)
         Me.RadPageViewPage1.PerformLayout()
+        CType(Me.PictureAtender, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnRecargarMotivos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BtnRecargarResoluciones, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -601,7 +614,6 @@ Partial Class FrmTurnosOperador
     Private WithEvents btnRecargarMotivos As Telerik.WinControls.UI.RadButton
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
-    Friend WithEvents CmdAtender As System.Windows.Forms.Button
     Friend WithEvents LblCronometro As System.Windows.Forms.Label
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
     Friend WithEvents MotivosCtrl1 As CTRL.MotivosCtrl
@@ -610,4 +622,6 @@ Partial Class FrmTurnosOperador
     Friend WithEvents TxtID_Turno As Controles_Ideas.TextData
     Friend WithEvents CmdAgregar As Button
     Friend WithEvents Label3 As Label
+    Friend WithEvents CmdAtendiendo As Button
+    Friend WithEvents PictureAtender As PictureBox
 End Class
