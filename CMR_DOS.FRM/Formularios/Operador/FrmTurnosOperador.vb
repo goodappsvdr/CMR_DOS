@@ -92,7 +92,7 @@ Public Class FrmTurnosOperador
                     'TxtID.Enabled = False
 
                     PanelColor.BackColor = Color.FromArgb(74, 97, 132)
-                    LblAccion.Text = "Listo"
+                    LblAccion.Text = "LISTO PARA EL SIGUIENTE TURNO"
                     Grilla.Focus()
 
                 Case FormEstado.eAgregar
@@ -111,7 +111,7 @@ Public Class FrmTurnosOperador
                     CmdExportar.Enabled = False
 
                     PanelColor.BackColor = Color.FromArgb(206, 81, 0)
-                    LblAccion.Text = "LLAMADO"
+                    LblAccion.Text = "ESPERANDO AL SOCIO..."
 
                 Case FormEstado.eConsulta
 
@@ -139,7 +139,7 @@ Public Class FrmTurnosOperador
                     PictureAtender.Enabled = False
 
                     PanelColor.BackColor = Color.FromArgb(206, 81, 0)
-                    LblAccion.Text = "ATENDIENDO"
+                    LblAccion.Text = "ATENDIENDO  EL TURNO " & G_CodTurno
 
                     EstadosCtrl1.Enabled = False
                     SeccionesCtrl1.Enabled = False
@@ -203,11 +203,9 @@ Public Class FrmTurnosOperador
         TxtFechaLlamado.Enabled = False
         TxtCodigo.Enabled = False
         ResolucionesCtrl1.Enabled = False
-
-        BtnRecargarResoluciones.Enabled = False
         MotivosCtrl1.Enabled = False
         txtObservaciones.Enabled = False
-        btnRecargarMotivos.Enabled = False
+        BoxesCtrl1.Enabled = False
         On Error GoTo 0
 
     End Sub
@@ -219,10 +217,10 @@ Public Class FrmTurnosOperador
 
 
         ResolucionesCtrl1.Enabled = True
-        BtnRecargarResoluciones.Enabled = True
+
         MotivosCtrl1.Enabled = True
         txtObservaciones.Enabled = True
-        btnRecargarMotivos.Enabled = True
+
         CmdAceptar.Enabled = True
         SeccionesCtrl1.Enabled = False
         On Error GoTo 0
@@ -238,6 +236,7 @@ Public Class FrmTurnosOperador
         ResolucionesCtrl1.Iniciar()
         MotivosCtrl1.Iniciar()
         SeccionesCtrl1.Iniciar()
+        SeccionesCtrl1.SelectedValue = CInt(ValorParametro("SECCION", "SINASIGNAR"))
         TxtFechaObtencion.ReadOnly = True
         TxtFechaLlamado.ReadOnly = True
         TxtCodigo.ReadOnly = True
@@ -247,6 +246,7 @@ Public Class FrmTurnosOperador
         EstadosCtrl1.Iniciar("TURNOS")
         EstadosCtrl1.SelectedValue = CInt(ValorEstado("TURNOS", "GENERADO"))
         Timer1.Start()
+        BoxesCtrl1.Iniciar_conidusuario(G_UserID)
     End Sub
     Private Sub EstablecerPrioridad()
         Dim VALOR As MsgBoxResult = MsgBox("Desea establecer este turno como prioridad?", MsgBoxStyle.YesNo, "ESTA SEGURO ?")
@@ -286,19 +286,29 @@ Public Class FrmTurnosOperador
 
 
         Dim oObjeto As New Turnos
-
+        Dim Resultado As Integer = 0
+        Dim oTurno As New Turnos
+        Dim oDS As New DataSet
         Try
 
             Select Case Me.Estado
 
                 Case FormEstado.eEdicion
                     IniciaTransaccion()
-                    oObjeto.Resolver(transaccion, TxtID_Turno.Text,
+                    Resultado = oObjeto.Resolver(transaccion, TxtID_Turno.Text,
                                     ValorEstado("TURNOS", "SOLUCIONADO"),
                                     ResolucionesCtrl1.SelectedValue,
                                     txtObservaciones.Text,
                                     MotivosCtrl1.SelectedValue,
                                     G_UserID)
+
+                    If ResolucionesCtrl1.SelectedValue = CInt(ValorParametro("RESOLUCION", "TRANFERIDO")) Then
+
+                        TranferirTurno(SeccionesCtrl1.SelectedValue)
+
+                        oTurno.AgregarTranferido(TxtID_Turno.Text, id_turno, BoxesCtrl1.SelectedValue, ValorEstado("Turnos", "GENERADO"))
+
+                    End If
                     FinalizaTransaccion()
                     Timer2.Stop()
 
@@ -522,6 +532,31 @@ ManejoErrores:
 
         End If
 
+        If ResolucionesCtrl1.SelectedValue = CInt(ValorParametro("RESOLUCION", "TRANFERIDO")) And SeccionesCtrl1.SelectedValue = CInt(ValorParametro("SECCION", "SINASIGNAR")) Then
+
+            MsgBox("Seleccione una Sección...", MsgBoxStyle.Exclamation, G_AppName)
+            Validar = False
+            Exit Function
+
+        End If
+
+        If ResolucionesCtrl1.SelectedValue = CInt(ValorParametro("RESOLUCION", "TRANFERIDO")) And SeccionesCtrl1.SelectedValue = G_SeccionID Then
+
+            MsgBox("No se puede tranferir el turno a la misma sección...", MsgBoxStyle.Exclamation, G_AppName)
+            Validar = False
+            Exit Function
+
+        End If
+        If ResolucionesCtrl1.SelectedValue = CInt(ValorParametro("RESOLUCION", "TRANFERIDO")) And BoxesCtrl1.SelectedValue = G_BoxID Then
+
+            MsgBox("No se puede tranferir el turno a su mismo Box...", MsgBoxStyle.Exclamation, G_AppName)
+            Validar = False
+            Exit Function
+
+        End If
+
+
+
         Validar = True
 
     End Function
@@ -541,11 +576,15 @@ ManejoErrores:
             TxtCodigo.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("Codigo")))
             SeccionesCtrl1.Iniciar()
             SeccionesCtrl1.SelectedValue = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("ID_Seccion")))
+            G_SeccionID = oDs.Tables(1).Rows(0).Item("ID_Seccion")
             TxtFechaObtencion.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaObtencion")))
             TxtFechaLlamado.Text = LTrim(RTrim(oDs.Tables(1).Rows(0).Item("FechaAtencion")))
-
+            G_CodTurno = oDs.Tables(1).Rows(0).Item("Codigo")
             ResolucionesCtrl1.Iniciar()
+            ResolucionesCtrl1.SelectedValue = IIf(IsDBNull(oDs.Tables(1).Rows(0).Item("id_resolucion")), 1, oDs.Tables(1).Rows(0).Item("id_resolucion"))
             MotivosCtrl1.Iniciar()
+            MotivosCtrl1.SelectedValue = IIf(IsDBNull(oDs.Tables(1).Rows(0).Item("id_motivo")), 1, oDs.Tables(1).Rows(0).Item("id_motivo"))
+
 
             oDs = Nothing
             oObjeto = Nothing
@@ -576,7 +615,7 @@ ManejoErrores:
         Select Case EstadosCtrl1.SelectedValue
             Case CInt(ValorEstado("TURNOS", "GENERADO"))
                 Grilla.DataSource = Nothing
-                oDs = oObjeto.Turnos_BuscarTodosGeneradosSinSeccion
+                oDs = oObjeto.Turnos_BuscarTodosGeneradosSinSeccion(G_BoxID)
                 If oDs.Tables(0).Rows.Count > 0 Then
                     Grilla.DataSource = ""
                     Grilla.DataSource = oDs.Tables(0)
@@ -634,8 +673,6 @@ ManejoErrores:
                 Case CInt(ValorEstado("TURNOS", "GENERADO"))
                     PictureAtender.Focus()
                     EstablecerPrioridad()
-                    startTime = Now.TimeOfDay
-                    Timer2.Start()
                 Case CInt(ValorEstado("TURNOS", "ATENDIENDO"))
                     BuscarPorID(Grilla.CurrentRow.Cells(0).Value)
                     Me.Estado = FormEstado.eEdicion
@@ -685,12 +722,12 @@ ManejoErrores:
             If OT5.Tables(0).Rows.Count > 0 Then
                 oDs = oObjeto.ObtenerSiguiente(EstadosCtrl1.SelectedValue, OT5.Tables(1).Rows(0).Item("ID_Seccion"))
                 SeccionesCtrl1.SelectedValue = OT5.Tables(1).Rows(0).Item("ID_Seccion")
+                G_CodTurno = OT5.Tables(1).Rows(0).Item("Codigo")
             End If
 
 
             If oDs.Tables(0).Rows.Count > 0 Then
-                startTime = Now.TimeOfDay
-                Timer2.Start()
+
                 OrdenPantalla(oDs.Tables(0).Rows(0).Item("id_turno"))
                 TxtID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
                 ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"),
@@ -765,7 +802,7 @@ ManejoErrores:
 
 
 
-    Private Sub RadButton1_Click(sender As System.Object, e As System.EventArgs) Handles BtnRecargarResoluciones.Click
+    Private Sub RadButton1_Click(sender As System.Object, e As System.EventArgs)
 
         ResolucionesCtrl1.Iniciar()
 
@@ -789,16 +826,19 @@ ManejoErrores:
 
     End Sub
 
-    Private Sub btnRecargarMotivos_Click(sender As System.Object, e As System.EventArgs) Handles btnRecargarMotivos.Click
+    Private Sub btnRecargarMotivos_Click(sender As System.Object, e As System.EventArgs)
 
         MotivosCtrl1.Iniciar()
 
     End Sub
-
+    Dim Intervalo = 0
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
-
+        Timer1.Interval = 1000
         BuscarTodos()
-
+        Intervalo = Intervalo + 1
+        If Intervalo = 2 Then
+            Intervalo = 0
+        End If
     End Sub
 
 
@@ -900,11 +940,64 @@ ManejoErrores:
                 Dim oObjeto As New Turnos
                 oObjeto.llamarTurno(TxtID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, SeccionesCtrl1.SelectedValue)
                 EstadosCtrl1.SelectedValue = ValorEstado("TURNOS", "ATENDIENDO")
-                'startTime = Now.TimeOfDay
-                'Timer2.Start()
+                startTime = Now.TimeOfDay
+                Timer2.Start()
             Catch ex As Exception
                 MsgBox("Ocurrio un Error...", MsgBoxStyle.Critical, G_AppName)
             End Try
         End If
     End Sub
+
+    Private Sub txtObservaciones_TextChanged(sender As Object, e As EventArgs) Handles txtObservaciones.TextChanged
+
+    End Sub
+    Private Sub TranferirTurno(ByVal IDSeccion As Integer)
+
+
+        Dim oSeccionesTipos As New SeccionesTipo
+        Dim oTurno As New Turnos
+        Dim oDsConsultaTurno As New DataSet
+        Dim oDsTurno As New DataSet
+        Dim oDS As New DataSet
+        oDS = oSeccionesTipos.ConsultaParaAgregarTurno(IDSeccion)
+        oDsConsultaTurno = oTurno.BuscarporSeccionyFecha(CType(oDS.Tables(0).Rows(0).Item("Id_Seccion"), Integer))
+        If oDsConsultaTurno.Tables(0).Rows.Count > 0 Then
+            id_turno = oTurno.Agregar(oDS.Tables(0).Rows(0).Item("id_Seccion"),
+                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
+                                      ValorEstado("Turnos", "GENERADO"),
+                                      CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1, True)
+
+
+        Else
+            id_turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
+                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
+                                      ValorEstado("Turnos", "GENERADO"), True)
+
+
+        End If
+
+    End Sub
+
+    Private Sub ResolucionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles ResolucionesCtrl1.SelectionChangeCommitted
+        If ResolucionesCtrl1.SelectedValue = CInt(ValorParametro("RESOLUCION", "TRANFERIDO")) Then
+            SeccionesCtrl1.Focus()
+            SeccionesCtrl1.SelectedValue = CInt(ValorParametro("SECCION", "SINASIGNAR"))
+            BoxesCtrl1.Iniciar()
+            BoxesCtrl1.Enabled = True
+            SeccionesCtrl1.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Grilla_RowFormatting(sender As Object, e As RowFormattingEventArgs) Handles Grilla.RowFormatting
+        If Intervalo = 1 Then
+            If e.RowElement.RowInfo.Cells("Estado").Value = "GENERADO" And e.RowElement.RowInfo.Cells("Prioridad").Value = "PRIORIDAD" Then
+                e.RowElement.ForeColor = Color.Black
+                e.RowElement.BackColor = Color.Yellow
+
+            End If
+        End If
+
+
+    End Sub
+
 End Class

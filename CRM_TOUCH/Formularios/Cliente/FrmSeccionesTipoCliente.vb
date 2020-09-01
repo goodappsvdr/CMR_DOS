@@ -91,7 +91,7 @@ Public Class FrmSeccionesTipoCliente
             ID_Turno = oTurno.Agregar(oDS.Tables(0).Rows(0).Item("id_Seccion"),
                                       oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
                                       ValorEstado("Turnos", "GENERADO"),
-                                      CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1)
+                                      CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1, False)
             '  ImprimirTurno(ID_Turno)
             idturno = ID_Turno
             PrintDocument1.PrinterSettings.DefaultPageSettings.Landscape = False
@@ -100,7 +100,7 @@ Public Class FrmSeccionesTipoCliente
         Else
             ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
                                       oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
-                                      ValorEstado("Turnos", "GENERADO"))
+                                      ValorEstado("Turnos", "GENERADO"), False)
             ' ImprimirTurno(ID_Turno)
             idturno = ID_Turno
 
@@ -281,14 +281,14 @@ Public Class FrmSeccionesTipoCliente
             ID_Turno = oTurno.Agregar(oDS.Tables(0).Rows(0).Item("id_Seccion"),
                                       oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
                                       ValorEstado("Turnos", "GENERADO"),
-                                      CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1)
+                                      CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1, False)
             '  ImprimirTurno(ID_Turno)
             idturno = ID_Turno
             PrintDocument1.Print()
         Else
             ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
                                       oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
-                                      ValorEstado("Turnos", "GENERADO"))
+                                      ValorEstado("Turnos", "GENERADO"), False)
             ' ImprimirTurno(ID_Turno)
             idturno = ID_Turno
             PrintDocument1.Print()

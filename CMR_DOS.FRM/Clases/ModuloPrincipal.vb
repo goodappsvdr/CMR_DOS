@@ -17,10 +17,11 @@ Module ModuloPrincipal
 
     Public G_SecciontipoTable As DataSet
     Public G_nombreSeccion As String
-    Public G_seccionID As Integer
+    Public G_SeccionID As Integer
     Public G_BoxID As Integer = Nothing
     Public conexion As SqlConnection
     Public transaccion As SqlTransaction
+    Public G_CodTurno As String
 
     ''variables de reportes:
     Public R_IDEstado As Double

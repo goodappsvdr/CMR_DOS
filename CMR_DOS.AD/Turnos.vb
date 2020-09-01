@@ -68,22 +68,22 @@ Public Class Turnos
 
     End Function
     'BuscarPorID
-    Public Function AgregarPrimero(id_seccion As Double, codigoSeccion As String, id_estado As Integer) As Double
+    Public Function AgregarPrimero(id_seccion As Double, codigoSeccion As String, id_estado As Integer, ByVal Prioridad As Boolean) As Double
 
         Try
 
-            Return oDatabase.ExecuteScalar("Turnos_AgregarPrimero", id_seccion, codigoSeccion, id_estado)
+            Return oDatabase.ExecuteScalar("Turnos_AgregarPrimero", id_seccion, codigoSeccion, id_estado, Prioridad)
 
         Catch ex As System.Exception
             Throw ex
         End Try
 
     End Function
-    Public Function Agregar(id_seccion As Double, codigoSeccion As String, id_estado As Integer, nroturno As Integer) As Double
+    Public Function Agregar(id_seccion As Double, codigoSeccion As String, id_estado As Integer, nroturno As Integer, ByVal Prioridad As Boolean) As Double
 
         Try
 
-            Return oDatabase.ExecuteScalar("Turnos_Agregar", id_seccion, codigoSeccion, id_estado, nroturno)
+            Return oDatabase.ExecuteScalar("Turnos_Agregar", id_seccion, codigoSeccion, id_estado, nroturno, Prioridad)
 
         Catch ex As System.Exception
             Throw ex
@@ -144,9 +144,9 @@ Public Class Turnos
             Throw ex
         End Try
     End Function
-    Function Turnos_BuscarTodosGeneradosSinSeccion() As DataSet
+    Function Turnos_BuscarTodosGeneradosSinSeccion(ByVal ID_Box As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Turnos_BuscarTodosGeneradosSinSeccion")
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarTodosGeneradosSinSeccion", ID_Box)
         Catch ex As Exception
             Throw ex
         End Try
@@ -176,9 +176,9 @@ Public Class Turnos
 
     End Function
 
-    Function Resolver(ByVal Tran As SqlTransaction, id_turno As Double, id_estado As Double, id_resolucion As Double, observaciones As String, id_motivo As Double, id_usuario As Double) As DataSet
+    Function Resolver(ByVal Tran As SqlTransaction, id_turno As Double, id_estado As Double, id_resolucion As Double, observaciones As String, id_motivo As Double, id_usuario As Double) As Double
         Try
-            Return oDatabase.ExecuteDataSet("Turnos_Resolucion", id_turno, id_estado, id_resolucion, observaciones, id_motivo, id_usuario)
+            Return oDatabase.ExecuteScalar("Turnos_Resolucion", id_turno, id_estado, id_resolucion, observaciones, id_motivo, id_usuario)
         Catch ex As Exception
             Throw ex
         End Try
@@ -213,6 +213,14 @@ Public Class Turnos
     Function BuscarTodos_Admin(ByVal ID_Estado As Double) As DataSet
         Try
             Return oDatabase.ExecuteDataSet("Turnos_BuscarPorEstado_Admin", ID_Estado)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Function AgregarTranferido(ByVal ID_Turno As Double, ByVal ID_NuevoTurno As Integer, ByVal ID_Box As Integer, ByVal ID_Estado As Double) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("TurnosTranferidos_Agregar", ID_Turno, ID_NuevoTurno, ID_Box, ID_Estado)
         Catch ex As Exception
             Throw ex
         End Try
