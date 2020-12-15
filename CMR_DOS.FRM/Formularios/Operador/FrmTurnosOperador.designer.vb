@@ -40,6 +40,8 @@ Partial Class FrmTurnosOperador
         Me.Grilla = New Telerik.WinControls.UI.RadGridView()
         Me.RadPageView1 = New Telerik.WinControls.UI.RadPageView()
         Me.RadPageViewPage1 = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.BoxesCtrl1 = New CMR_DOS.CTRL.BoxesCtrl()
         Me.PictureAtender = New System.Windows.Forms.PictureBox()
         Me.CmdAtendiendo = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -61,8 +63,6 @@ Partial Class FrmTurnosOperador
         Me.TxtFechaObtencion = New Controles_Ideas.TextData(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.BoxesCtrl1 = New CMR_DOS.CTRL.BoxesCtrl()
-        Me.Label8 = New System.Windows.Forms.Label()
         Me.PanelColor.SuspendLayout()
         CType(Me.CmdLimpiar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmdCancelar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -271,6 +271,28 @@ Partial Class FrmTurnosOperador
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 262)
         Me.RadPageViewPage1.Text = "Información"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.Label8.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.Label8.Location = New System.Drawing.Point(130, 80)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(28, 13)
+        Me.Label8.TabIndex = 113
+        Me.Label8.Text = "BOX"
+        '
+        'BoxesCtrl1
+        '
+        Me.BoxesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.BoxesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.BoxesCtrl1.FormattingEnabled = True
+        Me.BoxesCtrl1.Location = New System.Drawing.Point(165, 77)
+        Me.BoxesCtrl1.Name = "BoxesCtrl1"
+        Me.BoxesCtrl1.Size = New System.Drawing.Size(271, 21)
+        Me.BoxesCtrl1.TabIndex = 112
         '
         'PictureAtender
         '
@@ -506,28 +528,6 @@ Partial Class FrmTurnosOperador
         '
         'Timer2
         '
-        '
-        'BoxesCtrl1
-        '
-        Me.BoxesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.BoxesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.BoxesCtrl1.FormattingEnabled = True
-        Me.BoxesCtrl1.Location = New System.Drawing.Point(165, 77)
-        Me.BoxesCtrl1.Name = "BoxesCtrl1"
-        Me.BoxesCtrl1.Size = New System.Drawing.Size(271, 21)
-        Me.BoxesCtrl1.TabIndex = 112
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.Label8.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label8.Location = New System.Drawing.Point(130, 80)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(28, 13)
-        Me.Label8.TabIndex = 113
-        Me.Label8.Text = "BOX"
         '
         'FrmTurnosOperador
         '

@@ -741,7 +741,7 @@ ManejoErrores:
                 oDs = Nothing
                 oObjeto = Nothing
                 LlamarSiguiente = True
-
+                Exit Function
             Else
 
                 oDs = Nothing
@@ -754,7 +754,7 @@ ManejoErrores:
             End If
 
         End If
-
+        Return False
     End Function
 
     Private Sub OrdenPantalla(id_turno As Integer)
@@ -999,5 +999,6 @@ ManejoErrores:
 
 
     End Sub
+
 
 End Class
