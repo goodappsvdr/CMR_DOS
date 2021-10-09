@@ -71,10 +71,10 @@
     <ApplicationIcon>LogoCoovilros.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>E52257B1C07050FE232D27187EA04E3E82582384</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>1F2D9C8C5358D392260B93309B522ADEA7D53074</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>CMR_DOS.FRM_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>CMR_DOS.FRM_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -640,6 +640,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="CMR_DOS.FRM_1_TemporaryKey.pfx" />
     <None Include="CMR_DOS.FRM_TemporaryKey.pfx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

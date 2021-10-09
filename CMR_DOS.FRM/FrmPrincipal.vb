@@ -80,5 +80,15 @@ Public Class FrmPrincipal
 
     End Sub
 
+    Private Sub FrmPrincipal_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        If MsgBox("Esta seguro de Salir?",
+           vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
 
+            Dim oUsuarioLogin As New UsuariosLogin
+            oUsuarioLogin.Modificar(G_UsuarioLogin, FechaHoraServidor, ValorEstado("OPERARIO", "OCUPADO"), False)
+
+
+            Application.Exit()
+        End If
+    End Sub
 End Class

@@ -190,56 +190,7 @@ Public Class FrmSeccionesTipoCliente
 
     End Sub
 
-    Private Sub ImprimirTurno(id_turno As Integer)
-        Dim ods As New DataSet
-        Dim oTurno As New Turnos
-        ods = oTurno.BuscarPorID(id_turno)
-        Dim NombreSeccion As String = ods.Tables(0).Rows(0).Item("Seccion")
-        Dim fechaObtencion As DateTime = ods.Tables(0).Rows(0).Item("FechaObtencion")
-        Dim Codigo As String = ods.Tables(0).Rows(0).Item("Codigo")
-        Dim NroTurno As Integer = ods.Tables(0).Rows(0).Item("nroTurno")
 
-
-        Dim imp As New Imprimir
-
-        If imp.OpenPort(ValorParametro("PUERTO", "IMPRESORA"), 9600, Ports.Parity.None, 8, Ports.StopBits.One) = True Then
-
-            imp.SendCommand(imp.CMD_RESET)
-            imp.SendCommand(imp.CMD_JUSTIFICAR1)
-            imp.SendCommand(imp.CMD_NORMAL2)
-            imp.SendText(ValorParametro("TICKET", "ENCABEZADO"))
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendText(ValorParametro("TICKET", "TITULO"))
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendText("********************************")
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendCommand(imp.CMD_NORMAL2)
-            imp.SendText(fechaObtencion)
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendCommand(imp.CMD_NORMAL3)
-            imp.SendText(NombreSeccion)
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendCommand(imp.CMD_NORMAL5)
-            imp.SendText(ValorParametro("TICKET", "OBJETO"))
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendText(Codigo & NroTurno)
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendCommand(imp.CMD_CR)
-            'imp.SendCommand(imp.CMD_BARRA2)
-            'imp.SendText(idturno)
-            'imp.SendCommand(imp.CMD_BARRA_FIN)
-
-            imp.SendCommand(imp.CMD_NORMAL2)
-            imp.SendText("********************************")
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendText(ValorParametro("TICKET", "PIE"))
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendCommand(imp.CMD_LF4)
-            imp.SendCommand(imp.CMD_CR)
-            imp.SendCommand(imp.CMD_CORTAR)
-            imp.Cerrar()
-        End If
-    End Sub
 
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         LblFechayHs.Text = DateTime.Now.ToString
@@ -294,6 +245,11 @@ Public Class FrmSeccionesTipoCliente
             PrintDocument1.Print()
 
         End If
+        Dim ID_Usuario As Integer = BuscarOperadorLibre(ID_Turno)
+        If ID_Usuario > 0 Then
+            LlamarSiguiente(ID_Turno, IDSeccion, ID_Usuario)
+
+        End If
         Dim os As New Secciones
         Dim G_SeccionTable As DataTable = os.Secciones_BuscarTodosporEstadoyUsuario(G_UserID).Tables(0)
         If G_SeccionTable.Rows.Count > 1 Then
@@ -335,5 +291,85 @@ Public Class FrmSeccionesTipoCliente
     Private Sub Btn_Otros_Click(sender As Object, e As EventArgs) Handles Btn_Otros.Click
         ImprimirTurnoPicture(CInt(ValorParametro("SECCION", "OTROS")))
     End Sub
+    Public Function LlamarSiguiente(ByVal ID As Integer, ByVal Seccion As Integer, ByVal ID_Usuario As Integer) As Boolean
+
+        Dim oDs As New DataSet
+        Dim oObjeto As New Turnos
+        Dim ods2 As New DataSet
+
+
+
+        OrdenPantalla(ID)
+
+        ods2 = oObjeto.llamarTurno(ID,
+                                   ValorEstado("Turnos", "Llamado"),
+                                    ID_Usuario,
+                                    Seccion)
+
+
+
+
+
+    End Function
+
+    Private Sub OrdenPantalla(id_turno As Integer)
+
+        Dim ods As New DataSet
+        Dim ot As New Turnos
+        Dim ultimo As Integer
+        ods = ot.Turnos_Buscarultimoordenpantalla()
+        If ods.Tables(0).Rows.Count < 1 Then
+
+            ultimo = 1
+        Else
+
+            If ods.Tables(0).Rows(0).Item("OrdenPantalla").ToString = "" Then
+
+                ultimo = 1
+            Else
+
+                ultimo = ods.Tables(0).Rows(0).Item("OrdenPantalla")
+                ultimo = ultimo + 1
+
+            End If
+
+        End If
+
+        Dim ods2 As New DataSet
+        Dim oObjeto As New Turnos
+
+        ods = oObjeto.Turnos_AgregarOrdenPantalla(id_turno, ultimo)
+
+
+    End Sub
+    Private Function BuscarOperadorLibre(ByVal ID_Turno As Integer) As Integer
+        Dim oDs As New DataSet
+        Dim ods2 As New DataSet
+        Dim oObjeto As New Turnos
+        Dim oUsuarioTurno As New UsuariosTurnos
+        Dim oUsuarioLogin As New UsuariosLogin
+        oDs = oObjeto.Turnos_BuscarOperadorLibre
+
+        If oDs.Tables(0).Rows.Count > 0 Then
+            ods2 = oUsuarioTurno.BuscarPorID_UsuarioLogin(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"))
+            If ods2.Tables(0).Rows.Count = 0 Then
+                oUsuarioTurno.Agregar(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"),
+                                      oDs.Tables(0).Rows(0).Item("ID_Usuario"),
+                                      ID_Turno,
+                                      FechaHoraServidor,
+                                      ValorEstado("Turnos", "Llamado"))
+            Else
+                oUsuarioTurno.Modificar(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"),
+                                        ID_Turno,
+                                        FechaHoraServidor,
+                                         ValorEstado("Turnos", "Llamado"))
+            End If
+
+            oUsuarioLogin.Modificar(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"), ValorEstado("OPERARIO", "OCUPADO"))
+            Return oDs.Tables(0).Rows(0).Item("ID_Usuario")
+        Else
+            Return 0
+        End If
+    End Function
 
 End Class

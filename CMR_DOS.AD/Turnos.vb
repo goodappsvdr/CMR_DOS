@@ -55,6 +55,17 @@ Public Class Turnos
         End Try
 
     End Function
+    Public Function BuscarUltimoTurno(ByVal ID_Operador As Double) As DataSet
+
+        Try
+
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarUltimoAtendido_PorOperador", ID_Operador)
+
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+
+    End Function
 
     Public Function BuscarPorID_Seccion(ByVal id_turno As Double, ByVal ID_Seccion As Integer) As DataSet
 
@@ -175,7 +186,13 @@ Public Class Turnos
         End Try
 
     End Function
-
+    Function Resolver(id_turno As Double, id_estado As Double, id_resolucion As Double, observaciones As String, id_motivo As Double, id_usuario As Double) As Double
+        Try
+            Return oDatabase.ExecuteScalar("Turnos_Resolucion", id_turno, id_estado, id_resolucion, observaciones, id_motivo, id_usuario)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Function Resolver(ByVal Tran As SqlTransaction, id_turno As Double, id_estado As Double, id_resolucion As Double, observaciones As String, id_motivo As Double, id_usuario As Double) As Double
         Try
             Return oDatabase.ExecuteScalar("Turnos_Resolucion", id_turno, id_estado, id_resolucion, observaciones, id_motivo, id_usuario)
@@ -225,6 +242,12 @@ Public Class Turnos
             Throw ex
         End Try
     End Function
-
+    Function Turnos_BuscarOperadorLibre() As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("Operadores_BuscarLibre")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 End Class

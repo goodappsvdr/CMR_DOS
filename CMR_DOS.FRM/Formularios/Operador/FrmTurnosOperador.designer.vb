@@ -40,6 +40,8 @@ Partial Class FrmTurnosOperador
         Me.Grilla = New Telerik.WinControls.UI.RadGridView()
         Me.RadPageView1 = New Telerik.WinControls.UI.RadPageView()
         Me.RadPageViewPage1 = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.CmdOcupado = New FontAwesome.Sharp.IconButton()
+        Me.CmdDisponible = New FontAwesome.Sharp.IconButton()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.BoxesCtrl1 = New CMR_DOS.CTRL.BoxesCtrl()
         Me.PictureAtender = New System.Windows.Forms.PictureBox()
@@ -104,7 +106,7 @@ Partial Class FrmTurnosOperador
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(142, 31)
+        Me.Label1.Location = New System.Drawing.Point(142, 35)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(18, 13)
         Me.Label1.TabIndex = 40
@@ -244,6 +246,8 @@ Partial Class FrmTurnosOperador
         'RadPageViewPage1
         '
         Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.RadPageViewPage1.Controls.Add(Me.CmdOcupado)
+        Me.RadPageViewPage1.Controls.Add(Me.CmdDisponible)
         Me.RadPageViewPage1.Controls.Add(Me.Label8)
         Me.RadPageViewPage1.Controls.Add(Me.BoxesCtrl1)
         Me.RadPageViewPage1.Controls.Add(Me.PictureAtender)
@@ -271,6 +275,43 @@ Partial Class FrmTurnosOperador
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 262)
         Me.RadPageViewPage1.Text = "Información"
+        '
+        'CmdOcupado
+        '
+        Me.CmdOcupado.FlatAppearance.BorderSize = 0
+        Me.CmdOcupado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CmdOcupado.Flip = FontAwesome.Sharp.FlipOrientation.Normal
+        Me.CmdOcupado.ForeColor = System.Drawing.Color.Red
+        Me.CmdOcupado.IconChar = FontAwesome.Sharp.IconChar.Ban
+        Me.CmdOcupado.IconColor = System.Drawing.Color.Red
+        Me.CmdOcupado.IconSize = 52
+        Me.CmdOcupado.Location = New System.Drawing.Point(3, 3)
+        Me.CmdOcupado.Name = "CmdOcupado"
+        Me.CmdOcupado.Rotation = 0R
+        Me.CmdOcupado.Size = New System.Drawing.Size(98, 81)
+        Me.CmdOcupado.TabIndex = 115
+        Me.CmdOcupado.Text = "OCUPADO"
+        Me.CmdOcupado.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CmdOcupado.UseVisualStyleBackColor = True
+        '
+        'CmdDisponible
+        '
+        Me.CmdDisponible.FlatAppearance.BorderSize = 0
+        Me.CmdDisponible.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CmdDisponible.Flip = FontAwesome.Sharp.FlipOrientation.Normal
+        Me.CmdDisponible.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.CmdDisponible.IconChar = FontAwesome.Sharp.IconChar.Check
+        Me.CmdDisponible.IconColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.CmdDisponible.IconSize = 52
+        Me.CmdDisponible.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CmdDisponible.Location = New System.Drawing.Point(3, 3)
+        Me.CmdDisponible.Name = "CmdDisponible"
+        Me.CmdDisponible.Rotation = 0R
+        Me.CmdDisponible.Size = New System.Drawing.Size(98, 81)
+        Me.CmdDisponible.TabIndex = 114
+        Me.CmdDisponible.Text = "LIBRE"
+        Me.CmdDisponible.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CmdDisponible.UseVisualStyleBackColor = True
         '
         'Label8
         '
@@ -323,7 +364,7 @@ Partial Class FrmTurnosOperador
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label3.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label3.Location = New System.Drawing.Point(271, 29)
+        Me.Label3.Location = New System.Drawing.Point(271, 33)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(48, 13)
         Me.Label3.TabIndex = 109
@@ -334,7 +375,7 @@ Partial Class FrmTurnosOperador
         Me.EstadosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.EstadosCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.EstadosCtrl1.FormattingEnabled = True
-        Me.EstadosCtrl1.Location = New System.Drawing.Point(325, 26)
+        Me.EstadosCtrl1.Location = New System.Drawing.Point(325, 30)
         Me.EstadosCtrl1.Name = "EstadosCtrl1"
         Me.EstadosCtrl1.Size = New System.Drawing.Size(111, 21)
         Me.EstadosCtrl1.TabIndex = 96
@@ -369,7 +410,7 @@ Partial Class FrmTurnosOperador
         Me.TxtID_Turno.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtID_Turno.ColorLeave = System.Drawing.Color.White
         Me.TxtID_Turno.Enabled = False
-        Me.TxtID_Turno.Location = New System.Drawing.Point(165, 25)
+        Me.TxtID_Turno.Location = New System.Drawing.Point(165, 28)
         Me.TxtID_Turno.Name = "TxtID_Turno"
         Me.TxtID_Turno.Size = New System.Drawing.Size(69, 22)
         Me.TxtID_Turno.TabEnable = True
@@ -382,7 +423,7 @@ Partial Class FrmTurnosOperador
         Me.MotivosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.MotivosCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.MotivosCtrl1.FormattingEnabled = True
-        Me.MotivosCtrl1.Location = New System.Drawing.Point(165, 151)
+        Me.MotivosCtrl1.Location = New System.Drawing.Point(165, 148)
         Me.MotivosCtrl1.Name = "MotivosCtrl1"
         Me.MotivosCtrl1.Size = New System.Drawing.Size(271, 21)
         Me.MotivosCtrl1.TabIndex = 106
@@ -392,7 +433,7 @@ Partial Class FrmTurnosOperador
         Me.ResolucionesCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ResolucionesCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.ResolucionesCtrl1.FormattingEnabled = True
-        Me.ResolucionesCtrl1.Location = New System.Drawing.Point(165, 177)
+        Me.ResolucionesCtrl1.Location = New System.Drawing.Point(165, 171)
         Me.ResolucionesCtrl1.Name = "ResolucionesCtrl1"
         Me.ResolucionesCtrl1.Size = New System.Drawing.Size(271, 21)
         Me.ResolucionesCtrl1.TabIndex = 105
@@ -413,7 +454,7 @@ Partial Class FrmTurnosOperador
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label9.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label9.Location = New System.Drawing.Point(48, 156)
+        Me.Label9.Location = New System.Drawing.Point(48, 153)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(114, 13)
         Me.Label9.TabIndex = 100
@@ -425,7 +466,7 @@ Partial Class FrmTurnosOperador
         Me.txtObservaciones.ColorEnter = System.Drawing.Color.White
         Me.txtObservaciones.ColorLeave = System.Drawing.Color.White
         Me.txtObservaciones.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.txtObservaciones.Location = New System.Drawing.Point(164, 204)
+        Me.txtObservaciones.Location = New System.Drawing.Point(164, 195)
         Me.txtObservaciones.MaxLength = 50
         Me.txtObservaciones.Multiline = True
         Me.txtObservaciones.Name = "txtObservaciones"
@@ -452,7 +493,7 @@ Partial Class FrmTurnosOperador
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label4.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label4.Location = New System.Drawing.Point(84, 181)
+        Me.Label4.Location = New System.Drawing.Point(84, 177)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(75, 13)
         Me.Label4.TabIndex = 93
@@ -464,7 +505,7 @@ Partial Class FrmTurnosOperador
         Me.TxtCodigo.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtCodigo.ColorLeave = System.Drawing.Color.White
         Me.TxtCodigo.Enabled = False
-        Me.TxtCodigo.Location = New System.Drawing.Point(165, 24)
+        Me.TxtCodigo.Location = New System.Drawing.Point(165, 28)
         Me.TxtCodigo.Name = "TxtCodigo"
         Me.TxtCodigo.Size = New System.Drawing.Size(100, 22)
         Me.TxtCodigo.TabEnable = True
@@ -489,7 +530,7 @@ Partial Class FrmTurnosOperador
         Me.TxtFechaLlamado.ColorEnter = System.Drawing.Color.White
         Me.TxtFechaLlamado.ColorLeave = System.Drawing.Color.White
         Me.TxtFechaLlamado.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TxtFechaLlamado.Location = New System.Drawing.Point(165, 125)
+        Me.TxtFechaLlamado.Location = New System.Drawing.Point(165, 124)
         Me.TxtFechaLlamado.MaxLength = 50
         Me.TxtFechaLlamado.Name = "TxtFechaLlamado"
         Me.TxtFechaLlamado.Size = New System.Drawing.Size(271, 22)
@@ -614,4 +655,6 @@ Partial Class FrmTurnosOperador
     Friend WithEvents PictureAtender As PictureBox
     Friend WithEvents Label8 As Label
     Friend WithEvents BoxesCtrl1 As CTRL.BoxesCtrl
+    Friend WithEvents CmdOcupado As FontAwesome.Sharp.IconButton
+    Friend WithEvents CmdDisponible As FontAwesome.Sharp.IconButton
 End Class

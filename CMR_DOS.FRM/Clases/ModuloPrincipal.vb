@@ -12,6 +12,7 @@ Module ModuloPrincipal
 
     Public G_UserID As Double
     Public G_RolID As Double
+    Public G_UsuarioLogin As Double
     Public G_UserName As String
     Public G_AppName As String = "COOVILROS LTDA."
 

@@ -110,9 +110,11 @@
     <Compile Include="Sistemas.vb" />
     <Compile Include="Turnos.vb" />
     <Compile Include="Usuarios.vb" />
+    <Compile Include="UsuariosLogin.vb" />
     <Compile Include="UsuariosSecciones.vb" />
     <Compile Include="UsuariosSeccionesTipo.vb" />
     <Compile Include="UsuariosSeccionesTipo_Operadores.vb" />
+    <Compile Include="UsuariosTurnos.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

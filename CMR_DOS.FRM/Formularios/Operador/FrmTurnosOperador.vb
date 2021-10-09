@@ -34,6 +34,8 @@ Public Class FrmTurnosOperador
         eEdicion = 4
         eAparicion = 5
         eEliminar = 6
+        eOcupado = 7
+        eDisponible = 8
     End Enum
 
 
@@ -90,7 +92,10 @@ Public Class FrmTurnosOperador
                     End If
 
                     'TxtID.Enabled = False
-
+                    CmdDisponible.Visible = True
+                    CmdDisponible.Enabled = True
+                    CmdOcupado.Enabled = Enabled = False
+                    CmdOcupado.Visible = False
                     PanelColor.BackColor = Color.FromArgb(74, 97, 132)
                     LblAccion.Text = "LISTO PARA EL SIGUIENTE TURNO"
                     Grilla.Focus()
@@ -109,7 +114,10 @@ Public Class FrmTurnosOperador
                     CmdCancelar.Enabled = True
                     CmdLimpiar.Enabled = False
                     CmdExportar.Enabled = False
-
+                    CmdDisponible.Visible = False
+                    CmdDisponible.Enabled = False
+                    CmdOcupado.Enabled = Enabled = False
+                    CmdOcupado.Visible = True
                     PanelColor.BackColor = Color.FromArgb(206, 81, 0)
                     LblAccion.Text = "ESPERANDO AL SOCIO..."
 
@@ -137,7 +145,10 @@ Public Class FrmTurnosOperador
                     CmdAtendiendo.Visible = True
                     Grilla.Enabled = False
                     PictureAtender.Enabled = False
-
+                    CmdDisponible.Visible = False
+                    CmdDisponible.Enabled = False
+                    CmdOcupado.Enabled = Enabled = False
+                    CmdOcupado.Visible = True
                     PanelColor.BackColor = Color.FromArgb(206, 81, 0)
                     LblAccion.Text = "ATENDIENDO  EL TURNO " & G_CodTurno
 
@@ -156,6 +167,27 @@ Public Class FrmTurnosOperador
                     PanelColor.BackColor = Color.FromArgb(206, 81, 0)
                     LblAccion.Text = "Eliminando"
 
+                Case FormEstado.eOcupado
+
+                    HabilitarEdicion()
+                    CmdAgregar.Enabled = True
+                    CmdAgregar.Visible = False
+                    CmdCancelar.Enabled = True
+                    CmdExportar.Enabled = False
+                    PictureAtender.Visible = False
+                    CmdAtendiendo.Visible = True
+                    CmdOcupado.Visible = True
+                    CmdOcupado.Enabled = True
+                    CmdDisponible.Visible = False
+                    CmdDisponible.Enabled = False
+                    Grilla.Enabled = False
+                    PictureAtender.Enabled = False
+                    PanelColor.BackColor = Color.FromArgb(206, 81, 0)
+                    LblAccion.Text = "OCUPADO... " & G_CodTurno
+
+                    EstadosCtrl1.Enabled = False
+                    SeccionesCtrl1.Enabled = False
+
 
             End Select
             eEstado = vNewValue
@@ -172,7 +204,7 @@ Public Class FrmTurnosOperador
 
         CmdAceptar.Enabled = False
         CmdCancelar.Enabled = False
-
+        Grilla.Enabled = False
         CmdExportar.Enabled = False
         CmdLimpiar.Enabled = False
         'CmdAtender.Enabled = False
@@ -289,13 +321,14 @@ Public Class FrmTurnosOperador
         Dim Resultado As Integer = 0
         Dim oTurno As New Turnos
         Dim oDS As New DataSet
+        Dim oUsuarioTurno As New UsuariosTurnos
         Try
 
             Select Case Me.Estado
 
                 Case FormEstado.eEdicion
-                    IniciaTransaccion()
-                    Resultado = oObjeto.Resolver(transaccion, TxtID_Turno.Text,
+
+                    Resultado = oObjeto.Resolver(TxtID_Turno.Text,
                                     ValorEstado("TURNOS", "SOLUCIONADO"),
                                     ResolucionesCtrl1.SelectedValue,
                                     txtObservaciones.Text,
@@ -309,7 +342,9 @@ Public Class FrmTurnosOperador
                         oTurno.AgregarTranferido(TxtID_Turno.Text, id_turno, BoxesCtrl1.SelectedValue, ValorEstado("Turnos", "GENERADO"))
 
                     End If
-                    FinalizaTransaccion()
+                    EstableceEstadoOperador(TxtID_Turno.Text, EstadosCtrl1.SelectedValue, ValorEstado("OPERARIO", "LIBRE"))
+                    oUsuarioTurno.Modificar(TxtID_Turno.Text, FechaHoraServidor, ValorEstado("TURNOS", "SOLUCIONADO"))
+
                     Timer2.Stop()
 
                     MsgBox("Se modificó el registro" & vbCrLf & "Tiempo: " & LblCronometro.Text, MsgBoxStyle.Information, G_AppName)
@@ -449,7 +484,7 @@ ManejoErrores:
             EstadosCtrl1.Iniciar("Turnos")
             EstadosCtrl1.SelectedText = "Generado"
             Me.BringToFront()
-            Me.Estado = FormEstado.eVacio
+            Me.Estado = FormEstado.eOcupado
             txtObservaciones.Focus()
 
         Else
@@ -611,31 +646,43 @@ ManejoErrores:
 
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
-
+        Dim oUsuarioTurnos As New UsuariosTurnos
         Select Case EstadosCtrl1.SelectedValue
             Case CInt(ValorEstado("TURNOS", "GENERADO"))
-                Grilla.DataSource = Nothing
-                oDs = oObjeto.Turnos_BuscarTodosGeneradosSinSeccion(G_BoxID)
+                oDs = oUsuarioTurnos.BuscarPorID_UsuarioLoginEstado(G_UsuarioLogin, 143)
                 If oDs.Tables(0).Rows.Count > 0 Then
-                    Grilla.DataSource = ""
-                    Grilla.DataSource = oDs.Tables(0)
-
-                    Grilla.Columns(0).HeaderText = "#"
-                    Grilla.Columns(0).Width = 30
-                    Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
-
+                    Me.Estado = FormEstado.eAgregar
+                    BuscarPorID(oDs.Tables(0).Rows(0).Item("ID_Turno"))
                     oDs = Nothing
                     oObjeto = Nothing
 
                     Return True
-
                 Else
-                    oDs = Nothing
-                    oObjeto = Nothing
+                    Grilla.DataSource = Nothing
+                    oDs = oObjeto.Turnos_BuscarTodosGeneradosSinSeccion(G_BoxID)
+                    If oDs.Tables(0).Rows.Count > 0 Then
+                        Grilla.DataSource = ""
+                        Grilla.DataSource = oDs.Tables(0)
 
-                    Return False
+                        Grilla.Columns(0).HeaderText = "#"
+                        Grilla.Columns(0).Width = 30
+                        Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
 
+                        oDs = Nothing
+                        oObjeto = Nothing
+
+                        Return True
+
+                    Else
+                        oDs = Nothing
+                        oObjeto = Nothing
+
+                        Return False
+
+                    End If
                 End If
+
+
 
             Case Else
                 Grilla.DataSource = Nothing
@@ -738,6 +785,7 @@ ManejoErrores:
                 BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"))
 
                 EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Llamado")
+                EstableceEstadoOperador(TxtID_Turno.Text, EstadosCtrl1.SelectedValue, ValorEstado("OPERARIO", "LIBRE"))
                 oDs = Nothing
                 oObjeto = Nothing
                 LlamarSiguiente = True
@@ -933,6 +981,7 @@ ManejoErrores:
     End Sub
 
     Private Sub PictureAtender_Click(sender As Object, e As EventArgs) Handles PictureAtender.Click
+        Dim oUsuarioTurno As New UsuariosTurnos
         If PictureAtender.Enabled = True Then
 
             Try
@@ -940,6 +989,8 @@ ManejoErrores:
                 Dim oObjeto As New Turnos
                 oObjeto.llamarTurno(TxtID_Turno.Text, ValorEstado("TURNOS", "ATENDIENDO"), G_UserID, SeccionesCtrl1.SelectedValue)
                 EstadosCtrl1.SelectedValue = ValorEstado("TURNOS", "ATENDIENDO")
+                oUsuarioTurno.Modificar(TxtID_Turno.Text, FechaHoraServidor, EstadosCtrl1.SelectedValue)
+
                 startTime = Now.TimeOfDay
                 Timer2.Start()
             Catch ex As Exception
@@ -1000,5 +1051,81 @@ ManejoErrores:
 
     End Sub
 
+    Private Sub CmdOcupado_Click(sender As Object, e As EventArgs) Handles CmdOcupado.Click
+        Dim ods As New DataSet
+        Dim oUsuarioTurno As New UsuariosTurnos
+        Dim oUsuarioLogin As New UsuariosLogin
+        Dim oTurno As New Turnos
+        Try
 
+
+            ods = oUsuarioTurno.BuscarPorID_UsuarioLogin(G_UsuarioLogin)
+            If ods.Tables(0).Rows.Count = 0 Then
+                ods = oTurno.BuscarUltimoTurno(G_UserID)
+                If ods.Tables(0).Rows.Count > 0 Then
+                    oUsuarioTurno.Agregar(G_UsuarioLogin, G_UserID, ods.Tables(0).Rows(0).Item("ID_Turno"), ods.Tables(0).Rows(0).Item("Fecha"), ods.Tables(0).Rows(0).Item("ID_Estado"))
+
+                End If
+
+            End If
+
+            oUsuarioLogin.Modificar(G_UsuarioLogin, ValorEstado("OPERARIO", "LIBRE"))
+            Me.Estado = FormEstado.eVacio
+        Catch ex As Exception
+        Finally
+            ods = Nothing
+            oUsuarioTurno = Nothing
+            oUsuarioLogin = Nothing
+            oTurno = Nothing
+        End Try
+    End Sub
+
+    Private Sub CmdDisponible_Click(sender As Object, e As EventArgs) Handles CmdDisponible.Click
+        Dim oUsuarioLogin As New UsuariosLogin
+        Try
+            oUsuarioLogin.Modificar(G_UsuarioLogin, ValorEstado("OPERARIO", "OCUPADO"))
+            Me.Estado = FormEstado.eOcupado
+        Catch ex As Exception
+        Finally
+
+            oUsuarioLogin = Nothing
+        End Try
+
+    End Sub
+
+    Private Sub FrmTurnosOperador_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        If MsgBox("Esta seguro de Salir?",
+          vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
+
+            Dim oUsuarioLogin As New UsuariosLogin
+            oUsuarioLogin.Modificar(G_UsuarioLogin, FechaHoraServidor, ValorEstado("OPERARIO", "OCUPADO"), False)
+            Me.Dispose()
+        End If
+    End Sub
+    Private Sub EstableceEstadoOperador(ByVal ID_Turno As Integer, ByVal EstadoTurno As Integer, ByVal EstadoOperador As Integer)
+        Dim oDs As New DataSet
+        Dim ods2 As New DataSet
+        Dim oObjeto As New Turnos
+        Dim oUsuarioTurno As New UsuariosTurnos
+        Dim oUsuarioLogin As New UsuariosLogin
+
+
+
+        ods2 = oUsuarioTurno.BuscarPorID_UsuarioLogin(G_UsuarioLogin)
+        If ods2.Tables(0).Rows.Count = 0 Then
+            oUsuarioTurno.Agregar(G_UsuarioLogin,
+                                      G_UserID,
+                                      ID_Turno,
+                                      FechaHoraServidor,
+                                     Estado)
+        Else
+            oUsuarioTurno.Modificar(G_UsuarioLogin,
+                                        ID_Turno,
+                                        FechaHoraServidor,
+                                        Estado)
+        End If
+
+        oUsuarioLogin.Modificar(G_UsuarioLogin, EstadoOperador)
+
+    End Sub
 End Class

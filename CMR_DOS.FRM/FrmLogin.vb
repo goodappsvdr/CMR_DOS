@@ -12,7 +12,7 @@ Public Class FrmLogin
 
     Private Sub PasswordTextBox_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         If CInt(e.KeyCode) = CInt(Keys.Enter) Then
-            IniciarSesion()
+            IniciarSesion(UsernameTextBox.Text, PasswordTextBox.Text)
         End If
     End Sub
 
@@ -21,17 +21,20 @@ Public Class FrmLogin
         main()
 
     End Sub
-    Private Sub IniciarSesion()
+    Private Sub IniciarSesion(ByVal Usuario As String, ByVal Password As String)
         Dim oDs As New DataSet
         Dim oObjeto As New Usuarios
+        Dim oUsuarioLogin As New UsuariosLogin
 
-        oDs = oObjeto.BuscarPorLoginPass(UsernameTextBox.Text, PasswordTextBox.Text)
+
+        oDs = oObjeto.BuscarPorLoginPass(Usuario, Password)
 
         If oDs.Tables(0).Rows.Count > 0 Then
 
             G_UserID = oDs.Tables(0).Rows(0).Item("ID_Usuario")
             G_UserName = oDs.Tables(0).Rows(0).Item("Nombre")
             G_RolID = oDs.Tables(0).Rows(0).Item("ID_Rol")
+            G_UsuarioLogin = oUsuarioLogin.Agregar(G_UserID, G_RolID, FechaHoraServidor, FechaHoraServidor, ValorEstado("OPERARIO", "OCUPADO"), True)
             Select Case G_RolID
 
                 Case Is = ValorRol("ADMINISTRADOR")
@@ -53,18 +56,25 @@ Public Class FrmLogin
                     Dim ods3 As New DataSet
                     Dim oUST As New UsuariosSecciones
                     Dim oBU As New BoxesUsuarios
+
+                    Dim ods4 As New DataSet
+
                     ods2 = oUST.BuscarPorIDUsuario(G_UserID)
                     'verifico que el operador tenga una secciontipo
                     If ods2.Tables(0).Rows.Count > 0 Then
+
                         ods3 = oBU.ObtenerBoxdeOperador(G_UserID)
                         'verifico que el operador tenga un box
                         If ods3.Tables(0).Rows.Count > 0 Then
+
                             'verifico que el operador no tenga mas de un box asignado
                             If ods3.Tables(0).Rows.Count = 1 Then
                                 G_BoxID = ods3.Tables(0).Rows(0).Item("id_box")
+
                                 'me aseguro de que el box dado de alta este activo
                                 oBU.ActivarUnBox(G_UserID, G_BoxID)
                                 'MsgBox(ods3.Tables(0).Rows(0).Item("box") & " elegido para esta sesión!", MsgBoxStyle.Exclamation, G_AppName)
+
                                 FrmPrincipal.Show()
                                 Me.Hide()
                             Else
@@ -84,6 +94,7 @@ Public Class FrmLogin
                                         ban = True
                                     End If
                                 End While
+
 
                                 FrmPrincipal.Show()
                                 Me.Hide()
@@ -131,7 +142,7 @@ Public Class FrmLogin
     End Sub
 
     Private Sub Btn_IniciarSesion_Click(sender As Object, e As EventArgs) Handles Btn_IniciarSesion.Click
-        IniciarSesion()
+        IniciarSesion(UsernameTextBox.Text, PasswordTextBox.Text)
     End Sub
 
     Private Sub Btn_Cancelar_Click(sender As Object, e As EventArgs) Handles Btn_Cancelar.Click
@@ -140,7 +151,7 @@ Public Class FrmLogin
 
     Private Sub PasswordTextBox_KeyUp(sender As Object, e As KeyEventArgs) Handles PasswordTextBox.KeyUp
         If CInt(e.KeyCode) = CInt(Keys.Enter) Then
-            IniciarSesion()
+            IniciarSesion(UsernameTextBox.Text, PasswordTextBox.Text)
         End If
 
     End Sub
