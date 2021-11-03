@@ -760,8 +760,9 @@ ManejoErrores:
 
 
     Public Function LlamarSiguiente(ByVal ID As Integer) As Boolean
+        Try
 
-        Dim oDs As New DataSet
+            Dim oDs As New DataSet
         Dim oObjeto As New Turnos
         Dim ods2 As New DataSet
         Dim ODS5 As New DataSet
@@ -805,7 +806,11 @@ ManejoErrores:
             End If
 
         End If
-        Return False
+            Return False
+
+        Catch ex As Exception
+            Return False
+        End Try
     End Function
 
     Private Sub OrdenPantalla(id_turno As Integer)
