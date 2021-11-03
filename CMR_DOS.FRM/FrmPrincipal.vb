@@ -84,8 +84,8 @@ Public Class FrmPrincipal
         If MsgBox("Esta seguro de Salir?",
            vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
 
-            Dim oUsuarioLogin As New UsuariosLogin
-            oUsuarioLogin.Modificar(G_UsuarioLogin, FechaHoraServidor, ValorEstado("OPERARIO", "OCUPADO"), False)
+            Dim oAuditoria As New AuditoriasUsuarios
+            oAuditoria.CerrarSesion(G_UserID, ValorEstado("OPERARIO", "OCUPADO"), False)
 
 
             Application.Exit()

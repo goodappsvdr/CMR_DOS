@@ -103,6 +103,8 @@ Public Class FrmSeccionesTipoCliente
                                       ValorEstado("Turnos", "GENERADO"), False)
             ' ImprimirTurno(ID_Turno)
             idturno = ID_Turno
+            PrintDocument1.PrinterSettings.DefaultPageSettings.Landscape = False
+            PrintDocument1.Print()
 
 
         End If
@@ -345,27 +347,19 @@ Public Class FrmSeccionesTipoCliente
     Private Function BuscarOperadorLibre(ByVal ID_Turno As Integer) As Integer
         Dim oDs As New DataSet
         Dim ods2 As New DataSet
-        Dim oObjeto As New Turnos
-        Dim oUsuarioTurno As New UsuariosTurnos
-        Dim oUsuarioLogin As New UsuariosLogin
-        oDs = oObjeto.Turnos_BuscarOperadorLibre
+        Dim oObjeto As New AuditoriasUsuarios
+        Dim oUsaurioTurno As New UsuariosTurnos
+        oDs = oObjeto.BuscarOperadorLibre
 
         If oDs.Tables(0).Rows.Count > 0 Then
-            ods2 = oUsuarioTurno.BuscarPorID_UsuarioLogin(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"))
-            If ods2.Tables(0).Rows.Count = 0 Then
-                oUsuarioTurno.Agregar(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"),
+
+            oUsaurioTurno.Agregar(oDs.Tables(0).Rows(0).Item("ID_AuditoriaUsuario"),
                                       oDs.Tables(0).Rows(0).Item("ID_Usuario"),
                                       ID_Turno,
                                       FechaHoraServidor,
                                       ValorEstado("Turnos", "Llamado"))
-            Else
-                oUsuarioTurno.Modificar(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"),
-                                        ID_Turno,
-                                        FechaHoraServidor,
-                                         ValorEstado("Turnos", "Llamado"))
-            End If
 
-            oUsuarioLogin.Modificar(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"), ValorEstado("OPERARIO", "OCUPADO"))
+            '  oUsuarioLogin.Modificar(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"), ValorEstado("OPERARIO", "OCUPADO"))
             Return oDs.Tables(0).Rows(0).Item("ID_Usuario")
         Else
             Return 0

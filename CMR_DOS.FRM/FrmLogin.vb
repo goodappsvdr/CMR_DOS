@@ -24,8 +24,7 @@ Public Class FrmLogin
     Private Sub IniciarSesion(ByVal Usuario As String, ByVal Password As String)
         Dim oDs As New DataSet
         Dim oObjeto As New Usuarios
-        Dim oUsuarioLogin As New UsuariosLogin
-
+        Dim oAuditoria As New AuditoriasUsuarios
 
         oDs = oObjeto.BuscarPorLoginPass(Usuario, Password)
 
@@ -34,7 +33,7 @@ Public Class FrmLogin
             G_UserID = oDs.Tables(0).Rows(0).Item("ID_Usuario")
             G_UserName = oDs.Tables(0).Rows(0).Item("Nombre")
             G_RolID = oDs.Tables(0).Rows(0).Item("ID_Rol")
-            G_UsuarioLogin = oUsuarioLogin.Agregar(G_UserID, G_RolID, FechaHoraServidor, FechaHoraServidor, ValorEstado("OPERARIO", "OCUPADO"), True)
+
             Select Case G_RolID
 
                 Case Is = ValorRol("ADMINISTRADOR")
@@ -52,6 +51,7 @@ Public Class FrmLogin
                     Me.Hide()
 
                 Case Is = ValorRol("Operador")
+
                     Dim ods2 As New DataSet
                     Dim ods3 As New DataSet
                     Dim oUST As New UsuariosSecciones
@@ -75,6 +75,10 @@ Public Class FrmLogin
                                 oBU.ActivarUnBox(G_UserID, G_BoxID)
                                 'MsgBox(ods3.Tables(0).Rows(0).Item("box") & " elegido para esta sesión!", MsgBoxStyle.Exclamation, G_AppName)
 
+                                'Paso a inactivo a para asegurarme que este activo solo una vez  
+                                oAuditoria.Desactivar(G_UserID, False)
+                                'Agrego los datos de inicio de sesion en la tabla AuditoriaUsuarios
+                                oAuditoria.IniciarSesion(G_UserID, FechaHoraServidor, 0, ValorEstado("OPERARIO", "OCUPADO"), True)
                                 FrmPrincipal.Show()
                                 Me.Hide()
                             Else
@@ -94,8 +98,10 @@ Public Class FrmLogin
                                         ban = True
                                     End If
                                 End While
-
-
+                                'Paso a inactivo a para asegurarme que este activo solo una vez  
+                                oAuditoria.Desactivar(G_UserID, False)
+                                'Agrego los datos de inicio de sesion en la tabla AuditoriaUsuarios
+                                oAuditoria.IniciarSesion(G_UserID, FechaHoraServidor, 0, ValorEstado("OPERARIO", "OCUPADO"), True)
                                 FrmPrincipal.Show()
                                 Me.Hide()
                             End If

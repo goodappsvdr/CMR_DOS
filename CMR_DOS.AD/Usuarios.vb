@@ -9,16 +9,16 @@ Public Class Usuarios
 
     Dim oDatabase As Database
 
+
     Public Sub New()
+
         oDatabase = DatabaseFactory.CreateDatabase("Conn")
+
     End Sub
 
-
-    'constructor base con parametros
     Public Sub New(ByVal str As String)
+        oDatabase = DatabaseFactory.CreateDatabase(str)
     End Sub
-
-
     'BuscarPorID
     Public Function BuscarPorID(ByVal Id_usuario As Double) As DataSet
 

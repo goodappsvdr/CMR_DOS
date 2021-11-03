@@ -6,6 +6,7 @@ Imports Telerik.WinControls.Primitives
 Public Class FrmMenuPanel
 
     Private Sub FrmMenuPanel_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+
         System.Windows.Forms.Application.Exit()
         End
     End Sub
@@ -555,5 +556,10 @@ Public Class FrmMenuPanel
   
     Private Sub PanelColor_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles PanelColor.Paint
 
+    End Sub
+
+    Private Sub FrmMenuPanel_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        Dim oAuditoria As New AuditoriasUsuarios
+        oAuditoria.CerrarSesion(G_UserID, ValorEstado("OPERARIO", "OCUPADO"), False)
     End Sub
 End Class

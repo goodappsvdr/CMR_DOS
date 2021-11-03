@@ -242,12 +242,6 @@ Public Class Turnos
             Throw ex
         End Try
     End Function
-    Function Turnos_BuscarOperadorLibre() As DataSet
-        Try
-            Return oDatabase.ExecuteDataSet("Operadores_BuscarLibre")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
+
 
 End Class

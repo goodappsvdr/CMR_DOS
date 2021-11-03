@@ -61,6 +61,13 @@ Public Class UsuariosTurnos
             Throw ex
         End Try
     End Function
+    Public Function BuscarPorID_Usuario(ByVal ID_Usuario As Integer) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("UsuariosTurnos_BuscarPorID_Usuario", ID_Usuario)
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+    End Function
     Public Function BuscarPorID_Turno(ByVal ID_Turno As Integer) As DataSet
         Try
             Return oDatabase.ExecuteDataSet("UsuariosTurnos_BuscarPorID_Turno", ID_Turno)
@@ -69,9 +76,9 @@ Public Class UsuariosTurnos
         End Try
     End Function
 
-    Public Function Agregar(ByVal ID_UsuarioLogin As Integer, ByVal ID_Usuario As Integer, ByVal ID_Turno As Integer, ByVal UltimoTurno As Date, ByVal Estado As Integer) As Double
+    Public Function Agregar(ByVal ID_AuditoriaUsuario As Integer, ByVal ID_Usuario As Integer, ByVal ID_Turno As Integer, ByVal Fecha As Date, ByVal Estado As Integer) As Double
         Try
-            Return oDatabase.ExecuteScalar("UsuariosTurnos_Agregar", ID_UsuarioLogin, ID_Usuario, ID_Turno, UltimoTurno, Estado)
+            Return oDatabase.ExecuteScalar("UsuariosTurnos_Agregar", ID_AuditoriaUsuario, ID_Usuario, ID_Turno, Fecha, Estado)
         Catch ex As System.Exception
             Throw ex
         End Try
@@ -92,9 +99,9 @@ Public Class UsuariosTurnos
         End Try
     End Function
 
-    Public Function Modificar(ByVal ID_Turno As Integer, ByVal UltimoTurno As Date, ByVal Estado As Integer) As DataSet
+    Public Function Modificar(ByVal ID_Turno As Integer, ByVal Estado As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("UsuariosTurnos_Modificar_Estado", ID_Turno, UltimoTurno, Estado)
+            Return oDatabase.ExecuteDataSet("UsuariosTurnos_Modificar_Estado", ID_Turno, Estado)
         Catch ex As System.Exception
             Throw ex
         End Try
