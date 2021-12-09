@@ -59,11 +59,11 @@ Public Class FrmLogin
 
                     Dim ods4 As New DataSet
 
-                    ods2 = oUST.BuscarPorIDUsuario(G_UserID)
+                    'ods2 = oUST.BuscarPorIDUsuario(G_UserID)
                     'verifico que el operador tenga una secciontipo
-                    If ods2.Tables(0).Rows.Count > 0 Then
+                    ' If ods2.Tables(0).Rows.Count > 0 Then
 
-                        ods3 = oBU.ObtenerBoxdeOperador(G_UserID)
+                    ods3 = oBU.ObtenerBoxdeOperador(G_UserID)
                         'verifico que el operador tenga un box
                         If ods3.Tables(0).Rows.Count > 0 Then
 
@@ -112,10 +112,10 @@ Public Class FrmLogin
                         End If
 
 
-                    Else
-                        MsgBox("Aún no tiene una subsección asignada, pida al administrador que le asigne una subsección e intentelo nuevamente...", MsgBoxStyle.Exclamation, G_AppName)
+                    ' Else
+                   ' MsgBox("Aún no tiene una subsección asignada, pida al administrador que le asigne una subsección e intentelo nuevamente...", MsgBoxStyle.Exclamation, G_AppName)
 
-                    End If
+                   ' End If
 
                 Case Is = ValorRol("Cliente")
                     FrmPrincipalCliente.Show()

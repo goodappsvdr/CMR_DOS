@@ -74,7 +74,13 @@ Public Class AuditoriasUsuarios
             Throw ex
         End Try
     End Function
-
+    Public Function ModificarEstado(ByVal ID_Usuario As Integer, ByVal Estado As Integer, ByVal Activo As Boolean) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("AuditoriasUsuarios_ModificarEstado", ID_Usuario, Estado, Activo)
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+    End Function
     Public Function Agregar(ByVal ID_Usuario As Integer, ByVal FechaInicioSesion As Date, ByVal FechaCierreSesion As Date, ByVal TiempoOcupado As String, ByVal TiempoLibre As String, ByVal TurnosAtendidos As Integer, ByVal PrimerTurno As Date, ByVal UltimoTurno As Date, ByVal Estado As Integer) As Double
         Try
             Return oDatabase.ExecuteScalar("AuditoriasUsuarios_Agregar", ID_Usuario, FechaInicioSesion, FechaCierreSesion, TiempoOcupado, TiempoLibre, TurnosAtendidos, PrimerTurno, UltimoTurno, Estado)

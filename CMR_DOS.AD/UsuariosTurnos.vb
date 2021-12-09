@@ -76,9 +76,9 @@ Public Class UsuariosTurnos
         End Try
     End Function
 
-    Public Function Agregar(ByVal ID_AuditoriaUsuario As Integer, ByVal ID_Usuario As Integer, ByVal ID_Turno As Integer, ByVal Fecha As Date, ByVal Estado As Integer) As Double
+    Public Function Agregar(ByVal ID_AuditoriaUsuario As Integer, ByVal ID_Usuario As Integer, ByVal ID_Turno As Integer, ByVal Fecha As Date, ByVal Estado As Integer) As DataSet
         Try
-            Return oDatabase.ExecuteScalar("UsuariosTurnos_Agregar", ID_AuditoriaUsuario, ID_Usuario, ID_Turno, Fecha, Estado)
+            Return oDatabase.ExecuteDataSet("UsuariosTurnos_Agregar", ID_AuditoriaUsuario, ID_Usuario, ID_Turno, Fecha, Estado)
         Catch ex As System.Exception
             Throw ex
         End Try

@@ -308,6 +308,9 @@ Public Class FrmSeccionesTipoCliente
                                     ID_Usuario,
                                     Seccion)
 
+        Dim oAuditoria As New AuditoriasUsuarios
+
+        oAuditoria.ModificarEstado(ID_Usuario, ValorEstado("OPERARIO", "OCUPADO"), True)
 
 
 

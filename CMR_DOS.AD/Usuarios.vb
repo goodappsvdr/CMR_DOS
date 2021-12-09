@@ -93,7 +93,7 @@ Public Class Usuarios
 
         Try
 
-            Return oDatabase.ExecuteDataSet("Usuarios_BuscarporLogin", Login)
+            Return oDatabase.ExecuteDataSet("Usuarios_BuscarPorLogin", Login)
 
         Catch ex As System.Exception
             Throw ex
@@ -101,6 +101,29 @@ Public Class Usuarios
 
     End Function
 
+    Public Function BuscarPorPass(ByVal Login As String, ByVal Pass As String) As DataSet
+
+        Try
+
+            Return oDatabase.ExecuteDataSet("UsuariosCoovilros_Login", Login, Pass)
+
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+
+    End Function
+    'UsuariosCoovilros_Login
+    Public Function BuscarPorLoginPass(ByVal Pass As String) As DataSet
+
+        Try
+
+            Return oDatabase.ExecuteDataSet("Usuarios_BuscarPorPassword", Pass)
+
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+
+    End Function
 
     Public Function BuscarPorLoginPass(ByVal Login As String, ByVal Pass As String) As DataSet
 
@@ -113,7 +136,6 @@ Public Class Usuarios
         End Try
 
     End Function
-
 
     Public Function BuscarPorLoginPassRol(ByVal Login As String, ByVal Pass As String, id_rol As Integer) As DataSet
 
