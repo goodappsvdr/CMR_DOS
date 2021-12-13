@@ -132,6 +132,7 @@ Public Class FrmSeccionesTipoCliente
 
         texto1 = ValorParametro("TICKET", "ENCABEZADO") & vbCrLf & ValorParametro("TICKET", "TITULO") & vbCrLf & "********************************" _
             & vbCrLf & fechaObtencion & vbCrLf & NombreSeccion _
+            & vbCrLf & "INTERNO " & idturno
         ' & vbCrLf & objeto & vbCrLf & Codigo & NroTurno & vbCrLf & "********************************" _
         ' & vbCrLf & pie
 
