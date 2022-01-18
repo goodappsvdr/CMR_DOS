@@ -22,6 +22,7 @@ Public Class FrmTurnosOperador
     Dim ultimo As Integer
     Private id_turno As Integer
     Private ID_Seccion As Integer
+    Private EstadoOperador As Integer
 
 #End Region
 
@@ -187,7 +188,10 @@ Public Class FrmTurnosOperador
 
                     EstadosCtrl1.Enabled = False
                     SeccionesCtrl1.Enabled = False
-
+                    CmdAceptar.Enabled = False
+                    CmdCancelar.Enabled = False
+                    ResolucionesCtrl1.Enabled = False
+                    MotivosCtrl1.Enabled = False
 
             End Select
             eEstado = vNewValue
@@ -279,6 +283,7 @@ Public Class FrmTurnosOperador
         EstadosCtrl1.SelectedValue = CInt(ValorEstado("TURNOS", "GENERADO"))
         Timer1.Start()
         BoxesCtrl1.Iniciar_conidusuario(G_UserID)
+
     End Sub
     Private Sub EstablecerPrioridad()
         Dim VALOR As MsgBoxResult = MsgBox("Desea establecer este turno como prioridad?", MsgBoxStyle.YesNo, "ESTA SEGURO ?")
@@ -400,27 +405,12 @@ Public Class FrmTurnosOperador
         If MsgBox("Esta seguro de Cancelar?" & vbCrLf &
                   "Se perderán las ultimas modificaciones",
                   vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
-            Dim id_estado As Integer = ValorEstado("Turnos", "Generado")
-            If EstadosCtrl1.SelectedValue = id_estado Then
-                Dim ods As New DataSet
-                Dim ot As New Turnos
 
-                ods = ot.CancelarLlamado(TxtID_Turno.Text, id_estado, SeccionesCtrl1.SelectedValue)
-                Timer2.Stop()
+            Dim ods As New DataSet
+            Dim ot As New Turnos
+            ods = ot.CancelarLlamado(TxtID_Turno.Text, ValorEstado("TURNOS", "GENERADO"))
+            Timer2.Stop()
                 LblCronometro.Text = "0.00.00"
-
-            End If
-
-            If EstadosCtrl1.Text = "ATENDIENDO" Then
-                Timer2.Stop()
-                LblCronometro.Text = "0.00.00"
-            End If
-
-            If EstadosCtrl1.Text = "LLAMADO" Then
-                Timer2.Stop()
-                LblCronometro.Text = "0.00.00"
-            End If
-
 
             Me.Estado = FormEstado.eVacio
 
@@ -516,7 +506,12 @@ ManejoErrores:
     End Sub
 
     Private Sub CmdLimpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdLimpiar.Click
-        Me.Estado = FormEstado.eVacio
+        If EstadoOperador = ValorEstado("OPERARIO", "LIBRE") Then
+            Me.Estado = FormEstado.eVacio
+        Else
+            Me.Estado = FormEstado.eOcupado
+        End If
+
     End Sub
 
 
@@ -673,6 +668,10 @@ ManejoErrores:
 
                         oDs = Nothing
                         oObjeto = Nothing
+
+                        Me.Estado = FormEstado.eAgregar
+                        LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
+
 
                         Return True
 
@@ -891,6 +890,7 @@ ManejoErrores:
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         Timer1.Interval = 1000
         BuscarTodos()
+
         Intervalo = Intervalo + 1
         If Intervalo = 2 Then
             Intervalo = 0
@@ -967,17 +967,28 @@ ManejoErrores:
     End Sub
 
     Private Sub CmdCancelar_Click(sender As Object, e As EventArgs) Handles CmdCancelar.Click
-        Timer2.Stop()
+        Cancelo()
+        'Timer2.Stop()
 
-        If MsgBox("Esta seguro de Cancelar?" & vbCrLf &
-                  "Se perderán las ultimas modificaciones",
-                  vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
-            LimpiarDatos()
-            Me.Estado = FormEstado.eVacio
-        Else
-            startTime = Now.TimeOfDay
-            Timer2.Start()
-        End If
+        'If MsgBox("Esta seguro de Cancelar?" & vbCrLf &
+        '          "Se perderán las ultimas modificaciones",
+        '          vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
+
+        '    If EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Generado") Then
+        '        Dim ods As New DataSet
+        '        Dim ot As New Turnos
+
+        '        ods = ot.CancelarLlamado(TxtID_Turno.Text, EstadosCtrl1.SelectedValue)
+        '        Timer2.Stop()
+        '        LblCronometro.Text = "0.00.00"
+
+        '    End If
+        '    LimpiarDatos()
+        '    Me.Estado = FormEstado.eVacio
+        'Else
+        '    startTime = Now.TimeOfDay
+        '    Timer2.Start()
+        'End If
     End Sub
 
     Private Sub Grilla_CellClick(sender As Object, e As GridViewCellEventArgs) Handles Grilla.CellClick
@@ -1075,8 +1086,11 @@ ManejoErrores:
 
         Try
             'Modifico el estado para que poder asigne asignarle un turno
-            oAuditoria.Modificar(G_UserID, ValorEstado("OPERARIO", "LIBRE"), True)
+            Dim Estado As Integer = ValorEstado("OPERARIO", "LIBRE")
+            oAuditoria.Modificar(G_UserID, Estado, True)
+            EstadoOperador = Estado
             Me.Estado = FormEstado.eVacio
+
         Catch ex As Exception
 
         Finally
@@ -1093,7 +1107,9 @@ ManejoErrores:
         Try
 
             'Modifico el estado para que no se le asigne ningun turno 
-            oAuditoria.Modificar(G_UserID, ValorEstado("OPERARIO", "OCUPADO"), True)
+            Dim Estado As Integer = ValorEstado("OPERARIO", "OCUPADO")
+            oAuditoria.Modificar(G_UserID, Estado, True)
+            EstadoOperador = Estado
             Me.Estado = FormEstado.eOcupado
         Catch ex As Exception
 

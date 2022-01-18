@@ -201,15 +201,21 @@ Public Class Turnos
         End Try
     End Function
 
-    Function CancelarLlamado(id_turno As Double, id_estado As Double, ByVal ID_Seccion As Integer) As DataSet
+    Function CancelarLlamado(id_turno As Double, id_estado As Double) As DataSet
         Try
-            Return oDatabase.ExecuteDataSet("Turnos_cancelarLlamado", id_turno, id_estado, ID_Seccion)
+            Return oDatabase.ExecuteDataSet("Turnos_cancelarLlamado", id_turno, id_estado)
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-
+    Function CancelarLlamado(id_turno As Double) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("Turnos_cancelarLlamado", id_turno)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Function Turnos_Buscarultimoordenpantalla() As DataSet
         Try
             Return oDatabase.ExecuteDataSet("Turnos_Buscarultimoordenpantalla")

@@ -371,7 +371,7 @@ Public Class FrmTurnosSinAtender
                 Dim ods As New DataSet
                 Dim ot As New Turnos
 
-                ods = ot.CancelarLlamado(id_turno, id_estado, G_SeccionID)
+                ' ods = ot.CancelarLlamado(id_turno, id_estado, G_SeccionID)
                 Timer2.Stop()
                 LblCronometro.Text = "0.00.00"
 

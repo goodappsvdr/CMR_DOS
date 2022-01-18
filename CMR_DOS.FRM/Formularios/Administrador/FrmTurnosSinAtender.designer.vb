@@ -183,6 +183,7 @@ Partial Class FrmTurnosSinAtender
         Me.CmdModificar.TabIndex = 68
         Me.CmdModificar.Text = "Modificar"
         Me.CmdModificar.ThemeName = "Office2007Silver"
+        Me.CmdModificar.Visible = False
         '
         'CmdEliminar
         '
@@ -589,9 +590,9 @@ Partial Class FrmTurnosSinAtender
         Me.EstadosCtrl1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.EstadosCtrl1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.EstadosCtrl1.FormattingEnabled = True
-        Me.EstadosCtrl1.Location = New System.Drawing.Point(220, 196)
+        Me.EstadosCtrl1.Location = New System.Drawing.Point(220, 197)
         Me.EstadosCtrl1.Name = "EstadosCtrl1"
-        Me.EstadosCtrl1.Size = New System.Drawing.Size(144, 21)
+        Me.EstadosCtrl1.Size = New System.Drawing.Size(185, 21)
         Me.EstadosCtrl1.TabIndex = 96
         '
         'FrmTurnosSinAtender
