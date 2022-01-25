@@ -264,7 +264,7 @@ Public Class FrmTurnosOperador
     End Sub
 
     Public Sub LimpiarDatos()
-
+        TxtID_Turno.Text = ""
         id_turno = vbNull
         TxtFechaObtencion.Text = ""
         TxtFechaLlamado.Text = ""
@@ -351,12 +351,13 @@ Public Class FrmTurnosOperador
 
                     ' oUsuarioTurno.Modificar(TxtID_Turno.Text, FechaHoraServidor, ValorEstado("TURNOS", "SOLUCIONADO"))
                     oUsuarioTurnos.Modificar(TxtID_Turno.Text, ValorEstado("TURNOS", "SOLUCIONADO"))
-                    oAuditoria.ModificarUltimoTurno(G_UserID, ValorEstado("OPERARIO", "LIBRE"))
+                   
                     Timer2.Stop()
 
 
 
                     MsgBox("Se modificó el registro" & vbCrLf & "Tiempo: " & LblCronometro.Text, MsgBoxStyle.Information, G_AppName)
+                    Timer3.Start()
 
                     LimpiarDatos()
                     Me.Estado = FormEstado.eVacio
@@ -410,7 +411,7 @@ Public Class FrmTurnosOperador
             Dim ot As New Turnos
             ods = ot.CancelarLlamado(TxtID_Turno.Text, ValorEstado("TURNOS", "GENERADO"))
             Timer2.Stop()
-                LblCronometro.Text = "0.00.00"
+            LblCronometro.Text = "0.00.00"
 
             Me.Estado = FormEstado.eVacio
 
@@ -762,49 +763,49 @@ ManejoErrores:
         Try
 
             Dim oDs As New DataSet
-        Dim oObjeto As New Turnos
-        Dim ods2 As New DataSet
-        Dim ODS5 As New DataSet
-        Dim OT5 As New DataSet
-        'obtenemos el id_turno del siguente turno
-        If EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Generado") Then
-            OT5 = oObjeto.BuscarPorID(ID)
-            If OT5.Tables(0).Rows.Count > 0 Then
-                oDs = oObjeto.ObtenerSiguiente(EstadosCtrl1.SelectedValue, OT5.Tables(1).Rows(0).Item("ID_Seccion"))
-                SeccionesCtrl1.SelectedValue = OT5.Tables(1).Rows(0).Item("ID_Seccion")
-                G_CodTurno = OT5.Tables(1).Rows(0).Item("Codigo")
+            Dim oObjeto As New Turnos
+            Dim ods2 As New DataSet
+            Dim ODS5 As New DataSet
+            Dim OT5 As New DataSet
+            'obtenemos el id_turno del siguente turno
+            If EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Generado") Then
+                OT5 = oObjeto.BuscarPorID(ID)
+                If OT5.Tables(0).Rows.Count > 0 Then
+                    oDs = oObjeto.ObtenerSiguiente(EstadosCtrl1.SelectedValue, OT5.Tables(1).Rows(0).Item("ID_Seccion"))
+                    SeccionesCtrl1.SelectedValue = OT5.Tables(1).Rows(0).Item("ID_Seccion")
+                    G_CodTurno = OT5.Tables(1).Rows(0).Item("Codigo")
+                End If
+
+
+                If oDs.Tables(0).Rows.Count > 0 Then
+
+                    OrdenPantalla(oDs.Tables(0).Rows(0).Item("id_turno"))
+                    TxtID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
+                    ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"),
+                                           ValorEstado("Turnos", "Llamado"),
+                                           G_UserID,
+                                           SeccionesCtrl1.SelectedValue)
+
+                    BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"))
+
+                    EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Llamado")
+
+                    oDs = Nothing
+                    oObjeto = Nothing
+                    LlamarSiguiente = True
+                    Exit Function
+                Else
+
+                    oDs = Nothing
+                    oObjeto = Nothing
+                    OT5 = Nothing
+                    LlamarSiguiente = False
+
+                    Exit Function
+
+                End If
+
             End If
-
-
-            If oDs.Tables(0).Rows.Count > 0 Then
-
-                OrdenPantalla(oDs.Tables(0).Rows(0).Item("id_turno"))
-                TxtID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
-                ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"),
-                                       ValorEstado("Turnos", "Llamado"),
-                                       G_UserID,
-                                       SeccionesCtrl1.SelectedValue)
-
-                BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"))
-
-                EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Llamado")
-
-                oDs = Nothing
-                oObjeto = Nothing
-                LlamarSiguiente = True
-                Exit Function
-            Else
-
-                oDs = Nothing
-                oObjeto = Nothing
-                OT5 = Nothing
-                LlamarSiguiente = False
-
-                Exit Function
-
-            End If
-
-        End If
             Return False
 
         Catch ex As Exception
@@ -1009,7 +1010,7 @@ ManejoErrores:
                 Dim oObjeto As New Turnos
                 EstadosCtrl1.SelectedValue = ValorEstado("TURNOS", "ATENDIENDO")
                 oObjeto.llamarTurno(TxtID_Turno.Text, EstadosCtrl1.SelectedValue, G_UserID, SeccionesCtrl1.SelectedValue)
-                ousuarioTurno.Modificar(TxtID_Turno.Text, EstadosCtrl1.SelectedValue)
+                oUsuarioTurno.Modificar(TxtID_Turno.Text, EstadosCtrl1.SelectedValue)
                 Dim ods As New DataSet
                 Dim oAuditoria As New AuditoriasUsuarios
                 ods = oAuditoria.BuscarPorID_UsuarioActivo(G_UserID)
@@ -1089,6 +1090,7 @@ ManejoErrores:
             Dim Estado As Integer = ValorEstado("OPERARIO", "LIBRE")
             oAuditoria.Modificar(G_UserID, Estado, True)
             EstadoOperador = Estado
+            Timer1.Start()
             Me.Estado = FormEstado.eVacio
 
         Catch ex As Exception
@@ -1105,12 +1107,18 @@ ManejoErrores:
 
 
         Try
+            If TxtID_Turno.Text <> "" Then
+                MsgBox("Tiene turnos asignados debe finalizarlo para pasar a ocupado...", MsgBoxStyle.Information, G_AppName)
+            Else
+                'Modifico el estado para que no se le asigne ningun turno 
+                Dim Estado As Integer = ValorEstado("OPERARIO", "OCUPADO")
+                oAuditoria.Modificar(G_UserID, Estado, True)
+                EstadoOperador = Estado
+                Timer1.Stop()
+                Me.Estado = FormEstado.eOcupado
 
-            'Modifico el estado para que no se le asigne ningun turno 
-            Dim Estado As Integer = ValorEstado("OPERARIO", "OCUPADO")
-            oAuditoria.Modificar(G_UserID, Estado, True)
-            EstadoOperador = Estado
-            Me.Estado = FormEstado.eOcupado
+            End If
+
         Catch ex As Exception
 
         Finally
@@ -1122,15 +1130,36 @@ ManejoErrores:
 
     End Sub
 
-    Private Sub FrmTurnosOperador_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        If MsgBox("Esta seguro de Salir?",
-          vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
 
-            Dim oAuditoria As New AuditoriasUsuarios
-            oAuditoria.Modificar(G_UserID, ValorEstado("OPERARIO", "OCUPADO"), True)
 
-            Me.Dispose()
+    Private Sub FrmTurnosOperador_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If TxtID_Turno.Text <> "" Then
+            MsgBox("Tiene turnos asignados debe finalizarlo para poder cerrar el formulario...", MsgBoxStyle.Information, G_AppName)
+            e.Cancel = True
+        Else
+            If MsgBox("Esta seguro de Salir?",
+         vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
+
+                Dim oAuditoria As New AuditoriasUsuarios
+                oAuditoria.Modificar(G_UserID, ValorEstado("OPERARIO", "OCUPADO"), True)
+
+                Me.Dispose()
+            Else
+                e.Cancel = True
+            End If
+
         End If
-    End Sub
 
+    End Sub
+    Dim tiempoespera As Integer = 0
+    Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
+        Dim oAuditoria As New AuditoriasUsuarios
+        tiempoespera += 1
+        If tiempoespera = 40 Then
+            oAuditoria.ModificarUltimoTurno(G_UserID, ValorEstado("OPERARIO", "LIBRE"))
+            Timer3.Stop()
+            tiempoespera = 0
+        End If
+
+    End Sub
 End Class
