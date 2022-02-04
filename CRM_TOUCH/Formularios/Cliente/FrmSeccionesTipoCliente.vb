@@ -229,37 +229,46 @@ Public Class FrmSeccionesTipoCliente
         Dim oDsConsultaTurno As New DataSet
         Dim oDsTurno As New DataSet
         Dim oDS As New DataSet
-        oDS = oSeccionesTipos.ConsultaParaAgregarTurno(IDSeccion)
-        oDsConsultaTurno = oTurno.BuscarporSeccionyFecha(CType(oDS.Tables(0).Rows(0).Item("Id_Seccion"), Integer))
-        If oDsConsultaTurno.Tables(0).Rows.Count > 0 Then
-            ID_Turno = oTurno.Agregar(oDS.Tables(0).Rows(0).Item("id_Seccion"),
-                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
-                                      ValorEstado("Turnos", "GENERADO"),
-                                      CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1, False)
-            '  ImprimirTurno(ID_Turno)
-            idturno = ID_Turno
-            PrintDocument1.Print()
-        Else
-            ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
-                                      oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
-                                      ValorEstado("Turnos", "GENERADO"), False)
-            ' ImprimirTurno(ID_Turno)
-            idturno = ID_Turno
-            PrintDocument1.Print()
+        Try
 
-        End If
-        Dim ID_Usuario As Integer = BuscarOperadorLibre(ID_Turno)
-        If ID_Usuario > 0 Then
-            LlamarSiguiente(ID_Turno, IDSeccion, ID_Usuario)
 
-        End If
-        Dim os As New Secciones
-        Dim G_SeccionTable As DataTable = os.Secciones_BuscarTodosporEstadoyUsuario(G_UserID).Tables(0)
-        If G_SeccionTable.Rows.Count > 1 Then
+            oDS = oSeccionesTipos.ConsultaParaAgregarTurno(IDSeccion)
+            oDsConsultaTurno = oTurno.BuscarporSeccionyFecha(CType(oDS.Tables(0).Rows(0).Item("Id_Seccion"), Integer))
+            If oDsConsultaTurno.Tables(0).Rows.Count > 0 Then
+                ID_Turno = oTurno.Agregar(oDS.Tables(0).Rows(0).Item("id_Seccion"),
+                                          oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
+                                          ValorEstado("Turnos", "GENERADO"),
+                                          CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1, False)
+                '  ImprimirTurno(ID_Turno)
+                idturno = ID_Turno
+                PrintDocument1.Print()
+            Else
+                ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
+                                          oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
+                                          ValorEstado("Turnos", "GENERADO"), False)
+                ' ImprimirTurno(ID_Turno)
+                idturno = ID_Turno
+                PrintDocument1.Print()
+
+            End If
+            Dim ID_Usuario As Integer = BuscarOperadorLibre(ID_Turno, IDSeccion)
+            If ID_Usuario > 0 Then
+                LlamarSiguiente(ID_Turno, IDSeccion, ID_Usuario)
+
+            End If
+
+        Catch ex As Exception
+
+        Finally
+            oSeccionesTipos = Nothing
+            oTurno = Nothing
+            oDsConsultaTurno = Nothing
+            oDsTurno = Nothing
+            oDS = Nothing
             FrmPrincipalCliente.Show()
             Me.Dispose()
-        End If
 
+        End Try
     End Sub
 
 
@@ -299,22 +308,26 @@ Public Class FrmSeccionesTipoCliente
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
         Dim ods2 As New DataSet
-
-
-
-        OrdenPantalla(ID)
-
-        ods2 = oObjeto.llamarTurno(ID,
-                                   ValorEstado("Turnos", "Llamado"),
-                                    ID_Usuario,
-                                    Seccion)
-
         Dim oAuditoria As New AuditoriasUsuarios
+        Try
+            OrdenPantalla(ID)
 
-        oAuditoria.ModificarEstado(ID_Usuario, ValorEstado("OPERARIO", "OCUPADO"), True)
+            ods2 = oObjeto.llamarTurno(ID,
+                                       ValorEstado("Turnos", "Llamado"),
+                                        ID_Usuario,
+                                        Seccion)
+            oAuditoria.ModificarEstado(ID_Usuario, ValorEstado("OPERARIO", "OCUPADO"), True)
 
+            Return True
 
-
+        Catch ex As Exception
+            Return False
+        Finally
+            oDs = Nothing
+            oObjeto = Nothing
+            ods2 = Nothing
+            oAuditoria = Nothing
+        End Try
 
     End Function
 
@@ -323,51 +336,76 @@ Public Class FrmSeccionesTipoCliente
         Dim ods As New DataSet
         Dim ot As New Turnos
         Dim ultimo As Integer
-        ods = ot.Turnos_Buscarultimoordenpantalla()
-        If ods.Tables(0).Rows.Count < 1 Then
 
-            ultimo = 1
-        Else
-
-            If ods.Tables(0).Rows(0).Item("OrdenPantalla").ToString = "" Then
+        Dim ods2 As New DataSet
+        Dim oObjeto As New Turnos
+        Try
+            ods = ot.Turnos_Buscarultimoordenpantalla()
+            If ods.Tables(0).Rows.Count < 1 Then
 
                 ultimo = 1
             Else
 
-                ultimo = ods.Tables(0).Rows(0).Item("OrdenPantalla")
-                ultimo = ultimo + 1
+                If ods.Tables(0).Rows(0).Item("OrdenPantalla").ToString = "" Then
+
+                    ultimo = 1
+                Else
+
+                    ultimo = ods.Tables(0).Rows(0).Item("OrdenPantalla")
+                    ultimo = ultimo + 1
+
+                End If
 
             End If
 
-        End If
+            ods = oObjeto.Turnos_AgregarOrdenPantalla(id_turno, ultimo)
 
-        Dim ods2 As New DataSet
-        Dim oObjeto As New Turnos
+        Catch ex As Exception
 
-        ods = oObjeto.Turnos_AgregarOrdenPantalla(id_turno, ultimo)
+        Finally
+
+            ods = Nothing
+            ot = Nothing
+            ultimo = Nothing
+
+            ods2 = Nothing
+            oObjeto = Nothing
+        End Try
+
 
 
     End Sub
-    Private Function BuscarOperadorLibre(ByVal ID_Turno As Integer) As Integer
+    Private Function BuscarOperadorLibre(ByVal ID_Turno As Integer, ByVal ID_Seccion As Integer) As Integer
         Dim oDs As New DataSet
         Dim ods2 As New DataSet
         Dim oObjeto As New AuditoriasUsuarios
         Dim oUsaurioTurno As New UsuariosTurnos
-        oDs = oObjeto.BuscarOperadorLibre
+        oDs = oObjeto.BuscarOperadorLibrePor_Seccion(ID_Seccion)
+        Try
+            If oDs.Tables(0).Rows.Count > 0 Then
 
-        If oDs.Tables(0).Rows.Count > 0 Then
+                oUsaurioTurno.Agregar(oDs.Tables(0).Rows(0).Item("ID_AuditoriaUsuario"),
+                                          oDs.Tables(0).Rows(0).Item("ID_Usuario"),
+                                          ID_Turno,
+                                          FechaHoraServidor,
+                                          ValorEstado("Turnos", "Llamado"))
 
-            oUsaurioTurno.Agregar(oDs.Tables(0).Rows(0).Item("ID_AuditoriaUsuario"),
-                                      oDs.Tables(0).Rows(0).Item("ID_Usuario"),
-                                      ID_Turno,
-                                      FechaHoraServidor,
-                                      ValorEstado("Turnos", "Llamado"))
+                Return oDs.Tables(0).Rows(0).Item("ID_Usuario")
 
-            '  oUsuarioLogin.Modificar(oDs.Tables(0).Rows(0).Item("ID_UsuarioLogin"), ValorEstado("OPERARIO", "OCUPADO"))
-            Return oDs.Tables(0).Rows(0).Item("ID_Usuario")
-        Else
+            Else
+                Return 0
+            End If
+        Catch ex As Exception
+
             Return 0
-        End If
+
+        Finally
+            oDs = Nothing
+            ods2 = Nothing
+            oObjeto = Nothing
+            oUsaurioTurno = Nothing
+        End Try
+
     End Function
 
 End Class

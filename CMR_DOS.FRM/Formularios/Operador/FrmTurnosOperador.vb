@@ -281,6 +281,7 @@ Public Class FrmTurnosOperador
         txtObservaciones.Text = ""
         EstadosCtrl1.Iniciar("TURNOS")
         EstadosCtrl1.SelectedValue = CInt(ValorEstado("TURNOS", "GENERADO"))
+
         Timer1.Start()
         BoxesCtrl1.Iniciar_conidusuario(G_UserID)
 
@@ -356,8 +357,9 @@ Public Class FrmTurnosOperador
 
 
 
+
                     MsgBox("Se modificó el registro" & vbCrLf & "Tiempo: " & LblCronometro.Text, MsgBoxStyle.Information, G_AppName)
-                    Timer3.Start()
+
 
                     LimpiarDatos()
                     Me.Estado = FormEstado.eVacio
@@ -621,6 +623,8 @@ ManejoErrores:
             MotivosCtrl1.SelectedValue = IIf(IsDBNull(oDs.Tables(1).Rows(0).Item("id_motivo")), 1, oDs.Tables(1).Rows(0).Item("id_motivo"))
 
 
+
+
             oDs = Nothing
             oObjeto = Nothing
 
@@ -652,13 +656,14 @@ ManejoErrores:
                 If oDs.Tables(0).Rows.Count > 0 Then
                     Me.Estado = FormEstado.eAgregar
                     BuscarPorID(oDs.Tables(0).Rows(0).Item("ID_Turno"))
+                    Timer1.Stop()
                     oDs = Nothing
                     oObjeto = Nothing
 
                     Return True
                 Else
                     Grilla.DataSource = Nothing
-                    oDs = oObjeto.Turnos_BuscarTodosGeneradosSinSeccion(G_BoxID)
+                    oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
                     If oDs.Tables(0).Rows.Count > 0 Then
                         Grilla.DataSource = ""
                         Grilla.DataSource = oDs.Tables(0)
@@ -673,7 +678,7 @@ ManejoErrores:
                         Me.Estado = FormEstado.eAgregar
                         LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
 
-
+                        Timer1.Stop()
                         Return True
 
                     Else
@@ -696,6 +701,7 @@ ManejoErrores:
                     Grilla.Columns(0).HeaderText = "#"
                     Grilla.Columns(0).Width = 30
                     Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+                    Timer1.Stop()
                     oDs = Nothing
                     oObjeto = Nothing
                     Return True
@@ -767,6 +773,8 @@ ManejoErrores:
             Dim ods2 As New DataSet
             Dim ODS5 As New DataSet
             Dim OT5 As New DataSet
+            Dim oAuditoria As New AuditoriasUsuarios
+
             'obtenemos el id_turno del siguente turno
             If EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Generado") Then
                 OT5 = oObjeto.BuscarPorID(ID)
@@ -774,25 +782,32 @@ ManejoErrores:
                     oDs = oObjeto.ObtenerSiguiente(EstadosCtrl1.SelectedValue, OT5.Tables(1).Rows(0).Item("ID_Seccion"))
                     SeccionesCtrl1.SelectedValue = OT5.Tables(1).Rows(0).Item("ID_Seccion")
                     G_CodTurno = OT5.Tables(1).Rows(0).Item("Codigo")
+
                 End If
 
 
                 If oDs.Tables(0).Rows.Count > 0 Then
 
-                    OrdenPantalla(oDs.Tables(0).Rows(0).Item("id_turno"))
-                    TxtID_Turno.Text = oDs.Tables(0).Rows(0).Item("id_turno")
-                    ods2 = oObjeto.llamarTurno(oDs.Tables(0).Rows(0).Item("id_turno"),
+                    OrdenPantalla(ID)
+                    TxtID_Turno.Text = ID
+                    ods2 = oObjeto.llamarTurno(ID,
                                            ValorEstado("Turnos", "Llamado"),
                                            G_UserID,
                                            SeccionesCtrl1.SelectedValue)
 
-                    BuscarPorID(oDs.Tables(0).Rows(0).Item("id_turno"))
+                    BuscarPorID(ID)
 
                     EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Llamado")
-
+                    oDs = oAuditoria.BuscarPorID_UsuarioActivo(G_UserID)
+                    If oDs.Tables(0).Rows(0).Item("TurnosAtendidos") = 0 Then
+                        oAuditoria.ModificarPrimerTurno(G_UserID, ValorEstado("OPERARIO", "OCUPADO"))
+                    Else
+                        oAuditoria.ModificarTiempoLibre(G_UserID, ValorEstado("OPERARIO", "OCUPADO"))
+                    End If
                     oDs = Nothing
                     oObjeto = Nothing
                     LlamarSiguiente = True
+
                     Exit Function
                 Else
 
@@ -1011,14 +1026,7 @@ ManejoErrores:
                 EstadosCtrl1.SelectedValue = ValorEstado("TURNOS", "ATENDIENDO")
                 oObjeto.llamarTurno(TxtID_Turno.Text, EstadosCtrl1.SelectedValue, G_UserID, SeccionesCtrl1.SelectedValue)
                 oUsuarioTurno.Modificar(TxtID_Turno.Text, EstadosCtrl1.SelectedValue)
-                Dim ods As New DataSet
-                Dim oAuditoria As New AuditoriasUsuarios
-                ods = oAuditoria.BuscarPorID_UsuarioActivo(G_UserID)
-                If ods.Tables(0).Rows(0).Item("TurnosAtendidos") = 0 Then
-                    oAuditoria.ModificarPrimerTurno(G_UserID, ValorEstado("OPERARIO", "OCUPADO"))
-                Else
-                    oAuditoria.ModificarTiempoLibre(G_UserID, ValorEstado("OPERARIO", "OCUPADO"))
-                End If
+
 
 
                 startTime = Now.TimeOfDay
@@ -1151,15 +1159,6 @@ ManejoErrores:
         End If
 
     End Sub
-    Dim tiempoespera As Integer = 0
-    Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
-        Dim oAuditoria As New AuditoriasUsuarios
-        tiempoespera += 1
-        If tiempoespera = 40 Then
-            oAuditoria.ModificarUltimoTurno(G_UserID, ValorEstado("OPERARIO", "LIBRE"))
-            Timer3.Stop()
-            tiempoespera = 0
-        End If
 
-    End Sub
+
 End Class

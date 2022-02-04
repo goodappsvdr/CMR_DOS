@@ -162,6 +162,13 @@ Public Class Turnos
             Throw ex
         End Try
     End Function
+    Function Turnos_BuscarTodosGeneradosPorSeccion(ByVal ID_Box As Integer, ByVal ID_Usuario As Integer) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarTodosGeneradosPorSeccion", ID_Box, ID_Usuario)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Function ObtenerSiguiente(id_estado As Double, ByVal ID_Seccion As Integer) As DataSet
         Try
             Return oDatabase.ExecuteDataSet("Turnos_ObtenerSiguiente", id_estado, ID_Seccion)

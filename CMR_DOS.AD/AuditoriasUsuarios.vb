@@ -144,5 +144,13 @@ Public Class AuditoriasUsuarios
         Catch ex As Exception
             Throw ex
         End Try
+
+    End Function
+    Function BuscarOperadorLibrePor_Seccion(ByVal ID_Seccion As Integer) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("AuditoriasUsuarios_BuscarOperadorLibrePor_Seccion", ID_Seccion)
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 End Class

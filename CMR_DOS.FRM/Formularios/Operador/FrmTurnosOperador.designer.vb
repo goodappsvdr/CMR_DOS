@@ -65,7 +65,6 @@ Partial Class FrmTurnosOperador
         Me.TxtFechaObtencion = New Controles_Ideas.TextData(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.PanelColor.SuspendLayout()
         CType(Me.CmdLimpiar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmdCancelar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -658,5 +657,4 @@ Partial Class FrmTurnosOperador
     Friend WithEvents BoxesCtrl1 As CTRL.BoxesCtrl
     Friend WithEvents CmdOcupado As FontAwesome.Sharp.IconButton
     Friend WithEvents CmdDisponible As FontAwesome.Sharp.IconButton
-    Friend WithEvents Timer3 As Timer
 End Class
