@@ -281,7 +281,7 @@ Public Class FrmTurnosOperador
         txtObservaciones.Text = ""
         EstadosCtrl1.Iniciar("TURNOS")
         EstadosCtrl1.SelectedValue = CInt(ValorEstado("TURNOS", "GENERADO"))
-
+        Grilla.DataSource = Nothing
         Timer1.Start()
         BoxesCtrl1.Iniciar_conidusuario(G_UserID)
 
@@ -665,6 +665,7 @@ ManejoErrores:
                     Grilla.DataSource = Nothing
                     oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
                     If oDs.Tables(0).Rows.Count > 0 Then
+
                         Grilla.DataSource = ""
                         Grilla.DataSource = oDs.Tables(0)
 
@@ -676,9 +677,10 @@ ManejoErrores:
                         oObjeto = Nothing
 
                         Me.Estado = FormEstado.eAgregar
+                        Timer1.Stop()
                         LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
 
-                        Timer1.Stop()
+
                         Return True
 
                     Else
@@ -904,7 +906,7 @@ ManejoErrores:
     End Sub
     Dim Intervalo = 0
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
-        Timer1.Interval = 1000
+        Timer1.Interval = 10000
         BuscarTodos()
 
         Intervalo = Intervalo + 1

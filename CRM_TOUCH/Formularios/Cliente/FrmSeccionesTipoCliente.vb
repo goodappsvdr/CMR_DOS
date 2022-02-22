@@ -245,17 +245,18 @@ Public Class FrmSeccionesTipoCliente
             Else
                 ID_Turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
                                           oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
-                                          ValorEstado("Turnos", "GENERADO"), False)
+                                          ValorEstado("Turnos", "GENERADO"),
+                                          False)
                 ' ImprimirTurno(ID_Turno)
                 idturno = ID_Turno
                 PrintDocument1.Print()
 
             End If
-            Dim ID_Usuario As Integer = BuscarOperadorLibre(ID_Turno, IDSeccion)
-            If ID_Usuario > 0 Then
-                LlamarSiguiente(ID_Turno, IDSeccion, ID_Usuario)
+            'Dim ID_Usuario As Integer = BuscarOperadorLibre(ID_Turno, IDSeccion)
+            'If ID_Usuario > 0 Then
+            '    LlamarSiguiente(ID_Turno, IDSeccion, ID_Usuario)
 
-            End If
+            'End If
 
         Catch ex As Exception
 
@@ -375,37 +376,37 @@ Public Class FrmSeccionesTipoCliente
 
 
     End Sub
-    Private Function BuscarOperadorLibre(ByVal ID_Turno As Integer, ByVal ID_Seccion As Integer) As Integer
-        Dim oDs As New DataSet
-        Dim ods2 As New DataSet
-        Dim oObjeto As New AuditoriasUsuarios
-        Dim oUsaurioTurno As New UsuariosTurnos
-        oDs = oObjeto.BuscarOperadorLibrePor_Seccion(ID_Seccion)
-        Try
-            If oDs.Tables(0).Rows.Count > 0 Then
+    'Private Function BuscarOperadorLibre(ByVal ID_Turno As Integer, ByVal ID_Seccion As Integer) As Integer
+    '    Dim oDs As New DataSet
+    '    Dim ods2 As New DataSet
+    '    Dim oObjeto As New AuditoriasUsuarios
+    '    Dim oUsaurioTurno As New UsuariosTurnos
+    '    oDs = oObjeto.BuscarOperadorLibrePor_Seccion(ID_Seccion)
+    '    Try
+    '        If oDs.Tables(0).Rows.Count > 0 Then
 
-                oUsaurioTurno.Agregar(oDs.Tables(0).Rows(0).Item("ID_AuditoriaUsuario"),
-                                          oDs.Tables(0).Rows(0).Item("ID_Usuario"),
-                                          ID_Turno,
-                                          FechaHoraServidor,
-                                          ValorEstado("Turnos", "Llamado"))
+    '            oUsaurioTurno.Agregar(oDs.Tables(0).Rows(0).Item("ID_AuditoriaUsuario"),
+    '                                      oDs.Tables(0).Rows(0).Item("ID_Usuario"),
+    '                                      ID_Turno,
+    '                                      FechaHoraServidor,
+    '                                      ValorEstado("Turnos", "Llamado"))
 
-                Return oDs.Tables(0).Rows(0).Item("ID_Usuario")
+    '            Return oDs.Tables(0).Rows(0).Item("ID_Usuario")
 
-            Else
-                Return 0
-            End If
-        Catch ex As Exception
+    '        Else
+    '            Return 0
+    '        End If
+    '    Catch ex As Exception
 
-            Return 0
+    '        Return 0
 
-        Finally
-            oDs = Nothing
-            ods2 = Nothing
-            oObjeto = Nothing
-            oUsaurioTurno = Nothing
-        End Try
+    '    Finally
+    '        oDs = Nothing
+    '        ods2 = Nothing
+    '        oObjeto = Nothing
+    '        oUsaurioTurno = Nothing
+    '    End Try
 
-    End Function
+    'End Function
 
 End Class
