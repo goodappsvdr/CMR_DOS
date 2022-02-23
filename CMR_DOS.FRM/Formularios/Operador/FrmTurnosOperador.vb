@@ -329,6 +329,7 @@ Public Class FrmTurnosOperador
         Dim oDS As New DataSet
         Dim oAuditoria As New AuditoriasUsuarios
         Dim oUsuarioTurnos As New UsuariosTurnos
+        Dim NuevoTurno As Integer = 0
         Try
 
             Select Case Me.Estado
@@ -344,9 +345,9 @@ Public Class FrmTurnosOperador
 
                     If ResolucionesCtrl1.SelectedValue = CInt(ValorParametro("RESOLUCION", "TRANFERIDO")) Then
 
-                        TranferirTurno(SeccionesCtrl1.SelectedValue)
+                        NuevoTurno = TranferirTurno(SeccionesCtrl1.SelectedValue)
 
-                        oTurno.AgregarTranferido(TxtID_Turno.Text, id_turno, BoxesCtrl1.SelectedValue, ValorEstado("Turnos", "GENERADO"))
+                        oTurno.AgregarTranferido(TxtID_Turno.Text, NuevoTurno, BoxesCtrl1.SelectedValue, ValorEstado("Turnos", "GENERADO"))
 
                     End If
 
@@ -577,9 +578,9 @@ ManejoErrores:
 
         End If
 
-        If ResolucionesCtrl1.SelectedValue = CInt(ValorParametro("RESOLUCION", "TRANFERIDO")) And SeccionesCtrl1.SelectedValue = G_SeccionID Then
+        If ResolucionesCtrl1.SelectedValue = CInt(ValorParametro("RESOLUCION", "TRANFERIDO")) And BoxesCtrl1.SelectedValue = G_BoxID Then
 
-            MsgBox("No se puede tranferir el turno a la misma sección...", MsgBoxStyle.Exclamation, G_AppName)
+            MsgBox("No se puede transferir el Turno a tu mismo Box por favor seleccione otro y vuelva a intentar...", MsgBoxStyle.Exclamation, G_AppName)
             Validar = False
             Exit Function
 
@@ -1042,7 +1043,7 @@ ManejoErrores:
     Private Sub txtObservaciones_TextChanged(sender As Object, e As EventArgs) Handles txtObservaciones.TextChanged
 
     End Sub
-    Private Sub TranferirTurno(ByVal IDSeccion As Integer)
+    Private Function TranferirTurno(ByVal IDSeccion As Integer)
 
 
         Dim oSeccionesTipos As New SeccionesTipo
@@ -1057,17 +1058,17 @@ ManejoErrores:
                                       oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
                                       ValorEstado("Turnos", "GENERADO"),
                                       CType(oDsConsultaTurno.Tables(0).Rows(0).Item("nroTurno"), Integer) + 1, True)
-
+            Return id_turno
 
         Else
             id_turno = oTurno.AgregarPrimero(oDS.Tables(0).Rows(0).Item("id_Seccion"),
                                       oDS.Tables(0).Rows(0).Item("CodigoSeccion"),
                                       ValorEstado("Turnos", "GENERADO"), True)
-
+            Return id_turno
 
         End If
 
-    End Sub
+    End Function
 
     Private Sub ResolucionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles ResolucionesCtrl1.SelectionChangeCommitted
         If ResolucionesCtrl1.SelectedValue = CInt(ValorParametro("RESOLUCION", "TRANFERIDO")) Then
