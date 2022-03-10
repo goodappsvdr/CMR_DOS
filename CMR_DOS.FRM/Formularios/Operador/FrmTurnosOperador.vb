@@ -281,10 +281,9 @@ Public Class FrmTurnosOperador
         txtObservaciones.Text = ""
         EstadosCtrl1.Iniciar("TURNOS")
         EstadosCtrl1.SelectedValue = CInt(ValorEstado("TURNOS", "GENERADO"))
+        BoxesCtrl1.Iniciar_conidusuario(G_UserID)
         Grilla.DataSource = Nothing
         Timer1.Start()
-        BoxesCtrl1.Iniciar_conidusuario(G_UserID)
-
     End Sub
     Private Sub EstablecerPrioridad()
         Dim VALOR As MsgBoxResult = MsgBox("Desea establecer este turno como prioridad?", MsgBoxStyle.YesNo, "ESTA SEGURO ?")
@@ -353,7 +352,9 @@ Public Class FrmTurnosOperador
 
                     ' oUsuarioTurno.Modificar(TxtID_Turno.Text, FechaHoraServidor, ValorEstado("TURNOS", "SOLUCIONADO"))
                     oUsuarioTurnos.Modificar(TxtID_Turno.Text, ValorEstado("TURNOS", "SOLUCIONADO"))
-                   
+
+
+                    oAuditoria.ModificarTiempoOcupadoAtendido(G_UserID, ValorEstado("OPERARIO", "LIBRE"))
                     Timer2.Stop()
 
 
@@ -1099,8 +1100,7 @@ ManejoErrores:
         Try
             'Modifico el estado para que poder asigne asignarle un turno
             Dim Estado As Integer = ValorEstado("OPERARIO", "LIBRE")
-            oAuditoria.Modificar(G_UserID, Estado, True)
-            EstadoOperador = Estado
+            oAuditoria.ModificarEstado(G_UserID, Estado, True)
             Timer1.Start()
             Me.Estado = FormEstado.eVacio
 
@@ -1123,7 +1123,7 @@ ManejoErrores:
             Else
                 'Modifico el estado para que no se le asigne ningun turno 
                 Dim Estado As Integer = ValorEstado("OPERARIO", "OCUPADO")
-                oAuditoria.Modificar(G_UserID, Estado, True)
+                oAuditoria.ModificarEstado(G_UserID, Estado, True)
                 EstadoOperador = Estado
                 Timer1.Stop()
                 Me.Estado = FormEstado.eOcupado

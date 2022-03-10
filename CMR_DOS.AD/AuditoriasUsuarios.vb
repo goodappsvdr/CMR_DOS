@@ -117,6 +117,13 @@ Public Class AuditoriasUsuarios
             Throw ex
         End Try
     End Function
+    Public Function ModificarEstadoUltimoTurno(ByVal ID_Usuario As Integer, ByVal Estado As Integer, ByVal Activo As Boolean) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("AuditoriasUsuarios_ModificarEstado_UltimoTurno", ID_Usuario, Estado, Activo)
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+    End Function
     Public Function ModificarPrimerTurno(ByVal ID_Usuario As Integer, ByVal Estado As Integer) As DataSet
         Try
             Return oDatabase.ExecuteDataSet("AuditoriasUsuarios_PrimerTurno", ID_Usuario, Estado)
@@ -134,6 +141,20 @@ Public Class AuditoriasUsuarios
     Public Function ModificarTiempoLibre(ByVal ID_Usuario As Integer, ByVal Estado As Integer) As DataSet
         Try
             Return oDatabase.ExecuteDataSet("AuditoriasUsuarios_ModificarTiempoLibre", ID_Usuario, Estado)
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function ModificarTiempoOcupado(ByVal ID_Usuario As Integer, ByVal Estado As Integer) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("AuditoriasUsuarios_ModificarTiempoOcupado", ID_Usuario, Estado)
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function ModificarTiempoOcupadoAtendido(ByVal ID_Usuario As Integer, ByVal Estado As Integer) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("AuditoriasUsuarios_ModificarTiempoOcupado_TurnoAtendido", ID_Usuario, Estado)
         Catch ex As System.Exception
             Throw ex
         End Try
