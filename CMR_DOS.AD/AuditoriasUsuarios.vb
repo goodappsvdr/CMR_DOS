@@ -174,4 +174,18 @@ Public Class AuditoriasUsuarios
             Throw ex
         End Try
     End Function
+    Public Function BuscarPorID_Usuario_Disponible(ByVal ID_Usuario As Integer) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("AuditoriasUsuarios_BuscarOperador_Disponible", ID_Usuario)
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function BuscareldeMenorAtencion() As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("AuditoriasUsuarios_BuscarOperador_MenosAtendio")
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+    End Function
 End Class

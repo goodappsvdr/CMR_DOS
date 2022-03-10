@@ -652,6 +652,8 @@ ManejoErrores:
         Dim oDs As New DataSet
         Dim oObjeto As New Turnos
         Dim oUsuarioTurnos As New UsuariosTurnos
+        Dim oAuditoria As New AuditoriasUsuarios
+
         Select Case EstadosCtrl1.SelectedValue
             Case CInt(ValorEstado("TURNOS", "GENERADO"))
                 oDs = oUsuarioTurnos.BuscarPorID_Usuario(G_UserID)
@@ -665,38 +667,114 @@ ManejoErrores:
                     Return True
                 Else
                     Grilla.DataSource = Nothing
-                    oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
-                    If oDs.Tables(0).Rows.Count > 0 Then
+                    ' Si es covadi o roldan directamente busco turnos 
+                    If G_UserID = 106 Or G_UserID = 87 Then
+                        oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
+                        If oDs.Tables(0).Rows.Count > 0 Then
 
-                        Grilla.DataSource = ""
-                        Grilla.DataSource = oDs.Tables(0)
+                            Grilla.DataSource = ""
+                            Grilla.DataSource = oDs.Tables(0)
 
-                        Grilla.Columns(0).HeaderText = "#"
-                        Grilla.Columns(0).Width = 30
-                        Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+                            Grilla.Columns(0).HeaderText = "#"
+                            Grilla.Columns(0).Width = 30
+                            Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
 
-                        oDs = Nothing
-                        oObjeto = Nothing
+                            oDs = Nothing
+                            oObjeto = Nothing
 
-                        Me.Estado = FormEstado.eAgregar
-                        Timer1.Stop()
-                        LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
+                            Me.Estado = FormEstado.eAgregar
+                            Timer1.Stop()
+                            LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
 
 
-                        Return True
+                            Return True
 
+                        Else
+                            oDs = Nothing
+                            oObjeto = Nothing
+
+                            Return False
+
+                        End If
                     Else
-                        oDs = Nothing
-                        oObjeto = Nothing
 
-                        Return False
+                        ' Consulto si hay mas usuarios disponibles si no hay mas usuarios  busco turnos si hay mas usuarios disponible comparo quien es el qe menos atendio
+                        oDs = oAuditoria.BuscarPorID_Usuario_Disponible(G_UserID)
+                        If oDs.Tables(0).Rows.Count = 0 Then
+                            oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
+                            If oDs.Tables(0).Rows.Count > 0 Then
+
+                                Grilla.DataSource = ""
+                                Grilla.DataSource = oDs.Tables(0)
+
+                                Grilla.Columns(0).HeaderText = "#"
+                                Grilla.Columns(0).Width = 30
+                                Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+
+                                oDs = Nothing
+                                oObjeto = Nothing
+
+                                Me.Estado = FormEstado.eAgregar
+                                Timer1.Stop()
+                                LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
+
+
+                                Return True
+
+                            Else
+                                oDs = Nothing
+                                oObjeto = Nothing
+
+                                Return False
+
+                            End If
+
+                        Else
+
+                            oDs = oAuditoria.BuscareldeMenorAtencion()
+                            If oDs.Tables(0).Rows(0).Item("ID_Usuario") = G_UserID Then
+                                oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
+                                If oDs.Tables(0).Rows.Count > 0 Then
+
+                                    Grilla.DataSource = ""
+                                    Grilla.DataSource = oDs.Tables(0)
+
+                                    Grilla.Columns(0).HeaderText = "#"
+                                    Grilla.Columns(0).Width = 30
+                                    Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+
+                                    oDs = Nothing
+                                    oObjeto = Nothing
+
+                                    Me.Estado = FormEstado.eAgregar
+                                    Timer1.Stop()
+                                    LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
+
+
+                                    Return True
+
+                                Else
+                                    oDs = Nothing
+                                    oObjeto = Nothing
+
+                                    Return False
+
+                                End If
+
+                            Else
+                                oDs = Nothing
+                                oObjeto = Nothing
+
+                                Return False
+
+                            End If
+                        End If
 
                     End If
                 End If
 
-
-
             Case Else
+
                 Grilla.DataSource = Nothing
                 oDs = oObjeto.Turnos_BuscarPorOperadoryEstado(G_UserID, EstadosCtrl1.SelectedValue, SeccionesCtrl1.SelectedValue)
                 If oDs.Tables(0).Rows.Count > 0 Then
