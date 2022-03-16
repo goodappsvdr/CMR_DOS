@@ -6,8 +6,18 @@ Imports Telerik.WinControls.Primitives
 Public Class FrmMenuPanel
 
     Private Sub FrmMenuPanel_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+        If MsgBox("Esta seguro de Salir?",
+         vbYesNo, "Confirmacion de Accion") = MsgBoxResult.Yes Then
 
-        System.Windows.Forms.Application.Exit()
+            Dim oAuditoria As New AuditoriasUsuarios
+            oAuditoria.Modificar(G_UserID, ValorEstado("OPERARIO", "OCUPADO"), False)
+
+            System.Windows.Forms.Application.Exit()
+        Else
+            e.Cancel = True
+        End If
+
+
         End
     End Sub
 

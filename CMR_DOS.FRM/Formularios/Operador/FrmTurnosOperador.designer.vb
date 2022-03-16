@@ -65,6 +65,7 @@ Partial Class FrmTurnosOperador
         Me.TxtFechaObtencion = New Controles_Ideas.TextData(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.PanelColor.SuspendLayout()
         CType(Me.CmdLimpiar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmdCancelar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -570,6 +571,11 @@ Partial Class FrmTurnosOperador
         'Timer2
         '
         '
+        'NotifyIcon1
+        '
+        Me.NotifyIcon1.Text = "NotifyIcon1"
+        Me.NotifyIcon1.Visible = True
+        '
         'FrmTurnosOperador
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -657,4 +663,5 @@ Partial Class FrmTurnosOperador
     Friend WithEvents BoxesCtrl1 As CTRL.BoxesCtrl
     Friend WithEvents CmdOcupado As FontAwesome.Sharp.IconButton
     Friend WithEvents CmdDisponible As FontAwesome.Sharp.IconButton
+    Friend WithEvents NotifyIcon1 As NotifyIcon
 End Class

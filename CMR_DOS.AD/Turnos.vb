@@ -169,6 +169,13 @@ Public Class Turnos
             Throw ex
         End Try
     End Function
+    Function Turnos_BuscarTransferido(ByVal ID_Box As Integer) As DataSet
+        Try
+            Return oDatabase.ExecuteDataSet("Turnos_BuscarTransferidos", ID_Box)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Function ObtenerSiguiente(id_estado As Double, ByVal ID_Seccion As Integer) As DataSet
         Try
             Return oDatabase.ExecuteDataSet("Turnos_ObtenerSiguiente", id_estado, ID_Seccion)

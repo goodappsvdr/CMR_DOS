@@ -667,40 +667,31 @@ ManejoErrores:
                     Return True
                 Else
                     Grilla.DataSource = Nothing
-                    ' Si es covadi o roldan directamente busco turnos 
-                    If G_UserID = 106 Or G_UserID = 87 Then
-                        oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
-                        If oDs.Tables(0).Rows.Count > 0 Then
 
-                            Grilla.DataSource = ""
-                            Grilla.DataSource = oDs.Tables(0)
+                    oDs = oObjeto.Turnos_BuscarTransferido(G_BoxID)
 
-                            Grilla.Columns(0).HeaderText = "#"
-                            Grilla.Columns(0).Width = 30
-                            Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+                    If oDs.Tables(0).Rows.Count > 0 Then
 
-                            oDs = Nothing
-                            oObjeto = Nothing
+                        Grilla.DataSource = ""
+                        Grilla.DataSource = oDs.Tables(0)
 
-                            Me.Estado = FormEstado.eAgregar
-                            Timer1.Stop()
-                            LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
+                        Grilla.Columns(0).HeaderText = "#"
+                        Grilla.Columns(0).Width = 30
+                        Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+
+                        oDs = Nothing
+                        oObjeto = Nothing
+
+                        Me.Estado = FormEstado.eAgregar
+                        Timer1.Stop()
+                        LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
 
 
-                            Return True
+                        Return True
 
-                        Else
-                            oDs = Nothing
-                            oObjeto = Nothing
-
-                            Return False
-
-                        End If
                     Else
-
-                        ' Consulto si hay mas usuarios disponibles si no hay mas usuarios  busco turnos si hay mas usuarios disponible comparo quien es el qe menos atendio
-                        oDs = oAuditoria.BuscarPorID_Usuario_Disponible(G_UserID)
-                        If oDs.Tables(0).Rows.Count = 0 Then
+                        ' Si es covadi o roldan directamente busco turnos 
+                        If G_UserID = 106 Or G_UserID = 87 Then
                             oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
                             If oDs.Tables(0).Rows.Count > 0 Then
 
@@ -728,11 +719,11 @@ ManejoErrores:
                                 Return False
 
                             End If
-
                         Else
 
-                            oDs = oAuditoria.BuscareldeMenorAtencion()
-                            If oDs.Tables(0).Rows(0).Item("ID_Usuario") = G_UserID Then
+                            ' Consulto si hay mas usuarios disponibles si no hay mas usuarios  busco turnos si hay mas usuarios disponible comparo quien es el qe menos atendio
+                            oDs = oAuditoria.BuscarPorID_Usuario_Disponible(G_UserID)
+                            If oDs.Tables(0).Rows.Count = 0 Then
                                 oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
                                 If oDs.Tables(0).Rows.Count > 0 Then
 
@@ -762,17 +753,49 @@ ManejoErrores:
                                 End If
 
                             Else
-                                oDs = Nothing
-                                oObjeto = Nothing
 
-                                Return False
+                                oDs = oAuditoria.BuscareldeMenorAtencion()
+                                If oDs.Tables(0).Rows(0).Item("ID_Usuario") = G_UserID Then
+                                    oDs = oObjeto.Turnos_BuscarTodosGeneradosPorSeccion(G_BoxID, G_UserID)
+                                    If oDs.Tables(0).Rows.Count > 0 Then
 
+                                        Grilla.DataSource = ""
+                                        Grilla.DataSource = oDs.Tables(0)
+
+                                        Grilla.Columns(0).HeaderText = "#"
+                                        Grilla.Columns(0).Width = 30
+                                        Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
+
+                                        oDs = Nothing
+                                        oObjeto = Nothing
+
+                                        Me.Estado = FormEstado.eAgregar
+                                        Timer1.Stop()
+                                        LlamarSiguiente(Grilla.CurrentRow.Cells(0).Value)
+
+
+                                        Return True
+
+                                    Else
+                                        oDs = Nothing
+                                        oObjeto = Nothing
+
+                                        Return False
+
+                                    End If
+
+                                Else
+                                    oDs = Nothing
+                                    oObjeto = Nothing
+
+                                    Return False
+
+                                End If
                             End If
-                        End If
 
+                        End If
                     End If
                 End If
-
             Case Else
 
                 Grilla.DataSource = Nothing
@@ -846,7 +869,6 @@ ManejoErrores:
 #End Region
 
 
-
     Public Function LlamarSiguiente(ByVal ID As Integer) As Boolean
         Try
 
@@ -888,6 +910,8 @@ ManejoErrores:
                     End If
                     oDs = Nothing
                     oObjeto = Nothing
+                    General.GetForm("Tienes un nuevo turno asignado...")
+                    Me.Show()
                     LlamarSiguiente = True
 
                     Exit Function
@@ -1022,6 +1046,7 @@ ManejoErrores:
     Private Sub SeccionesCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles SeccionesCtrl1.SelectionChangeCommitted
         Grilla.DataSource = Nothing
         BuscarTodos()
+        BoxesCtrl1.Iniciar(SeccionesCtrl1.SelectedValue)
     End Sub
 
     Private Sub EstadosCtrl1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles EstadosCtrl1.SelectionChangeCommitted

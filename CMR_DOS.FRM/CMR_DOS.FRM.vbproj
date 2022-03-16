@@ -27,8 +27,8 @@
     <InstallUrl>http://179.43.114.86/INSTALADORES/CMR_DOS/</InstallUrl>
     <ProductName>CRM</ProductName>
     <PublisherName>COOVILROS LTDA</PublisherName>
-    <MinimumRequiredVersion>1.0.0.40</MinimumRequiredVersion>
-    <ApplicationRevision>41</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.43</MinimumRequiredVersion>
+    <ApplicationRevision>44</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -83,6 +83,9 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.5.4">
+      <HintPath>..\dll\Bunifu_UI_v1.5.4.dll</HintPath>
+    </Reference>
     <Reference Include="Controles_Ideas">
       <HintPath>..\dll\Controles_Ideas.dll</HintPath>
     </Reference>
@@ -487,6 +490,12 @@
     <Compile Include="FrmMenuPanel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmNotificacion.Designer.vb">
+      <DependentUpon>frmNotificacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmNotificacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmPrincipal.Designer.vb">
       <DependentUpon>FrmPrincipal.vb</DependentUpon>
     </Compile>
@@ -514,6 +523,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Resource1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -625,6 +639,9 @@
     <EmbeddedResource Include="FrmMenuPanel.resx">
       <DependentUpon>FrmMenuPanel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmNotificacion.resx">
+      <DependentUpon>frmNotificacion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.vb</DependentUpon>
     </EmbeddedResource>
@@ -636,6 +653,11 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource1.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -657,12 +679,26 @@
     <Content Include="Imagenes\icono_volver-2sad %282%29.png" />
     <Content Include="LogoCoovilros.ico" />
     <Content Include="logo_ideas_icon.ico" />
+    <None Include="Resources\television.png" />
+    <None Include="Resources\telefonia.png" />
+    <None Include="Resources\solicite su turno aqui.png" />
+    <None Include="Resources\amicos.png" />
     <Content Include="Resources\Arrows-Back-icon.png" />
     <Content Include="Resources\atendido.png" />
+    <None Include="Resources\cementerio parque.png" />
+    <None Include="Resources\energia.png" />
+    <None Include="Resources\Error_96px.png" />
+    <None Include="Resources\HighPriority_96px.png" />
+    <None Include="Resources\hora.png" />
     <Content Include="Resources\icono_volver-2.png" />
     <Content Include="Resources\icono_volver-21.png" />
     <Content Include="Resources\icono_volver-2sad %282%29.png" />
+    <None Include="Resources\internet.png" />
     <Content Include="Resources\llamado.gif" />
+    <None Include="Resources\LogoCoovilros.ico" />
+    <None Include="Resources\Ok_96px.png" />
+    <None Include="Resources\otros.png" />
+    <None Include="Resources\servicios sociales.png" />
     <Content Include="Resources\siguiente.png" />
     <None Include="Resources\logo coop.png" />
     <None Include="packages.config" />

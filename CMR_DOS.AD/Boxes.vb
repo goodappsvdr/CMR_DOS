@@ -54,7 +54,17 @@ Public Class Boxes
 
     End Function
 
+    Public Function BuscarPorID_Seccion(ByVal ID_Seccion As Double) As DataSet
 
+        Try
+
+            Return oDatabase.ExecuteDataSet("BoxesSecciones_BuscarPorID_Seccion", ID_Seccion)
+
+        Catch ex As System.Exception
+            Throw ex
+        End Try
+
+    End Function
     'BuscarTodos
     Public Function BuscarTodos() As DataSet
 

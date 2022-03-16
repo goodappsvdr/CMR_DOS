@@ -13,27 +13,27 @@ Partial Public Class BoxesCtrl
 
     End Sub
 
-    'Public Sub Iniciar(id_seccion As Integer)
+    Public Sub Iniciar(id_seccion As Integer)
 
-    '    Dim oDs As New DataSet
-    '    Dim oObjeto As New Boxes
+        Dim oDs As New DataSet
+        Dim oObjeto As New Boxes
 
-    '    oDs = oObjeto.BuscarporSeccion(id_seccion)
+        oDs = oObjeto.BuscarPorID_Seccion(id_seccion)
 
-    '    If oDs.Tables(0).Rows.Count > 0 Then
+        If oDs.Tables(0).Rows.Count > 0 Then
 
 
-    '        DataSource = oDs.Tables(0)
-    '        DisplayMember = oDs.Tables(0).Columns(6).Caption.ToString
-    '        ValueMember = oDs.Tables(0).Columns(0).Caption.ToString
-    '    Else
-    '        'MsgBox("No se encontraron Boxes para esta sección.", MsgBoxStyle.Exclamation, "Información...")
-    '    End If
+            DataSource = oDs.Tables(0)
+            DisplayMember = oDs.Tables(0).Columns(1).Caption.ToString
+            ValueMember = oDs.Tables(0).Columns(0).Caption.ToString
+        Else
+            'MsgBox("No se encontraron Boxes para esta sección.", MsgBoxStyle.Exclamation, "Información...")
+        End If
 
-    '    oDs = Nothing
-    '    oObjeto = Nothing
+        oDs = Nothing
+        oObjeto = Nothing
 
-    'End Sub
+    End Sub
 
 
     Public Sub Iniciar()
