@@ -40,6 +40,7 @@ Partial Class FrmTurnosOperador
         Me.Grilla = New Telerik.WinControls.UI.RadGridView()
         Me.RadPageView1 = New Telerik.WinControls.UI.RadPageView()
         Me.RadPageViewPage1 = New Telerik.WinControls.UI.RadPageViewPage()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.CmdOcupado = New FontAwesome.Sharp.IconButton()
         Me.CmdDisponible = New FontAwesome.Sharp.IconButton()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -65,7 +66,7 @@ Partial Class FrmTurnosOperador
         Me.TxtFechaObtencion = New Controles_Ideas.TextData(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.PopupNotifier1 = New Tulpep.NotificationWindow.PopupNotifier()
         Me.PanelColor.SuspendLayout()
         CType(Me.CmdLimpiar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmdCancelar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,7 +108,7 @@ Partial Class FrmTurnosOperador
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.Label1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(142, 35)
+        Me.Label1.Location = New System.Drawing.Point(141, 12)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(18, 13)
         Me.Label1.TabIndex = 40
@@ -247,6 +248,7 @@ Partial Class FrmTurnosOperador
         'RadPageViewPage1
         '
         Me.RadPageViewPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(56, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.RadPageViewPage1.Controls.Add(Me.Label10)
         Me.RadPageViewPage1.Controls.Add(Me.CmdOcupado)
         Me.RadPageViewPage1.Controls.Add(Me.CmdDisponible)
         Me.RadPageViewPage1.Controls.Add(Me.Label8)
@@ -276,6 +278,18 @@ Partial Class FrmTurnosOperador
         Me.RadPageViewPage1.Name = "RadPageViewPage1"
         Me.RadPageViewPage1.Size = New System.Drawing.Size(620, 262)
         Me.RadPageViewPage1.Text = "Información"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.Label10.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.Label10.Location = New System.Drawing.Point(109, 33)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(51, 13)
+        Me.Label10.TabIndex = 116
+        Me.Label10.Text = "CÓDIGO"
         '
         'CmdOcupado
         '
@@ -411,13 +425,12 @@ Partial Class FrmTurnosOperador
         Me.TxtID_Turno.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtID_Turno.ColorLeave = System.Drawing.Color.White
         Me.TxtID_Turno.Enabled = False
-        Me.TxtID_Turno.Location = New System.Drawing.Point(165, 28)
+        Me.TxtID_Turno.Location = New System.Drawing.Point(164, 5)
         Me.TxtID_Turno.Name = "TxtID_Turno"
         Me.TxtID_Turno.Size = New System.Drawing.Size(69, 22)
         Me.TxtID_Turno.TabEnable = True
         Me.TxtID_Turno.TabIndex = 107
         Me.TxtID_Turno.TipoDato = System.Data.DbType.Int32
-        Me.TxtID_Turno.Visible = False
         '
         'MotivosCtrl1
         '
@@ -506,7 +519,7 @@ Partial Class FrmTurnosOperador
         Me.TxtCodigo.ColorEnter = System.Drawing.Color.Yellow
         Me.TxtCodigo.ColorLeave = System.Drawing.Color.White
         Me.TxtCodigo.Enabled = False
-        Me.TxtCodigo.Location = New System.Drawing.Point(165, 28)
+        Me.TxtCodigo.Location = New System.Drawing.Point(164, 29)
         Me.TxtCodigo.Name = "TxtCodigo"
         Me.TxtCodigo.Size = New System.Drawing.Size(100, 22)
         Me.TxtCodigo.TabEnable = True
@@ -571,10 +584,16 @@ Partial Class FrmTurnosOperador
         'Timer2
         '
         '
-        'NotifyIcon1
+        'PopupNotifier1
         '
-        Me.NotifyIcon1.Text = "NotifyIcon1"
-        Me.NotifyIcon1.Visible = True
+        Me.PopupNotifier1.ContentFont = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.PopupNotifier1.ContentText = Nothing
+        Me.PopupNotifier1.Image = Nothing
+        Me.PopupNotifier1.IsRightToLeft = False
+        Me.PopupNotifier1.OptionsMenu = Nothing
+        Me.PopupNotifier1.Size = New System.Drawing.Size(400, 100)
+        Me.PopupNotifier1.TitleFont = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.PopupNotifier1.TitleText = Nothing
         '
         'FrmTurnosOperador
         '
@@ -663,5 +682,6 @@ Partial Class FrmTurnosOperador
     Friend WithEvents BoxesCtrl1 As CTRL.BoxesCtrl
     Friend WithEvents CmdOcupado As FontAwesome.Sharp.IconButton
     Friend WithEvents CmdDisponible As FontAwesome.Sharp.IconButton
-    Friend WithEvents NotifyIcon1 As NotifyIcon
+    Friend WithEvents Label10 As Label
+    Friend WithEvents PopupNotifier1 As Tulpep.NotificationWindow.PopupNotifier
 End Class

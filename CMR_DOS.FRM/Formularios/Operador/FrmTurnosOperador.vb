@@ -4,6 +4,7 @@ Imports Telerik.WinControls.UI.Export
 Imports Telerik.WinControls.UI.Data
 Imports System.ComponentModel
 Imports Telerik.WinControls.UI
+Imports Tulpep.NotificationWindow
 
 Public Class FrmTurnosOperador
 
@@ -676,7 +677,7 @@ ManejoErrores:
                         Grilla.DataSource = oDs.Tables(0)
 
                         Grilla.Columns(0).HeaderText = "#"
-                        Grilla.Columns(0).Width = 30
+                        Grilla.Columns(0).Width = 40
                         Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
 
                         oDs = Nothing
@@ -699,7 +700,7 @@ ManejoErrores:
                                 Grilla.DataSource = oDs.Tables(0)
 
                                 Grilla.Columns(0).HeaderText = "#"
-                                Grilla.Columns(0).Width = 30
+                                Grilla.Columns(0).Width = 40
                                 Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
 
                                 oDs = Nothing
@@ -731,7 +732,7 @@ ManejoErrores:
                                     Grilla.DataSource = oDs.Tables(0)
 
                                     Grilla.Columns(0).HeaderText = "#"
-                                    Grilla.Columns(0).Width = 30
+                                    Grilla.Columns(0).Width = 40
                                     Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
 
                                     oDs = Nothing
@@ -763,7 +764,7 @@ ManejoErrores:
                                         Grilla.DataSource = oDs.Tables(0)
 
                                         Grilla.Columns(0).HeaderText = "#"
-                                        Grilla.Columns(0).Width = 30
+                                        Grilla.Columns(0).Width = 40
                                         Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
 
                                         oDs = Nothing
@@ -804,7 +805,7 @@ ManejoErrores:
                     Grilla.DataSource = ""
                     Grilla.DataSource = oDs.Tables(0)
                     Grilla.Columns(0).HeaderText = "#"
-                    Grilla.Columns(0).Width = 30
+                    Grilla.Columns(0).Width = 40
                     Grilla.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill
                     Timer1.Stop()
                     oDs = Nothing
@@ -870,14 +871,16 @@ ManejoErrores:
 
 
     Public Function LlamarSiguiente(ByVal ID As Integer) As Boolean
+        Dim popup As PopupNotifier = New PopupNotifier()
+
+        Dim oDs As New DataSet
+        Dim oObjeto As New Turnos
+        Dim ods2 As New DataSet
+        Dim ODS5 As New DataSet
+        Dim OT5 As New DataSet
+        Dim oAuditoria As New AuditoriasUsuarios
         Try
 
-            Dim oDs As New DataSet
-            Dim oObjeto As New Turnos
-            Dim ods2 As New DataSet
-            Dim ODS5 As New DataSet
-            Dim OT5 As New DataSet
-            Dim oAuditoria As New AuditoriasUsuarios
 
             'obtenemos el id_turno del siguente turno
             If EstadosCtrl1.SelectedValue = ValorEstado("Turnos", "Generado") Then
@@ -908,18 +911,24 @@ ManejoErrores:
                     Else
                         oAuditoria.ModificarTiempoLibre(G_UserID, ValorEstado("OPERARIO", "OCUPADO"))
                     End If
-                    oDs = Nothing
-                    oObjeto = Nothing
-                    General.GetForm("Tienes un nuevo turno asignado...")
-                    Me.Show()
+
+
+                    popup.BodyColor = Color.FromArgb(40, 167, 69)
+                    popup.Image = My.Resources.Resource1.Ok_96px
+                    popup.TitleText = G_UserName
+                    popup.TitleColor = Color.White
+                    popup.TitleFont = New Font("Century Gothic", 15, FontStyle.Bold)
+                    popup.ContentText = "Nuevo Turno Asignado"
+                    popup.ContentColor = Color.White
+                    popup.ContentFont = New Font("Century Gothic", 12)
+                    popup.AnimationDuration = 1000
+                    popup.Popup()
                     LlamarSiguiente = True
 
                     Exit Function
                 Else
 
-                    oDs = Nothing
-                    oObjeto = Nothing
-                    OT5 = Nothing
+
                     LlamarSiguiente = False
 
                     Exit Function
@@ -931,6 +940,11 @@ ManejoErrores:
 
         Catch ex As Exception
             Return False
+        Finally
+            popup = Nothing
+            oDs = Nothing
+            oObjeto = Nothing
+            OT5 = Nothing
         End Try
     End Function
 

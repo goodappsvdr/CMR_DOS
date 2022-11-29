@@ -140,7 +140,7 @@ Public Class FrmLoginOperador
 
     Private Sub FrmLogin_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        main()
+
     End Sub
 
     Private Sub UsernameTextBox_MouseClick(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles UsernameTextBox.MouseClick

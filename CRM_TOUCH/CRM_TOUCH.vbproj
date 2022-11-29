@@ -71,10 +71,10 @@
     <ApplicationIcon>Resources\LogoCoovilros.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>42560A6D731E84DB3062CBB950DD9223AFE4985B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>470F45754DC9EEF875ABE5C56665C118A420C989</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>CRM_TOUCH_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>CRM_TOUCH_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -327,6 +327,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="CRM_TOUCH_1_TemporaryKey.pfx" />
+    <None Include="CRM_TOUCH_2_TemporaryKey.pfx" />
     <None Include="CRM_TOUCH_TemporaryKey.pfx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

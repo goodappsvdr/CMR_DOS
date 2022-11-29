@@ -13,7 +13,7 @@ Public Class FrmElegirBoxActual
 
         BoxesCtrl1.Iniciar_conidusuario(G_UserID)
 
-        main()
+
     End Sub
 
     'Private Sub CargarBoxes(UserID As Double)

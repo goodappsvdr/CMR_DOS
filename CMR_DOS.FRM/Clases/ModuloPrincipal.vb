@@ -34,6 +34,8 @@ Module ModuloPrincipal
     Public R_FechaHasta As Date
     Public R_IDOperador As Double
     Public R_Reporte As String = ""
+    Public G_Click As Integer = 0
+    Public G_ImpresoraTicket As String = ValorParametro("IMPRESORA", "TICKET")
 #Region "Enumeraciones"
 
 
@@ -374,7 +376,7 @@ Loop1:
 
     End Function
 
-  
+
 
     Public Function ValorParametro(ByVal Categoria As String, ByVal Nombre As String) As String
 

@@ -27,8 +27,8 @@
     <InstallUrl>http://179.43.114.86/INSTALADORES/CMR_DOS/</InstallUrl>
     <ProductName>CRM</ProductName>
     <PublisherName>COOVILROS LTDA</PublisherName>
-    <MinimumRequiredVersion>1.0.0.43</MinimumRequiredVersion>
-    <ApplicationRevision>44</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.48</MinimumRequiredVersion>
+    <ApplicationRevision>49</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -71,10 +71,10 @@
     <ApplicationIcon>LogoCoovilros.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1F2D9C8C5358D392260B93309B522ADEA7D53074</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>955E79DBD1A7225268959D9D57AB75909CAF7C0A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>CMR_DOS.FRM_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>CMR_DOS.FRM_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -254,6 +254,9 @@
     <Reference Include="TelerikExport">
       <HintPath>..\dll\TelerikExport.dll</HintPath>
     </Reference>
+    <Reference Include="Tulpep.NotificationWindow, Version=1.1.38.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
+    </Reference>
     <Reference Include="VisualStyleBuilder.Design">
       <HintPath>..\dll\VisualStyleBuilder.Design.dll</HintPath>
     </Reference>
@@ -398,12 +401,6 @@
       <DependentUpon>FrmElegirBoxActual.vb</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Operador\FrmElegirBoxActual.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\Operador\FrmLoginOperador.Designer.vb">
-      <DependentUpon>FrmLoginOperador.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Operador\FrmLoginOperador.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Operador\FrmMotivos.designer.vb">
@@ -594,9 +591,6 @@
     <EmbeddedResource Include="Formularios\Operador\FrmElegirBoxActual.resx">
       <DependentUpon>FrmElegirBoxActual.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Operador\FrmLoginOperador.resx">
-      <DependentUpon>FrmLoginOperador.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Operador\FrmMotivos.resx">
       <DependentUpon>FrmMotivos.vb</DependentUpon>
     </EmbeddedResource>
@@ -663,6 +657,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="CMR_DOS.FRM_1_TemporaryKey.pfx" />
+    <None Include="CMR_DOS.FRM_2_TemporaryKey.pfx" />
     <None Include="CMR_DOS.FRM_TemporaryKey.pfx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
